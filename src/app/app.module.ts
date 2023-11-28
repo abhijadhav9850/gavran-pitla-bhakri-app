@@ -8,6 +8,7 @@ import { DetailsComponent } from './details/details.component';
 import { LogininphoneComponent } from './logininphone/logininphone.component';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 import { LogindetailsComponent } from './logindetails/logindetails.component';
+import { FoodQuantityComponent } from './food-quantity/food-quantity.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LogindetailsComponent } from './logindetails/logindetails.component';
     DetailsComponent,
     LogininphoneComponent,
     OtpVerificationComponent,
-    LogindetailsComponent
+    LogindetailsComponent,
+    FoodQuantityComponent
   ],
   imports: [
     BrowserModule,
