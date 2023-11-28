@@ -10,6 +10,7 @@ import { OtpVerificationComponent } from './otp-verification/otp-verification.co
 import { LogindetailsComponent } from './logindetails/logindetails.component';
 import { FoodQuantityComponent } from './food-quantity/food-quantity.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
