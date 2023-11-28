@@ -5,6 +5,7 @@ import { LogininphoneComponent } from './logininphone/logininphone.component';
 import { DetailsComponent } from './details/details.component';
 import { OtpVerificationComponent } from './otp-verification/otp-verification.component';
 import { LogindetailsComponent } from './logindetails/logindetails.component';
+import { FoodQuantityComponent } from './food-quantity/food-quantity.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -12,6 +13,8 @@ const routes: Routes = [
   {path:'login',component:LogininphoneComponent},
   {path:'otp',component:OtpVerificationComponent},
   {path:'login-details',component:LogindetailsComponent},
+  {path:'food', component:FoodQuantityComponent},
+
 
 ];
 
