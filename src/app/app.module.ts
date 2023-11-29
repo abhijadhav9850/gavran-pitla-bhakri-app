@@ -35,7 +35,7 @@ import { PaymentpageComponent } from './paymentpage/paymentpage.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

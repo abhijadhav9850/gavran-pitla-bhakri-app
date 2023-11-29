@@ -1,0 +1,14 @@
+<div class="main flex flex-col overflow-hidden">
+    <div class="d1 h-28 w-28 bg-slate-100 relative">
+        <button (click)="onclick()">click</button>
+        <h1>main d1</h1>
+    </div>
+    <ng-container *ngIf="visible" >
+    <div  class="d2" class="d1 h-28 w-28 bg-slate-300 absolute bottom-[0%] ">
+        <h1>main d2</h1>
+    </div>
+</ng-container>
+
+</div>
+<!-- {{ visible ? '-bottom-[100%]' : 'bg-slate-300' }} -->
+<!-- {{visible}} -->
