@@ -11,6 +11,9 @@ import { LogindetailsComponent } from './logindetails/logindetails.component';
 import { FoodQuantityComponent } from './food-quantity/food-quantity.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { SettingsComponent } from './settings/settings.component';
+import { DefaultLoginComponent } from './default-login/default-login.component';
+import { DefaultOtpVerificationComponent } from './default-otp-verification/default-otp-verification.component';
+import { DefultUserLoginComponent } from './defult-user-login/defult-user-login.component';
 
 
 @NgModule({
@@ -23,7 +26,10 @@ import { SettingsComponent } from './settings/settings.component';
     LogindetailsComponent,
     FoodQuantityComponent,
     OrderHistoryComponent,
-    SettingsComponent
+    SettingsComponent,
+    DefaultLoginComponent,
+    DefaultOtpVerificationComponent,
+    DefultUserLoginComponent
   ],
   imports: [
     BrowserModule,
