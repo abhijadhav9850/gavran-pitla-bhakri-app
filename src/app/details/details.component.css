@@ -1,0 +1,9 @@
+.font-aclonica {
+    font-family: 'Aclonica', sans-serif;
+  }
+  
+  #profile_image{
+    width: 29px;
+  }
+  
+  @import url('https://fonts.googleapis.com/css2?family=Aclonica&family=Noto+Serif+Devanagari:wght@700&display=swap');
