@@ -8,6 +8,9 @@ import { LogindetailsComponent } from './logindetails/logindetails.component';
 import { FoodQuantityComponent } from './food-quantity/food-quantity.component';
 import { DefaultLoginComponent } from './default-login/default-login.component';
 import { DefaultOtpVerificationComponent } from './default-otp-verification/default-otp-verification.component';
+import { DefultUserLoginComponent } from './defult-user-login/defult-user-login.component';
+import { SettingsComponent } from './settings/settings.component';
+import { PaymentpageComponent } from './paymentpage/paymentpage.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -18,7 +21,9 @@ const routes: Routes = [
   {path:'food', component:FoodQuantityComponent},
   {path:'defult-login', component:DefaultLoginComponent},
   {path:'defult-otp', component:DefaultOtpVerificationComponent},
-  {path:'defult-user-login', component:DefaultOtpVerificationComponent},
+  {path:'defult-user-login', component:DefultUserLoginComponent},
+  {path:'setting', component:SettingsComponent},
+  {path:'payment', component:PaymentpageComponent},
 
 
 ];
