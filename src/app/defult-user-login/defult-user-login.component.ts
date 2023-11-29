@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./defult-user-login.component.css']
 })
 export class DefultUserLoginComponent {
-
+   
 }
