@@ -6,15 +6,21 @@ import { Component, } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  
 
   hide : any = false
 
   divStyle = {
     // display :'none',
-    backgroundColor: 'lightblue',
-    color: 'black',
-    'margin-top': '45%',
+    // backgroundColor: 'lightblue',
+    // color: 'black',
+    'width' : '100%',
+    'margin-top': '10%',
     'transition' : 'margin-top 1s',
+    'box-shadow' : '0px 0px 20px lightgray',
+    'z-index': '-1',
+    'background-color' : '#fff',
+
   };
 
   changeStyle() {
@@ -23,10 +29,19 @@ export class HomeComponent {
 
     this.divStyle = {
       // display: 'flex',
-      backgroundColor: 'lightgreen',
-      color: 'white',
-      'margin-top': '20%',
+      // backgroundColor: 'lightgreen',
+      // color: 'white',
+      'width' : '100%',
+      'margin-top': '-130%',
       'transition': 'all 1s',
+      'box-shadow' : '0px 0px 20px lightgray',
+      'z-index': '1',
+      'background-color' : '#fff',
     };
   }
+
+
+
+
+
 }
