@@ -1,6 +1,6 @@
-
+// import { style } from '@angular/animations';
 import { Component } from '@angular/core';
-
+import { verbose } from 'sqlite3';
 
 @Component({
   selector: 'app-food-quantity',
