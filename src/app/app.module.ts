@@ -23,7 +23,7 @@ import { FoodQuantityComponent } from './food-quantity/food-quantity.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

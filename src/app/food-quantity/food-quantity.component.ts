@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class FoodQuantityComponent {
 
+  visible:any=false;
+
+  onclick(){
+    this.visible=!this.visible
+  }
 }
