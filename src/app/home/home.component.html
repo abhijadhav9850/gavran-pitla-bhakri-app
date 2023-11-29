@@ -1,50 +1,7 @@
-<div class="flex justify-between items-center w-full h-110 ">
-  <div class="flex gap-5 text-24">
-      <p class="text-orange">Pithla</p>
-      <p class="text-green">Bhakri</p>
+<div class="overflow-hidden">
+    <button (click)="changeStyle()" class="bg-blue-500 text-white py-2 px-4 rounded relative ">Change Style</button>
+  
+    <div [ngStyle]="divStyle" class="p-6 shadow-md rounded-md absolute">
+      <p>Your content here</p>
+    </div>
   </div>
-  <div class="flex items-center gap-5">
-      <p class="text-18 font-bold font-Noto-Serif-Devanagari">मराठी</p>
-      <img class="h-[29px] w-[29px] -mt-[8px]" src="../../assets/Group 20.jpg" alt="">
-  </div>
-</div>
-
-<div class="block justify-center p-[20px]" id="contener">
-  <img class="w-full rounded-[20px]" src="../../assets/image 2.jpg" alt="">
-  <div class="px-15">
-      <p class="text-20 font-bold">The Complete Meal</p>
-      <p class="text-14 font-normal">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <div id="content">
-          <p class="text-20 font-bold">Content</p>
-          <div class="mt-15 flex gap-20">
-              <div class="flex gap-8">
-                  <img class="w-23 h-23" src="../../assets/Group.png" alt="">
-                  <p>Bhakri x 2</p>
-              </div>
-              <div class="flex gap-8">
-                  <img class="w-23 h-23" src="../../assets/Group 9.png" alt="">
-                  <p>Thecha</p>
-              </div>
-          </div>
-          <div class="mt-15 flex gap-20">
-              <div class="flex gap-8">
-                  <img class="w-23 h-23" src="../../assets/Vector.png" alt="">
-                  <p>Pitla (For 1)</p>
-              </div>
-              <div class="flex gap-8">
-                  <img class="w-23 h-23" src="../../assets/Vector (1).png" alt="">
-                  <p>Onion</p>
-              </div>
-          </div>
-      </div>
-      <div id="order_now" class="mt-50">
-          <div>
-              <p class="text-16 font-bold">Price</p>
-              <p class="text-30 font-bold">₹150</p>
-          </div>
-          <div id="order_now_parent_div" class="flex justify-center items-center mt-50 px-20">
-              <button id="order_now_button" class="btn-orange">Order Now</button>
-          </div>
-      </div>
-  </div>
-</div>
