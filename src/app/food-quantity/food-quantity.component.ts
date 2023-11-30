@@ -1,6 +1,6 @@
 // import { style } from '@angular/animations';
 import { Component } from '@angular/core';
-// import { verbose } from 'sqlite3';
+import { verbose } from 'sqlite3';
 
 @Component({
   selector: 'app-food-quantity',
@@ -12,8 +12,8 @@ export class FoodQuantityComponent {
  visible:any= false;
 onclick(){
   // this.visible=!this.visible
-console.log(this.visible=!this.visible);
-{this.visible?"bottom-[0%]":"top-0"}
+// console.log(this.visible=!this.visible);
+// {this.visible?"bottom-[0%]":"top-0"}
 
 
 }
