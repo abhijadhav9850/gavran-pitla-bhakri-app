@@ -37,7 +37,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
