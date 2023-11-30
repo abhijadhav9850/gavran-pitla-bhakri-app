@@ -12,6 +12,9 @@ import { DefultUserLoginComponent } from './defult-user-login/defult-user-login.
 import { SettingsComponent } from './settings/settings.component';
 import { PaymentpageComponent } from './paymentpage/paymentpage.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserOrdersComponent } from './user-orders/user-orders.component';
+import { UserPaymentComponent } from './user-payment/user-payment.component';
+import { DelevryAddressComponent } from './delevry-address/delevry-address.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -25,7 +28,10 @@ const routes: Routes = [
   {path:'defult-user-login', component:DefultUserLoginComponent},
   {path:'setting', component:SettingsComponent},
   {path:'payment', component:PaymentpageComponent},
-  {path:'userprofile', component:UserProfileComponent},
+  {path:'user-profile', component:UserProfileComponent},
+  {path:'user-order', component:UserOrdersComponent},
+  {path:'user-payment', component:UserPaymentComponent},
+  {path:'delevry', component:DelevryAddressComponent},
 
 
 ];
