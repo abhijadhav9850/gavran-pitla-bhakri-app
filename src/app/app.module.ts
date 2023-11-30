@@ -15,6 +15,7 @@ import { DefaultLoginComponent } from './default-login/default-login.component';
 import { DefaultOtpVerificationComponent } from './default-otp-verification/default-otp-verification.component';
 import { DefultUserLoginComponent } from './defult-user-login/defult-user-login.component';
 import { PaymentpageComponent } from './paymentpage/paymentpage.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { PaymentpageComponent } from './paymentpage/paymentpage.component';
     DefaultLoginComponent,
     DefaultOtpVerificationComponent,
     DefultUserLoginComponent,
-    PaymentpageComponent
+    PaymentpageComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

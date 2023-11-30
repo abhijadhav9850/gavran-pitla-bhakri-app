@@ -11,6 +11,7 @@ import { DefaultOtpVerificationComponent } from './default-otp-verification/defa
 import { DefultUserLoginComponent } from './defult-user-login/defult-user-login.component';
 import { SettingsComponent } from './settings/settings.component';
 import { PaymentpageComponent } from './paymentpage/paymentpage.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path:'defult-user-login', component:DefultUserLoginComponent},
   {path:'setting', component:SettingsComponent},
   {path:'payment', component:PaymentpageComponent},
+  {path:'userprofile', component:UserProfileComponent},
 
 
 ];
