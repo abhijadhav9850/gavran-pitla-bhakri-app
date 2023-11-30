@@ -1,5 +1,5 @@
 <div class="overflow-hidden">
-  <div style="display: flex;justify-content: space-between;align-items: center;padding: 20px 10px;">
+  <div class="flex justify-between items-center pl-[20px] p-[20px]">
     <div style="display: flex;gap: 8px;font-size: 24px;">
       <p style="font-family: 'Aclonica', sans-serif;color: #FF6A00;">Pithla</p>
       <p style="font-family: 'Aclonica', sans-serif;color: #00A850;">Bhakri</p>
@@ -15,28 +15,28 @@
     <img class="w-full rounded-md" src="../../assets/image 2.jpg" alt="">
     <div class="px-1 py-2">
         <p class="mt-[20px] font-bold text-[18px]">The Complete Meal</p>
-        <p class="text-14 font-normal text-[14px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p class="text-14 font-normal text-[12px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
         <div class="mt-[10px]" id="content">
             <p class="text-[18px] font-bold">Content</p>
             <div class="flex gap-[20px]">
                 <div class="mt-[5px] gap-10">
                     <div class="flex align- gap-[10px]">
                         <img class="w-23 h-23" src="../../assets/Group.png" alt="">
-                        <p>Bhakri x 2</p>
+                        <p class="text-[12px]">Bhakri x 2</p>
                     </div>
                     <div class="flex mt-[10px] gap-[10px]">
                         <img class="w-23 h-23" src="../../assets/Vector.png" alt="">
-                        <p>Pitla (For 1)</p>
+                        <p class="text-[12px]">Pitla (For 1)</p>
                     </div>
                 </div>
                 <div class="mt-[10px] gap-10">
                     <div class="flex gap-[10px]">
                         <img class="w-23 h-23" src="../../assets/Group 9.png" alt="">
-                        <p>Thecha</p>
+                        <p class="text-[12px]">Thecha</p>
                     </div>
                     <div class="flex mt-[10px] gap-[10px]">
                         <img class="w-23 h-23" src="../../assets/Vector (1).png" alt="">
-                        <p>Onion</p>
+                        <p class="text-[12px]">Onion</p>
                     </div>
                 </div>
             </div>
@@ -50,13 +50,12 @@
     </div>
   </div>
 
-  <div class="flex items-center h-1 text-center justify-center active:opacity-90 mt-[40px] mb-[30px]">
+  <div class="flex items-center h-1 text-center justify-center active:opacity-90 mt-[20%] mb-[30px]">
    <button  (click)="changeStyle()" class="text-[18px] h-[40px] font-medium text-orange-50 w-[150px] bg-orange-500 rounded-3xl">Order Now</button>
   </div>
 
 
     <div>
-      <app-default-login [ngStyle]="divStyle" class="p-6 shadow-slate-950 rounded-3xl absolute"></app-default-login>
+      <app-otp-verification *ngIf="hide" [ngStyle]="divStyle" class="p-6 shadow-slate-950 rounded-3xl absolute"></app-otp-verification>
   </div>
   </div>
-  

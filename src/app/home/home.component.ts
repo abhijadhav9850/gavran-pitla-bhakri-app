@@ -26,18 +26,20 @@ export class HomeComponent {
   changeStyle() {
     this.hide =!this.hide
     // Change the style dynamically
+    setTimeout(()=>{                           // <<<---using ()=> syntax
+      this.divStyle = {
+        // display: 'flex',
+        // backgroundColor: 'lightgreen',
+        // color: 'white',
+        'width' : '100%',
+        'margin-top': '-100%',
+        'transition': 'all 1s',
+        'box-shadow' : '0px 0px 20px gray',
+        'z-index': '1',
+        'background-color' : '#fff',
+      };
+  }, 10);
 
-    this.divStyle = {
-      // display: 'flex',
-      // backgroundColor: 'lightgreen',
-      // color: 'white',
-      'width' : '100%',
-      'margin-top': '-130%',
-      'transition': 'all 1s',
-      'box-shadow' : '0px 0px 20px lightgray',
-      'z-index': '1',
-      'background-color' : '#fff',
-    };
   }
 
 
