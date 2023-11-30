@@ -32,7 +32,7 @@ export class HomeComponent {
         // backgroundColor: 'lightgreen',
         // color: 'white',
         'width' : '100%',
-        'margin-top': '-100%',
+        'margin-top': '-115%',
         'transition': 'all 1s',
         'box-shadow' : '0px 0px 20px gray',
         'z-index': '1',
