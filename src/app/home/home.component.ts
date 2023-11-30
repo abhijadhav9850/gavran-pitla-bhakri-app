@@ -7,8 +7,11 @@ import { PopupHandingService } from 'src/popup-handing.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-service: any;
   
+  constructor(public service : PopupHandingService){
+
+  }
+
 
  
 
