@@ -1,5 +1,5 @@
-<div class="overflow-hidden">
-  <!-- <div style="display: flex;justify-content: space-between;align-items: center;padding: 20px 10px;">
+<div class="overflow-hidden bg-gradient-to-tl">
+  <div style="display: flex;justify-content: space-between;align-items: center;padding: 20px 10px;">
     <div style="display: flex;gap: 8px;font-size: 24px;">
       <p style="font-family: 'Aclonica', sans-serif;color: #FF6A00;">Pithla</p>
       <p style="font-family: 'Aclonica', sans-serif;color: #00A850;">Bhakri</p>
@@ -48,14 +48,16 @@
             </div>
         </div>
     </div>
-  </div> -->
+  </div>
 
-  <div class="flex items-center h-1 text-center justify-center active:opacity-90 mt-[20%] mb-[30px]">
-   <button  (click)="changeStyle()" class="text-[18px] h-[40px] font-medium text-orange-50 w-[150px] bg-orange-500 rounded-3xl">Order Now</button>
+  <div class="flex items-center h-1 text-center justify-center active:opacity-90 mt-[58%] mb-[30px]">
+   <button (click)="service.changeStyle()" class="text-[18px] h-[40px] font-medium text-orange-50 w-[150px] bg-orange-500 rounded-3xl">Order Now</button>
   </div>
 
 
+  
+
     <div>
-      <app-otp-verification *ngIf="hide" [ngStyle]="divStyle" class="p-6 shadow-slate-950 rounded-3xl absolute"></app-otp-verification>
+      <app-logininphone *ngIf="service.hide" [ngStyle]="service.loginInPhone" class="p-6 shadow-slate-950 rounded-t-3xl absolute"></app-logininphone>
   </div>
   </div> 
