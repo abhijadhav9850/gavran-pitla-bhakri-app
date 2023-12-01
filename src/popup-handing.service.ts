@@ -5,22 +5,38 @@ import { Injectable } from '@angular/core';
 })
 export class PopupHandingService {
 
-  constructor() { }
+  constructor() {
+  
+   }
 
   
-  hide : any = false
-  otp :any =false
-  address : any = false
+  hide : any = false;
+  otp :any = false;
+  address : any = false;
+
+  backgroundblur = {
+    'filter' : 'blue(0px)',
+    'background' : 'none'
+  }
 
 
+  otpPopup = {
+    'width' : '100%',
+    'transition': 'transform 0.5s ease-in-out',
+    'transform': 'translateY(10%)',
+    'box-shadow' : '0px 0px 20px lightgray',
+    'z-index': '-1',
+    'background-color' : '#fff',
+    'overflow' : 'auto',
+  }
 
   loginInPhone = {
     // display :'none',
     // backgroundColor: 'lightblue',
     // color: 'black',
     'width' : '100%',
+    'transition': 'transform 0.5s ease-in-out',
     'transform': 'translateY(10%)',
-    'transition' : 'margin-top 1s',
     'box-shadow' : '0px 0px 20px lightgray',
     'z-index': '-1',
     'background-color' : '#fff',
@@ -31,46 +47,67 @@ export class PopupHandingService {
   changeStyle() {
     this.hide =!this.hide
     // Change the style dynamically
-    setTimeout(()=>{                           // <<<---using ()=> syntax
+    setTimeout(()=>{  
+      
+      this.backgroundblur = {
+        'background' : 'linear-gradient(rgba(0, 0, 0, -8.46),rgba(0, 0, 0, -8.46),url(../../assets/image 2.jpg)',
+        'filter' : 'blur(5px)'
+      }
+      
       this.loginInPhone = {
         // display: 'flex',
         // backgroundColor: 'lightgreen',
         // color: 'white',
         'width' : '100%',
-        'transform': 'translateY(-96.5%)',
-        'transition': 'margin-top 0.5s',
+        'transition': 'transform 0.3s ease-in-out',
+        'transform': 'translateY(-85.5%)',
         'box-shadow' : '0px 0px 20px gray',
         'z-index': '1',
         'background-color' : '#fff',
-        'overflow' : 'hidden'
+        'overflow' : 'hidden',
       };
   }, 10);
-
   }
 
     closepopup(){
-      this.hide =!this.hide;
+  
+      
 
+      this.backgroundblur = {
+        'filter' : 'blue(0px)',
+        'background' : 'none'
+      }
+
+         
       this.loginInPhone = {
-        // display :'none',
-        // backgroundColor: 'lightblue',
-        // color: 'black',
+        // display: 'flex',
+        // backgroundColor: 'lightgreen',
+        // color: 'white',
         'width' : '100%',
-        'transform': 'translateY(10%)',
-        'transition' : 'margin-top 1s',
-        'box-shadow' : '0px 0px 20px lightgray',
-        'z-index': '-1',
+        'transition': 'transform 0.3s ease-in-out',
+        'transform': 'translateY(20%)',
+        'box-shadow' : '0px 0px 5px ',
+        'z-index': '1',
         'background-color' : '#fff',
-        'overflow' : 'auto',
-    
+        'overflow' : 'hidden',
       };
 
+      this.backgroundblur = {
+        'filter' : 'none',
+        'background' : 'none'
+      }
 
-    
-
-
+      setTimeout(()=>{  
+      
+      this.hide = false
+     
+    }, 500);
     }
 
-
+    openOtp(){
+      this.otp = true
+      console.log(this.otp); 
+    }
+    
 
 }

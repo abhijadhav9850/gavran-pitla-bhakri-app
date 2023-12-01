@@ -1,61 +1,70 @@
-<div style="display: flex;justify-content: space-between;align-items: center;padding: 50px 10px 10px; gap: 30px;">
-    <div style="display: flex;gap: 8px;font-size: 24px;">
-        <p style="font-family: 'Aclonica', sans-serif;color: #FF6A00;">Pithla</p>
-        <p style="font-family: 'Aclonica', sans-serif;color: #00A850;">Bhakri</p>
-    </div>
-    <div style="display: flex;align-items: center;gap: 5px;">
-        <p style="font-size: 18px;font-weight: 700;font-family: 'Noto Serif Devanagari', serif;text-align: center;">
-            मराठी
-        </p>
-        <img class="h-[29px] -mt-[8px]" src="../../assets/Group 20.jpg" alt="">
-    </div>
-</div>
-
-<div class="main flex flex-col items-center md:flex-row w-100% p-3 gap-2">
-    <div id="contener" class="w-40%">
-        <img class="w-96 h-52  rounded-md" src="../../assets/image 2.jpg" alt="">
-
-    </div>
-    <div class="px-1 py-2 w-40% ">
-        <p class="font-bold text-[18px]">The Complete Meal</p>
-        <p class="text-14 font-normal  text-[12px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <div class="mt-[10px]" id="content">
-            <p class="text-[18px] font-bold">Content</p>
-            <div class="flex gap-[20px]">
-                <div class="mt-[5px] gap-10">
-                    <div class="flex align- gap-[10px]">
-                        <img class="w-23 h-23" src="../../assets/Group.png" alt="">
-                        <p>Bhakri x 2</p>
-                    </div>
-                    <div class="flex mt-[10px] gap-[10px]">
-                        <img class="w-23 h-23" src="../../assets/Vector.png" alt="">
-                        <p>Pitla (For 1)</p>
-                    </div>
-                </div>
-                <div class="mt-[10px] gap-10">
-                    <div class="flex gap-[10px]">
-                        <img class="w-23 h-23" src="../../assets/Group 9.png" alt="">
-                        <p>Thecha</p>
-                    </div>
-                    <div class="flex mt-[10px] gap-[10px]">
-                        <img class="w-23 h-23" src="../../assets/Vector (1).png" alt="">
-                        <p>Onion</p>
-                    </div>
-                </div>
-            </div>
+<div id="main" [ngStyle]="service.backgroundblur">
+    <div style="display: flex;justify-content: space-between;align-items: center;padding: 50px 10px 10px; gap: 30px;">
+        <div style="display: flex;gap: 8px;font-size: 24px;">
+            <p style="font-family: 'Aclonica', sans-serif;color: #FF6A00;">Pithla</p>
+            <p style="font-family: 'Aclonica', sans-serif;color: #00A850;">Bhakri</p>
         </div>
-        <div id="order_now" class="mt-[20px]">
-            <div>
-                <p class="text-[18px] font-bold">Price</p>
-                <p class="text-[20px] -mt-[5px] font-bold">₹150</p>
-            </div>
+        <div style="display: flex;align-items: center;gap: 5px;">
+            <p style="font-size: 18px;font-weight: 700;font-family: 'Noto Serif Devanagari', serif;text-align: center;">
+                मराठी
+            </p>
+            <img class="h-[29px] -mt-[8px]" src="../../assets/Group 20.jpg" alt="">
         </div>
     </div>
     
-</div>
-<div class="flex items-center h-1 text-center justify-center active:opacity-90 mt-36">
-    <button class="text-[18px] h-[40px] font-medium text-orange-50  w-[150px] bg-orange-500 rounded-3xl">Order Now</button>
+    <div class="main flex flex-col items-center md:flex-row w-100% p-3 gap-2">
+        <div id="contener" class="w-40%">
+            <img class="w-96 h-52  rounded-md" src="../../assets/image 2.jpg" alt="">
+    
+        </div>
+        <div class="px-1 py-2 w-40% ">
+            <p class="font-bold text-[18px]">The Complete Meal</p>
+            <p class="text-14 font-normal  text-[12px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <div class="mt-[10px]" id="content">
+                <p class="text-[18px] font-bold">Content</p>
+                <div class="flex gap-[20px]">
+                    <div class="mt-[5px] gap-10">
+                        <div class="flex align- gap-[10px]">
+                            <img class="w-23 h-23" src="../../assets/Group.png" alt="">
+                            <p>Bhakri x 2</p>
+                        </div>
+                        <div class="flex mt-[10px] gap-[10px]">
+                            <img class="w-23 h-23" src="../../assets/Vector.png" alt="">
+                            <p>Pitla (For 1)</p>
+                        </div>
+                    </div>
+                    <div class="mt-[10px] gap-10">
+                        <div class="flex gap-[10px]">
+                            <img class="w-23 h-23" src="../../assets/Group 9.png" alt="">
+                            <p>Thecha</p>
+                        </div>
+                        <div class="flex mt-[10px] gap-[10px]">
+                            <img class="w-23 h-23" src="../../assets/Vector (1).png" alt="">
+                            <p>Onion</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="order_now" class="mt-[20px]">
+                <div>
+                    <p class="text-[18px] font-bold">Price</p>
+                    <p class="text-[20px] -mt-[5px] font-bold">₹150</p>
+                </div>
+            </div>
+        </div>    
+    </div>
+
+    
+    <div class="flex items-center h-1 text-center justify-center active:opacity-90 mt-36">
+        <button (click)="service.changeStyle()" class="text-[18px] h-[40px] font-medium text-orange-50  w-[150px] bg-orange-500 rounded-3xl">Order Now</button>
+    </div>
 </div>
 
+
+
+
+<div>
+    <app-logininphone [ngStyle]="service.loginInPhone" *ngIf="service.hide" class="p-6 shadow-slate-950 rounded-t-3xl absolute"></app-logininphone>
+  </div>
 
