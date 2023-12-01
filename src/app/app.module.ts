@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { DelevryAddressComponent } from './delevry-address/delevry-address.component';
 import { UserPaymentComponent } from './user-payment/user-payment.component';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
+import { NewbackendComponent } from './newbackend/newbackend.component';
+// import { BackendComponent } from './backend/backend.component';
 
 
 @NgModule({
@@ -39,11 +42,15 @@ import { UserOrdersComponent } from './user-orders/user-orders.component';
     UserProfileComponent,
     DelevryAddressComponent,
     UserPaymentComponent,
-    UserOrdersComponent
+    UserOrdersComponent,
+    NewbackendComponent,
+    // BackendComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
