@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./default-otp-verification.component.css']
 })
 export class DefaultOtpVerificationComponent {
-
+  
 }
