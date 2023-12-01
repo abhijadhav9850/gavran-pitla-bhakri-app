@@ -16,9 +16,9 @@ import { DefaultOtpVerificationComponent } from './default-otp-verification/defa
 import { DefultUserLoginComponent } from './defult-user-login/defult-user-login.component';
 import { PaymentpageComponent } from './paymentpage/paymentpage.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { DelevryAddressComponent } from './delevry-address/delevry-address.component';
 import { UserPaymentComponent } from './user-payment/user-payment.component';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
+import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 
 
 @NgModule({
@@ -37,9 +37,9 @@ import { UserOrdersComponent } from './user-orders/user-orders.component';
     DefultUserLoginComponent,
     PaymentpageComponent,
     UserProfileComponent,
-    DelevryAddressComponent,
     UserPaymentComponent,
-    UserOrdersComponent
+    UserOrdersComponent,
+    DeliveryAddressComponent
   ],
   imports: [
     BrowserModule,
