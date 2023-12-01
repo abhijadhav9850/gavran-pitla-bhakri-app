@@ -14,7 +14,9 @@ import { PaymentpageComponent } from './paymentpage/paymentpage.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 import { UserPaymentComponent } from './user-payment/user-payment.component';
-import { DelevryAddressComponent } from './delevry-address/delevry-address.component';
+import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
+
+
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -31,7 +33,7 @@ const routes: Routes = [
   {path:'user-profile', component:UserProfileComponent},
   {path:'user-order', component:UserOrdersComponent},
   {path:'user-payment', component:UserPaymentComponent},
-  {path:'delevry', component:DelevryAddressComponent},
+  {path:'delivery-add',component:DeliveryAddressComponent}
 
 
 ];
