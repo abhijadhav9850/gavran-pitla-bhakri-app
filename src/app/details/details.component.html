@@ -1,6 +1,6 @@
 <div id="main" [ngStyle]="service.backgroundblur">
     <div style="display: flex;justify-content: space-between;align-items: center;padding: 50px 10px 10px; gap: 30px;">
-        <div style="display: flex;gap: 8px;font-size: 24px;">
+        <div routerLink="" style="display: flex;gap: 8px;font-size: 24px;">
             <p style="font-family: 'Aclonica', sans-serif;color: #FF6A00;">Pithla</p>
             <p style="font-family: 'Aclonica', sans-serif;color: #00A850;">Bhakri</p>
         </div>
@@ -56,8 +56,8 @@
     </div>
 
     
-    <div class="flex items-center h-1 text-center justify-center active:opacity-90 mt-36">
-        <button (click)="service.changeStyle()" class="text-[18px] h-[40px] font-medium text-orange-50  w-[150px] bg-orange-500 rounded-3xl">Order Now</button>
+    <div class="flex items-center h-1 text-center justify-center active:opacity-90 mt-36 bottom-10 sticky">
+        <button (click)="service.changeStyle()" class="text-[18px] h-[40px] font-medium text-orange-50 w-[150px] bg-orange-500 rounded-3xl">Order Now</button>
     </div>
 </div>
 
@@ -66,5 +66,5 @@
 
 <div>
     <app-logininphone [ngStyle]="service.loginInPhone" *ngIf="service.hide" class="p-6 shadow-slate-950 rounded-t-3xl absolute"></app-logininphone>
-  </div>
+</div>
 
