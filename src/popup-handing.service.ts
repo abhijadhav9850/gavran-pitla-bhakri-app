@@ -51,7 +51,7 @@ export class PopupHandingService {
       
       this.backgroundblur = {
         'background' : 'linear-gradient(rgba(0, 0, 0, -8.46),rgba(0, 0, 0, -8.46),url(../../assets/image 2.jpg)',
-        'filter' : 'blur(5px)'
+        'filter' : 'blur(4px)'
       }
       
       this.loginInPhone = {
@@ -70,15 +70,12 @@ export class PopupHandingService {
   }
 
     closepopup(){
-  
       
-
       this.backgroundblur = {
         'filter' : 'blue(0px)',
         'background' : 'none'
       }
 
-         
       this.loginInPhone = {
         // display: 'flex',
         // backgroundColor: 'lightgreen',
@@ -105,9 +102,17 @@ export class PopupHandingService {
     }
 
     openOtp(){
-      this.otp = true
-      console.log(this.otp); 
+      this.otp = false;
+    }
+    openAddress(){
+      this.address = false;
+    }
+
+    closeOtp(){
+      this.otp = false;
     }
     
+    
+
 
 }

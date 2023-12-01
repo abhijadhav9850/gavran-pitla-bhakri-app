@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PopupHandingService } from 'src/popup-handing.service';
 
 @Component({
   selector: 'app-logindetails',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./logindetails.component.css']
 })
 export class LogindetailsComponent {
+  constructor(public service : PopupHandingService){}
 
 }
