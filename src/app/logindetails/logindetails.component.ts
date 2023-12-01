@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { PopupHandingService } from 'src/popup-handing.service';
 import { Subscriber } from 'rxjs';
 
 @Component({
@@ -8,5 +9,6 @@ import { Subscriber } from 'rxjs';
   styleUrls: ['./logindetails.component.css']
 })
 export class LogindetailsComponent {
+  constructor(public service : PopupHandingService){}
 
 }
