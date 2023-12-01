@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserPaymentComponent } from './user-payment/user-payment.component';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
+import { NewbackendComponent } from './newbackend/newbackend.component';
+// import { BackendComponent } from './backend/backend.component';
 
 
 @NgModule({
@@ -38,12 +41,13 @@ import { DeliveryAddressComponent } from './delivery-address/delivery-address.co
     PaymentpageComponent,
     UserProfileComponent,
     UserPaymentComponent,
-    UserOrdersComponent,
-    DeliveryAddressComponent
+    UserOrdersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
