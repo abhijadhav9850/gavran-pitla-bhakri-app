@@ -11,8 +11,10 @@ export class PopupHandingService {
 
   
   hide : any = false;
+  contact : any = false;
   otp :any = false;
   address : any = false;
+  payment : any = false;
 
   backgroundblur = {
     'filter' : 'blue(0px)',
@@ -37,7 +39,7 @@ export class PopupHandingService {
     'width' : '100%',
     'transition': 'transform 0.5s ease-in-out',
     'transform': 'translateY(10%)',
-    'box-shadow' : '0px 0px 20px lightgray',
+    'box-shadow' : '',
     'z-index': '-1',
     'background-color' : '#fff',
     'overflow' : 'auto',
@@ -112,7 +114,13 @@ export class PopupHandingService {
       this.otp = false;
     }
     
-    
+    closepayment(){
+      this.payment = false;
+    }
+
+    closeContact(){
+      this.contact = false;
+    }
 
 
 }

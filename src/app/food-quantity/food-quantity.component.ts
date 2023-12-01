@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PopupHandingService } from 'src/popup-handing.service';
 
 
 @Component({
@@ -7,6 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./food-quantity.component.css']
 })
 export class FoodQuantityComponent {
+
+  constructor(public service : PopupHandingService){
+    
+  }
+
 
  visible:any= false;
 onclick(){
