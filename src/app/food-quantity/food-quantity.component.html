@@ -26,7 +26,7 @@
             </div>
             <div class="flex gap-3 mt-5">
                 <img src="../../assets/Group 9.png" alt="">
-                <p class="font-Roboto font-medium text-xs">Thecha</p>
+                <p class="font-Roboto font-medium text-xs">pithla</p>
             </div>
             <div class="flex gap-3 mt-5">
                 <img src="../../assets/Vector (1).png" alt="">
@@ -35,14 +35,14 @@
         </div>
         <div class="mt-5 items-center">
             <div class="flex gap-3">
-                <img class="h-4.5 w-4.5" src="../../assets/Button.png" alt="">
-                <p>0</p>
-                <img class="h-4.5 w-4.5" src="../../assets/Button (1).png" alt="">
+                <img (click)="bhakriDecrement()" class="h-[16px] w-16px mt-[5px]" src="../../assets/Button (1).png" alt="">
+                <p>{{bhakri}}</p>
+                <img (click)="bhakriIncrement()" class="h-[16px] w-16px mt-[5px]" src="../../assets/Button.png" alt="">
             </div>
             <div class="flex gap-3 mt-4">
-                <img class="h-4.5 w-4.5" src="../../assets/Button.png" alt="">
-                <p>0</p>
-                <img class="h-4.5 w-4.5" src="../../assets/Button (1).png" alt="">
+                <img (click)="pithlaDecrement()" class="h-[16px] w-16px mt-[5px]" src="../../assets/Button (1).png" alt="">
+                <p>{{pithla}}</p>
+                <img (click)="pithlaIncrement()" class="h-[16px] w-16px mt-[5px]" src="../../assets/Button.png" alt="">
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
     <footer class="flex justify-between items-center mt-10">
         <div class="flex flex-col">
             <p class="text-xs font-Roboto font-medium">Price</p>
-        <p class="text-xl font-bold">₹150</p>
+        <p class="text-xl font-bold">₹{{bhakriPrice + pitlaPrice }}</p>
         </div>
       <div>
         <button (click)="service.contact = 'true'"
