@@ -13,6 +13,43 @@ export class FoodQuantityComponent {
     
   }
 
+  bhakri = 2;
+  pithla = 1;
+  bhakriPrice = 50;
+  pithlaPrice = 0;
+  onionPrice = 0;
+  pitlaPrice = 50;
+
+  bhakriIncrement() {
+    if(this.bhakri>0){
+      this.bhakri++;
+      this.bhakriPrice = this.bhakriPrice + 25
+    }
+    console.log(this.bhakriPrice + this.pitlaPrice + this.pithlaPrice + this.onionPrice);
+    
+  }
+  bhakriDecrement() {
+    if(this.bhakri>2){
+      this.bhakri--;
+      this.bhakriPrice = this.bhakriPrice - 25
+
+    }
+  }
+
+pithlaIncrement() {
+  if(this.pithla>0){
+    this.pithla++;
+    this.bhakriPrice = this.bhakriPrice + 50
+  }
+}
+pithlaDecrement() {
+  if(this.pithla>1){
+    this.pithla--;
+    this.pithlaPrice = this.pithlaPrice - 50;
+    console.log(this.pitlaPrice);
+    
+  }
+  }
 
  visible:any= false;
 onclick(){

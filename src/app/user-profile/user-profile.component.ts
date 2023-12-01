@@ -7,4 +7,20 @@ import { Component } from '@angular/core';
 })
 export class UserProfileComponent {
 
+  zoom = {
+    transition: 'transform .5s',
+    transform: 'none',
+    'margin-top' : '0px',
+  }
+
+  zoomimage(){
+
+      this.zoom = {
+        'transition': 'transform 1s',
+        'transform': 'scale(1.9)',
+        'margin-top' : '45%',
+      }
+  }
+
+
 }
