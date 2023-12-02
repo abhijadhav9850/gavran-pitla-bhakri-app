@@ -24,6 +24,5 @@ export class LogininphoneComponent {
       console.log('Form submitted:', this.phoneForm.value);
     }
   }
-  
 
 }
