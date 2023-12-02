@@ -34,8 +34,6 @@ const routes: Routes = [
   {path:'user-order', component:UserOrdersComponent},
   {path:'user-payment', component:UserPaymentComponent},
   {path:'delivery-add',component:DeliveryAddressComponent}
-
-
 ];
 
 @NgModule({
