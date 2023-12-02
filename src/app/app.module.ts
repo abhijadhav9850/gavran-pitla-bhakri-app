@@ -21,6 +21,8 @@ import { UserPaymentComponent } from './user-payment/user-payment.component';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 import { NewbackendComponent } from './newbackend/newbackend.component';
+import { LocalStorageComponent } from './local-storage/local-storage.component';
+import { LocalstorageComponent } from './localstorage/localstorage.component';
 // import { BackendComponent } from './backend/backend.component';
 
 
@@ -41,7 +43,9 @@ import { NewbackendComponent } from './newbackend/newbackend.component';
     PaymentpageComponent,
     UserProfileComponent,
     UserPaymentComponent,
-    UserOrdersComponent
+    UserOrdersComponent,
+    LocalStorageComponent,
+    LocalstorageComponent
   ],
   imports: [
     BrowserModule,
