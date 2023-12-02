@@ -23,6 +23,8 @@ import { DeliveryAddressComponent } from './delivery-address/delivery-address.co
 import { NewbackendComponent } from './newbackend/newbackend.component';
 import { LocalStorageComponent } from './local-storage/local-storage.component';
 import { LocalstorageComponent } from './localstorage/localstorage.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 // import { BackendComponent } from './backend/backend.component';
 
 
@@ -50,7 +52,10 @@ import { LocalstorageComponent } from './localstorage/localstorage.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
+
     
   ],
   providers: [],

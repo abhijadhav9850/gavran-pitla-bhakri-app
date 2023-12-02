@@ -1,40 +1,70 @@
-
 <div>
   <header class="relative flex justify-center p-2">
-    <svg (click)="service.openOtp()" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none"
-        class="absolute left-0 ">
-        <path
-            d="M16.8517 8.23502L9.16424 13.7975C9.13229 13.8205 9.10628 13.8508 9.08834 13.8859C9.07039 13.9209 9.06104 13.9597 9.06104 13.9991C9.06104 14.0385 9.07039 14.0773 9.08834 14.1123C9.10628 14.1473 9.13229 14.1776 9.16424 14.2006L16.8517 19.7631C17.0174 19.8819 17.2486 19.7631 17.2486 19.56V18.0944C17.2486 17.7756 17.0955 17.4725 16.8361 17.285L12.2924 14.0006L16.8361 10.7131C17.0955 10.5256 17.2486 10.2256 17.2486 9.90376V8.43814C17.2486 8.23502 17.0174 8.11627 16.8517 8.23502Z"
-            fill="black" fill-opacity="0.85" />
-        <path
-            d="M14 0C6.26875 0 0 6.26875 0 14C0 21.7313 6.26875 28 14 28C21.7313 28 28 21.7313 28 14C28 6.26875 21.7313 0 14 0ZM14 25.625C7.58125 25.625 2.375 20.4188 2.375 14C2.375 7.58125 7.58125 2.375 14 2.375C20.4188 2.375 25.625 7.58125 25.625 14C25.625 20.4188 20.4188 25.625 14 25.625Z"
-            fill="black" fill-opacity="0.85" />
+    <svg (click)="service.openOtp()" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
+      fill="none" class="absolute left-0 ">
+      <path
+        d="M16.8517 8.23502L9.16424 13.7975C9.13229 13.8205 9.10628 13.8508 9.08834 13.8859C9.07039 13.9209 9.06104 13.9597 9.06104 13.9991C9.06104 14.0385 9.07039 14.0773 9.08834 14.1123C9.10628 14.1473 9.13229 14.1776 9.16424 14.2006L16.8517 19.7631C17.0174 19.8819 17.2486 19.7631 17.2486 19.56V18.0944C17.2486 17.7756 17.0955 17.4725 16.8361 17.285L12.2924 14.0006L16.8361 10.7131C17.0955 10.5256 17.2486 10.2256 17.2486 9.90376V8.43814C17.2486 8.23502 17.0174 8.11627 16.8517 8.23502Z"
+        fill="black" fill-opacity="0.85" />
+      <path
+        d="M14 0C6.26875 0 0 6.26875 0 14C0 21.7313 6.26875 28 14 28C21.7313 28 28 21.7313 28 14C28 6.26875 21.7313 0 14 0ZM14 25.625C7.58125 25.625 2.375 20.4188 2.375 14C2.375 7.58125 7.58125 2.375 14 2.375C20.4188 2.375 25.625 7.58125 25.625 14C25.625 20.4188 20.4188 25.625 14 25.625Z"
+        fill="black" fill-opacity="0.85" />
     </svg>
     <div class="text-2xl font-bold">
-        <h1 class="font-bold">Login</h1>
+      <h1 class="font-bold">Login</h1>
     </div>
-</header>
-<p class="font-Roboto text-1xl flex  justify-center mt-6 font-Roboto">Please Enter Verification Code Sent to your</p>
-<p class="font-Roboto text-1xl flex  justify-center font-Roboto">Mobile No.</p>
-<p class="font-Roboto text-1xl flex  justify-center font-Roboto mt-6">+91xxxxxxxxx <button class="font-bold text-blue-500 ml-2">Change</button> </p>
+  </header>
+  <p class="font-Roboto text-1xl flex  justify-center mt-6 font-Roboto">Please Enter Verification Code Sent to your</p>
+  <p class="font-Roboto text-1xl flex  justify-center font-Roboto">Mobile No.</p>
+  <p class="font-Roboto text-1xl flex  justify-center font-Roboto mt-6">+91xxxxxxxxx <button
+      class="font-bold text-blue-500 ml-2">Change</button> </p>
 
-<div class="flex justify-center mt-16">
-  <div class="flex space-x-4">
-    <!-- OTP Input Fields -->
-    <input type="text" class="w-12 h-12 border border-gray-300 rounded text-center text-lg focus:outline-none focus:border-blue-500">
-    <input type="text" class="w-12 h-12 border border-gray-300 rounded text-center text-lg focus:outline-none focus:border-blue-500">
-    <input type="text" class="w-12 h-12 border border-gray-300 rounded text-center text-lg focus:outline-none focus:border-blue-500">
-    <input type="text" class="w-12 h-12 border border-gray-300 rounded text-center text-lg focus:outline-none focus:border-blue-500">
+  <div class="flex justify-center mt-16">
+    <form [formGroup]="otpForm" (ngSubmit)="submitForm()" class="flex space-x-4">
+      <div class="flex flex-col">
+        <input type="text" maxlength="1" (input)="onInput(1)" [(ngModel)]="otp[0]"
+        class="w-12 h-12 border border-gray-300 rounded text-center text-lg focus:outline-none focus:border-blue-500"
+        formControlName="number"
+        [ngClass]="{ 'invalid-input': otpForm.get('number')?.invalid && otpForm.get('number')?.touched }">
+      <div *ngIf="otpForm.get('number')?.hasError('required') && otpForm.get('number')?.touched" class="text-red-500 text-xs font-bold">
+        Add OTP</div>
+      </div>
+      <div class="flex flex-col">
+        <input type="text" maxlength="1" (input)="onInput(2)" [(ngModel)]="otp[1]"
+        class="w-12 h-12 border border-gray-300 rounded text-center text-lg focus:outline-none focus:border-blue-500"
+        formControlName="number2"
+        [ngClass]="{ 'invalid-input': otpForm.get('number2')?.invalid && otpForm.get('number2')?.touched }">
+      <div *ngIf="otpForm.get('number2')?.hasError('required') && otpForm.get('number2')?.touched" class="text-red-500 text-xs font-bold">
+        Add OTP</div>
+      </div>
+     <div class="flex flex-col">
+      <input type="text" maxlength="1" (input)="onInput(3)" [(ngModel)]="otp[2]"
+      class="w-12 h-12 border border-gray-300 rounded text-center text-lg focus:outline-none focus:border-blue-500"
+      formControlName="number3"
+      [ngClass]="{ 'invalid-input': otpForm.get('number3')?.invalid && otpForm.get('number3')?.touched }">
+    <div *ngIf="otpForm.get('number3')?.hasError('required') && otpForm.get('number3')?.touched" class="text-red-500 text-xs font-bold">
+      Add OTP</div>
+     </div>
+     <div class="flex flex-col">
+      <input type="text" maxlength="1" (input)="onInput(4)" [(ngModel)]="otp[3]"
+      class="w-12 h-12 border border-gray-300 rounded text-center text-lg focus:outline-none focus:border-blue-500"
+      formControlName="number4"
+      [ngClass]="{ 'invalid-input': otpForm.get('number4')?.invalid && otpForm.get('number4')?.touched }">
+    <div *ngIf="otpForm.get('number4')?.hasError('required') && otpForm.get('number4')?.touched" class="text-red-500 text-xs font-bold">
+      Add OTP</div>
+     </div>
+    </form>
   </div>
-</div>
-<div class="font-Roboto flex  justify-center mt-12">
-  <button (click)="service.address = 'true'" class="py-2 px-4 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-75">
-    Verify OTP
+  <div class="font-Roboto flex  justify-center mt-12">
+    <button (click)="service.address = 'true'" [disabled]="otpForm.invalid"
+      class="py-2 px-4 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-75">
+      Verify OTP
     </button>
-</div>
-    <p class="font-Roboto text-xs text-blue-400 font-Inter flex  justify-center mt-6 mb-[20px]">Not Received Your Code ? <button class="text-red-500 ml-2 font-bold">Resend Code</button></p> 
+  </div>
+  <p class="font-Roboto text-xs text-blue-400 font-Inter flex  justify-center mt-6 mb-[20px]">Not Received Your Code ?
+    <button class="text-red-500 ml-2 font-bold">Resend Code</button></p>
 </div>
 
 <div>
-  <app-logindetails [ngStyle]="service.loginInPhone" *ngIf="service.address" class="p-6 shadow-slate-950 rounded-t-3xl -mt-[45px] -ml-[25px] absolute"></app-logindetails>
+  <app-logindetails [ngStyle]="service.loginInPhone" *ngIf="service.address"
+    class="p-6 shadow-slate-950 rounded-t-3xl -mt-[45px] -ml-[25px] absolute"></app-logindetails>
 </div>
