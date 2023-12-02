@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { PopupHandingService } from 'src/popup-handing.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-otp-verification',
@@ -7,9 +9,22 @@ import { PopupHandingService } from 'src/popup-handing.service';
   styleUrls: ['./otp-verification.component.css']
 })
 export class OtpVerificationComponent {
-
-  constructor(public service : PopupHandingService){
-    
+  otpForm: FormGroup;
+  constructor(public service : PopupHandingService , public fb: FormBuilder){
+    this.otpForm = this.fb.group({
+      number: ['', [Validators.required ,]],
+      number2: ['', [Validators.required ,]],
+      number3: ['', [Validators.required ,]],
+      number4: ['', [Validators.required ,]],
+    });
   }
+  submitForm() {
+    Object.values(this.otpForm.controls).forEach((control) => {
+      control.markAsTouched();
+    });
 
+    if (this.otpForm.valid) {
+      console.log('Form submitted:', this.otpForm.value);
+    }
+  }
 }

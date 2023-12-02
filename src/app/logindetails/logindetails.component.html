@@ -18,21 +18,21 @@
 <form [formGroup]="myForm"  (ngSubmit)="submitForm()" class="flex flex-col justify-center p-2 mt-6">
     <div>
         <label for="name" class="block text-gray-700 text-xs font-bold mb-2">Name</label>
-        <input type="password" placeholder="Name" id="name" formControlName="name" [ngClass]="{ 'invalid-input': myForm.get('name')?.invalid && myForm.get('name')?.touched }"
+        <input type="text" placeholder="Name" id="name" formControlName="name" [ngClass]="{ 'invalid-input': myForm.get('name')?.invalid && myForm.get('name')?.touched }"
             class="w-full md:w-64 p-2 mb-4 border rounded-md focus:outline-none focus:border-blue-500">
-            <div *ngIf="myForm.get('name')?.hasError('required') && myForm.get('name')?.touched" class="text-red-500">Name is required.</div>
+            <div *ngIf="myForm.get('name')?.hasError('required') && myForm.get('name')?.touched" class="text-red-500 text-xs">Name is required.</div>
     </div>
     <div>
         <label for="address" class="block text-gray-700 text-xs font-bold mb-2">Address</label>
-        <input type="password" placeholder="Address" id="address" formControlName="address" [ngClass]="{ 'invalid-input': myForm.get('address')?.invalid && myForm.get('address')?.touched }"
+        <input type="text" placeholder="Address" id="address" formControlName="address" [ngClass]="{ 'invalid-input': myForm.get('address')?.invalid && myForm.get('address')?.touched }"
             class="w-full md:w-64 p-2 mb-4 border rounded-md focus:outline-none focus:border-blue-500">
-            <div *ngIf="myForm.get('address')?.hasError('required') && myForm.get('address')?.touched" class="text-red-500">Address is required.</div>
+            <div *ngIf="myForm.get('address')?.hasError('required') && myForm.get('address')?.touched" class="text-red-500 text-xs">Address is required.</div>
     </div>
     <div>
         <label for="address" class="block text-gray-700 text-xs font-bold mb-2">City</label>
-        <input type="password" placeholder="Address" id="city" formControlName="city" [ngClass]="{ 'invalid-input': myForm.get('city')?.invalid && myForm.get('city')?.touched }"
+        <input type="text" placeholder="Address" id="city" formControlName="city" [ngClass]="{ 'invalid-input': myForm.get('city')?.invalid && myForm.get('city')?.touched }"
             class="w-full md:w-64 p-2 mb-4 border rounded-md focus:outline-none focus:border-blue-500">
-            <div *ngIf="myForm.get('city')?.hasError('required') && myForm.get('city')?.touched" class="text-red-500">City is required.</div>
+            <div *ngIf="myForm.get('city')?.hasError('required') && myForm.get('city')?.touched" class="text-red-500 text-xs font-bold">City is required.</div>
 
     </div>
 
