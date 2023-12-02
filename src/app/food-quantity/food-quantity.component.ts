@@ -16,22 +16,22 @@ export class FoodQuantityComponent {
   bhakri = 2;
   pithla = 1;
   bhakriPrice = 50;
-  pithlaPrice = 0;
+  pithlaPrice = 50;
+  thechaPrice = 0;
   onionPrice = 0;
-  pitlaPrice = 50;
 
   bhakriIncrement() {
     if(this.bhakri>0){
       this.bhakri++;
       this.bhakriPrice = this.bhakriPrice + 25
     }
-    console.log(this.bhakriPrice + this.pitlaPrice + this.pithlaPrice + this.onionPrice);
+    console.log(this.bhakriPrice + this.pithla + this.pithlaPrice + this.onionPrice);
     
   }
   bhakriDecrement() {
-    if(this.bhakri>2){
+    if(this.bhakri>1){
       this.bhakri--;
-      this.bhakriPrice = this.bhakriPrice - 25
+      this.bhakriPrice =  this.bhakriPrice - 25
 
     }
   }
@@ -39,14 +39,14 @@ export class FoodQuantityComponent {
 pithlaIncrement() {
   if(this.pithla>0){
     this.pithla++;
-    this.bhakriPrice = this.bhakriPrice + 50
+    this.pithlaPrice = this.pithlaPrice + 50
   }
 }
 pithlaDecrement() {
   if(this.pithla>1){
     this.pithla--;
-    this.pithlaPrice = this.pithlaPrice - 50;
-    console.log(this.pitlaPrice);
+    this.pithlaPrice = this.pithlaPrice - 50
+    console.log(this.pithla);
     
   }
   }
