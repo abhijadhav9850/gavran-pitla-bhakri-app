@@ -82,7 +82,7 @@ app.get("/User/Delete", async (req, res) => {
     where: { UserName: req.query.UserName },
   });
   res.send(Delete);
-  console.log(`deleted row(s): ${Delete}`);
+  console.log(`Deleted Row(s): ${Delete}`);
 });
 
 app.listen(port, () => {
