@@ -27,4 +27,16 @@ export class OtpVerificationComponent {
       console.log('Form submitted:', this.otpForm.value);
     }
   }
+
+  otp: string[] = ['', '', '', ''];
+
+  onInput(index: number) {
+    const nextIndex = index < this.otp.length ? index + 1 : index;
+    if (nextIndex < this.otp.length) {
+      const nextInput = document.getElementById(`otp${nextIndex}`) as HTMLInputElement;
+      if (nextInput) {
+        nextInput.focus();
+      }
+    }
+  }
 }

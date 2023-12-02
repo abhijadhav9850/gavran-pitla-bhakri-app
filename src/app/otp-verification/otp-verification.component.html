@@ -21,7 +21,7 @@
   <div class="flex justify-center mt-16">
     <form [formGroup]="otpForm" (ngSubmit)="submitForm()" class="flex space-x-4">
       <div class="flex flex-col">
-        <input type="text"
+        <input type="text" maxlength="1" (input)="onInput(1)" [(ngModel)]="otp[0]"
         class="w-12 h-12 border border-gray-300 rounded text-center text-lg focus:outline-none focus:border-blue-500"
         formControlName="number"
         [ngClass]="{ 'invalid-input': otpForm.get('number')?.invalid && otpForm.get('number')?.touched }">
@@ -29,7 +29,7 @@
         Add OTP</div>
       </div>
       <div class="flex flex-col">
-        <input type="text"
+        <input type="text" maxlength="1" (input)="onInput(2)" [(ngModel)]="otp[1]"
         class="w-12 h-12 border border-gray-300 rounded text-center text-lg focus:outline-none focus:border-blue-500"
         formControlName="number2"
         [ngClass]="{ 'invalid-input': otpForm.get('number2')?.invalid && otpForm.get('number2')?.touched }">
@@ -37,7 +37,7 @@
         Add OTP</div>
       </div>
      <div class="flex flex-col">
-      <input type="text"
+      <input type="text" maxlength="1" (input)="onInput(3)" [(ngModel)]="otp[2]"
       class="w-12 h-12 border border-gray-300 rounded text-center text-lg focus:outline-none focus:border-blue-500"
       formControlName="number3"
       [ngClass]="{ 'invalid-input': otpForm.get('number3')?.invalid && otpForm.get('number3')?.touched }">
@@ -45,7 +45,7 @@
       Add OTP</div>
      </div>
      <div class="flex flex-col">
-      <input type="text"
+      <input type="text" maxlength="1" (input)="onInput(4)" [(ngModel)]="otp[3]"
       class="w-12 h-12 border border-gray-300 rounded text-center text-lg focus:outline-none focus:border-blue-500"
       formControlName="number4"
       [ngClass]="{ 'invalid-input': otpForm.get('number4')?.invalid && otpForm.get('number4')?.touched }">
