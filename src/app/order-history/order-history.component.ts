@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./order-history.component.css']
 })
 export class OrderHistoryComponent {
-
+   
 }
