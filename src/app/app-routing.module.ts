@@ -15,6 +15,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 import { UserPaymentComponent } from './user-payment/user-payment.component';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
+import { OrderHistoryComponent } from './order-history/order-history.component';
 
 
 
@@ -33,7 +34,9 @@ const routes: Routes = [
   {path:'user-profile', component:UserProfileComponent},
   {path:'user-order', component:UserOrdersComponent},
   {path:'user-payment', component:UserPaymentComponent},
-  {path:'delivery-add',component:DeliveryAddressComponent}
+  {path:'delivery-add',component:DeliveryAddressComponent},
+  {path:'order-his',component:OrderHistoryComponent}
+  
 ];
 
 @NgModule({
