@@ -33,7 +33,6 @@
         <input type="text" placeholder="Address" id="city" formControlName="city" [ngClass]="{ 'invalid-input': myForm.get('city')?.invalid && myForm.get('city')?.touched }"
             class="w-full md:w-64 p-2 mb-4 border rounded-md focus:outline-none focus:border-blue-500">
             <div *ngIf="myForm.get('city')?.hasError('required') && myForm.get('city')?.touched" class="text-red-500 text-xs font-bold">City is required.</div>
-
     </div>
 
 </form>
