@@ -30,14 +30,14 @@
     </div>
     <div>
         <label for="address" class="block text-gray-700 text-xs font-bold mb-2">City</label>
-        <input type="text" placeholder="Address" id="city" formControlName="city" [ngClass]="{ 'invalid-input': myForm.get('city')?.invalid && myForm.get('city')?.touched }"
+        <input type="text" placeholder="City" id="city" formControlName="city" [ngClass]="{ 'invalid-input': myForm.get('city')?.invalid && myForm.get('city')?.touched }"
             class="w-full md:w-64 p-2 mb-4 border rounded-md focus:outline-none focus:border-blue-500">
             <div *ngIf="myForm.get('city')?.hasError('required') && myForm.get('city')?.touched" class="text-red-500 text-xs font-bold">City is required.</div>
     </div>
 
 </form>
 <div class="flex justify-center">
-    <button (click)="service.payment = 'true'" [disabled]="myForm.invalid"
+    <button (click)="valueget()" (click)="service.payment = 'true'" [disabled]="myForm.invalid"
         class="py-2 px-4 w-28 h-10 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-75 mt-5">
         Continue
     </button>
