@@ -20,7 +20,7 @@
         <img class="w-40 h-25 " src="../../assets/No connection-bro 1.png" alt="">
     </div>
     <div class="flex justify-center">
-        <div class="flex items-center ">
+        <div class="flex flex-col items-center ">
             <form [formGroup]="phoneForm" class="w-full flex border rounded overflow-hidden">
                 <select class="w-12 p-2 appearance-none bg-transparent focus:outline-none">
                     <option value="1">+91</option>
@@ -31,10 +31,10 @@
                     <input type="number" placeholder="Enter a number" id="number" formControlName="number"
                         [ngClass]="{ 'invalid-input': phoneForm.get('address')?.invalid && phoneForm.get('address')?.touched }"
                         class="w-full p-2 appearance-none bg-transparent focus:outline-none">
-                    <div *ngIf="phoneForm.get('number')?.hasError('required') && phoneForm.get('number')?.touched"
-                        class="text-red-500">number is required.</div>
                 </div>
             </form>
+            <div *ngIf="phoneForm.get('number')?.hasError('required') && phoneForm.get('number')?.touched"
+                        class="text-red-500 text-xs font-bold">number is required.</div>
         </div>
     </div>
     <div class="font-Roboto flex  justify-center mt-6">

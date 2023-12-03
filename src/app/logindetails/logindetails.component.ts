@@ -23,6 +23,7 @@ export class LogindetailsComponent {
   submitForm() {
     Object.values(this.myForm.controls).forEach((control) => {
       control.markAsTouched();
+      console.log(this.myForm)
     });
 
     if (this.myForm.valid) {
