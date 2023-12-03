@@ -57,8 +57,8 @@ async function start() {
 
 start();
 
-app.get("/User/Add", async (req, res) => {
-  let Add = await Users.create(req.query);
+app.post("/User/Add", async (req, res) => {
+  let Add = await Users.create(req.body);
   res.send(Add);
   console.log(Add);
 });

@@ -12,7 +12,7 @@ export class LogininphoneComponent {
   phoneForm: FormGroup;
   constructor(public service : PopupHandingService , public fb: FormBuilder){
     this.phoneForm = this.fb.group({
-      number: ['', [Validators.required , Validators.pattern(/^\d{10}$/)]],
+      number: ['', [Validators.required , Validators.pattern(/^\d{10}$/)] ],
     });
   }
   submitForm() {
@@ -24,6 +24,5 @@ export class LogininphoneComponent {
       console.log('Form submitted:', this.phoneForm.value);
     }
   }
-  
 
 }
