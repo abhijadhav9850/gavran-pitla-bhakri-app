@@ -2,10 +2,12 @@ const express = require("express");
 var bodyParser = require("body-parser");
 const { Sequelize, DataTypes } = require("sequelize");
 const app = express();
+var cors = require('cors')
 const port = 4000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors())
 
 const sequelize = new Sequelize("pitla_bhakri", "root", "", {
   host: "localhost",

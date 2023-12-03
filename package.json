@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
     "@material-tailwind/html": "^2.0.0",
+    "cors": "^2.8.5",
     "emailjs": "^4.0.3",
     "mysql2": "^3.6.5",
     "nodemailer": "^6.9.7",

@@ -14,12 +14,13 @@ export class LogindetailsComponent {
   myForm: FormGroup;
   
   
-  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService){
+  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService,public http:HttpClient){
     this.myForm = this.fb.group({
-      name: ['', [Validators.required]],
-      address: ['', [Validators.required]],
-      city: ['', [Validators.required]],
+      UserName: ['', [Validators.required]],
+      UserAddress: ['', [Validators.required]],
+      UserCity: ['', [Validators.required]],
     });
+
   }
   submitForm() {
     Object.values(this.myForm.controls).forEach((control) => {
@@ -34,6 +35,12 @@ export class LogindetailsComponent {
   valueget(){
     this.ls.logindeatilsvalue.push(this.myForm.value)   
     console.log(this.ls.logindeatilsvalue);
+
+    this.http.post('http://localhost:4000/User/Add',this.myForm.value).subscribe(e=>{
+      console.log(e);
+      
+    })
+
      
   }
 }
