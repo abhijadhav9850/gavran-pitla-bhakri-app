@@ -9,20 +9,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./logininphone.component.css']
 })
 export class LogininphoneComponent {
+
+  submited = false
+
   phoneForm: FormGroup;
   constructor(public service : PopupHandingService , public fb: FormBuilder){
     this.phoneForm = this.fb.group({
-      number: ['', [Validators.required , Validators.pattern(/^\d{10}$/)] ],
+      number: ['', [Validators.required , Validators.pattern(/^[a-zA-Z0-9._%+-]+@gmail\.com$/)] ],
     });
   }
   submitForm() {
     Object.values(this.phoneForm.controls).forEach((control) => {
       control.markAsTouched();
     });
-
+    this.submited = true
     if (this.phoneForm.valid) {
-      console.log('Form submitted:', this.phoneForm.value);
-    }
+      const formData = { email: this.phoneForm.value.email };    }
   }
+
 
 }
