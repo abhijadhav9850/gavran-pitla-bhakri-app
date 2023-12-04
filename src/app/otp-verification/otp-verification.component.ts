@@ -9,6 +9,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./otp-verification.component.css']
 })
 export class OtpVerificationComponent {
+
+  invalid = false
+
   otpForm: FormGroup;
   constructor(public service : PopupHandingService , public fb: FormBuilder){
     this.otpForm = this.fb.group({
@@ -39,4 +42,39 @@ export class OtpVerificationComponent {
       }
     }
   }
+
+  move(e: any, p: any, c: any, n: any) {
+    let length = c.value.length;
+    let maxlength = 1;
+    if (length == maxlength) {
+      if (n != '') {
+        n.focus()
+      }
+    }
+    if(e.key === 'Backspace'){
+      if(p != ""){
+        p.focus();
+      }
+    }
+  }
+
+  nextpopup() {
+    if (
+      this.otpForm.get('number1')?.invalid ||
+      this.otpForm.get('number2')?.invalid ||
+      this.otpForm.get('number3')?.invalid ||
+      this.otpForm.get('number4')?.invalid
+    ) {
+      console.log("Invalid values detected");
+      this.service.address = false;
+      this.invalid = true;
+    } else {
+      console.log("No error, all values are present");
+      this.invalid = false;
+      this.service.address = true;
+    }
+  }
+  
+
+
 }
