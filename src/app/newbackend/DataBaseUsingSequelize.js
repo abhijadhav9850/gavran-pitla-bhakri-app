@@ -1,13 +1,15 @@
-const express = require("express");
-var bodyParser = require("body-parser");
 const { Sequelize, DataTypes } = require("sequelize");
+const nodemailer = require("nodemailer");
+var bodyParser = require("body-parser");
+const express = require("express");
+var cors = require("cors");
 const app = express();
-var cors = require('cors')
 const port = 4000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors())
+app.use(express.json());
+app.use(cors());
 
 const sequelize = new Sequelize("pitla_bhakri", "root", "", {
   host: "localhost",
@@ -48,6 +50,15 @@ const Product = sequelize.define(
   { tableName: "product" }
 );
 
+const Email_ID = sequelize.define(
+  "email_id_table",
+  {
+    ID: { type: DataTypes.INTEGER, primaryKey: true },
+    Email_ID: { type: DataTypes.STRING, allowNull: false },
+  },
+  { tableName: "email_id_table" }
+);
+
 async function start() {
   try {
     await sequelize.authenticate();
@@ -69,6 +80,76 @@ app.get("/User/Findall", async (req, res) => {
   const list = await Users.findAll();
   console.log("All available columns in Table: ", list);
   res.send(list);
+});
+
+// app.post("/User/EmailID", async (req, res) => {
+//   async function sendMail() {
+//     let transporter = nodemailer.createTransport({
+//       service: "gmail",
+//       auth: {
+//         user: "pitlabhakri1@gmail.com",
+//         pass: "runkpscpbcjzhrkw",
+//       },
+//     });
+
+//     let otpvalue = Math.floor(1000 + Math.random() * 9999);
+
+//     let mailOptions = {
+//       from: "pitlabhakri1@gmail.com",
+//       to: req.body.Email_ID,
+//       subject: `Your OTP is : ${otpvalue}`,
+//     };
+
+//     try {
+//       let result = await transporter.sendMail(mailOptions);
+//       console.log("Email Sent Successfully");
+//       return { success: true, message: "Email sent successfully" };
+//     } catch (error) {
+//       console.log("Unable To Send OTP:", error);
+//       return { success: false, message: "Failed to send email" };
+//     }
+//   }
+
+//   const mailResult = await sendMail();
+//   try {
+//     console.log(mailResult);
+//     res.send(mailResult);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
+app.post("/User/EmailID", async (req, res) => {
+  try {
+    if (!req.body || !req.body.Email_ID) {
+      return res.status(400).json({ success: false, message: "Invalid request body" });
+    }
+
+    let otpvalue = Math.floor(1000 + Math.random() * 9999);
+
+    let transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: "pitlabhakri1@gmail.com",
+        pass: "runkpscpbcjzhrkw",
+      },
+    });
+
+    let mailOptions = {
+      from: "pitlabhakri1@gmail.com",
+      to: req.body.Email_ID,
+      subject: `Your OTP is: ${otpvalue}`,
+    };
+
+    let result = await transporter.sendMail(mailOptions);
+    console.log("Email Sent Successfully");
+
+    res.json({ success: true, message: "Email sent successfully" });
+  } catch (error) {
+    console.log("Unable to Send OTP:", error);
+
+    res.status(500).json({ success: false, message: "Failed to send email" });
+  }
 });
 
 app.get("/User/Update", async (req, res) => {
