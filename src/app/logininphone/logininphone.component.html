@@ -31,7 +31,9 @@
                     <!-- <input type="number" placeholder="Enter a number" id="number" formControlName="number"
                         [ngClass]="{ 'invalid-input': phoneForm.get('address')?.invalid && phoneForm.get('address')?.touched }"
                         class="w-[15rem] py-[8px] px-[10px] appearance-none bg-transparent focus:outline-none"> -->
-                            <input [(ngModel)]="service.email" formControlName="number" type="email"  class="w-[15rem] py-[8px] px-[20px] appearance-none bg-transparent focus:outline-none" placeholder="Your email address" required>
+                    <input [(ngModel)]="service.email" formControlName="number" type="email"
+                        class="w-[15rem] py-[8px] px-[20px] appearance-none bg-transparent focus:outline-none"
+                        placeholder="Your email address" required>
                 </div>
             </form>
             <!-- <div *ngIf="phoneForm.get('number')?.hasError('required') && phoneForm.get('number')?.touched"
