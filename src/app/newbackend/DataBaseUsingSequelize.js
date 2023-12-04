@@ -144,7 +144,7 @@ app.post("/User/EmailID", async (req, res) => {
     let result = await transporter.sendMail(mailOptions);
     console.log("Email Sent Successfully");
 
-    res.json({ success: true, message: "Email sent successfully" });
+    res.json({ message: "Email sent successfully", otp: otpvalue });
   } catch (error) {
     console.log("Unable to Send OTP:", error);
 
