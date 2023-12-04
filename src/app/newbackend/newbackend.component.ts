@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./newbackend.component.css']
 })
 export class NewbackendComponent {
-  
+  sendMail: any;
+
+  ngOnInit(){
+    console.log(this.sendMail());
+  }
 }

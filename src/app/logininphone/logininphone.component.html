@@ -36,12 +36,14 @@
             </form>
             <!-- <div *ngIf="phoneForm.get('number')?.hasError('required') && phoneForm.get('number')?.touched"
                         class="text-red-500 text-xs font-bold">number is required.</div> -->
-                        <div class="text-red-600 font-bold text-xs" *ngIf="phoneForm.get('number')?.hasError('required') && phoneForm.get('number')?.touched">
-                            Email must be required
-                          </div>
-                          <div class="text-red-600 font-bold text-xs" *ngIf="phoneForm.get('number')?.hasError('pattern') && !phoneForm.get('number')?.hasError('required')">
-                            Please enter a valid Gmail address
-                        </div>
+            <div class="text-red-600 font-bold text-xs"
+                *ngIf="phoneForm.get('number')?.hasError('required') && phoneForm.get('number')?.touched">
+                Email must be required
+            </div>
+            <div class="text-red-600 font-bold text-xs"
+                *ngIf="phoneForm.get('number')?.hasError('pattern') && !phoneForm.get('number')?.hasError('required')">
+                Please enter a valid Gmail address
+            </div>
         </div>
     </div>
     <div class="font-Roboto flex  justify-center mt-6">
