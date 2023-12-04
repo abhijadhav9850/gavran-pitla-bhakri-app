@@ -21,7 +21,6 @@ import { UserPaymentComponent } from './user-payment/user-payment.component';
 import { UserOrdersComponent } from './user-orders/user-orders.component';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 import { NewbackendComponent } from './newbackend/newbackend.component';
-import { LocalstorageComponent } from './localstorage/localstorage.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 // import { BackendComponent } from './backend/backend.component';
@@ -45,7 +44,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     UserProfileComponent,
     UserPaymentComponent,
     UserOrdersComponent,
-    LocalstorageComponent,
   ],
   imports: [
     BrowserModule,
