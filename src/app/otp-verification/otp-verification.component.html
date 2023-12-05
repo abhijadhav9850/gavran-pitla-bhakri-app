@@ -54,14 +54,13 @@
           Add OTP</div>
       </div>
 
-      <div class="flex flex-col">
-        <input #text4 type="number" maxlength="1" (keyup)="move($event, text3, text4, '')" (input)="onInput(4)"
-          [(ngModel)]="otp[3]"
-          class="w-12 h-12 border bg-zinc-200 border-gray-300 rounded-lg text-center text-lg focus:outline-none focus:border-blue-500"
-          formControlName="number4"
-          [ngClass]="{ 'invalid-input': otpForm.get('number4')?.invalid && otpForm.get('number4')?.touched }">
+     <div class="flex flex-col">
+      <input #text4 type="number" maxlength="1" (keyup)="move($event, text3, text4, '')" (input)="onInput(4)" [(ngModel)]="otp[3]"
+      class="w-12 h-12 border bg-zinc-200 border-gray-300 rounded-lg text-center text-lg focus:outline-none focus:border-blue-500"
+      formControlName="number4"
+      [ngClass]="{ 'invalid-input': otpForm.get('number4')?.invalid && otpForm.get('number4')?.touched }">
 
-      </div>
+     </div>
 
     </form>
   </div>
