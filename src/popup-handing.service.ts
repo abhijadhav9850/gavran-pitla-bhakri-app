@@ -67,7 +67,7 @@ export class PopupHandingService {
         // backgroundColor: 'lightgreen',
         // color: 'white',
         'width' : '100%',
-        'transition': 'transform 0.3s ease-in-out',
+        'transition': 'transform 0.5s ease-in-out',
         'transform': 'translateY(-85%)',
         'box-shadow' : '0px 0px 20px gray',
         'z-index': '1',
@@ -94,7 +94,7 @@ export class PopupHandingService {
         // backgroundColor: 'lightgreen',
         // color: 'white',
         'width' : '100%',
-        'transition': 'transform 0.3s ease-in-out',
+        'transition': 'transform 0.5s ease-in-out',
         'transform': 'translateY(20%)',
         'box-shadow' : '0px 0px 5px ',
         'z-index': '1',
@@ -119,29 +119,39 @@ export class PopupHandingService {
     }
 
     openOtp(){
-      this.otp = false;
+      this.otp = true;
+      this.contact = false
     }
     openAddress(){
-      this.address = false;
+      this.address = true;
+      this.otp = false
     }
+    
     openContact(){
       this.quantity = false;
       this.contact = true;
-
+    }
+    openPayment(){
+      this.payment = true;
+      this.address = false;
     }
 
     closeOtp(){
       this.otp = false;
-      this.contact = false;
+      this.contact = true;
     }
     
     closepayment(){
       this.payment = false;
+      this.address = true;
     }
-
     closeContact(){
       this.contact = false;
       this.quantity = true
+    }
+    closeAddress(){
+      this.address = false;
+      this.otp = true;
     }
 
 
