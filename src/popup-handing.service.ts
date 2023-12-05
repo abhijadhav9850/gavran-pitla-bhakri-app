@@ -15,6 +15,7 @@ export class PopupHandingService {
 
   
   hide : any = false;
+  quantity:any = false
   contact : any = false;
   otp :any = false;
   address : any = false;
@@ -42,7 +43,7 @@ export class PopupHandingService {
     // color: 'black',
     'width' : '100%',
     'transition': 'transform 0.5s ease-in-out',
-    'transform': 'translateY(10%)',
+    'transform': 'translateY(20%)',
     'box-shadow' : '',
     'z-index': '-1',
     'background-color' : '#fff',
@@ -51,13 +52,14 @@ export class PopupHandingService {
   };
 
   changeStyle() {
-    this.hide =!this.hide
+    this.hide = true
+    this.quantity = true
     // Change the style dynamically
     setTimeout(()=>{  
       
       this.backgroundblur = {
-        'background' : 'linear-gradient(rgba(0, 0, 0, -8.46),rgba(0, 0, 0, -8.46),url(../../assets/image 2.jpg)',
-        'filter' : 'blur(4px)'
+        'filter' : 'blur(4px)',
+        'background' : 'linear-gradient(rgba(0, 0, 0,  0.54),rgba(0, 0, 0, -8.46)),url(../../assets/image 2.jpg)',
       }
       
       this.loginInPhone = {
@@ -66,7 +68,7 @@ export class PopupHandingService {
         // color: 'white',
         'width' : '100%',
         'transition': 'transform 0.3s ease-in-out',
-        'transform': 'translateY(-85.5%)',
+        'transform': 'translateY(-85%)',
         'box-shadow' : '0px 0px 20px gray',
         'z-index': '1',
         'background-color' : '#fff',
@@ -76,7 +78,12 @@ export class PopupHandingService {
   }
 
     closepopup(){
-      
+      this.quantity = false
+      this.contact  = false;
+      this.otp = false;
+      this.address  = false;
+      this.payment  = false;
+
       this.backgroundblur = {
         'filter' : 'blue(0px)',
         'background' : 'none'
@@ -101,8 +108,12 @@ export class PopupHandingService {
       }
 
       setTimeout(()=>{  
-      
       this.hide = false
+      this.quantity = false
+      this.contact  = false;
+      this.otp = false;
+      this.address  = false;
+      this.payment  = false;
      
     }, 500);
     }
@@ -113,9 +124,15 @@ export class PopupHandingService {
     openAddress(){
       this.address = false;
     }
+    openContact(){
+      this.quantity = false;
+      this.contact = true;
+
+    }
 
     closeOtp(){
       this.otp = false;
+      this.contact = false;
     }
     
     closepayment(){
@@ -124,6 +141,7 @@ export class PopupHandingService {
 
     closeContact(){
       this.contact = false;
+      this.quantity = true
     }
 
 

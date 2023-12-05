@@ -72,6 +72,7 @@ export class OtpVerificationComponent {
       console.log("No error, all values are present");
       this.invalid = false;
       this.service.address = true;
+      
     }
   }
   
