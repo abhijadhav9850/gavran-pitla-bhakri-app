@@ -120,7 +120,7 @@ app.get("/User/Findall", async (req, res) => {
 // });
 
 app.post("/User/EmailID", async (req, res) => {
-  console.log(req);
+ 
   try {
     if (!req.body || !req.body.Email_ID) {
       return res.status(400).json({ success: false, message: "Invalid request body" });
