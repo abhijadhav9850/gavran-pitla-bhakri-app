@@ -7,10 +7,11 @@ import { Injectable } from '@angular/core';
 export class LoginindetailsValueService {
  
 constructor(public http:HttpClient) { 
- console.log(this.otpvalue);
  
 }
 
+
+ 
   logindeatilsvalue:any=[];
 
   otpvalue:any;

@@ -34,11 +34,7 @@ export class LogininphoneComponent {
       this.http.post("http://localhost:4000/User/EmailID",formData).subscribe(e => {
        this.ls.otpvalue=e
        console.log(this.ls.otpvalue);
-       
       }) 
-    }else{
-      console.log("hello");
-      
     }
     
   }
