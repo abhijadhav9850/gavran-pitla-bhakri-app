@@ -1,4 +1,4 @@
-<div class="p-3">
+<div class="p-3 h-[100vh]">
     <header>
         <svg (click)="service.closepopup()" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none"
             class="left-0 h-6 w-6 -ml-[11px] -mt-[1px] ">
@@ -53,7 +53,7 @@
         <p class="text-xl font-bold">₹{{bhakriPrice + pithlaPrice}}</p>
         </div>
       <div>
-        <button (click)="service.contact = 'true'"
+        <button (click)="service.openContact()"
             class="py-2 px-4 w-36 h-10  bg-orange-500 text-white font-bold rounded-[20px] shadow-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-75">
             Pay Now
         </button>
@@ -61,6 +61,6 @@
     </footer>
 </div>
 
-<div>
+<!-- <div>
     <app-logininphone [ngStyle]="service.loginInPhone" *ngIf="service.contact" class="p-6 shadow-slate-950 rounded-t-3xl -mt-[45px] -ml-[25px] absolute"></app-logininphone>
-  </div>
+  </div> -->
