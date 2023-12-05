@@ -38,12 +38,12 @@ export class OtpVerificationComponent {
     // }
     // console.log(this.otpForm.value);
     
-    if( this.ls.otpvalue.value === this.otpForm.value){
+    if( this.otpForm === this.ls.otpvalue.value){
       console.log('solve');
     }else{
       console.log('error');
     }
-    
+
   }
 
   otp: string[] = ['', '', '', ''];
