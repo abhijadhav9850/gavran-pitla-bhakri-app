@@ -120,32 +120,31 @@ app.get("/User/Findall", async (req, res) => {
 // });
 
 app.post("/User/EmailID", async (req, res) => {
-  console.log(req);
   try {
-    if (!req.body || !req.body.Email_ID) {
-      return res.status(400).json({ success: false, message: "Invalid request body" });
-    }
+    // if (!req.body || !req.body.Email_ID) {
+    //   return res.status(400).json({ success: false, message: "Invalid request body" });
+    // }
 
-    let otpvalue = Math.floor(1000 + Math.random() * 8888);
+    // let otpvalue = Math.floor(1000 + Math.random() * 8888);
 
-    let transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: "pitlabhakri1@gmail.com",
-        pass: "runkpscpbcjzhrkw",
-      },
-    });
+    // let transporter = nodemailer.createTransport({
+    //   service: "gmail",
+    //   auth: {
+    //     user: "pitlabhakri1@gmail.com",
+    //     pass: "runkpscpbcjzhrkw",
+    //   },
+    // });
 
-    let mailOptions = {
-      from: "pitlabhakri1@gmail.com",
-      to: req.body.Email_ID,
-      subject: `Your OTP is: ${otpvalue}`,
-    };
+    // let mailOptions = {
+    //   from: "pitlabhakri1@gmail.com",
+    //   to: req.body.Email_ID,
+    //   subject: `Your OTP is: ${otpvalue}`,
+    // };
 
-    let result = await transporter.sendMail(mailOptions);
-    console.log("Email Sent Successfully");
+    // let result = await transporter.sendMail(mailOptions);
+    // console.log("Email Sent Successfully");
 
-    res.json({ message: "Email sent successfully", otp: otpvalue });
+    res.json({ message: "Email sent successfully", otp: 1234 });
   } catch (error) {
     console.log("Unable to Send OTP:", error);
 

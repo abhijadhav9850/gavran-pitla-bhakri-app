@@ -24,8 +24,11 @@ export class OtpVerificationComponent {
     
   }
   
-  
+
+
   submitForm() {
+    console.log(this.ls.otpvalue);
+    
     Object.values(this.otpForm.controls).forEach((control) => {
       control.markAsTouched();
     });
@@ -34,11 +37,11 @@ export class OtpVerificationComponent {
     //   console.log('Form submitted:', this.otpForm.value);
     // }
     // console.log(this.otpForm.value);
-    if(this.otpForm.value == this.ls.otpvalue){
-      console.log('your otp is verify');
+    
+    if( this.ls.otpvalue.value === this.otpForm.value){
+      console.log('solve');
     }else{
-       console.log('err');
-       
+      console.log('error');
     }
     
   }
@@ -85,22 +88,7 @@ export class OtpVerificationComponent {
     } else {
       console.log("No error, all values are present");
       this.invalid = false;
-      this.service.address = true;
-      
+      this.service.address = true; 
     }
   }
-
-
-  
-  // verifyotp(){
-  //   if(this.otpForm.value == this.ls.otpvalue){
-  //     console.log('your otp is verify');
-  //   }else{
-  //      console.log('err');
-       
-  //   }
-  // }
-  
-
-
 }
