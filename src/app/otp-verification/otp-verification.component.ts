@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PopupHandingService } from 'src/popup-handing.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 
 
 @Component({
@@ -13,25 +14,38 @@ export class OtpVerificationComponent {
   invalid = false
 
   otpForm: FormGroup;
-  constructor(public service : PopupHandingService , public fb: FormBuilder){
+  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService){
     this.otpForm = this.fb.group({
       number: ['', [Validators.required ,]],
       number2: ['', [Validators.required ,]],
       number3: ['', [Validators.required ,]],
       number4: ['', [Validators.required ,]],
     });
+    
   }
+  
+  
   submitForm() {
     Object.values(this.otpForm.controls).forEach((control) => {
       control.markAsTouched();
     });
 
-    if (this.otpForm.valid) {
-      console.log('Form submitted:', this.otpForm.value);
+    // if (this.otpForm.valid) {
+    //   console.log('Form submitted:', this.otpForm.value);
+    // }
+    // console.log(this.otpForm.value);
+    if(this.otpForm.value == this.ls.otpvalue){
+      console.log('your otp is verify');
+    }else{
+       console.log('err');
+       
     }
+    
   }
 
   otp: string[] = ['', '', '', ''];
+
+  
 
   onInput(index: number) {
     const nextIndex = index < this.otp.length ? index + 1 : index;
@@ -60,10 +74,10 @@ export class OtpVerificationComponent {
 
   nextpopup() {
     if (
-      this.otpForm.get('number1')?.invalid ||
+      this.otpForm.get('number')?.invalid ||
       this.otpForm.get('number2')?.invalid ||
       this.otpForm.get('number3')?.invalid ||
-      this.otpForm.get('number4')?.invalid
+      this.otpForm.get('number4')?.invalid 
     ) {
       console.log("Invalid values detected");
       this.service.address = false;
@@ -75,6 +89,17 @@ export class OtpVerificationComponent {
       
     }
   }
+
+
+  
+  // verifyotp(){
+  //   if(this.otpForm.value == this.ls.otpvalue){
+  //     console.log('your otp is verify');
+  //   }else{
+  //      console.log('err');
+       
+  //   }
+  // }
   
 
 
