@@ -42,8 +42,8 @@ export class PopupHandingService {
     // backgroundColor: 'lightblue',
     // color: 'black',
     'width' : '100%',
-    'transition': 'transform 0.5s ease-in-out',
-    'transform': 'translateY(20%)',
+    'transition': 'margin-top 0.5s ease-in-out',
+    'margin-top': '50vh',
     'box-shadow' : '',
     'z-index': '-1',
     'background-color' : '#fff',
@@ -67,8 +67,8 @@ export class PopupHandingService {
         // backgroundColor: 'lightgreen',
         // color: 'white',
         'width' : '100%',
-        'transition': 'transform 0.5s ease-in-out',
-        'transform': 'translateY(-85%)',
+        'transition': 'margin-top 0.5s ease-in-out',
+        'margin-top': '-50vh',
         'box-shadow' : '0px 0px 20px gray',
         'z-index': '1',
         'background-color' : '#fff',
@@ -94,8 +94,8 @@ export class PopupHandingService {
         // backgroundColor: 'lightgreen',
         // color: 'white',
         'width' : '100%',
-        'transition': 'transform 0.5s ease-in-out',
-        'transform': 'translateY(20%)',
+        'transition': 'margin-top 0.5s ease-in-out',
+        'margin-top': '50vh',
         'box-shadow' : '0px 0px 5px ',
         'z-index': '1',
         'background-color' : '#fff',
@@ -133,7 +133,7 @@ export class PopupHandingService {
     }
     openPayment(){
       this.payment = true;
-      this.address = false;
+      this.address = false
     }
 
     closeOtp(){
