@@ -30,7 +30,7 @@ export class PopupHandingService {
   otpPopup = {
     'width' : '100%',
     'transition': 'transform 0.5s ease-in-out',
-    'transform': 'translateY(10%)',
+    'margin-top': '50vh',
     'box-shadow' : '0px 0px 20px lightgray',
     'z-index': '-1',
     'background-color' : '#fff',
@@ -68,7 +68,7 @@ export class PopupHandingService {
         // color: 'white',
         'width' : '100%',
         'transition': 'margin-top 0.5s ease-in-out',
-        'margin-top': '-50vh',
+        'margin-top': '-60vh',
         'box-shadow' : '0px 0px 20px gray',
         'z-index': '1',
         'background-color' : '#fff',

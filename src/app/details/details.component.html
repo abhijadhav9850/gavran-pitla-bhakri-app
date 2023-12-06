@@ -59,7 +59,7 @@
         <button (click)="service.changeStyle()" class="text-[1rem] h-[40px] font-medium text-orange-50 w-[150px] bg-orange-500 rounded-3xl">Order Now</button>
     </div>
 </div>
-<div [ngStyle]="service.loginInPhone" *ngIf="service.hide" class="p-4 pb-0 h-[50vh] overflow-hidden shadow-[-1560_0px_50px_rgba(0,0,0,0.10)] rounded-t-3xl absolute">
+<div [ngStyle]="service.loginInPhone" *ngIf="service.hide" class="p-4 pb-0 h-[60vh] overflow-hidden shadow-[-1560_0px_50px_rgba(0,0,0,0.10)] rounded-t-3xl absolute">
     <app-food-quantity *ngIf="service.quantity"></app-food-quantity>
     <app-logininphone *ngIf="service.contact"></app-logininphone>
     <app-otp-verification *ngIf="service.otp"></app-otp-verification>
