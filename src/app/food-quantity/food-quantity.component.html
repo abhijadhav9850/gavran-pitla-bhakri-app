@@ -1,5 +1,5 @@
 <div class="p-3 flex flex-col justify-end">
-    <header>
+    <header class="flex justify-between items-center">
         <svg (click)="service.closepopup()" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none"
             class="left-0 h-6 w-6 -ml-[11px] -mt-[1px] ">
             <path
@@ -9,11 +9,9 @@
                 d="M14 0C6.26875 0 0 6.26875 0 14C0 21.7313 6.26875 28 14 28C21.7313 28 28 21.7313 28 14C28 6.26875 21.7313 0 14 0ZM14 25.625C7.58125 25.625 2.375 20.4188 2.375 14C2.375 7.58125 7.58125 2.375 14 2.375C20.4188 2.375 25.625 7.58125 25.625 14C25.625 20.4188 20.4188 25.625 14 25.625Z"
                 fill="black" fill-opacity="0.85" />
         </svg>
+        <p class="font-Roboto font-bold text-start text-lg mt-0">The Complete Meal</p>
+        <div> </div>
     </header>
-    <p class="font-Roboto font-bold text-lg mt-4">The Complete Meal</p>
-    <p class="font-Roboto text-xs font-semibold mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-        Bhakri</p>
     <div class="flex gap-16 mt-4">
         <div>
             <div class="flex gap-3 mt-5">
@@ -46,7 +44,9 @@
             </div>
         </div>
     </div>
-    
+    <div class="mt-[38px]">
+        <span class="text-sm font-bold">Note</span>
+    </div>
     <footer class="flex justify-between items-center mt-10">
         <div class="flex flex-col">
             <p class="text-xs font-Roboto font-medium">Price</p>
