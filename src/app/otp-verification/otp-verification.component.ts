@@ -27,7 +27,7 @@ export class OtpVerificationComponent {
 
 
   submitForm() {
-    console.log(this.ls.otpvalue);
+    // console.log(this.ls.otpvalue);
     
     Object.values(this.otpForm.controls).forEach((control) => {
       control.markAsTouched();
@@ -38,11 +38,11 @@ export class OtpVerificationComponent {
     // }
     // console.log(this.otpForm.value);
     
-    if( this.otpForm === this.ls.otpvalue.value){
-      console.log('solve');
-    }else{
-      console.log('error');
-    }
+    // if( this.otpForm === this.ls.otpvalue.value){
+    //   console.log('solve');
+    // }else{
+    //   console.log('error');
+    // }
 
   }
 
