@@ -139,6 +139,7 @@ app.post("/User/EmailID", async (req, res) => {
     let mailOptions = {
       from: "pitlabhakri1@gmail.com",
       to: req.body.Email_ID,
+      // to : "abhij9850@gmail.com",
       subject: `Your OTP is: ${otpvalue}`,
     };
 
