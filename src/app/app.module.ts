@@ -23,6 +23,7 @@ import { DeliveryAddressComponent } from './delivery-address/delivery-address.co
 import { NewbackendComponent } from './newbackend/newbackend.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UserSettingComponent } from './user-setting/user-setting.component';
 // import { BackendComponent } from './backend/backend.component';
 
 
@@ -44,6 +45,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     UserProfileComponent,
     UserPaymentComponent,
     UserOrdersComponent,
+    UserSettingComponent,
   ],
   imports: [
     BrowserModule,
