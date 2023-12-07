@@ -65,7 +65,8 @@ const Mobile_No = sequelize.define(
   "mobile_no_table",
   {
     ID: { type: DataTypes.INTEGER, primaryKey: true },
-    Mobile_No: { type: DataTypes.INTEGER, allowNull: false },
+    Mobile_No: { type: DataTypes.STRING, allowNull: false },
+    OTP_No: { type: DataTypes.INTEGER, allowNull: false },
   },
   { tableName: "mobile_no_table" }
 );
@@ -128,7 +129,7 @@ app.post("/User/EmailID", async (req, res) => {
   }
 });
 
-app.post("/User/Mobile_No", async (req, res) => {
+app.post("/Mobile_No/Send_OTP", async (req, res) => {
   try {
     const apiKey =
       "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
@@ -161,6 +162,18 @@ app.post("/User/Mobile_No", async (req, res) => {
     console.log("Unable to Send OTP:", error);
     res.status(500).json({ success: false, message: "Failed to send OTP" });
   }
+});
+
+app.post("/Mobile_No/Add", async (req, res) => {
+  let Add = await Mobile_No.create(req.body);
+  res.send(Add);
+  console.log(Add);
+});
+
+app.get("/Mobile_No/Findall", async (req, res) => {
+  const list = await Mobile_No.findAll();
+  console.log("All available columns in Table: ", list);
+  res.send(list);
 });
 
 app.get("/User/Update", async (req, res) => {
