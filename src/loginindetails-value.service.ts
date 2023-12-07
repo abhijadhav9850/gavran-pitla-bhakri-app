@@ -29,11 +29,16 @@ getUserInformation(){
   })
 
   otpvalue:any;
-  callapi(){
+  async callapi(){
     console.log(this.phoneForm.value);
     
     const formData = { Mobile_No: this.phoneForm.value.Mobile_No}
-    this.http.post("http://localhost:4000/User/Mobile_No",formData).subscribe(e=>{
+    await this.http.post("http://localhost:4000/Mobile_No/Send_OTP",formData).subscribe(e=>{
+      // this.otpvalue = e
+       console.log(e); 
+    })
+  
+    await this.http.post("http://localhost:4000/Mobile_No/Add",formData).subscribe(e=>{
       // this.otpvalue = e
        console.log(e); 
     })
