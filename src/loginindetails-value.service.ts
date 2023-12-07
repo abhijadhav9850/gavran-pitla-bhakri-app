@@ -12,6 +12,17 @@ constructor(public http:HttpClient, public fb:FormBuilder) {
 }
  
 logindeatilsvalue:any=[];
+orderPrice : any= [];
+userinformation : any = [];
+
+getOrderPrice(){
+  console.log(this.orderPrice);
+}
+
+getUserInformation(){
+  
+}
+
 
   phoneForm = this.fb.group({
     email: ['',[Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@gmail\.com$/)]],
