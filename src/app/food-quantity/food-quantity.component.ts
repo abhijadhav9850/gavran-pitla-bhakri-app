@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 import { PopupHandingService } from 'src/popup-handing.service';
 
 
@@ -9,7 +10,7 @@ import { PopupHandingService } from 'src/popup-handing.service';
 })
 export class FoodQuantityComponent {
 
-  constructor(public service : PopupHandingService){
+  constructor(public service : PopupHandingService, public data : LoginindetailsValueService){
     
   }
 
@@ -25,7 +26,7 @@ export class FoodQuantityComponent {
       this.bhakri++;
       this.bhakriPrice = this.bhakriPrice + 25
     }
-    console.log(this.bhakriPrice + this.pithla + this.pithlaPrice + this.onionPrice);
+    // console.log(this.bhakriPrice + this.pithla + this.pithlaPrice + this.onionPrice);
     
   }
   bhakriDecrement() {
@@ -46,10 +47,19 @@ pithlaDecrement() {
   if(this.pithla>1){
     this.pithla--;
     this.pithlaPrice = this.pithlaPrice - 50
-    console.log(this.pithla);
+    // console.log(this.pithla);
     
   }
   }
+
+pushValueToService(){
+  let totalValue = this.bhakriPrice+this.pithlaPrice+this.thechaPrice+this.onionPrice
+  console.log(totalValue);
+  
+  this.data.orderPrice.push(totalValue);
+  this.data.getOrderPrice()
+  // console.log(this.bhakriPrice+this.pithlaPrice+this.thechaPrice+this.onionPrice);
+}
 
  visible:any= false;
 onclick(){
