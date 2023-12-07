@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PopupHandingService } from 'src/popup-handing.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 
 
 @Component({
@@ -13,25 +14,41 @@ export class OtpVerificationComponent {
   invalid = false
 
   otpForm: FormGroup;
-  constructor(public service : PopupHandingService , public fb: FormBuilder){
+  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService){
     this.otpForm = this.fb.group({
       number: ['', [Validators.required ,]],
       number2: ['', [Validators.required ,]],
       number3: ['', [Validators.required ,]],
       number4: ['', [Validators.required ,]],
     });
+    
   }
+  
+
+
   submitForm() {
+    // console.log(this.ls.otpvalue);
+    
     Object.values(this.otpForm.controls).forEach((control) => {
       control.markAsTouched();
     });
 
-    if (this.otpForm.valid) {
-      console.log('Form submitted:', this.otpForm.value);
-    }
+    // if (this.otpForm.valid) {
+    //   console.log('Form submitted:', this.otpForm.value);
+    // }
+    // console.log(this.otpForm.value);
+    
+    // if( this.otpForm === this.ls.otpvalue.value){
+    //   console.log('solve');
+    // }else{
+    //   console.log('error');
+    // }
+
   }
 
   otp: string[] = ['', '', '', ''];
+
+  
 
   onInput(index: number) {
     const nextIndex = index < this.otp.length ? index + 1 : index;
@@ -60,10 +77,10 @@ export class OtpVerificationComponent {
 
   nextpopup() {
     if (
-      this.otpForm.get('number1')?.invalid ||
+      this.otpForm.get('number')?.invalid ||
       this.otpForm.get('number2')?.invalid ||
       this.otpForm.get('number3')?.invalid ||
-      this.otpForm.get('number4')?.invalid
+      this.otpForm.get('number4')?.invalid 
     ) {
       console.log("Invalid values detected");
       this.service.address = false;
@@ -71,10 +88,7 @@ export class OtpVerificationComponent {
     } else {
       console.log("No error, all values are present");
       this.invalid = false;
-      this.service.address = true;
+      this.service.address = true; 
     }
   }
-  
-
-
 }

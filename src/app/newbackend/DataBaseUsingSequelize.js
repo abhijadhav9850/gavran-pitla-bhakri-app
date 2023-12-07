@@ -83,12 +83,13 @@ app.get("/User/Findall", async (req, res) => {
 });
 
 app.post("/User/EmailID", async (req, res) => {
+ 
   try {
     if (!req.body || !req.body.Email_ID) {
       return res.status(400).json({ success: false, message: "Invalid request body" });
     }
 
-    let otpvalue = Math.floor(1000 + Math.random() * 9999);
+    let otpvalue = Math.floor(1000 + Math.random() * 8888);
 
     let transporter = nodemailer.createTransport({
       service: "gmail",
@@ -101,6 +102,7 @@ app.post("/User/EmailID", async (req, res) => {
     let mailOptions = {
       from: "pitlabhakri1@gmail.com",
       to: req.body.Email_ID,
+      // to : "abhij9850@gmail.com",
       subject: `Your OTP is: ${otpvalue}`,
     };
 

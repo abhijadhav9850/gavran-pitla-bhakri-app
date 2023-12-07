@@ -1,5 +1,5 @@
-<div class="p-3">
-    <header>
+<div class="p-3 flex flex-col justify-end">
+    <header class="flex justify-between items-center">
         <svg (click)="service.closepopup()" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none"
             class="left-0 h-6 w-6 -ml-[11px] -mt-[1px] ">
             <path
@@ -9,11 +9,9 @@
                 d="M14 0C6.26875 0 0 6.26875 0 14C0 21.7313 6.26875 28 14 28C21.7313 28 28 21.7313 28 14C28 6.26875 21.7313 0 14 0ZM14 25.625C7.58125 25.625 2.375 20.4188 2.375 14C2.375 7.58125 7.58125 2.375 14 2.375C20.4188 2.375 25.625 7.58125 25.625 14C25.625 20.4188 20.4188 25.625 14 25.625Z"
                 fill="black" fill-opacity="0.85" />
         </svg>
+        <p class="font-Roboto font-bold text-start text-xl mt-0">The Complete Meal</p>
+        <div> </div>
     </header>
-    <p class="font-Roboto font-bold text-lg mt-4">The Complete Meal</p>
-    <p class="font-Roboto text-xs font-semibold mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-        Bhakri</p>
     <div class="flex gap-16 mt-4">
         <div>
             <div class="flex gap-3 mt-5">
@@ -46,14 +44,24 @@
             </div>
         </div>
     </div>
-    
+    <div class="flex flex-col gap-2 mt-[38px] ">
+        <span class="text-[18px] font-bold">Note</span>
+        <div class="flex justify-between">
+            <span class="text-xs font-semibold">option 1</span>
+            <input class="rounded-md" type="checkbox">
+        </div>
+        <div class="flex justify-between">
+            <span class="text-xs font-semibold">option 2</span>
+            <input class="rounded-md" type="checkbox">
+        </div>
+    </div>
     <footer class="flex justify-between items-center mt-10">
         <div class="flex flex-col">
             <p class="text-xs font-Roboto font-medium">Price</p>
         <p class="text-xl font-bold">₹{{bhakriPrice + pithlaPrice}}</p>
         </div>
       <div>
-        <button (click)="service.contact = 'true'"
+        <button (click)="service.openContact()"
             class="py-2 px-4 w-36 h-10  bg-orange-500 text-white font-bold rounded-[20px] shadow-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-75">
             Pay Now
         </button>
@@ -61,6 +69,6 @@
     </footer>
 </div>
 
-<div>
+<!-- <div>
     <app-logininphone [ngStyle]="service.loginInPhone" *ngIf="service.contact" class="p-6 shadow-slate-950 rounded-t-3xl -mt-[45px] -ml-[25px] absolute"></app-logininphone>
-  </div>
+  </div> -->
