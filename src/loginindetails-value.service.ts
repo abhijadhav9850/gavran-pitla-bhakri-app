@@ -12,6 +12,17 @@ constructor(public http:HttpClient, public fb:FormBuilder) {
 }
 
 logindeatilsvalue:any=[];
+orderPrice : any= [];
+userinformation : any = [];
+
+getOrderPrice(){
+  console.log(this.orderPrice);
+}
+
+getUserInformation(){
+  
+}
+
 
   phoneForm = this.fb.group({
     Mobile_No: ['',[Validators.required, Validators.pattern("[0-9]{10}")]],
