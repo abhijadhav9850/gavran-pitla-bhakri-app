@@ -19,7 +19,7 @@ logindeatilsvalue:any=[];
 
   otpvalue:any;
   callapi(){
-    // console.log(this.phoneForm.value);
+    console.log(this.phoneForm.value);
     
     const formData = { Mobile_No: this.phoneForm.value.number}
     this.http.post("http://localhost:4000/User/Mobile_No",formData).subscribe(e=>{
