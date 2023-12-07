@@ -12,6 +12,7 @@ import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 export class OtpVerificationComponent {
 
   invalid = false
+  otparr = []
 
   otpForm: FormGroup;
   constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService){
@@ -23,6 +24,7 @@ export class OtpVerificationComponent {
     });
     
   }
+
   
 
 
@@ -32,18 +34,9 @@ export class OtpVerificationComponent {
     Object.values(this.otpForm.controls).forEach((control) => {
       control.markAsTouched();
     });
-
-    // if (this.otpForm.valid) {
-    //   console.log('Form submitted:', this.otpForm.value);
-    // }
-    // console.log(this.otpForm.value);
-    
-    // if( this.otpForm === this.ls.otpvalue.value){
-    //   console.log('solve');
-    // }else{
-    //   console.log('error');
-    // }
-
+    this.otparr = this.otpForm.value    
+  console.log(this.otparr);
+  // this.ls.callapi()
   }
 
   otp: string[] = ['', '', '', ''];

@@ -28,23 +28,23 @@
                     <option value="3">+9</option>
                 </select> -->
                 <div>
-                    <!-- <input type="number" placeholder="Enter a number" id="number" formControlName="number"
-                        [ngClass]="{ 'invalid-input': phoneForm.get('address')?.invalid && phoneForm.get('address')?.touched }"
-                        class="w-[15rem] py-[8px] px-[10px] appearance-none bg-transparent focus:outline-none"> -->
-                    <input [(ngModel)]="service.email" formControlName="email" type="email"
+                    <input type="number" placeholder="Enter a number" id="number" formControlName= "number"
+                        [ngClass]="{ 'invalid-input': ls.phoneForm.get('address')?.invalid && ls.phoneForm.get('address')?.touched }"
+                        class="w-[15rem] py-[8px] px-[10px] appearance-none bg-transparent focus:outline-none">
+                    <!-- <input [(ngModel)]="service.email" formControlName="email" type="email"
                         class="w-[15rem] py-[8px] px-[20px] appearance-none bg-transparent focus:outline-none"
-                        placeholder="Your email address" required>
+                        placeholder="Your email address" required> -->
                 </div>
             </form>
-            <!-- <div *ngIf="phoneForm.get('number')?.hasError('required') && phoneForm.get('number')?.touched"
+            <!-- <div *ngIf="ls.phoneForm.get('number')?.hasError('required') && ls.phoneForm.get('number')?.touched"
                         class="text-red-500 text-xs font-bold">number is required.</div> -->
             <div class="text-red-600 font-bold text-xs"
                 *ngIf="ls.phoneForm.get('email')?.hasError('required') && ls.phoneForm.get('email')?.touched">
-                Email must be required
+                Mobile No must be required
             </div>
             <div class="text-red-600 font-bold text-xs"
                 *ngIf="ls.phoneForm.get('email')?.hasError('pattern') && !ls.phoneForm.get('email')?.hasError('required')">
-                Please enter a valid Gmail address
+                Please enter a valid Mobile No
             </div>
         </div>
     </div>
