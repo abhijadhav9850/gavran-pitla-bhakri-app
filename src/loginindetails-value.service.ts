@@ -25,14 +25,14 @@ getUserInformation(){
 
 
   phoneForm = this.fb.group({
-    number: ['',[Validators.required, Validators.pattern("[0-9]{10}")]],
+    Mobile_No: ['',[Validators.required, Validators.pattern("[0-9]{10}")]],
   })
 
   otpvalue:any;
   callapi(){
     console.log(this.phoneForm.value);
     
-    const formData = { Mobile_No: this.phoneForm.value.number}
+    const formData = { Mobile_No: this.phoneForm.value.Mobile_No}
     this.http.post("http://localhost:4000/User/Mobile_No",formData).subscribe(e=>{
       // this.otpvalue = e
        console.log(e); 
