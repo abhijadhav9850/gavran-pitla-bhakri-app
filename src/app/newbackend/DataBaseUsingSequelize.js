@@ -2,6 +2,8 @@ const { Sequelize, DataTypes } = require("sequelize");
 const nodemailer = require("nodemailer");
 var bodyParser = require("body-parser");
 const express = require("express");
+const unirest = require('unirest')
+var cors = require("cors");
 const unirest = require("unirest");
 const cors = require("cors");
 const { async } = require("rxjs");
@@ -84,12 +86,48 @@ app.get("/User/Findall", async (req, res) => {
   res.send(list);
 });
 
+// app.post("/User/EmailID", async (req, res) => {
+//   async function sendMail() {
+//     let transporter = nodemailer.createTransport({
+//       service: "gmail",
+//       auth: {
+//         user: "pitlabhakri1@gmail.com",
+//         pass: "runkpscpbcjzhrkw",
+//       },
+//     });
+
+//     let otpvalue = Math.floor(1000 + Math.random() * 9999);
+
+//     let mailOptions = {
+//       from: "pitlabhakri1@gmail.com",
+//       to: req.body.Email_ID,
+//       subject: `Your OTP is : ${otpvalue}`,
+//     };
+
+//     try {
+//       let result = await transporter.sendMail(mailOptions);
+//       console.log("Email Sent Successfully");
+//       return { success: true, message: "Email sent successfully" };
+//     } catch (error) {
+//       console.log("Unable To Send OTP:", error);
+//       return { success: false, message: "Failed to send email" };
+//     }
+//   }
+
+//   const mailResult = await sendMail();
+//   try {
+//     console.log(mailResult);
+//     res.send(mailResult);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// });
+
 app.post("/User/EmailID", async (req, res) => {
+ 
   try {
     if (!req.body || !req.body.Email_ID) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Invalid request body" });
+      return res.status(400).json({ success: false, message: "Invalid request body" });
     }
 
     let otpvalue = Math.floor(1000 + Math.random() * 8888);
@@ -105,6 +143,7 @@ app.post("/User/EmailID", async (req, res) => {
     let mailOptions = {
       from: "pitlabhakri1@gmail.com",
       to: req.body.Email_ID,
+      // to : "abhij9850@gmail.com",
       subject: `Your OTP is: ${otpvalue}`,
     };
 
