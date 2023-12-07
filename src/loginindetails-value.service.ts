@@ -8,9 +8,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class LoginindetailsValueService {
  
 constructor(public http:HttpClient, public fb:FormBuilder) { 
- 
+  
 }
- 
+
 logindeatilsvalue:any=[];
 orderPrice : any= [];
 userinformation : any = [];
@@ -25,15 +25,19 @@ getUserInformation(){
 
 
   phoneForm = this.fb.group({
-    email: ['',[Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@gmail\.com$/)]],
+    number: ['',[Validators.required, Validators.pattern("[0-9]{10}")]],
   })
 
   otpvalue:any;
   callapi(){
-    const formData = { Email_ID: this.phoneForm.value.email}
-    this.http.post("http://localhost:4000/User/EmailID",formData).subscribe(e=>{
-      this.otpvalue = e
-      console.log(e); 
+    console.log(this.phoneForm.value);
+    
+    const formData = { Mobile_No: this.phoneForm.value.number}
+    this.http.post("http://localhost:4000/User/Mobile_No",formData).subscribe(e=>{
+      // this.otpvalue = e
+       console.log(e); 
     })
+  
+    
   }
 }
