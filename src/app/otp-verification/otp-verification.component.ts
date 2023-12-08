@@ -16,7 +16,7 @@ export class OtpVerificationComponent {
   otparr = []
 
   otpForm: FormGroup;
-  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService){
+  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService, public http:HttpClient){
     this.otpForm = this.fb.group({
       number: ['', [Validators.required ,]],
       number2: ['', [Validators.required ,]],
@@ -36,7 +36,7 @@ export class OtpVerificationComponent {
     });
     this.otparr = this.otpForm.value    
     console.log(this.otparr);
-    await this.http.post("http://localhost:4000/GetOTP",this.otparr).subscribe(e=>{
+   this.http.post("http://localhost:4000/GetOTP",this.otparr).subscribe(e=>{
     // this.otpvalue = e
     console.log(e); 
     })

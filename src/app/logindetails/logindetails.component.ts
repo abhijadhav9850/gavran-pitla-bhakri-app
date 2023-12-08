@@ -18,7 +18,6 @@ export class LogindetailsComponent {
   
   constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService,public http:HttpClient, public data : LoginindetailsValueService, ){
 
-  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService,public http:HttpClient, public data : LoginindetailsValueService){
     this.myForm = this.fb.group({
       UserName: ['', [Validators.required]],
       UserAddress: ['', [Validators.required]],
