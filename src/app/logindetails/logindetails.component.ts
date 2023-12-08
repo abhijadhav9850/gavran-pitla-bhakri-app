@@ -42,5 +42,8 @@ export class LogindetailsComponent {
       console.log(e);
     })
   }
-
+  submit(){
+    console.log("hello");
+    
+  }
 }
