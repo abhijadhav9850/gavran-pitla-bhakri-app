@@ -4,7 +4,7 @@ var bodyParser = require("body-parser");
 const express = require("express");
 var cors = require("cors");
 const unirest = require("unirest");
-const { async } = require("rxjs");
+const async = require("rxjs");
 const app = express();
 const port = 4000;
 
