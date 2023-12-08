@@ -11,37 +11,32 @@ import { LoginindetailsValueService } from 'src/loginindetails-value.service';
   styleUrls: ['./logindetails.component.css']
 })
 export class LogindetailsComponent {
-  myForm: FormGroup;
-  submited=false
 
-  constructor(public service: PopupHandingService, public fb: FormBuilder, public ls: LoginindetailsValueService, public http: HttpClient) {
+  myForm: FormGroup;
+
+  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService,public http:HttpClient, public data : LoginindetailsValueService){
     this.myForm = this.fb.group({
       UserName: ['', [Validators.required]],
       UserAddress: ['', [Validators.required]],
       UserCity: ['', [Validators.required]],
     });
-
   }
 
   submitForm() {
     Object.values(this.myForm.controls).forEach((control) => {
       control.markAsTouched();
       console.log(this.myForm)
+      this.data.userinformation.push()
     });
     if (this.myForm.valid) {
       console.log('Form submitted:', this.myForm.value);
     }
   }
-
-
-  valueget() {
-    this.ls.logindeatilsvalue.push(this.myForm.value)
+  valueget(){
+    this.ls.logindeatilsvalue.push(this.myForm.value)   
     console.log(this.ls.logindeatilsvalue);
-    this.http.post('http://localhost:4000/User/Add', this.myForm.value).subscribe(e => {
+    this.http.post('http://localhost:4000/User/Add',this.myForm.value).subscribe(e=>{
       console.log(e);
-
     })
-
-
   }
 }

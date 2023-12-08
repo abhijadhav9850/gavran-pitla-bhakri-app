@@ -7,9 +7,5 @@ import { PopupHandingService } from 'src/popup-handing.service';
   styleUrls: ['./paymentpage.component.css']
 })
 export class PaymentpageComponent {
-
-  constructor(public service : PopupHandingService){
-
-  }
-
+  constructor(public service : PopupHandingService){ }
 }

@@ -27,10 +27,7 @@ export class LogininphoneComponent {
     });
     this.submited = true
     this.ls.callapi()
-    
-    
-
-    
+    //  console.log(this.data);    
     // if (this.phoneForm.valid) {
     //   const formData = { Email_ID: this.phoneForm.value.email };
     //   // console.log(formData);
@@ -39,8 +36,5 @@ export class LogininphoneComponent {
     //    this.ls.apicall()
     //   }) 
     // }
-    
   }
-  
-
 }
