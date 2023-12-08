@@ -1,12 +1,12 @@
 .font-aclonica {
-    font-family: 'Aclonica', sans-serif;
-  }
-  
-  #image{
-    transition: transform .5s;
-    transform: none
-  }
+  font-family: 'Aclonica', sans-serif;
+}
 
-  #image:hover{
-    transform: scale(1.5);
-  }
+#image {
+  transition: transform .5s;
+  transform: none
+}
+
+#image:hover {
+  transform: scale(1.5);
+}

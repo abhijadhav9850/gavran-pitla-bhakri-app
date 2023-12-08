@@ -10,9 +10,7 @@ import { PopupHandingService } from 'src/popup-handing.service';
 })
 export class FoodQuantityComponent {
 
-  constructor(public service : PopupHandingService, public data : LoginindetailsValueService){
-    
-  }
+  constructor(public service : PopupHandingService, public data : LoginindetailsValueService){ }
 
   bhakri = 2;
   pithla = 1;
@@ -22,53 +20,45 @@ export class FoodQuantityComponent {
   onionPrice = 0;
 
   bhakriIncrement() {
-    if(this.bhakri>0){
+    if(this.bhakri>0) {
       this.bhakri++;
       this.bhakriPrice = this.bhakriPrice + 25
     }
     // console.log(this.bhakriPrice + this.pithla + this.pithlaPrice + this.onionPrice);
-    
   }
   bhakriDecrement() {
-    if(this.bhakri>1){
+    if(this.bhakri>1) {
       this.bhakri--;
       this.bhakriPrice =  this.bhakriPrice - 25
-
     }
   }
 
 pithlaIncrement() {
-  if(this.pithla>0){
+  if(this.pithla>0) {
     this.pithla++;
     this.pithlaPrice = this.pithlaPrice + 50
   }
 }
 pithlaDecrement() {
-  if(this.pithla>1){
-    this.pithla--;
-    this.pithlaPrice = this.pithlaPrice - 50
-    // console.log(this.pithla);
-    
-  }
+  if(this.pithla>1) {
+      this.pithla--;
+      this.pithlaPrice = this.pithlaPrice - 50
+      // console.log(this.pithla);
+    }
   }
 
-pushValueToService(){
+pushValueToService() {
   let totalValue = this.bhakriPrice+this.pithlaPrice+this.thechaPrice+this.onionPrice
   console.log(totalValue);
-  
   this.data.orderPrice.push(totalValue);
   this.data.getOrderPrice()
   // console.log(this.bhakriPrice+this.pithlaPrice+this.thechaPrice+this.onionPrice);
 }
 
- visible:any= false;
+visible:any= false;
 onclick(){
-  // this.visible=!this.visible
-// console.log(this.visible=!this.visible);
-// {this.visible?"bottom-[0%]":"top-0"}
-
-
-}
-  
-
+    // this.visible=!this.visible
+    // console.log(this.visible=!this.visible);
+    // {this.visible?"bottom-[0%]":"top-0"}
+  }
 }

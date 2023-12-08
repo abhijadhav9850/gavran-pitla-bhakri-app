@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { PopupHandingService } from 'src/popup-handing.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginindetailsValueService } from 'src/loginindetails-value.service';
-import { LoginLogoutService } from '../login-logout.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -15,50 +14,35 @@ export class OtpVerificationComponent {
 
   invalid = false
   otparr = []
-  phoneNumber: string;
-  otp2 = '';
 
   otpForm: FormGroup;
-  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService, public login:LoginLogoutService, public active:ActivatedRoute, public router:Router){
+  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService){
     this.otpForm = this.fb.group({
       number: ['', [Validators.required ,]],
       number2: ['', [Validators.required ,]],
       number3: ['', [Validators.required ,]],
       number4: ['', [Validators.required ,]],
     });
-    this.phoneNumber = this.active.snapshot.params['phoneNumber'];
+    
   }
 
   
-  verifyOtp(): void {
-    this.login.verifyOtp(this.otp2)
-      .subscribe((response: any) => {
-        if (response.success) {
-          // Redirect to the main application page
-          this.router.navigate(['/home']);
-        } else {
-          console.error('OTP verification failed');
-        }
-      });
-  }
-
 
 
   submitForm() {
     // console.log(this.ls.otpvalue);
-    
     Object.values(this.otpForm.controls).forEach((control) => {
       control.markAsTouched();
     });
     this.otparr = this.otpForm.value    
-  console.log(this.otparr);
-  // this.ls.callapi()
+    console.log(this.otparr);
+    await this.http.post("http://localhost:4000/GetOTP",this.otparr).subscribe(e=>{
+    // this.otpvalue = e
+    console.log(e); 
+    })
   }
-
-  otp: string[] = ['', '', '', ''];
-
   
-
+  otp: string[] = ['', '', '', ''];
   onInput(index: number) {
     const nextIndex = index < this.otp.length ? index + 1 : index;
     if (nextIndex < this.otp.length) {

@@ -4,7 +4,7 @@ var bodyParser = require("body-parser");
 const express = require("express");
 var cors = require("cors");
 const unirest = require("unirest");
-const { async } = require("rxjs");
+const async = require("rxjs");
 const app = express();
 const port = 4000;
 
@@ -82,6 +82,8 @@ async function start() {
 
 start();
 
+// const project = await Mobile_No.findOne({ where: { title: 'My Title' } });
+
 app.post("/User/Add", async (req, res) => {
   let Add = await Users.create(req.body);
   res.send(Add);
@@ -93,6 +95,12 @@ app.get("/User/Findall", async (req, res) => {
   console.log("All available columns in Table: ", list);
   res.send(list);
 });
+
+app.post("/GetOTP", async(req,res)=>{
+  const OTP = await otparr.findAll();
+  console.log(OTP);
+})
+
 
 app.post("/User/EmailID", async (req, res) => {
   try {
