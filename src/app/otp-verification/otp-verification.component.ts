@@ -13,26 +13,28 @@ import { HttpClient } from '@angular/common/http';
 export class OtpVerificationComponent {
 
   invalid = false
-  otparr = []
-  otpForm: FormGroup;
+  
   
   constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService, public http:HttpClient){
-    this.otpForm = this.fb.group({
-      number: ['', [Validators.required ,]],
-      number2: ['', [Validators.required ,]],
-      number3: ['', [Validators.required ,]],
-      number4: ['', [Validators.required ,]],
-    });    
+       
   }
 
-  async submitForm() {
+    otpForm = this.fb.group({
+    number: ['', [Validators.required ,]],
+    number2: ['', [Validators.required ,]],
+    number3: ['', [Validators.required ,]],
+    number4: ['', [Validators.required ,]],
+  }); 
+
+   submitForm() {
     // console.log(this.ls.otpvalue);
     Object.values(this.otpForm.controls).forEach((control) => {
       control.markAsTouched();
     });
-    this.otparr = this.otpForm.value    
-    console.log(this.otparr);
-    await this.http.post("http://localhost:4000/GetOTP",this.otparr).subscribe(e=>{
+
+    console.log(this.otpForm.value);     
+
+     this.http.post("http://localhost:4000/GetOTP",this.otpForm.value).subscribe(e=>{
     // this.otpvalue = e
     console.log(e); 
     })

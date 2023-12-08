@@ -11,6 +11,7 @@ export class LoginindetailsValueService {
   logindeatilsvalue:any=[];
   orderPrice : any= [];
   userinformation : any = [];
+ 
 
   getOrderPrice(){
     console.log(this.orderPrice);
@@ -22,8 +23,10 @@ export class LoginindetailsValueService {
 
   otpvalue:any;
   async callapi(){
-    console.log(this.phoneForm.value);    
+    // console.log(this.phoneForm.value);    
     const formData = { Mobile_No: this.phoneForm.value.Mobile_No}
+    // console.log(formData);
+    
   
     await this.http.post("http://localhost:4000/Mobile_No/Send_OTP",formData).subscribe(e=>{
       // this.otpvalue = e
