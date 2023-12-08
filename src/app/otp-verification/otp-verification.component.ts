@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PopupHandingService } from 'src/popup-handing.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginindetailsValueService } from 'src/loginindetails-value.service';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -13,36 +14,31 @@ export class OtpVerificationComponent {
 
   invalid = false
   otparr = []
-
   otpForm: FormGroup;
-  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService){
+  
+  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService, public http:HttpClient){
     this.otpForm = this.fb.group({
       number: ['', [Validators.required ,]],
       number2: ['', [Validators.required ,]],
       number3: ['', [Validators.required ,]],
       number4: ['', [Validators.required ,]],
-    });
-    
+    });    
   }
 
-  
-
-
-  submitForm() {
+  async submitForm() {
     // console.log(this.ls.otpvalue);
-    
     Object.values(this.otpForm.controls).forEach((control) => {
       control.markAsTouched();
     });
     this.otparr = this.otpForm.value    
-  console.log(this.otparr);
-  // this.ls.callapi()
+    console.log(this.otparr);
+    await this.http.post("http://localhost:4000/GetOTP",this.otparr).subscribe(e=>{
+    // this.otpvalue = e
+    console.log(e); 
+    })
   }
-
-  otp: string[] = ['', '', '', ''];
-
   
-
+  otp: string[] = ['', '', '', ''];
   onInput(index: number) {
     const nextIndex = index < this.otp.length ? index + 1 : index;
     if (nextIndex < this.otp.length) {

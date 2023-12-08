@@ -22,39 +22,45 @@
 
   <div class="flex justify-center mt-16">
     <form [formGroup]="otpForm" (ngSubmit)="submitForm()" class="flex space-x-4">
-  <div class="flex flex-col">
-        <input placeholder="-" #text1 type="number" maxlength="1" (keyup)="move($event, '', text1, text2)" (input)="onInput(1)" [(ngModel)]="otp[0]"
-        class="w-12 h-12 border bg-zinc-200 border-gray-300 rounded-lg text-center text-lg focus:outline-none focus:border-blue-500"
-        formControlName="number"
-        [ngClass]="{ 'invalid-input': otpForm.get('number')?.invalid && otpForm.get('number')?.touched }">
-      <div *ngIf="otpForm.get('number')?.hasError('required') && otpForm.get('number')?.touched" class="text-red-500 text-xs font-bold">
-        Add OTP</div>
+      <div class="flex flex-col">
+        <input placeholder="-" #text1 type="number" maxlength="1" (keyup)="move($event, '', text1, text2)"
+          (input)="onInput(1)" [(ngModel)]="otp[0]"
+          class="w-12 h-12 border bg-zinc-200 border-gray-300 rounded-lg text-center text-lg focus:outline-none focus:border-blue-500"
+          formControlName="number"
+          [ngClass]="{ 'invalid-input': otpForm.get('number')?.invalid && otpForm.get('number')?.touched }">
+        <div *ngIf="otpForm.get('number')?.hasError('required') && otpForm.get('number')?.touched"
+          class="text-red-500 text-xs font-bold">
+          Add OTP</div>
       </div>
       <div class="flex flex-col">
-        <input placeholder="-" #text2 type="number" maxlength="1" (keyup)="move($event,text1, text2, text3)" (input)="onInput(2)" [(ngModel)]="otp[1]"
-        class="w-12 h-12 border bg-zinc-200 border-gray-300 rounded-lg text-center text-lg focus:outline-none focus:border-blue-500"
-        formControlName="number2"
-        [ngClass]="{ 'invalid-input': otpForm.get('number2')?.invalid && otpForm.get('number2')?.touched }">
-      <div *ngIf="otpForm.get('number2')?.hasError('required') && otpForm.get('number2')?.touched" class="text-red-500 text-xs font-bold">
-        Add OTP</div>
+        <input placeholder="-" #text2 type="number" maxlength="1" (keyup)="move($event,text1, text2, text3)"
+          (input)="onInput(2)" [(ngModel)]="otp[1]"
+          class="w-12 h-12 border bg-zinc-200 border-gray-300 rounded-lg text-center text-lg focus:outline-none focus:border-blue-500"
+          formControlName="number2"
+          [ngClass]="{ 'invalid-input': otpForm.get('number2')?.invalid && otpForm.get('number2')?.touched }">
+        <div *ngIf="otpForm.get('number2')?.hasError('required') && otpForm.get('number2')?.touched"
+          class="text-red-500 text-xs font-bold">
+          Add OTP</div>
       </div>
 
-     <div class="flex flex-col">
-      <input placeholder="-" #text3 type="number" maxlength="1" (keyup)="move($event, text2, text3, text4)" (input)="onInput(3)" [(ngModel)]="otp[2]"
-      class="w-12 h-12 border bg-zinc-200 border-gray-300 rounded-lg text-center text-lg focus:outline-none focus:border-blue-500"
-      formControlName="number3"
-      [ngClass]="{ 'invalid-input': otpForm.get('number3')?.invalid && otpForm.get('number3')?.touched }">
-    <div *ngIf="otpForm.get('number3')?.hasError('required') && otpForm.get('number3')?.touched" class="text-red-500 text-xs font-bold">
-      Add OTP</div>
-     </div>
+      <div class="flex flex-col">
+        <input placeholder="-" #text3 type="number" maxlength="1" (keyup)="move($event, text2, text3, text4)"
+          (input)="onInput(3)" [(ngModel)]="otp[2]"
+          class="w-12 h-12 border bg-zinc-200 border-gray-300 rounded-lg text-center text-lg focus:outline-none focus:border-blue-500"
+          formControlName="number3"
+          [ngClass]="{ 'invalid-input': otpForm.get('number3')?.invalid && otpForm.get('number3')?.touched }">
+        <div *ngIf="otpForm.get('number3')?.hasError('required') && otpForm.get('number3')?.touched"
+          class="text-red-500 text-xs font-bold">
+          Add OTP</div>
+      </div>
 
       <div class="flex flex-col">
-        <input placeholder="-" #text4 type="number" formControlName="number4" maxlength="1" (keyup)="move($event, text3, text4, '')" (input)="onInput(4)"
-          [(ngModel)]="otp[3]"
+        <input placeholder="-" #text4 type="number" formControlName="number4" maxlength="1"
+          (keyup)="move($event, text3, text4, '')" (input)="onInput(4)" [(ngModel)]="otp[3]"
           class="w-12 h-12 border bg-zinc-200 border-gray-300 rounded-lg text-center text-lg focus:outline-none focus:border-blue-500"
           formControlName="number4"
           [ngClass]="{ 'invalid-input': otpForm.get('number4')?.invalid && otpForm.get('number4')?.touched }">
-          <div *ngIf="otpForm.get('number4')?.hasError('required') && otpForm.get('number4')?.touched"
+        <div *ngIf="otpForm.get('number4')?.hasError('required') && otpForm.get('number4')?.touched"
           class="text-red-500 text-xs font-bold">
           Add OTP</div>
       </div>

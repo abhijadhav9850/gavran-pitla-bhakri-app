@@ -14,13 +14,10 @@ export class UserProfileComponent {
   }
 
   zoomimage(){
-
-      this.zoom = {
-        'transition': 'transform 1s',
-        'transform': 'scale(1.9)',
-        'margin-top' : '45%',
-      }
+    this.zoom = {
+      'transition': 'transform 1s',
+      'transform': 'scale(1.9)',
+      'margin-top' : '45%',
+    }
   }
-
-
 }

@@ -1,5 +1,6 @@
 <div class="px-2 h-[100vh] overflow-hidden" id="main" [ngStyle]="service.backgroundblur">
-    <div (click)="service.closepopup()" class=" flex justify-between top-0 sticky bg-transparent items-center pt-[50px] px-[15px] gap-[30px] pb-[30px]">
+    <div (click)="service.closepopup()"
+        class=" flex justify-between top-0 sticky bg-transparent items-center pt-[50px] px-[15px] gap-[30px] pb-[30px]">
         <div routerLink="" class="flex gap-[8px] text-[1.5rem]">
             <p style="font-family: 'Aclonica', sans-serif;color: #FF6A00;">Pithla</p>
             <p style="font-family: 'Aclonica', sans-serif;color: #00A850;">Bhakri</p>
@@ -11,7 +12,7 @@
             <img routerLink="/user-profile" class="h-[29px] -mt-[8px]" src="../../assets/Group 20.jpg" alt="">
         </div>
     </div>
-    
+
     <div (click)="service.closepopup()" class="main flex flex-col items-center md:flex-row w-100% p-0 gap-2">
         <div id="contener" class="w-40%">
             <img class="w-96 h-52  rounded-[1.25rem]" src="../../assets/image 2.jpg" alt="image">
@@ -51,15 +52,18 @@
                     <p class="text-[20px] -mt-[5px] font-bold">₹100</p>
                 </div>
             </div>
-        </div>    
+        </div>
     </div>
 
-    
+
     <div class="flex items-center h-1 text-center justify-center active:opacity-90 mt-[8rem] bottom-10 sticky">
-        <button (click)="service.changeStyle()" class="text-[1rem] h-[40px] font-medium text-orange-50 w-[150px] bg-orange-500 rounded-3xl">Order Now</button>
+        <button (click)="service.changeStyle()"
+            class="text-[1rem] h-[40px] font-medium text-orange-50 w-[150px] bg-orange-500 rounded-3xl">Order
+            Now</button>
     </div>
 </div>
-<div [ngStyle]="service.loginInPhone" *ngIf="service.hide" class="p-4 pb-0 h-[60vh] overflow-hidden shadow-[-1560_0px_50px_rgba(0,0,0,0.10)] rounded-t-3xl absolute">
+<div [ngStyle]="service.loginInPhone" *ngIf="service.hide"
+    class="p-4 pb-0 h-[60vh] overflow-hidden shadow-[-1560_0px_50px_rgba(0,0,0,0.10)] rounded-t-3xl absolute">
     <app-food-quantity *ngIf="service.quantity"></app-food-quantity>
     <app-logininphone *ngIf="service.contact"></app-logininphone>
     <app-otp-verification *ngIf="service.otp"></app-otp-verification>
