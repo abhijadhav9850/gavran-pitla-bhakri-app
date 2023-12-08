@@ -4,6 +4,8 @@ import { PopupHandingService } from 'src/popup-handing.service';
 import { Subscriber } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginindetailsValueService } from 'src/loginindetails-value.service';
+import { Router } from '@angular/router';
+import { LoginLogoutService } from '../login-logout.service';
 
 @Component({
   selector: 'app-logindetails',
@@ -13,8 +15,7 @@ import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 export class LogindetailsComponent {
   myForm: FormGroup;
   
-  
-  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService,public http:HttpClient, public data : LoginindetailsValueService){
+  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService,public http:HttpClient, public data : LoginindetailsValueService, ){
     this.myForm = this.fb.group({
       UserName: ['', [Validators.required]],
       UserAddress: ['', [Validators.required]],
@@ -46,4 +47,5 @@ export class LogindetailsComponent {
 
      
   }
+
 }

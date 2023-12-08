@@ -24,6 +24,7 @@ import { NewbackendComponent } from './newbackend/newbackend.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserSettingComponent } from './user-setting/user-setting.component';
+import { LogoutComponent } from './logout/logout.component';
 // import { BackendComponent } from './backend/backend.component';
 
 
@@ -46,6 +47,7 @@ import { UserSettingComponent } from './user-setting/user-setting.component';
     UserPaymentComponent,
     UserOrdersComponent,
     UserSettingComponent,
+    LogoutComponent,
   ],
   imports: [
     BrowserModule,

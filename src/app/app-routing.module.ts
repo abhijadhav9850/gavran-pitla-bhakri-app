@@ -17,6 +17,9 @@ import { UserPaymentComponent } from './user-payment/user-payment.component';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { UserSettingComponent } from './user-setting/user-setting.component';
+import { LogoutComponent } from './logout/logout.component';
+import { AuthGuard } from './auth.guard';
+import { LoginLogoutService } from './login-logout.service';
 
 
 
@@ -38,10 +41,13 @@ const routes: Routes = [
   {path:'delivery-add',component:DeliveryAddressComponent},
   {path:'order-his',component:OrderHistoryComponent},
   {path:'user-setting',component:UserSettingComponent},
+  {path:'user-logout',component:LogoutComponent},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard, LoginLogoutService], 
 })
 export class AppRoutingModule { }

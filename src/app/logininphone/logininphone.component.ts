@@ -3,6 +3,8 @@ import { PopupHandingService } from 'src/popup-handing.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { LoginindetailsValueService } from 'src/loginindetails-value.service';
+import { LoginLogoutService } from '../login-logout.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +18,7 @@ export class LogininphoneComponent {
   
   // emailsend:any=this.service.email
   // phoneForm: FormGroup;
-  constructor(public service : PopupHandingService , public fb: FormBuilder, public http:HttpClient, public ls:LoginindetailsValueService){
+  constructor(public service : PopupHandingService , public fb: FormBuilder, public http:HttpClient, public ls:LoginindetailsValueService,public router: Router, public log:LoginLogoutService){
     // this.phoneForm = this.fb.group({
     //   email: ['', [Validators.required , Validators.pattern(/^[a-zA-Z0-9._%+-]+@gmail\.com$/)] ],
     // });
@@ -47,5 +49,18 @@ export class LogininphoneComponent {
     
   }
   
+  
+  phoneNumber = '';
+  requestOtp(): void {
+    this.log.requestOtp(this.phoneNumber)
+      .subscribe((response: any) => {
+        if (response.success) {
+          // Redirect to OTP verification page
+          this.router.navigate(['/otp-verification', this.phoneNumber]);
+        } else {
+          console.error('Failed to send OTP');
+        }
+      });
+  }
 
 }

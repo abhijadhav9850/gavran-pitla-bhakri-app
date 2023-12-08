@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { PopupHandingService } from 'src/popup-handing.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginindetailsValueService } from 'src/loginindetails-value.service';
+import { LoginLogoutService } from '../login-logout.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -13,19 +15,33 @@ export class OtpVerificationComponent {
 
   invalid = false
   otparr = []
+  phoneNumber: string;
+  otp2 = '';
 
   otpForm: FormGroup;
-  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService){
+  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService, public login:LoginLogoutService, public active:ActivatedRoute, public router:Router){
     this.otpForm = this.fb.group({
       number: ['', [Validators.required ,]],
       number2: ['', [Validators.required ,]],
       number3: ['', [Validators.required ,]],
       number4: ['', [Validators.required ,]],
     });
-    
+    this.phoneNumber = this.active.snapshot.params['phoneNumber'];
   }
 
   
+  verifyOtp(): void {
+    this.login.verifyOtp(this.otp2)
+      .subscribe((response: any) => {
+        if (response.success) {
+          // Redirect to the main application page
+          this.router.navigate(['/home']);
+        } else {
+          console.error('OTP verification failed');
+        }
+      });
+  }
+
 
 
   submitForm() {
