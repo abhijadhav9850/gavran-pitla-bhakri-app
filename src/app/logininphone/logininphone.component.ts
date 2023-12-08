@@ -13,7 +13,6 @@ import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 export class LogininphoneComponent {
 
   submited = false
-  
   // emailsend:any=this.service.email
   // phoneForm: FormGroup;
   constructor(public service : PopupHandingService , public fb: FormBuilder, public http:HttpClient, public ls:LoginindetailsValueService){
@@ -27,15 +26,8 @@ export class LogininphoneComponent {
       control.markAsTouched();
     });
     this.submited = true
-   this.ls.callapi()
-  //  console.log(this.data);
-   
-
-    
-    
-    
-
-    
+    this.ls.callapi()
+    //  console.log(this.data);    
     // if (this.phoneForm.valid) {
     //   const formData = { Email_ID: this.phoneForm.value.email };
     //   // console.log(formData);
@@ -44,8 +36,5 @@ export class LogininphoneComponent {
     //    this.ls.apicall()
     //   }) 
     // }
-    
   }
-  
-
 }
