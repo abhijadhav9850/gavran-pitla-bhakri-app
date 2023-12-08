@@ -97,12 +97,12 @@ app.get("/User/Findall", async (req, res) => {
 });
 
 app.post("/GetOTP", async(req,res)=>{
-  const OTP = await otparr.findAll();
-  console.log(OTP);
+  let Add = await Mobile_No.create(req.body);
+  res.send(Add);
+  console.log(Add);
 })
 
-
-app.post("/User/EmailID", async (req, res) => {
+app.get("/User/EmailID", async (req, res) => {
   try {
     if (!req.body || !req.body.Email_ID) {
       return res
@@ -139,33 +139,34 @@ app.post("/User/EmailID", async (req, res) => {
 
 app.post("/Mobile_No/Send_OTP", async (req, res) => {
   try {
-    const apiKey =
-      "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
-    const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
+    // const apiKey =
+    //   "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
+    // const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
 
-    let otpvalue = Math.floor(1000 + Math.random() * 8888);
+    // let otpvalue = Math.floor(1000 + Math.random() * 8888);
 
-    const smsData = {
-      variables_values: otpvalue,
-      route: "otp",
-      numbers: req.body.Mobile_No,
-    };
+    // const smsData = {
+    //   variables_values: otpvalue,
+    //   route: "otp",
+    //   numbers: req.body.Mobile_No,
+    // };
 
-    unirest
-      .post(apiUrl)
-      .headers({
-        authorization: apiKey,
-      })
-      .form(smsData)
-      .end((response) => {
-        if (response.error) {
-          console.error("Error:", response.error);
-          res.status(500).json({ error: "Internal Server Error" });
-        } else {
-          console.log(response.body);
-          res.status(200).json(response.body);
-        }
-      });
+    // unirest
+    //   .post(apiUrl)
+    //   .headers({
+    //     authorization: apiKey,
+    //   })
+    //   .form(smsData)
+    //   .end((response) => {
+    //     if (response.error) {
+    //       console.error("Error:", response.error);
+    //       res.status(500).json({ error: "Internal Server Error" });
+    //     } else {
+    //       console.log(response.body);
+    //       res.status(200).json(response.body);
+    //     }
+    //   });
+    res.send('ok')
   } catch (error) {
     console.log("Unable to Send OTP:", error);
     res.status(500).json({ success: false, message: "Failed to send OTP" });
