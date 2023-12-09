@@ -92,7 +92,6 @@ start();
 
 let otpvalue;
 
-// const project = await Mobile_No.findOne({ where: { title: 'My Title' } });
 
 app.post("/User/Add", async (req, res) => {
   let Add = await Users.create(req.body);
@@ -105,7 +104,6 @@ app.get("/User/Findall", async (req, res) => {
   console.log("All available columns in Table: ", list);
   res.send(list);
 });
-
 
 app.get("/User/EmailID", async (req, res) => {
   try {
@@ -141,13 +139,14 @@ app.get("/User/EmailID", async (req, res) => {
     res.status(500).json({ success: false, message: "Failed to send email" });
   }
 });
+
 app.post("/Mobile_No/Send_OTP", async (req, res) => {
   try {
     // const apiKey =
     //   "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
     // const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
 
-    // let otpvalue = Math.floor(1000 + Math.random() * 8888);
+    //  otpvalue = Math.floor(1000 + Math.random() * 8888);
 
     // const smsData = {
     //   variables_values: otpvalue,
@@ -180,9 +179,12 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
 
 app.post("/OTP/GetOTP", async(req,res)=>{
   try {
-    console.log("Received OTP:", otpvalue);
-    if(req.body.otpnumber == otpvalue){
+    // console.log("Received OTP:", otpvalue);
+    // console.log(req.body.otp);
+    if(req.body.otp == otpvalue){
       res.json({ success: true, message: `Received OTP. otpvalue = ${otpvalue}` });
+      // let Add = await Mobile_No.create(req.body);
+      // res.send(Add);  
       
     }else{
       res.json({ success: false, message: `Otp not valid` });
@@ -191,11 +193,7 @@ app.post("/OTP/GetOTP", async(req,res)=>{
   } catch (error) {
     console.error("Error getting OTP:", error);
     res.status(500).json({ success: false, message: "Failed to get OTP" });
-  }
-  return
-  let Add = await Mobile_No.create(req.body);
-  res.send(Add);  
-  console.log(Add);
+  } 
 })
 
 app.post("/Mobile_No/Add", async (req, res) => {

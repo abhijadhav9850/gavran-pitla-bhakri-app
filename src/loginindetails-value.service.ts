@@ -17,22 +17,4 @@ export class LoginindetailsValueService {
     console.log(this.orderPrice);
   }
   // getUserInformation(){}
-  // phoneForm = this.fb.group({
-  //   Mobile_No: ['',[Validators.required, Validators.pattern("[0-9]{10}")]],
-  // })
-
-  // otpvalue:any;
-  // async callapi(){
-  //   const formData = { Mobile_No: this.phoneForm.value.Mobile_No}
-  
-  //   await this.http.post("http://localhost:4000/Mobile_No/Send_OTP",formData).subscribe(e=>{
-  //     // this.otpvalue = e
-  //      console.log(e); 
-  //   })
-  
-  //   await this.http.post("http://localhost:4000/Mobile_No/Add",formData).subscribe(e=>{
-  //     // this.otpvalue = e
-  //      console.log(e); 
-  //   })  
-  // }
 }

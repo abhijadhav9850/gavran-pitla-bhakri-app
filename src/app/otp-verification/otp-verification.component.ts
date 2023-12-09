@@ -38,13 +38,16 @@ export class OtpVerificationComponent {
      let otpnumber = {
       otp : obj
      }
-
+     console.log(otpnumber);
+     
      this.http.post("http://localhost:4000/OTP/GetOTP",otpnumber).subscribe((e:any)=>{
     // this.otpvalue = e
+    //  console.log(e);
     if(e.message === 'Otp not valid'){
-      console.log('OTP in not valid');
+      console.log('OTP is not valid');
     }else{
       console.log('Otp successful');
+      this.service.openAddress()
     }
     })
   }
