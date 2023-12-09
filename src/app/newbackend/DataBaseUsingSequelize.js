@@ -71,6 +71,14 @@ const Mobile_No = sequelize.define(
   { tableName: "mobile_no_table" }
 );
 
+// const Mobile_OTP = sequelize.define(
+//   "OTP_verify",
+//   {
+//     ID: { type: DataTypes.INTEGER, primaryKey: true },
+//     OTP_No: { type: DataTypes.INTEGER, allowNull: false },
+//   },
+//   { tableName: "OTP_verify" }
+// );
 async function start() {
   try {
     await sequelize.authenticate();
@@ -81,6 +89,8 @@ async function start() {
 }
 
 start();
+
+let otpvalue;
 
 // const project = await Mobile_No.findOne({ where: { title: 'My Title' } });
 
@@ -96,11 +106,6 @@ app.get("/User/Findall", async (req, res) => {
   res.send(list);
 });
 
-app.post("/GetOTP", async(req,res)=>{
-  let Add = await Mobile_No.create(req.body);
-  res.send(Add);
-  console.log(Add);
-})
 
 app.get("/User/EmailID", async (req, res) => {
   try {
@@ -136,7 +141,6 @@ app.get("/User/EmailID", async (req, res) => {
     res.status(500).json({ success: false, message: "Failed to send email" });
   }
 });
-
 app.post("/Mobile_No/Send_OTP", async (req, res) => {
   try {
     // const apiKey =
@@ -166,16 +170,37 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
     //       res.status(200).json(response.body);
     //     }
     //   });
-    res.send('ok')
+    otpvalue = 1234
+    res.json(`otpvalue = ${otpvalue}`)
   } catch (error) {
     console.log("Unable to Send OTP:", error);
     res.status(500).json({ success: false, message: "Failed to send OTP" });
   }
 });
 
+app.post("/OTP/GetOTP", async(req,res)=>{
+  try {
+    console.log("Received OTP:", otpvalue);
+    if(req.body.otpnumber == otpvalue){
+      res.json({ success: true, message: `Received OTP. otpvalue = ${otpvalue}` });
+      
+    }else{
+      res.json({ success: false, message: `Otp not valid` });
+    }
+
+  } catch (error) {
+    console.error("Error getting OTP:", error);
+    res.status(500).json({ success: false, message: "Failed to get OTP" });
+  }
+  return
+  let Add = await Mobile_No.create(req.body);
+  res.send(Add);  
+  console.log(Add);
+})
+
 app.post("/Mobile_No/Add", async (req, res) => {
   let Add = await Mobile_No.create(req.body);
-  res.send(Add);
+  res.json(Add);
   console.log(Add);
 });
 
