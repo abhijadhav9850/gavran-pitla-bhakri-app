@@ -12,29 +12,46 @@ import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 })
 export class LogininphoneComponent {
 
-  submited = false
-  // emailsend:any=this.service.email
-  // phoneForm: FormGroup;
+  submitted = false
+
   constructor(public service : PopupHandingService , public fb: FormBuilder, public http:HttpClient, public ls:LoginindetailsValueService){
-    // this.phoneForm = this.fb.group({
-    //   email: ['', [Validators.required , Validators.pattern(/^[a-zA-Z0-9._%+-]+@gmail\.com$/)] ],
-    // });
   }
 
-  submitForm() {
-    Object.values(this.ls.phoneForm.controls).forEach((control) => {
-      control.markAsTouched();
-    });
-    this.submited = true
-    this.ls.callapi()
-    //  console.log(this.data);    
-    // if (this.phoneForm.valid) {
-    //   const formData = { Email_ID: this.phoneForm.value.email };
-    //   // console.log(formData);
-    //   this.http.post("http://localhost:4000/User/EmailID",formData).subscribe(e => {
-    //    this.ls.otpvalue=e
-    //    this.ls.apicall()
-    //   }) 
-    // }
+  phoneForm = this.fb.group({
+      Mobile_No: ['',[Validators.required, Validators.pattern("[0-9]{10}")]],
+    })
+  
+  
+  async submitForm() {
+    
+    if(this.phoneForm.valid == false){
+      this.submitted = true
+    }else{
+      this.submitted = false;
+      console.log(this.phoneForm.value);
+    }
+
+
+    // console.log(this.phoneForm.value);
+
+    const formData = {
+      Mobile_No: this.phoneForm.value.Mobile_No
+    }
+  
+    await this.http.post("http://localhost:4000/Mobile_No/Send_OTP",formData).subscribe(e=>{
+       console.log(e); 
+    })
+
+    await this.http.post("http://localhost:4000/Mobile_No/Add",formData).subscribe(e=>{
+           console.log(e); 
+        })  
+
+      this.phoneForm.reset()
+
   }
+
+  get phoneFormControl() {
+    return this.phoneForm.controls;
+  }
+
 }

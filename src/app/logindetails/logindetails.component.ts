@@ -12,26 +12,38 @@ import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 })
 export class LogindetailsComponent {
 
-  myForm: FormGroup;
+  // myForm: FormGroup;
+  submitted = false
+
 
   constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService,public http:HttpClient, public data : LoginindetailsValueService){
-    this.myForm = this.fb.group({
-      UserName: ['', [Validators.required]],
-      UserAddress: ['', [Validators.required]],
-      UserCity: ['', [Validators.required]],
-    });
+    
   }
 
+  myForm = this.fb.group({
+    UserName: ['', [Validators.required]],
+    UserAddress: ['', [Validators.required]],
+    UserCity: ['', [Validators.required]],
+  });
+
   submitForm() {
-    Object.values(this.myForm.controls).forEach((control) => {
-      control.markAsTouched();
-      console.log(this.myForm)
-      this.data.userinformation.push()
-    });
-    if (this.myForm.valid) {
-      console.log('Form submitted:', this.myForm.value);
+    // Object.values(this.myForm.controls).forEach((control) => {
+    //   control.markAsTouched();
+    //   console.log(this.myForm)
+    //   this.data.userinformation.push()
+    // });
+    // if (this.myForm.valid) {
+    //   console.log('Form submitted:', this.myForm.value);
+    // }
+
+    if(this.myForm.valid == false){
+      this.submitted = true
+    }else{
+      this.submitted = false;
+      console.log(this.myForm.value);
     }
   }
+
   valueget(){
     this.ls.logindeatilsvalue.push(this.myForm.value)   
     console.log(this.ls.logindeatilsvalue);
@@ -39,8 +51,13 @@ export class LogindetailsComponent {
       console.log(e);
     })
   }
+
   submit(){
     console.log("hello");
     
+  }
+
+  get myFormControl() {
+    return this.myForm.controls;
   }
 }
