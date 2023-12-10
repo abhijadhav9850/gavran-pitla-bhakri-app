@@ -77,9 +77,5 @@ pushValueToService() {
 
 
 visible:any= false;
-onclick(){
-    // this.visible=!this.visible
-    // console.log(this.visible=!this.visible);
-    // {this.visible?"bottom-[0%]":"top-0"}
-  }
+
 }
