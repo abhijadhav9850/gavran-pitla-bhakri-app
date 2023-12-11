@@ -19,11 +19,19 @@ export class FoodQuantityComponent {
   thechaPrice = 0;
   onionPrice = 0;
 
+  seleted:any= true;
+
   bhakriIncrement() {
     if(this.bhakri>0) {
       this.bhakri++;
       this.bhakriPrice = this.bhakriPrice + 25
+
+      
+      this.data.bhakriquantity = this.bhakri
+      // console.log("bhakri quantity", this.data.foodquantity);
     }
+    
+
     // console.log(this.bhakriPrice + this.pithla + this.pithlaPrice + this.onionPrice);
   }
   bhakriDecrement() {
@@ -49,12 +57,34 @@ pithlaDecrement() {
 
 pushValueToService() {
   let totalValue = this.bhakriPrice+this.pithlaPrice+this.thechaPrice+this.onionPrice
-  console.log(totalValue);
-  this.data.orderPrice.push(totalValue);
-  this.data.getOrderPrice()
+  // console.log(totalValue);
+  // this.data.bhakriquantity = this.bhakri
+  // this.data.pithlaquantity = this.pithla
+  // console.log("bhakri quantity", this.data.bhakriquantity);
+  // console.log("pithla quantity", this.data.pithlaquantity);
+
+  this.data.foodquantity.pop()
+  this.data.foodquantity.bhakri = this.bhakri;
+  this.data.foodquantity.pithla = this.pithla;
+  this.data.foodquantity.totalPrice = this.bhakriPrice + this.pithlaPrice
+
+  
+
+  this.data.orderPrice = this.bhakriPrice+this.pithlaPrice
+
+  if(this.seleted == true){
+    this.data.foodquantity.test = 'Medium'
+  }else{
+    this.data.foodquantity.test = 'Spicy'
+  }
+
+  console.log(this.data.foodquantity);
+
+
+  // this.data.getOrderPrice()
   // console.log(this.bhakriPrice+this.pithlaPrice+this.thechaPrice+this.onionPrice);
 }
 
-visible:any= false;
+
 
 }
