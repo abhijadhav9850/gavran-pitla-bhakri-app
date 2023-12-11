@@ -93,7 +93,6 @@ start();
 
 let otpvalue;
 
-
 app.post("/User/Add", async (req, res) => {
   let Add = await Users.create(req.body);
   res.send(Add);
@@ -171,32 +170,26 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
     //       res.status(200).json({ otpvalue: otpvalue, response: response.body });
     //     }
     //   });
-    otpvalue = 1234
-    // res.json(`otpvalue = ${otpvalue}`)
+    otpvalue = 1234;
+    res.json(`otpvalue = ${otpvalue}`);
   } catch (error) {
     console.log("Unable to Send OTP:", error);
     res.status(500).json({ success: false, message: "Failed to send OTP" });
   }
 });
 
-app.post("/OTP/GetOTP", async(req,res)=>{
+app.post("/OTP/GetOTP", async (req, res) => {
   try {
-    // console.log("Received OTP:", otpvalue);
-    // console.log(req.body.otp);
-    if(req.body.otp == otpvalue){
-      res.json({ success: true, message: `Received OTP. otpvalue = ${otpvalue}` });
-      // let Add = await Mobile_No.create(req.body);
-      // res.send(Add);  
-      
-    }else{
-      res.json({ success: false, message: `Otp not valid` });
+    if (req.body.otp == otpvalue) {
+      res.json({ success: true, message: "OTP Verified" });
+    } else {
+      res.json({ success: false, message: "Invalid OTP" });
     }
-
   } catch (error) {
     console.error("Error getting OTP:", error);
     res.status(500).json({ success: false, message: "Failed to get OTP" });
-  } 
-})
+  }
+});
 
 app.post("/Mobile_No/Add", async (req, res) => {
   let Add = await Mobile_No.create(req.body);
