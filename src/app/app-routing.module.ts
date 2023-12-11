@@ -17,6 +17,7 @@ import { UserPaymentComponent } from './user-payment/user-payment.component';
 import { DeliveryAddressComponent } from './delivery-address/delivery-address.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { UserSettingComponent } from './user-setting/user-setting.component';
+import { authGuard } from './auth.guard';
 
 
 
@@ -36,7 +37,7 @@ const routes: Routes = [
   {path:'user-order', component:UserOrdersComponent},
   {path:'user-payment', component:UserPaymentComponent},
   {path:'delivery-add',component:DeliveryAddressComponent},
-  {path:'order-his',component:OrderHistoryComponent},
+  {path:'order-his',component:OrderHistoryComponent, canActivate:[authGuard]},
   {path:'user-setting',component:UserSettingComponent},
 ];
 
