@@ -15,7 +15,7 @@ export class LoginindetailsValueService {
   foodquantity:any = [
    { bhakri : this.bhakriquantity,
      pithla : this.pithlaquantity,
-     total : this.orderPrice  
+     totalPrice : this.orderPrice  
   }
   ]
 

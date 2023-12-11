@@ -78,7 +78,6 @@ pushValueToService() {
     this.data.foodquantity.test = 'Spicy'
   }
 
-  console.log(this.data.foodquantity);
   this.data.order_list()
 
 
