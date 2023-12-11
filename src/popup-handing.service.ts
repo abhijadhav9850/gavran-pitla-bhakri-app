@@ -149,11 +149,6 @@ export class PopupHandingService {
     closeContact(){
       this.contact = false;
       this.quantity = true;
-
-      this.login.orderPrice.pop()
-      console.log(this.login.orderPrice);
-
-
     }
     closeAddress(){
       this.address = false;
