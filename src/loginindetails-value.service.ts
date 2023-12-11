@@ -55,7 +55,7 @@ export class LoginindetailsValueService {
       console.log("Work");
       
       this.authLoggedIn.next(true)
-      this.router.navigate(['order-his'])
+      this.router.navigate(['login-details'])
     }
     })
    }
