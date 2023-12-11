@@ -34,12 +34,17 @@
             </form>
             <span style="color: red;" class="text-danger"
                 *ngIf="(phoneFormControl.Mobile_No.touched || submitted) && phoneFormControl.Mobile_No.errors?.['required']">
-                Enter Mobile No
+                Please, Enter 10 digit Mobile Number
             </span>
+            <!-- <div *ngIf="phoneFormControl.touched && phoneFormControl.invalid" class="alert alert-danger">  
+                <div *ngIf="phoneFormControl.errors.required">Mobile Number is required.</div>  
+                <div *ngIf="phoneFormControl.errors.pattern">Please, Enter 10 digit Mobile Number.</div>  
+            </div>  -->
+            
         </div>
     </div>
     <div class="font-Roboto flex  justify-center mt-6">
-        <button (click)="submitForm()" (click)="service.openOtp()"
+        <button (click)="submitForm()" (click)="service.openOtp()" [disabled]="!phoneForm.valid"
             class="py-2 px-4 w-[150px] h-[40px] bg-orange-500 text-white font-semibold rounded-[20px] shadow-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-75">
             Send OTP
         </button>
