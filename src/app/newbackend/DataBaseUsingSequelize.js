@@ -95,7 +95,7 @@ app.get("/User/Findall", async (req, res) => {
   console.log("All available columns in Table: ", list);
   res.send(list);
 });
-
+  
 app.post("/GetOTP", async(req,res)=>{
   let Add = await Mobile_No.create(req.body);
   res.send(Add);
