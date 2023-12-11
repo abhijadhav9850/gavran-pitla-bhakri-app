@@ -79,6 +79,7 @@ const Mobile_No = sequelize.define(
 //   },
 //   { tableName: "OTP_verify" }
 // );
+
 async function start() {
   try {
     await sequelize.authenticate();
@@ -166,11 +167,12 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
     //       res.status(500).json({ error: "Internal Server Error" });
     //     } else {
     //       console.log(response.body);
-    //       res.status(200).json(response.body);
+    //       // res.status(200).json(response.body);
+    //       res.status(200).json({ otpvalue: otpvalue, response: response.body });
     //     }
     //   });
     otpvalue = 1234
-    res.json(`otpvalue = ${otpvalue}`)
+    // res.json(`otpvalue = ${otpvalue}`)
   } catch (error) {
     console.log("Unable to Send OTP:", error);
     res.status(500).json({ success: false, message: "Failed to send OTP" });
