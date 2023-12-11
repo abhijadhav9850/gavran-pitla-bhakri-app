@@ -44,6 +44,13 @@ export class LoginindetailsValueService {
     
   }
 
+  show_modify_popup(){
+    if(this.show_home_popup == false){
+      this.show_home_popup = true
+    }else{
+      this.show_home_popup = false
+    }
+  }
   
 
    otpverifyapi(){

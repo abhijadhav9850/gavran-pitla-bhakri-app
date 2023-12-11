@@ -8,5 +8,5 @@ import { PopupHandingService } from 'src/popup-handing.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  constructor(public service : PopupHandingService, public data : LoginindetailsValueService){ }
+  constructor(public service : PopupHandingService, public ls : LoginindetailsValueService){ }
 }
