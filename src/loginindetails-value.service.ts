@@ -59,12 +59,13 @@ export class LoginindetailsValueService {
       console.log('OTP is not valid');
     }else{
       console.log('Otp successful');
-      this.address = true;
-      this.otp = false
+      // this.address = true;
+      // this.otp = false
       console.log("Work");
       
+      
       this.authLoggedIn.next(true)
-      this.router.navigate(['login-details'])
+      this.router.navigate(['order-his'])
     }
     })
    }
