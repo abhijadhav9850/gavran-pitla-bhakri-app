@@ -1,16 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { PopupHandingService } from './popup-handing.service';
+import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 
 export class LoginindetailsValueService { 
-
-  constructor(public http:HttpClient, public fb:FormBuilder) {}
-
+  
+  constructor(public http:HttpClient, public fb:FormBuilder, public router: Router) {}
+  
+  otpnumber:any;
   bhakriquantity:any = "";
   pithlaquantity:any = "";
   orderPrice : any= "";
+  address : any = false;
+  payment : any = false;
+  otp :any = false;
+  authLoggedIn = new BehaviorSubject<boolean>(false);
+
   show_home_popup = false
 
   foodquantity:any = [
@@ -32,15 +41,7 @@ export class LoginindetailsValueService {
   order_list(){
     this.orderlist.push(this.foodquantity)
     console.log(this.orderlist);
-    this.show_modify_popup()
-  }
-  
-  show_modify_popup(){
-    if(this.show_home_popup == false){
-      this.show_home_popup = true
-    }else{
-      this.show_home_popup = false
-    }
+    
   }
 
   // getOrderPrice(){

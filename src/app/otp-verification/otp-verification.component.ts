@@ -3,6 +3,8 @@ import { PopupHandingService } from 'src/popup-handing.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +17,7 @@ export class OtpVerificationComponent {
   invalid = false
   
   
-  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService, public http:HttpClient){
+  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService, public http:HttpClient, public router: Router){
        
   }
 
@@ -32,22 +34,29 @@ export class OtpVerificationComponent {
       control.markAsTouched();
     });
 
+    this.ls.otpverifyapi()
+
     // console.log(this.otpForm.value);
-    let otp = `${this.otpForm.value.number}${this.otpForm.value.number2}${this.otpForm.value.number3}${this.otpForm.value.number4}`
-    let obj = Number(otp)   
-    let otpnumber = {
-      otp : obj
-     }
-     console.log(otpnumber);
+    // let otp = `${this.otpForm.value.number}${this.otpForm.value.number2}${this.otpForm.value.number3}${this.otpForm.value.number4}`
+    // let obj = Number(otp)   
+    // this.ls.otpnumber = {
+    //   otp : obj
+    //  }
+    //  console.log(this.ls.otpnumber);
      
-    this.http.post("http://localhost:4000/OTP/GetOTP",otpnumber).subscribe((e:any)=>{
-    if(e.message === 'Otp not valid'){
-      console.log('OTP is not valid');
-    }else{
-      console.log('Otp successful');
-      this.service.openAddress()
-    }
-    })
+    // this.http.post("http://localhost:4000/OTP/GetOTP",otpnumber).subscribe((e:any)=>{
+    // if(e.message === 'Otp not valid'){
+    //   console.log('OTP is not valid');
+    // }else{
+    //   console.log('Otp successful');
+    //   this.service.openAddress()
+    //   console.log("Work");
+      
+    //   this.authLoggedIn.next(true)
+    //   this.router.navigate(['order-his'])
+      
+    // }
+    // })
   }
   
   otp: string[] = ['', '', '', ''];
