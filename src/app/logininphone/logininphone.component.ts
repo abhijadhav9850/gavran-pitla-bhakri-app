@@ -18,11 +18,13 @@ export class LogininphoneComponent {
   }
 
   phoneForm = this.fb.group({
-      Mobile_No: ['',[Validators.required, Validators.pattern("[0-9]{10}")]],
+      Mobile_No: ['',[Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
     })
   
   
   async submitForm() {
+    
+    // console.log(this.phoneForm.valid);
     
     if(this.phoneForm.valid == false){
       this.submitted = true
