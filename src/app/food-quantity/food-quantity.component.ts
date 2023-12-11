@@ -19,6 +19,8 @@ export class FoodQuantityComponent {
   thechaPrice = 0;
   onionPrice = 0;
 
+  seleted:any= true;
+
   bhakriIncrement() {
     if(this.bhakri>0) {
       this.bhakri++;
@@ -66,16 +68,23 @@ pushValueToService() {
   this.data.foodquantity.pithla = this.pithla;
   this.data.foodquantity.totalPrice = this.bhakriPrice + this.pithlaPrice
 
-  console.log(this.data.foodquantity);
   
 
   this.data.orderPrice = this.bhakriPrice+this.pithlaPrice
+
+  if(this.seleted == true){
+    this.data.foodquantity.test = 'Medium'
+  }else{
+    this.data.foodquantity.test = 'Spicy'
+  }
+
+  console.log(this.data.foodquantity);
+
+
   // this.data.getOrderPrice()
   // console.log(this.bhakriPrice+this.pithlaPrice+this.thechaPrice+this.onionPrice);
 }
 
 
-
-visible:any= false;
 
 }
