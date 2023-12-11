@@ -20,11 +20,13 @@ export class LoginindetailsValueService {
   otp :any = false;
   authLoggedIn = new BehaviorSubject<boolean>(false);
 
+  show_home_popup = false
 
   foodquantity:any = [
    { bhakri : this.bhakriquantity,
      pithla : this.pithlaquantity,
-     totalPrice : this.orderPrice  
+     test : '',
+     totalPrice : this.orderPrice,
   }
   ]
 
@@ -42,6 +44,13 @@ export class LoginindetailsValueService {
     
   }
 
+  show_modify_popup(){
+    if(this.show_home_popup == false){
+      this.show_home_popup = true
+    }else{
+      this.show_home_popup = false
+    }
+  }
   
 
    otpverifyapi(){

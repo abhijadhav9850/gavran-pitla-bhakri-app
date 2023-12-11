@@ -7,7 +7,7 @@ import { LoginindetailsValueService } from 'src/loginindetails-value.service';
   styleUrls: ['./order-info.component.css']
 })
 export class OrderInfoComponent {
-  constructor(public data: LoginindetailsValueService){
+  constructor(public ls: LoginindetailsValueService){
 
   }
 
