@@ -44,6 +44,24 @@ export class LoginindetailsValueService {
     
   }
 
+  
+
+   otpverifyapi(){
+    this.http.post("http://localhost:4000/OTP/GetOTP",this.otpnumber).subscribe((e:any)=>{
+    if(e.message === 'Otp not valid'){
+      console.log('OTP is not valid');
+    }else{
+      console.log('Otp successful');
+      this.address = true;
+      this.otp = false
+      console.log("Work");
+      
+      this.authLoggedIn.next(true)
+      this.router.navigate(['login-details'])
+    }
+    })
+   }
+
   // getOrderPrice(){
   //   console.log(this.orderPrice);
   // }
