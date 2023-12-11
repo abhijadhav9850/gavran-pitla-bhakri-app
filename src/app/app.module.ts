@@ -24,6 +24,7 @@ import { NewbackendComponent } from './newbackend/newbackend.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserSettingComponent } from './user-setting/user-setting.component';
+import { OrderInfoComponent } from './order-info/order-info.component';
 // import { CountdownModule } from 'ngx-countdown';
 
 
@@ -47,6 +48,7 @@ import { UserSettingComponent } from './user-setting/user-setting.component';
     UserPaymentComponent,
     UserOrdersComponent,
     UserSettingComponent,
+    OrderInfoComponent,
   ],
   imports: [
     BrowserModule,
