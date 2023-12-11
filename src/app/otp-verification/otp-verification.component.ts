@@ -35,6 +35,7 @@ export class OtpVerificationComponent {
     });
 
     this.ls.otpverifyapi()
+    this.service.openAddress()
 
     // console.log(this.otpForm.value);
     // let otp = `${this.otpForm.value.number}${this.otpForm.value.number2}${this.otpForm.value.number3}${this.otpForm.value.number4}`
