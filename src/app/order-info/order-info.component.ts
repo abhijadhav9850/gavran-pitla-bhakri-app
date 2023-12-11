@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 
 @Component({
   selector: 'app-order-info',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./order-info.component.css']
 })
 export class OrderInfoComponent {
+  constructor(public data: LoginindetailsValueService){
+
+  }
 
 }
