@@ -79,6 +79,7 @@ pushValueToService() {
   }
 
   console.log(this.data.foodquantity);
+  this.data.order_list()
 
 
   // this.data.getOrderPrice()

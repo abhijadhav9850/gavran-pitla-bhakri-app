@@ -27,29 +27,31 @@
       </defs>
     </svg>
   </header>
-  <p class="p-3 font-medium font-Roboto text-lg flex justify-center">My Orders</p>
-  <hr class="w-full h-2 text-gray-700">
-  <div class="flex justify-around p-2">
+  <p class="p-3 font-medium font-Roboto text-lg flex justify-start">My Orders</p>
+  <!-- <hr class="w-full h-2 text-gray-700"> -->
+  <div class="flex flex-col justify-around p-2">
     <!-- <button
       class=" text-white px-4 py-2 rounded-xl bg-gradient-to-r from-red-700 to-yellow-500 hover:from-pink-500 hover:to-orange-500">PENDING</button>
     <button
       class=" text-white px-4 py-2 rounded-xl bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-orange-500">COMPLATE</button> -->
 
-      <!-- <div class="order-list flex">
-        <div class="cart flex justify-between">
-          <div class="logo">
-            <img class="w-20 h-20 rounded" src="../../assets/order-page-logo.jpeg" alt="logo">
+      <div *ngFor="let card of data.orderlist" class="order-list flex h-[83px] border p-3 rounded-lg w-full mb-3">
+        <div class="cart flex w-full justify-between">
+          <div class="logo flex w-full items-stretch">
+            <img class="w-16 h-16 rounded-full" src="../../assets/order-page-logo.jpeg" alt="logo">
+            <div class="ml-3">
+              <h3 class="text-lg font-semibold">Pitla Bhakri</h3>
+              <p class="font-medium text-[0.88rem]">{{currentDate | date:'dd-MMM-yyyy'}}</p>
+            </div>
           </div>
-          <div class="info">
-            <h3>Pitla Bhakri</h3>
-            <p>01 jan 2023</p>
-          </div>
-          <div class="info-1">
-            <p>03:30 AM</p>
-            <p>Completed</p>
+          <div>
+            <div class="flex flex-col justify-center items-end">
+              <p class="mb-[20px]">{{currentDate | date:'hh:mm'}}</p>
+              <p>Completed</p>
+            </div>
           </div>
         </div>
-      </div> -->
+      </div>
 
 
   </div>
