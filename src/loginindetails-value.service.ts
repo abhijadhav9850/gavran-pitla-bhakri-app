@@ -19,9 +19,19 @@ export class LoginindetailsValueService {
   }
   ]
 
+  orderlist : any = [
+
+  ]
+
   logindeatilsvalue:any=[];
   userinformation : any = [];
  
+
+  order_list(){
+    this.orderlist.push(this.foodquantity)
+    console.log(this.orderlist);
+    
+  }
 
   // getOrderPrice(){
   //   console.log(this.orderPrice);
