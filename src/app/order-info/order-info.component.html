@@ -39,30 +39,43 @@
   </div>
 
   <div class="px-3">
-    <p class=" mt-5 text-[18px] font-bold">Content</p>
-    <div class="flex gap-16 ">
+    <div>
       <div>
-        <div class="flex gap-3 mt-4">
-          <img src="../../assets/Group.png" alt="">
-          <p class="font-Roboto font-bold text-xs">Bhakri</p>
+        <p class=" mt-5 text-[18px] font-bold">Content</p>
+        <div class="flex md:w-[50%] justify-between">
+          <div>
+            <div class="flex gap-3 mt-4">
+              <img src="../../assets/Group.png" alt="">
+              <p class="font-Roboto font-bold text-xs">Bhakri</p>
+            </div>
+            <div class="flex gap-3 mt-4">
+              <img src="../../assets/Vector.png" alt="">
+              <p class="font-Roboto font-bold text-xs">Pitla</p>
+            </div>
+          </div>
+          <div class="mt-5 items-center">
+            <div class="flex w-[80px] justify-between">
+              <img class="h-[16px] w-16px mt-[5px]" src="../../assets/Button (1).png" alt="">
+              <p>{{data.foodquantity.bhakri}}</p>
+              <img class="h-[16px] w-16px mt-[5px]" src="../../assets/Button.png" alt="">
+            </div>
+            <div class="flex w-[80px] justify-between mt-4">
+              <img class="h-[16px] w-16px mt-[5px]" src="../../assets/Button (1).png" alt="">
+              <p>{{data.foodquantity.pithla}}</p>
+              <img class="h-[16px] w-16px mt-[5px]" src="../../assets/Button.png" alt="">
+            </div>
+          </div>
         </div>
-        <div class="flex gap-3 mt-4">
-          <img src="../../assets/Vector.png" alt="">
-          <p class="font-Roboto font-bold text-xs">Pitla</p>
+
+        <div class="mt-5 md:w-[50%] flex justify-between items-center">
+          <p class="text-[18px] font-bold">Test</p>
+          <div class="w-[80px] flex justify-center">
+            <p class="font-Roboto font-bold text-xs">{{data.foodquantity.test}}</p>
+          </div>
         </div>
+
       </div>
-      <div class="mt-5 items-center">
-        <div class="flex w-[80px] justify-between">
-          <img class="h-[16px] w-16px mt-[5px]" src="../../assets/Button (1).png" alt="">
-          <p>{{data.foodquantity.bhakri}}</p>
-          <img class="h-[16px] w-16px mt-[5px]" src="../../assets/Button.png" alt="">
-        </div>
-        <div class="flex w-[80px] justify-between mt-4">
-          <img class="h-[16px] w-16px mt-[5px]" src="../../assets/Button (1).png" alt="">
-          <p>{{data.foodquantity.pithla}}</p>
-          <img class="h-[16px] w-16px mt-[5px]" src="../../assets/Button.png" alt="">
-        </div>
-      </div>
+
     </div>
   
     <div class="mt-5 main flex justify-between items-center px-4 w-full h-[40px] md:w-[50%] rounded-lg bg-yellow-500">
@@ -71,7 +84,7 @@
     </div>
   
     <div class="flex justify-end">
-      <button class="mt-[10px] text-[1rem] py-2 w-[80px] font-medium content-center text-orange-50 bg-orange-500 rounded-md
+      <button (click)="data.show_modify_popup()" routerLink="" class="mt-[10px] text-[1rem] py-2 w-[80px] font-medium content-center text-orange-50 bg-orange-500 rounded-md
           ">Cancel</button>
     </div>
   </div>

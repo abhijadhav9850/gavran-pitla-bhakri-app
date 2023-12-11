@@ -11,11 +11,13 @@ export class LoginindetailsValueService {
   bhakriquantity:any = "";
   pithlaquantity:any = "";
   orderPrice : any= "";
+  show_home_popup = false
 
   foodquantity:any = [
    { bhakri : this.bhakriquantity,
      pithla : this.pithlaquantity,
-     totalPrice : this.orderPrice  
+     test : '',
+     totalPrice : this.orderPrice,
   }
   ]
 
@@ -30,7 +32,15 @@ export class LoginindetailsValueService {
   order_list(){
     this.orderlist.push(this.foodquantity)
     console.log(this.orderlist);
-    
+    this.show_modify_popup()
+  }
+  
+  show_modify_popup(){
+    if(this.show_home_popup == false){
+      this.show_home_popup = true
+    }else{
+      this.show_home_popup = false
+    }
   }
 
   // getOrderPrice(){
