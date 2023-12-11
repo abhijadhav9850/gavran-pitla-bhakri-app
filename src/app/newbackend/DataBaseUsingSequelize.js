@@ -71,6 +71,14 @@ const Mobile_No = sequelize.define(
   { tableName: "mobile_no_table" }
 );
 
+// const Mobile_OTP = sequelize.define(
+//   "OTP_verify",
+//   {
+//     ID: { type: DataTypes.INTEGER, primaryKey: true },
+//     OTP_No: { type: DataTypes.INTEGER, allowNull: false },
+//   },
+//   { tableName: "OTP_verify" }
+// );
 async function start() {
   try {
     await sequelize.authenticate();
@@ -82,7 +90,8 @@ async function start() {
 
 start();
 
-// const project = await Mobile_No.findOne({ where: { title: 'My Title' } });
+let otpvalue;
+
 
 app.post("/User/Add", async (req, res) => {
   let Add = await Users.create(req.body);
@@ -95,12 +104,6 @@ app.get("/User/Findall", async (req, res) => {
   console.log("All available columns in Table: ", list);
   res.send(list);
 });
-  
-app.post("/GetOTP", async(req,res)=>{
-  let Add = await Mobile_No.create(req.body);
-  res.send(Add);
-  console.log(Add);
-})
 
 app.get("/User/EmailID", async (req, res) => {
   try {
@@ -143,7 +146,7 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
     //   "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
     // const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
 
-    // let otpvalue = Math.floor(1000 + Math.random() * 8888);
+    //  otpvalue = Math.floor(1000 + Math.random() * 8888);
 
     // const smsData = {
     //   variables_values: otpvalue,
@@ -166,16 +169,36 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
     //       res.status(200).json(response.body);
     //     }
     //   });
-    res.send('ok')
+    otpvalue = 1234
+    res.json(`otpvalue = ${otpvalue}`)
   } catch (error) {
     console.log("Unable to Send OTP:", error);
     res.status(500).json({ success: false, message: "Failed to send OTP" });
   }
 });
 
+app.post("/OTP/GetOTP", async(req,res)=>{
+  try {
+    // console.log("Received OTP:", otpvalue);
+    // console.log(req.body.otp);
+    if(req.body.otp == otpvalue){
+      res.json({ success: true, message: `Received OTP. otpvalue = ${otpvalue}` });
+      // let Add = await Mobile_No.create(req.body);
+      // res.send(Add);  
+      
+    }else{
+      res.json({ success: false, message: `Otp not valid` });
+    }
+
+  } catch (error) {
+    console.error("Error getting OTP:", error);
+    res.status(500).json({ success: false, message: "Failed to get OTP" });
+  } 
+})
+
 app.post("/Mobile_No/Add", async (req, res) => {
   let Add = await Mobile_No.create(req.body);
-  res.send(Add);
+  res.json(Add);
   console.log(Add);
 });
 

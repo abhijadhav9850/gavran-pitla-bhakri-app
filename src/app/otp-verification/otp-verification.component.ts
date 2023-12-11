@@ -26,17 +26,29 @@ export class OtpVerificationComponent {
     number4: ['', [Validators.required ,]],
   }); 
 
-   submitForm() {
+   optverify() {
     // console.log(this.ls.otpvalue);
     Object.values(this.otpForm.controls).forEach((control) => {
       control.markAsTouched();
     });
 
-    console.log(this.otpForm.value);     
-
-     this.http.post("http://localhost:4000/GetOTP",this.otpForm.value).subscribe(e=>{
+    // console.log(this.otpForm.value);
+    let otp = `${this.otpForm.value.number}${this.otpForm.value.number2}${this.otpForm.value.number3}${this.otpForm.value.number4}`
+    let obj = Number(otp)   
+     let otpnumber = {
+      otp : obj
+     }
+     console.log(otpnumber);
+     
+     this.http.post("http://localhost:4000/OTP/GetOTP",otpnumber).subscribe((e:any)=>{
     // this.otpvalue = e
-    console.log(e); 
+    //  console.log(e);
+    if(e.message === 'Otp not valid'){
+      console.log('OTP is not valid');
+    }else{
+      console.log('Otp successful');
+      this.service.openAddress()
+    }
     })
   }
   
@@ -82,4 +94,6 @@ export class OtpVerificationComponent {
       this.service.address = true; 
     }
   }
+
+
 }

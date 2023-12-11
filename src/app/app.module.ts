@@ -24,7 +24,8 @@ import { NewbackendComponent } from './newbackend/newbackend.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserSettingComponent } from './user-setting/user-setting.component';
-// import { BackendComponent } from './backend/backend.component';
+// import { CountdownModule } from 'ngx-countdown';
+
 
 
 @NgModule({
@@ -54,6 +55,8 @@ import { UserSettingComponent } from './user-setting/user-setting.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    // CountdownModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { LoginindetailsValueService } from './loginindetails-value.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class PopupHandingService {
   email = '';
 
 
-  constructor() {
+  constructor(public login : LoginindetailsValueService) {
   
    }
 
@@ -59,7 +60,7 @@ export class PopupHandingService {
       
       this.backgroundblur = {
         'filter' : 'blur(4px)',
-        'background' : 'linear-gradient(rgba(0, 0, 0,  0.54),rgba(0, 0, 0, -8.46)),url(../../assets/image 2.jpg)',
+        'background' : 'linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url(../../assets/image 2.jpg)',
       }
       
       this.loginInPhone = {
@@ -69,7 +70,7 @@ export class PopupHandingService {
         'width' : '100%',
         'transition': 'margin-top 0.5s ease-in-out',
         'margin-top': '-60vh',
-        'box-shadow' : '0px 0px 20px gray',
+        'box-shadow' : '',
         'z-index': '1',
         'background-color' : '#fff',
         'overflow' : 'hidden',
@@ -147,7 +148,12 @@ export class PopupHandingService {
     }
     closeContact(){
       this.contact = false;
-      this.quantity = true
+      this.quantity = true;
+
+      this.login.orderPrice.pop()
+      console.log(this.login.orderPrice);
+
+
     }
     closeAddress(){
       this.address = false;
