@@ -6,15 +6,25 @@ import { FormBuilder, Validators } from '@angular/forms';
 
 export class LoginindetailsValueService { 
 
-  constructor(public http:HttpClient, public fb:FormBuilder) { }
+  constructor(public http:HttpClient, public fb:FormBuilder) {}
+
+  bhakriquantity:any = "";
+  pithlaquantity:any = "";
+  orderPrice : any= "";
+
+  foodquantity:any = [
+   { bhakri : this.bhakriquantity,
+     pithla : this.pithlaquantity,
+     total : this.orderPrice  
+  }
+  ]
 
   logindeatilsvalue:any=[];
-  orderPrice : any= [];
   userinformation : any = [];
  
 
-  getOrderPrice(){
-    console.log(this.orderPrice);
-  }
+  // getOrderPrice(){
+  //   console.log(this.orderPrice);
+  // }
   // getUserInformation(){}
 }
