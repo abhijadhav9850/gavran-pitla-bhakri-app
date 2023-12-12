@@ -1,6 +1,13 @@
+var bodyParser = require("body-parser");
 const express = require("express");
+var cors = require("cors");
 const app = express();
 const port = 4000;
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.json());
+app.use(cors());
 
 const pg = require("knex")({
   client: "pg",
@@ -16,42 +23,79 @@ const pg = require("knex")({
   },
 });
 
-app.get("/User/Add/:ID/:Name/:Address/:City", (req, res) => {
+app.post("/User/Add", (req, res) => {
   setTimeout(async () => {
-    let result = await pg("users").insert([
-      {
-        UserId: `${req.params.ID}`,
-        UserName: `${req.params.Name}`,
-        UserAddress: `${req.params.Address}`,
-        UserCity: `${req.params.City}`,
-      },
-    ]);
-    res.json({ success: true, message: `User Added : ${result}` });
+    try {
+      let result = await pg("users").insert([
+        {
+          UserId: `${req.body.UserId}`,
+          UserName: `${req.body.UserName}`,
+          UserAddress: `${req.body.UserAddress}`,
+          UserCity: `${req.body.UserCity}`,
+        },
+      ]);
+      res.json({ success: true, message: `User Added : ${result}` });
+    } catch (err) {
+      console.log(err);
+    }
   }, 5000);
 });
 
-app.get("/User/List", (req, res) => {
+app.post("/OrderData/Details", (req, res) => {
   setTimeout(async () => {
-    let result = await pg.select("ID", "Name", "City").from("users");
-    res.json({ success: true, message: `User Data : ${result}` });
+    try {
+      let result = await pg("order_data_table").insert([
+        {
+          ID: `${req.body.ID}`,
+          bhakri: `${req.body.bhakri}`,
+          pithla: `${req.body.pithla}`,
+          test: `${req.body.test}`,
+          totalPrice: `${req.body.totalPrice}`,
+        },
+      ]);
+      res.json({ success: true, message: `User Added : ${result}` });
+    } catch (err) {
+      console.log(err);
+    }
   }, 5000);
 });
 
-app.get("/User/Update/:Name/:NewName", (req, res) => {
+app.post("/User/List", (req, res) => {
   setTimeout(async () => {
-    let result = await pg("users")
-      .where("Name", "=", `${req.params.Name}`)
-      .update({ Name: `${req.params.NewName}` });
-    res.json({ success: true, message: `User Updated : ${result}` });
+    try {
+      let result = await pg
+        .select("UserId", "UserName", "UserAddress", "UserCity")
+        .from("users");
+      res.json({ success: true, message: `User Data : ${result}` });
+    } catch (err) {
+      console.log(err);
+    }
   }, 5000);
 });
 
-app.get("/User/Delete/:Name", (req, res) => {
+app.post("/User/Update", (req, res) => {
   setTimeout(async () => {
-    let result = await pg("users")
-      .where("Name", `${req.params.Name}`)
-      .del("ID");
-    res.json({ success: true, message: `User Deleted : ${result}` });
+    try {
+      let result = await pg("users")
+        .where("UserName", `${req.body.UserName}`)
+        .update({ UserName: `${req.body.NewName}` });
+      res.json({ success: true, message: `User Updated : ${result}` });
+    } catch (err) {
+      console.log(err);
+    }
+  }, 5000);
+});
+
+app.post("/User/Delete", (req, res) => {
+  setTimeout(async () => {
+    try {
+      let result = await pg("users")
+        .where("UserName", `${req.params.UserName}`)
+        .del();
+      res.json({ success: true, message: `User Deleted : ${result}` });
+    } catch (err) {
+      console.log(err);
+    }
   }, 5000);
 });
 
