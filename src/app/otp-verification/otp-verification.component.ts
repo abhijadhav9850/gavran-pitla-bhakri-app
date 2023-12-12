@@ -15,11 +15,15 @@ import { Router } from '@angular/router';
 export class OtpVerificationComponent {
 
   invalid = false
+  display: any;
   
   
   constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService, public http:HttpClient, public router: Router){
-       
+    
   }
+
+
+
 
     otpForm = this.fb.group({
     number: ['', [Validators.required ,]],
@@ -34,28 +38,23 @@ export class OtpVerificationComponent {
       control.markAsTouched();
     });
 
-    this.ls.otpverifyapi()
-    this.service.openAddress()
-
-    // console.log(this.otpForm.value);
     let otp = `${this.otpForm.value.number}${this.otpForm.value.number2}${this.otpForm.value.number3}${this.otpForm.value.number4}`
     let obj = Number(otp)   
     this.ls.otpnumber = {
       otp : obj
      }
-    //  console.log(this.ls.otpnumber);
      
+    //  otp verify and go to next page api done
     this.http.post("http://localhost:4000/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
-    if(e.message === 'Otp not valid'){
+    if(e.message === 'Invalid OTP'){      
       console.log('OTP is not valid');
     }else{
       console.log('Otp successful');
       this.service.openAddress()
+      this.ls.otpverifyapi()
       console.log("Work");
-      
       // this.authLoggedIn.next(true)
-      this.router.navigate(['order-his'])
-      
+      // this.router.navigate(['order-his'])
     }
     })
   }
@@ -103,5 +102,8 @@ export class OtpVerificationComponent {
     }
   }
 
-
+  
 }
+
+
+

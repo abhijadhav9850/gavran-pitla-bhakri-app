@@ -12,15 +12,84 @@ app.use(cors());
 const pg = require("knex")({
   client: "pg",
   connection: {
-    connectionString:
-      "postgres://pithla_bhakri_user:yiRU6i6FUMJ0IIG2k2PCPhTYEfSFNkOe@dpg-cls291fqd2ns73dus3sg-a.oregon-postgres.render.com/pithla_bhakri",
-    host: "dpg-cls291fqd2ns73dus3sg-a.oregon-postgres.render.com",
+    connectionString:"postgres://pithla_bhakri_k757_user:MlAXwBBcaxTw6sMI66zeMzVeZc1F5YV9@dpg-cls67fbip8as73a3u8a0-a.oregon-postgres.render.com/pithla_bhakri_k757",
+    host: "dpg-cls67fbip8as73a3u8a0-a.oregon-postgres.render.com",
     port: 5432,
-    user: "pithla_bhakri_user",
+    user: "pithla_bhakri_k757_user",
     database: "pithla_bhakri",
     password: "yiRU6i6FUMJ0IIG2k2PCPhTYEfSFNkOe",
     ssl: true,
   },
+});
+
+
+app.post("/Mobile_No/Send_OTP", async (req, res) => {
+  try {
+    // const apiKey =
+    //   "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
+    // const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
+
+    //  otpvalue = Math.floor(1000 + Math.random() * 8888);
+
+    // const smsData = {
+    //   variables_values: otpvalue,
+    //   route: "otp",
+    //   numbers: req.body.Mobile_No,
+    // };
+
+    // unirest
+    //   .post(apiUrl)
+    //   .headers({
+    //     authorization: apiKey,
+    //   })
+    //   .form(smsData)
+    //   .end((response) => {
+    //     if (response.error) {
+    //       console.error("Error:", response.error);
+    //       res.status(500).json({ error: "Internal Server Error" });
+    //     } else {
+    //       console.log(response.body);
+    //       // res.status(200).json(response.body);
+    //       res.status(200).json({ otpvalue: otpvalue, response: response.body });
+    //     }
+    //   });
+
+    otpvalue = 1234;
+    res.json({message:"otp sent sucessfully",otp : otpvalue});
+  } catch (error) {
+    console.log("Unable to Send OTP:", error);
+    res.status(500).json({ success: false, message: "Failed to send OTP" });
+  }
+});
+
+app.post("/Mobile_No/No_Add", (req, res) => {
+  setTimeout(async () => {
+    try {
+      let result = await pg("mobile_no").insert([
+        {
+          ID: `${req.body.ID}`,
+          Mobile_No: `${req.body.Mobile_No}`,
+          
+        },
+      ]);
+      res.json({ success: true, message: `No Added : ${result}` });
+    } catch (err) {
+      console.log(err);
+    }
+  }, 5000);
+});
+
+app.post("/OTP/GetOTP", async (req, res) => {
+  try {
+    if (req.body.otp == otpvalue) {
+      res.json({ success: true, message: "OTP Verified" });
+    } else {
+      res.json({ success: false, message: "Invalid OTP" });
+    }
+  } catch (error) {
+    console.error("Error getting OTP:", error);
+    res.status(500).json({ success: false, message: "Failed to get OTP" });
+  }
 });
 
 app.post("/User/Add", (req, res) => {

@@ -8,7 +8,9 @@ import { BehaviorSubject } from 'rxjs';
 
 export class LoginindetailsValueService {
 
-  constructor(public http: HttpClient, public fb: FormBuilder, public router: Router) { }
+  constructor(public http: HttpClient, public fb: FormBuilder, public router: Router) {this.timer(1) }
+
+  display:any;
 
   adddata: any;
   otpnumber: any;
@@ -24,6 +26,7 @@ export class LoginindetailsValueService {
 
   foodquantity: any = 
     {
+      ID: 3,
       bhakri: this.bhakriquantity,
       pithla: this.pithlaquantity,
       test: '',
@@ -53,34 +56,25 @@ export class LoginindetailsValueService {
 
 
   async otpverifyapi() {
-    console.log(this.foodquantity);
+    // console.log(this.foodquantity);
     
-    await this.http.post("http://localhost:4000/OTP/GetOTP", this.otpnumber).subscribe(async (e: any) => {
-      if (e.message === 'Otp not valid') {
-        console.log('OTP is not valid');
-      } else {
-        console.log('Otp successful');
-        console.log("Work");
         this.order_list()
 
-        // mobile no add api
+        // mobile no add api done
 
-        //  await this.http.post("http://localhost:4000/Mobile_No/Add",this.adddata).subscribe(e=>{
-        //        console.log(e); 
-        //     })  
+         await this.http.post("http://localhost:4000/Mobile_No/No_Add",this.adddata).subscribe(e=>{
+               console.log(e);
+            })  
 
-        // // foodquantity data api
-        // await this.http.post("http://localhost:4000/Order_Details", this.foodquantity).subscribe(e => {
-        //          console.log(e); 
-        //       })  
+        // // foodquantity data api done
 
-
-        
-
+        await this.http.post("http://localhost:4000/OrderData/Details", this.foodquantity).subscribe(e => {
+                 console.log(e); 
+              })  
           this.authLoggedIn.next(true)
           // this.router.navigate(['order-his'])
-        }
-    })
+        // }
+    // })
   }
 
   // getOrderPrice(){
@@ -89,7 +83,30 @@ export class LoginindetailsValueService {
   // getUserInformation(){}
 
 
-  addorder_data() {
+  timer(minute:any) {
+    // let minute = 1;
+    let seconds: number = minute * 30;
+    let textSec: any = '0';
+    let statSec: number = 30;
 
+    const prefix = minute < 10 ? '0' : '';
+
+    const timer = setInterval(() => {
+      seconds--;
+      if (statSec != 0) statSec--;
+      else statSec = 59;
+
+      if (statSec < 10) {
+        textSec = '0' + statSec;
+      } else textSec = statSec;
+
+      this.display = `${prefix}${Math.floor(seconds / 60)}:${textSec}`;
+
+      if (seconds == 0) {
+        console.log('finished');
+        clearInterval(timer);
+      }
+    }, 1000);
   }
+  
 }
