@@ -41,6 +41,18 @@ const Payment = sequelize.define(
   { tableName: "payment" }
 );
 
+const Order_Data_Table = sequelize.define(
+  "order_data_table",
+  {
+    ID: { type: DataTypes.INTEGER, primaryKey: true },
+    Bhakri: { type: DataTypes.INTEGER },
+    Pitla: { type: DataTypes.INTEGER },
+    Taste: { type: DataTypes.STRING },
+    Total_Price: { type: DataTypes.INTEGER },
+  },
+  { tableName: "order_data_table" }
+);
+
 const Product = sequelize.define(
   "product",
   {
@@ -138,6 +150,11 @@ app.get("/User/EmailID", async (req, res) => {
 
     res.status(500).json({ success: false, message: "Failed to send email" });
   }
+});
+
+app.post("/Order_Details", async (req, res) => {
+  let Add = await Order_Data_Table.create(req.body);
+  res.json({ success: true, message: `Ordered Data : ${Add}` });
 });
 
 app.post("/Mobile_No/Send_OTP", async (req, res) => {
