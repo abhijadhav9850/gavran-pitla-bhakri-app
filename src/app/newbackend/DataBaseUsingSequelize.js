@@ -236,8 +236,6 @@ app.get("/User/Delete", async (req, res) => {
   console.log(`Deleted Row(s): ${Delete}`);
 });
 
-
-console.log("hello");
 app.listen(port, () => {
   console.log(`Using http://localhost:${port}/`);
 });
