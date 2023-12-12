@@ -45,10 +45,10 @@ const Order_Data_Table = sequelize.define(
   "order_data_table",
   {
     ID: { type: DataTypes.INTEGER, primaryKey: true },
-    Bhakri: { type: DataTypes.STRING },
-    Pitla: { type: DataTypes.STRING },
+    bhakri: { type: DataTypes.INTEGER },
+    pithla: { type: DataTypes.INTEGER },
     Taste: { type: DataTypes.STRING },
-    Total_Price: { type: DataTypes.STRING },
+    Total_Price: { type: DataTypes.INTEGER },
   },
   { tableName: "order_data_table" }
 );
