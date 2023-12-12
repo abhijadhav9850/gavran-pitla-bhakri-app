@@ -23,21 +23,19 @@ export class LogininphoneComponent {
   
   
   async submitForm() {
-    
-    // if(this.phoneForm.valid == false){
-    //   this.submitted = true
-    // }else{
-    //   this.submitted = false;
-    //   console.log(this.phoneForm.value);
-    // }
-
     const formData = {
+      ID:2,
       Mobile_No: this.phoneForm.value.Mobile_No
     }
     this.ls.adddata = formData
-  
-    await this.http.post("http://localhost:5432/Mobile_No/Send_OTP",formData).subscribe(e=>{
-       console.log(e); 
+    // mobile no to send otp api done
+    console.log(this.ls.adddata);
+    
+    await this.http.post("http://localhost:4000/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
+       console.log(e);
+       if(e.message === "otp sent sucessfully"){
+        this.ls.timer(1)
+       }
     })
 
       this.phoneForm.reset()
