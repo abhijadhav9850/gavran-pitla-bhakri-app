@@ -47,9 +47,9 @@ export class LogindetailsComponent {
   valueget(){
     this.ls.logindeatilsvalue.push(this.myForm.value)   
     console.log(this.ls.logindeatilsvalue);
-    this.http.post('http://localhost:4000/User/Add',this.myForm.value).subscribe(e=>{
-      console.log(e);
-    })
+    // this.http.post('http://localhost:4000/User/Add',this.myForm.value).subscribe(e=>{
+    //   console.log(e);
+    // })
   }
 
   submit(){

@@ -53,7 +53,7 @@ pithlaDecrement() {
       this.pithlaPrice = this.pithlaPrice - 50
       // console.log(this.pithla);
     }
-  }
+}
 
 pushValueToService() {
   let totalValue = this.bhakriPrice+this.pithlaPrice+this.thechaPrice+this.onionPrice
@@ -63,12 +63,10 @@ pushValueToService() {
   // console.log("bhakri quantity", this.data.bhakriquantity);
   // console.log("pithla quantity", this.data.pithlaquantity);
 
-  this.data.foodquantity.pop()
+  // this.data.foodquantity.pop()
   this.data.foodquantity.bhakri = this.bhakri;
   this.data.foodquantity.pithla = this.pithla;
   this.data.foodquantity.totalPrice = this.bhakriPrice + this.pithlaPrice
-
-  
 
   this.data.orderPrice = this.bhakriPrice+this.pithlaPrice
 
@@ -78,14 +76,12 @@ pushValueToService() {
     this.data.foodquantity.test = 'Spicy'
   }
 
-  this.data.order_list()
+  // this.data.order_list()
   this.data.show_modify_popup()
 
 
   // this.data.getOrderPrice()
   // console.log(this.bhakriPrice+this.pithlaPrice+this.thechaPrice+this.onionPrice);
 }
-
-
 
 }

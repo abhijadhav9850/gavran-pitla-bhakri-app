@@ -24,8 +24,6 @@ export class LogininphoneComponent {
   
   async submitForm() {
     
-    // console.log(this.phoneForm.valid);
-    
     if(this.phoneForm.valid == false){
       this.submitted = true
     }else{
@@ -33,20 +31,14 @@ export class LogininphoneComponent {
       console.log(this.phoneForm.value);
     }
 
-
-    // console.log(this.phoneForm.value);
-
     const formData = {
       Mobile_No: this.phoneForm.value.Mobile_No
     }
+    this.ls.adddata = formData
   
     await this.http.post("http://localhost:4000/Mobile_No/Send_OTP",formData).subscribe(e=>{
        console.log(e); 
     })
-
-    await this.http.post("http://localhost:4000/Mobile_No/Add",formData).subscribe(e=>{
-           console.log(e); 
-        })  
 
       this.phoneForm.reset()
 
