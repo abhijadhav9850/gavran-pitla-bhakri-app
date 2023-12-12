@@ -66,10 +66,13 @@ export class LoginindetailsValueService {
         //        console.log(e); 
         //     })  
 
-        await this.http.post("http://localhost:4000/Order_Details", this.foodquantity).subscribe(e => {
-                 console.log(e); 
-              })  
+        // foodquantity data api
+        // await this.http.post("http://localhost:4000/Order_Details", this.foodquantity).subscribe(e => {
+        //          console.log(e); 
+        //       })  
 
+
+        
 
           this.authLoggedIn.next(true)
           // this.router.navigate(['order-his'])
