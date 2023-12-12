@@ -8,10 +8,44 @@ import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 })
 export class OrderHistoryComponent {  
 
-  constructor(public data : LoginindetailsValueService){
+  constructor(public ls : LoginindetailsValueService){
 
   }
 
   currentDate = new Date();
+
+  pastHIstory:any=[
+    {
+      bhakri: 4,
+      pithla: 2,
+      test: 'Spicy',
+      totalPrice: 200,
+    },
+    {
+      bhakri: 4,
+      pithla: 2,
+      test: 'Spicy',
+      totalPrice: 200,
+    },
+    {
+      bhakri: 4,
+      pithla: 2,
+      test: 'Spicy',
+      totalPrice: 200,
+    },
+    {
+      bhakri: 4,
+      pithla: 2,
+      test: 'Spicy',
+      totalPrice: 200,
+    },
+    {
+      bhakri: 4,
+      pithla: 2,
+      test: 'Spicy',
+      totalPrice: 200,
+    },
+
+  ]
 
 }

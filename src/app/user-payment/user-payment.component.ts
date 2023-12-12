@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { PopupHandingService } from 'src/popup-handing.service';
 
 @Component({
@@ -8,5 +9,15 @@ import { PopupHandingService } from 'src/popup-handing.service';
 })
 export class UserPaymentComponent {
 
-  constructor(public service : PopupHandingService){}
+  constructor(public service : PopupHandingService , public router:Router){}
+
+  backToPaymentPopup(){
+    this.router.navigate(['/details']);
+    this.service.changeStyle()
+    this.service.quantity = false
+    this.service.contact  = false;
+    this.service.otp = false;
+    this.service.address  = false;
+    this.service.payment  = true;
+  }
 }
