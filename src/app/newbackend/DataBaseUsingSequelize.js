@@ -154,7 +154,7 @@ app.get("/User/EmailID", async (req, res) => {
 
 app.post("/Order_Details", async (req, res) => {
   let Add = await Order_Data_Table.create(req.body);
-  res.json({ success: true, message: `Ordered Data : ${Add}` });
+  res.json({ success: true, message: `Ordered Data` });
 });
 
 app.post("/Mobile_No/Send_OTP", async (req, res) => {
