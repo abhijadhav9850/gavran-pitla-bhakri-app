@@ -38,26 +38,26 @@ export class OtpVerificationComponent {
     this.service.openAddress()
 
     // console.log(this.otpForm.value);
-    // let otp = `${this.otpForm.value.number}${this.otpForm.value.number2}${this.otpForm.value.number3}${this.otpForm.value.number4}`
-    // let obj = Number(otp)   
-    // this.ls.otpnumber = {
-    //   otp : obj
-    //  }
+    let otp = `${this.otpForm.value.number}${this.otpForm.value.number2}${this.otpForm.value.number3}${this.otpForm.value.number4}`
+    let obj = Number(otp)   
+    this.ls.otpnumber = {
+      otp : obj
+     }
     //  console.log(this.ls.otpnumber);
      
-    // this.http.post("http://localhost:4000/OTP/GetOTP",otpnumber).subscribe((e:any)=>{
-    // if(e.message === 'Otp not valid'){
-    //   console.log('OTP is not valid');
-    // }else{
-    //   console.log('Otp successful');
-    //   this.service.openAddress()
-    //   console.log("Work");
+    this.http.post("http://localhost:4000/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
+    if(e.message === 'Otp not valid'){
+      console.log('OTP is not valid');
+    }else{
+      console.log('Otp successful');
+      this.service.openAddress()
+      console.log("Work");
       
-    //   this.authLoggedIn.next(true)
-    //   this.router.navigate(['order-his'])
+      // this.authLoggedIn.next(true)
+      this.router.navigate(['order-his'])
       
-    // }
-    // })
+    }
+    })
   }
   
   otp: string[] = ['', '', '', ''];

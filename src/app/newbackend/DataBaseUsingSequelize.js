@@ -47,8 +47,8 @@ const Order_Data_Table = sequelize.define(
     ID: { type: DataTypes.INTEGER, primaryKey: true },
     bhakri: { type: DataTypes.INTEGER },
     pithla: { type: DataTypes.INTEGER },
-    Taste: { type: DataTypes.STRING },
-    Total_Price: { type: DataTypes.INTEGER },
+    test: { type: DataTypes.STRING },
+    totalPrice: { type: DataTypes.INTEGER },
   },
   { tableName: "order_data_table" }
 );
@@ -228,8 +228,6 @@ app.get("/User/Delete", async (req, res) => {
   console.log(`Deleted Row(s): ${Delete}`);
 });
 
-
-console.log("hello");
 app.listen(port, () => {
   console.log(`Using http://localhost:${port}/`);
 });

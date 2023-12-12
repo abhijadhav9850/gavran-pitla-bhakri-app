@@ -62,11 +62,12 @@ export class LoginindetailsValueService {
         console.log('Otp successful');
         console.log("Work");
         this.order_list()
-        //  this.http.post("http://localhost:4000/Mobile_No/Add",this.adddata).subscribe(e=>{
+
+        //  await this.http.post("http://localhost:4000/Mobile_No/Add",this.adddata).subscribe(e=>{
         //        console.log(e); 
         //     })  
 
-        // foodquantity data api
+        // // foodquantity data api
         // await this.http.post("http://localhost:4000/Order_Details", this.foodquantity).subscribe(e => {
         //          console.log(e); 
         //       })  
