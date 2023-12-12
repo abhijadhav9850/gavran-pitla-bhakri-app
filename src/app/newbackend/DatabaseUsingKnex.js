@@ -16,16 +16,45 @@ const pg = require("knex")({
   },
 });
 
-app.get("/User/Add/:ID/:Name/:City", (req, res) => {
+app.get("/User/Add/:ID/:Name/:Address/:City", (req, res) => {
   setTimeout(async () => {
     let result = await pg("users").insert([
       {
-        ID: `${req.params.ID}`,
-        Name: `${req.params.Name}`,
-        Contact: `${req.params.City}`,
+        UserId: `${req.params.ID}`,
+        UserName: `${req.params.Name}`,
+        UserAddress: `${req.params.Address}`,
+        UserCity: `${req.params.City}`,
       },
     ]);
-    res.send(result);
-    console.log(result);
+    res.json({ success: true, message: `User Added : ${result}` });
   }, 5000);
+});
+
+app.get("/User/List", (req, res) => {
+  setTimeout(async () => {
+    let result = await pg.select("ID", "Name", "City").from("users");
+    res.json({ success: true, message: `User Data : ${result}` });
+  }, 5000);
+});
+
+app.get("/User/Update/:Name/:NewName", (req, res) => {
+  setTimeout(async () => {
+    let result = await pg("users")
+      .where("Name", "=", `${req.params.Name}`)
+      .update({ Name: `${req.params.NewName}` });
+    res.json({ success: true, message: `User Updated : ${result}` });
+  }, 5000);
+});
+
+app.get("/User/Delete/:Name", (req, res) => {
+  setTimeout(async () => {
+    let result = await pg("users")
+      .where("Name", `${req.params.Name}`)
+      .del("ID");
+    res.json({ success: true, message: `User Deleted : ${result}` });
+  }, 5000);
+});
+
+app.listen(port, (req, res) => {
+  console.log(`Using Port http://localhost:${port}/`);
 });
