@@ -45,10 +45,10 @@ const Order_Data_Table = sequelize.define(
   "order_data_table",
   {
     ID: { type: DataTypes.INTEGER, primaryKey: true },
-    Bhakri: { type: DataTypes.INTEGER },
-    Pitla: { type: DataTypes.INTEGER },
+    Bhakri: { type: DataTypes.STRING },
+    Pitla: { type: DataTypes.STRING },
     Taste: { type: DataTypes.STRING },
-    Total_Price: { type: DataTypes.INTEGER },
+    Total_Price: { type: DataTypes.STRING },
   },
   { tableName: "order_data_table" }
 );
@@ -82,15 +82,6 @@ const Mobile_No = sequelize.define(
   },
   { tableName: "mobile_no_table" }
 );
-
-// const Mobile_OTP = sequelize.define(
-//   "OTP_verify",
-//   {
-//     ID: { type: DataTypes.INTEGER, primaryKey: true },
-//     OTP_No: { type: DataTypes.INTEGER, allowNull: false },
-//   },
-//   { tableName: "OTP_verify" }
-// );
 
 async function start() {
   try {
@@ -187,6 +178,7 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
     //       res.status(200).json({ otpvalue: otpvalue, response: response.body });
     //     }
     //   });
+    
     otpvalue = 1234;
     res.json(`otpvalue = ${otpvalue}`);
   } catch (error) {
