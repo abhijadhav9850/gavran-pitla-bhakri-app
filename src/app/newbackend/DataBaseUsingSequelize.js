@@ -6,7 +6,7 @@ var cors = require("cors");
 const unirest = require("unirest");
 const async = require("rxjs");
 const app = express();
-const port = 4000;
+const port = 5432;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -87,8 +87,8 @@ async function start() {
   try {
     await sequelize.authenticate();
     console.log("Connection has been established successfully.");
-  } catch {
-    console.log("unable to connect to tge database:");
+  } catch (err) {
+    console.log("unable to connect to the database:", err.message);
   }
 }
 
@@ -148,6 +148,11 @@ app.post("/Order_Details", async (req, res) => {
   res.json({ success: true, message: `Ordered Data : ${Add}` });
 });
 
+app.post("/Order_Details/Findall", async (req, res) => {
+  let list = await Order_Data_Table.findAll();
+  res.json({ success: true, message: `All available columns in Table: : ${list}` });
+});
+
 app.post("/Mobile_No/Send_OTP", async (req, res) => {
   try {
     // const apiKey =
@@ -178,7 +183,7 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
     //       res.status(200).json({ otpvalue: otpvalue, response: response.body });
     //     }
     //   });
-    
+
     otpvalue = 1234;
     res.json(`otpvalue = ${otpvalue}`);
   } catch (error) {
