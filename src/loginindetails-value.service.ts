@@ -63,6 +63,8 @@ export class LoginindetailsValueService {
         console.log("Work");
         this.order_list()
 
+        // mobile no add api
+
         //  await this.http.post("http://localhost:4000/Mobile_No/Add",this.adddata).subscribe(e=>{
         //        console.log(e); 
         //     })  
