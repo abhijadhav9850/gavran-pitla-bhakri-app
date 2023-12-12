@@ -55,32 +55,29 @@ export class LoginindetailsValueService {
   async otpverifyapi() {
     console.log(this.foodquantity);
     
-    await this.http.post("http://localhost:4000/OTP/GetOTP", this.otpnumber).subscribe(async (e: any) => {
-      if (e.message === 'Otp not valid') {
-        console.log('OTP is not valid');
-      } else {
-        console.log('Otp successful');
-        console.log("Work");
+    // await this.http.post("http://localhost:4000/OTP/GetOTP", this.otpnumber).subscribe(async (e: any) => {
+    //   if (e.message === 'Otp not valid') {
+    //     console.log('OTP is not valid');
+    //   } else {
+    //     console.log('Otp successful');
+    //     console.log("Work");
         this.order_list()
 
         // mobile no add api
 
-        //  await this.http.post("http://localhost:4000/Mobile_No/Add",this.adddata).subscribe(e=>{
-        //        console.log(e); 
-        //     })  
+         await this.http.post("http://localhost:5432/Mobile_No/Add",this.adddata).subscribe(e=>{
+               console.log(e);
+            })  
 
         // // foodquantity data api
-        // await this.http.post("http://localhost:4000/Order_Details", this.foodquantity).subscribe(e => {
-        //          console.log(e); 
-        //       })  
-
-
-        
+        await this.http.post("http://localhost:5432/Order_Details", this.foodquantity).subscribe(e => {
+                 console.log(e); 
+              })  
 
           this.authLoggedIn.next(true)
           // this.router.navigate(['order-his'])
-        }
-    })
+        // }
+    // })
   }
 
   // getOrderPrice(){

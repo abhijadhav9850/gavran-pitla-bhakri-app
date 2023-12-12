@@ -45,7 +45,7 @@ export class OtpVerificationComponent {
      }
     //  console.log(this.ls.otpnumber);
      
-    this.http.post("http://localhost:4000/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
+    this.http.post("http://localhost:5432/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
     if(e.message === 'Otp not valid'){
       console.log('OTP is not valid');
     }else{
