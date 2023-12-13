@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 
 export class LoginindetailsValueService {
 
-  constructor(public http: HttpClient, public fb: FormBuilder, public router: Router) {this.timer(1) }
+  constructor(public http: HttpClient, public fb: FormBuilder, public router: Router) { }
 
   display:any;
 
