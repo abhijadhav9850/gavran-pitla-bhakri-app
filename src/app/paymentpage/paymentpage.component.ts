@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { PopupHandingService } from 'src/popup-handing.service';
 
 @Component({
@@ -7,5 +8,16 @@ import { PopupHandingService } from 'src/popup-handing.service';
   styleUrls: ['./paymentpage.component.css']
 })
 export class PaymentpageComponent {
-  constructor(public service : PopupHandingService){ }
+ 
+  constructor(public service : PopupHandingService, public router:Router){ }
+
+  seleted = true
+  selectPayment(){
+    if(this.seleted == true){
+      this.router.navigate(['/user-payment']);
+    }else{
+      this.router.navigate(['/order-his']);
+    }
+    this.service.closepopup()
+  }
 }
