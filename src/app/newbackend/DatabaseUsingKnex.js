@@ -12,10 +12,10 @@ app.use(cors());
 const pg = require("knex")({
   client: "pg",
   connection: {
-    connectionString:"postgres://pithla_bhakri_k757_user:MlAXwBBcaxTw6sMI66zeMzVeZc1F5YV9@dpg-cls67fbip8as73a3u8a0-a.oregon-postgres.render.com/pithla_bhakri_k757",
-    host: "dpg-cls67fbip8as73a3u8a0-a.oregon-postgres.render.com",
+    connectionString:"postgres://pithla_bhakri_user:yiRU6i6FUMJ0IIG2k2PCPhTYEfSFNkOe@dpg-cls291fqd2ns73dus3sg-a.oregon-postgres.render.com/pithla_bhakri",
+    host: "dpg-cls291fqd2ns73dus3sg-a.oregon-postgres.render.com",
     port: 5432,
-    user: "pithla_bhakri_k757_user",
+    user: "pithla_bhakri_user",
     database: "pithla_bhakri",
     password: "yiRU6i6FUMJ0IIG2k2PCPhTYEfSFNkOe",
     ssl: true,
