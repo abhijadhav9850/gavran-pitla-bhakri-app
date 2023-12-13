@@ -46,7 +46,6 @@ export class LogininphoneComponent {
     }
 
   }
-
   get phoneFormControl() {
     return this.phoneForm.controls;
   }

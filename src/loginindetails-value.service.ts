@@ -26,7 +26,6 @@ export class LoginindetailsValueService {
 
   foodquantity: any = 
     {
-      ID: 3,
       bhakri: this.bhakriquantity,
       pithla: this.pithlaquantity,
       test: '',
@@ -36,8 +35,8 @@ export class LoginindetailsValueService {
 
   orderlist: any = []
 
-  logindeatilsvalue: any = [];
-  userinformation: any = [];
+  // logindeatilsvalue: any = [];
+  // userinformation: any = [];
 
 
   order_list() {
@@ -56,8 +55,6 @@ export class LoginindetailsValueService {
 
 
   async otpverifyapi() {
-    // console.log(this.foodquantity);
-    
         this.order_list()
 
         // mobile no add api done

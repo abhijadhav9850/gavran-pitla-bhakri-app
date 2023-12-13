@@ -12,7 +12,7 @@ app.use(cors());
 const pg = require("knex")({
   client: "pg",
   connection: {
-    connectionString:"postgres://pithla_bhakri_k757_user:MlAXwBBcaxTw6sMI66zeMzVeZc1F5YV9@dpg-cls67fbip8as73a3u8a0-a.oregon-postgres.render.com/pithla_bhakri_k757",
+    connectionString: "postgres://pithla_bhakri_k757_user:MlAXwBBcaxTw6sMI66zeMzVeZc1F5YV9@dpg-cls67fbip8as73a3u8a0-a.oregon-postgres.render.com/pithla_bhakri_k757",
     host: "dpg-cls67fbip8as73a3u8a0-a.oregon-postgres.render.com",
     port: 5432,
     user: "pithla_bhakri_k757_user",
@@ -22,7 +22,7 @@ const pg = require("knex")({
   },
 });
 
-
+// otp send working
 app.post("/Mobile_No/Send_OTP", async (req, res) => {
   try {
     // const apiKey =
@@ -55,21 +55,21 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
     //   });
 
     otpvalue = 1234;
-    res.json({message:"otp sent sucessfully",otp : otpvalue});
+    res.json({ message: "otp sent sucessfully", otp: otpvalue });
   } catch (error) {
     console.log("Unable to Send OTP:", error);
     res.status(500).json({ success: false, message: "Failed to send OTP" });
   }
 });
 
-app.post("/Mobile_No/No_Add", (req, res) => {
+// no add working
+app.post("/Mobile_No/No_Add", async (req, res) => {
   setTimeout(async () => {
     try {
-      let result = await pg("mobile_no").insert([
+      let result = await pg("mobile_no_table").insert([
         {
           ID: `${req.body.ID}`,
           Mobile_No: `${req.body.Mobile_No}`,
-          
         },
       ]);
       res.json({ success: true, message: `No Added : ${result}` });
@@ -92,7 +92,7 @@ app.post("/OTP/GetOTP", async (req, res) => {
   }
 });
 
-app.post("/User/Add", (req, res) => {
+app.post("/User/Add", (req, res) => { 
   setTimeout(async () => {
     try {
       let result = await pg("users").insert([
@@ -162,6 +162,29 @@ app.post("/User/Delete", (req, res) => {
         .where("UserName", `${req.params.UserName}`)
         .del();
       res.json({ success: true, message: `User Deleted : ${result}` });
+    } catch (err) {
+      console.log(err);
+    }
+  }, 5000);
+});
+app.post("/UserAll/Data", (req, res) => {
+  setTimeout(async () => {
+    try {
+      console.log(req.body);
+      return
+      let result = await pg("user_data").insert([
+        {
+          Mobile_No: `${req.body.Mobile_No}`,
+          UserName: `${req.body.UserName}`,
+          UserAddress: `${req.body.UserAddress}`,
+          UserCity: `${req.body.UserCity}`,
+          bhakri: `${req.body.bhakri}`,
+          pithla: `${req.body.pithla}`,
+          test: `${req.body.test}`,
+          totalPrice: `${req.body.totalPrice}`,
+        },
+      ]);
+      res.json({ success: true, message: `No Added : ${result}` });
     } catch (err) {
       console.log(err);
     }

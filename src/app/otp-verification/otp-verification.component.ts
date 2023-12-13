@@ -33,9 +33,6 @@ export class OtpVerificationComponent {
     
   }
 
-
-
-
     otpForm = this.fb.group({
     number: ['', [Validators.required ,]],
     number2: ['', [Validators.required ,]],
