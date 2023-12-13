@@ -17,8 +17,9 @@
     your</p>
   <p class="font-Roboto text-1xl flex font-bold justify-center font-Roboto">Mobile No</p>
   <p class="flex justify-center text-xl">{{ls.display}}</p>
+  <p class="flex justify-center text-red-500 font-semibold text-xl">00:{{timer}}s</p>
   <p class="font-Roboto text-1xl flex font-bold justify-center font-Roboto mt-6">{{service.email}}
-    <span (click)="service.openOtp()" class="font-bold text-base text-blue-500 ml-2">Change</span>
+    <span (click)="service.closeOtp()" class="font-bold text-base text-blue-500 ml-2">Change</span>
   </p>
 
 
@@ -26,7 +27,7 @@
   <div class="flex justify-center mt-16">
     <form [formGroup]="otpForm" class="flex space-x-4">
       <div class="flex flex-col">
-        <input placeholder="-" #text1 type="number" maxlength="1" (keyup)="move($event, '', text1, text2)"
+        <input placeholder="-" #text1 type="text" maxlength="1" (keyup)="move($event, '', text1, text2)"
           (input)="onInput(1)"
           class="w-12 h-12 border bg-zinc-200 border-gray-300 rounded-lg text-center text-lg focus:outline-none focus:border-blue-500"
           formControlName="number"
@@ -36,7 +37,7 @@
           Add OTP</div>
       </div>
       <div class="flex flex-col">
-        <input placeholder="-" #text2 type="number" maxlength="1" (keyup)="move($event,text1, text2, text3)"
+        <input placeholder="-" #text2 type="text" maxlength="1" (keyup)="move($event,text1, text2, text3)"
           (input)="onInput(2)"
           class="w-12 h-12 border bg-zinc-200 border-gray-300 rounded-lg text-center text-lg focus:outline-none focus:border-blue-500"
           formControlName="number2"
@@ -47,7 +48,7 @@
       </div>
 
       <div class="flex flex-col">
-        <input placeholder="-" #text3 type="number" maxlength="1" (keyup)="move($event, text2, text3, text4)"
+        <input placeholder="-" #text3 type="text" maxlength="1" (keyup)="move($event, text2, text3, text4)"
           (input)="onInput(3)"
           class="w-12 h-12 border bg-zinc-200 border-gray-300 rounded-lg text-center text-lg focus:outline-none focus:border-blue-500"
           formControlName="number3"
@@ -58,7 +59,7 @@
       </div>
 
       <div class="flex flex-col">
-        <input placeholder="-" #text4 type="number" formControlName="number4" maxlength="1"
+        <input placeholder="-" #text4 type="text" formControlName="number4" maxlength="1"
           (keyup)="move($event, text3, text4, '')" (input)="onInput(4)"
           class="w-12 h-12 border bg-zinc-200 border-gray-300 rounded-lg text-center text-lg focus:outline-none focus:border-blue-500"
           formControlName="number4"
@@ -82,7 +83,7 @@
     </button>
   </div>
   <p class="font-Roboto text-xs text-blue-400 font-Inter flex  justify-center mt-6 mb-[20px]">Not Received Your Code ?
-    <button class="text-red-500 ml-2 font-bold">Resend Code</button>
+    <button (click)="timer = 30" class="text-red-500 ml-2 font-bold">Resend Code</button>
   </p>
 </div>
 
