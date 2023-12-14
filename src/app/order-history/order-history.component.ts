@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 
@@ -8,10 +9,25 @@ import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 })
 export class OrderHistoryComponent {  
 
-  constructor(public ls : LoginindetailsValueService){
+  orderList:any = []
 
+  constructor(public ls : LoginindetailsValueService, public http:HttpClient){
   }
 
+  async ngOnInit() {
+    this.ls.getData().subscribe(
+      (data: any[]) => {
+        this.orderList = data;
+        console.log(this.orderList);
+        
+      },
+      (error) => {
+        console.error(error);
+        // Handle errors if needed
+      }
+    );
+  
+  }
   currentDate = new Date();
 
   pastHIstory:any=[
