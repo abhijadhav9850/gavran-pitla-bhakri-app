@@ -49,7 +49,7 @@ export class OtpVerificationComponent {
   }); 
 
   optverify() {
-    // this.service.openAddress()
+    this.service.openAddress()
     // console.log(this.ls.otpvalue);
     Object.values(this.otpForm.controls).forEach((control) => {
       control.markAsTouched();

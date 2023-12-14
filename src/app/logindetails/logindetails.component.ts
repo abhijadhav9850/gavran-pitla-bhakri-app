@@ -19,6 +19,14 @@ export class LogindetailsComponent {
   constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService,public http:HttpClient, public data : LoginindetailsValueService){
     
   }
+
+  isOpen: boolean = false;
+
+toggleDropdown() {
+  this.isOpen = !this.isOpen;
+}
+
+
   citys: any[] = [
     { name: 'Vashi', value: 'Vashi' },
     { name: 'Sanpada', value: 'Sanpada' },
