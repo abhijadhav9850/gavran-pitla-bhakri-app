@@ -28,37 +28,41 @@
         </div>
     </div>
     <div class="content flex flex-col gap-4 mb-[64px] mt-5">
-        <div class="main flex flex-col items-center md:flex-row w-100%  rounded-[21px]  border-solid border-2 p-0">
-            <div id="contener" class="w-40%">
-                <img routerLink="/details" class="w-96 h-52 p-2 rounded-[1.25rem]" src="../../assets/image 2.jpg"
-                    alt="">
-            </div>
-            <div class="px-1 py-2 w-40% ">
-                <div class="flex justify-between p-1">
-                    <p routerLink="/details" class="text-sm font-bold font-Roboto">The Complete Meal</p>
+        <div class="flex justify-center items-center">
+            <div class="main flex flex-col items-center md:flex-row w-auto  rounded-[21px]  border-solid border-2 p-0">
+                <div id="contener" class="w-40%">
+                    <img routerLink="/details" class="h-auto w-auto rounded-[1.25rem]" src="../../assets/image 2.jpg"
+                        alt="">
                 </div>
-                <div class="flex justify-between p-1 w-80">
-                    <p class="text-xs -mt-[5px] w-96 font-normal">Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit, sed do
-                        eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua.</p>
+                <div class="px-2 py-2 w-full ">
+                    <div class="flex justify-between p-1">
+                        <p routerLink="/details" class="text-sm font-bold font-Roboto">The Complete Meal</p>
+                    </div>
+                    <div class="flex justify-between p-1 w-80">
+                        <p class="text-xs -mt-[5px] w-96 font-normal">Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do
+                            eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="main flex flex-col items-center md:flex-row w-100%  rounded-[1.25rem] border-solid border-2 p-0">
-            <div id="contener" class="w-40%">
-                <img class="w-96 h-52 p-2 rounded-[1.25rem]" src="../../assets/image 2.jpg" alt="">
-
-            </div>
-            <div class="px-1 py-2 w-40% ">
-                <div class="flex justify-between p-1">
-                    <p class="text-sm font-bold font-Roboto">The Complete Meal</p>
+        <div class="flex justify-center items-center">
+            <div class="main flex flex-col items-center md:flex-row w-auto rounded-[1.25rem] border-solid border-2 p-0">
+                <div id="contener" class="w-40%">
+                    <img class="h-auto w-auto  rounded-[1.25rem]" src="../../assets/image 2.jpg" alt="">
+    
                 </div>
-                <div class="flex justify-between p-1 w-80">
-                    <p class="text-xs w-96 -mt-[5px] font-normal">Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit, sed do
-                        eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua.</p>
+                <div class="px-2 py-2 w-full ">
+                    <div class="flex justify-between p-1">
+                        <p class="text-sm font-bold font-Roboto">The Complete Meal</p>
+                    </div>
+                    <div class="flex justify-between p-1 w-80">
+                        <p class="text-xs w-96 -mt-[5px] font-normal">Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do
+                            eiusmod tempor
+                            incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,7 +77,7 @@
             </svg>
             <p class="text-xs font-normal font-Roboto">Menu</p>
         </div>
-        <div routerLink="order-his">
+        <div *ngIf="ls.show_home_popup" routerLink="order-his">
             <svg xmlns="http://www.w3.org/2000/svg" width="31" height="21" viewBox="0 0 31 21" fill="none">
                 <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M15.5361 2.5C16.4521 2.5 17.1962 3.24492 17.1962 4.16626C17.1962 4.56224 17.0575 4.92686 16.827 5.21306C17.8309 5.33852 18.821 5.61296 19.7545 6.03443C23.1742 7.57719 25.8439 11.0901 25.8478 16.5671C25.8478 16.771 25.6818 16.9376 25.4787 16.9376V16.9396H5.59358C5.38852 16.9396 5.22252 16.773 5.22252 16.5671C5.22252 16.5554 5.22252 16.5436 5.22447 16.5319C5.23814 11.0744 7.90589 7.57327 11.3158 6.03443C12.2493 5.61296 13.2394 5.33852 14.2433 5.21306C14.0128 4.92686 13.8742 4.56224 13.8742 4.16626C13.8761 3.24492 14.6182 2.5 15.5361 2.5ZM3.87106 18.5C3.666 18.5 3.5 18.3334 3.5 18.1275C3.5 17.9217 3.666 17.7551 3.87106 17.7551H27.1289C27.334 17.7551 27.5 17.9217 27.5 18.1275C27.5 18.3334 27.334 18.5 27.1289 18.5H3.87106ZM5.9666 16.1947H25.1037C24.9846 11.2684 22.5492 8.10843 19.4538 6.71073C18.2195 6.15401 16.8778 5.87564 15.5361 5.87564C14.1925 5.87564 12.8528 6.15401 11.6185 6.71073C8.52108 8.10843 6.08573 11.2684 5.9666 16.1947ZM8.25352 13.8168C8.19298 14.0129 7.98596 14.1226 7.79067 14.0619C7.59537 14.0011 7.486 13.7933 7.54655 13.5973C7.91761 12.4074 8.49959 11.4253 9.27492 10.6313C10.0483 9.84134 11.0072 9.24345 12.1321 8.81806C12.3235 8.74553 12.5364 8.84354 12.6086 9.03369C12.6809 9.2258 12.5832 9.43948 12.3938 9.51201C11.3685 9.90015 10.4975 10.4392 9.80222 11.1508C9.11087 11.8585 8.58748 12.7406 8.25352 13.8168Z"

@@ -20,7 +20,7 @@
         <label for="name" class="block text-gray-700 text-xs font-bold mb-2">Name</label>
         <input type="text" placeholder="Name" id="name" formControlName="UserName"
             class="w-full md:w-64 p-2 border rounded-md focus:outline-none focus:border-blue-500">
-        <span style="color: red;" class="text-danger"
+        <span class="text-red-600 font-semibold text-[10px] ml-1"
             *ngIf="(myFormControl.UserName.touched || submitted) && myFormControl.UserName.errors?.['required']">
             Enter Your Username
         </span>
@@ -33,7 +33,7 @@
         <label for="address" class="block text-gray-700 text-xs font-bold mb-2">Address</label>
         <input type="text" placeholder="Address" id="address" formControlName="UserAddress"
             class="w-full md:w-64 p-2 border rounded-md focus:outline-none focus:border-blue-500">
-        <span style="color: red;" class="text-danger"
+        <span class="text-red-600 font-semibold text-[10px] ml-1"
             *ngIf="(myFormControl.UserAddress.touched || submitted) && myFormControl.UserAddress.errors?.['required']">
             Enter Your Address
         </span>
@@ -46,13 +46,15 @@
         <label for="address" class="block text-gray-700 text-xs font-bold mb-2">City</label>
         <!-- <input type="text" placeholder="City" id="city" formControlName="UserCity" class="w-full md:w-64 p-2 border rounded-md focus:outline-none focus:border-blue-500"> -->
 
-        <select class="w-3/4" name="cars" id="cars" formControlName="UserCity">
-            <option value="">Select Your City</option>
-            <option *ngFor="let city of citys" [value]="city.value">{{city.name}}</option>
-        </select>
-        <span style="color: red;" class="text-danger"
+        <div class="flex justify-center items-center">
+            <select class="w-full p-2 border bg-white text-neutral-400 text-base rounded-md focus:outline-none focus:border-blue-500" name="cars" id="cars" formControlName="UserCity">
+                <option value="">Select Your City</option>
+                <option *ngFor="let city of citys" [value]="city.value">{{city.name}}</option>
+            </select>
+        </div>
+        <span class="text-red-600 font-semibold text-[10px] ml-1"
             *ngIf="(myFormControl.UserCity.touched || submitted) && myFormControl.UserCity.errors?.['required']">
-            Enter Your City
+            Enter Your City 
         </span>
         <!-- [ngClass]="{ 'invalid-input': myForm.get('UserCity')?.invalid && myForm.get('UserCity')?.touched }"
             class="w-full md:w-64 p-2 border rounded-md focus:outline-none focus:border-blue-500"> -->
