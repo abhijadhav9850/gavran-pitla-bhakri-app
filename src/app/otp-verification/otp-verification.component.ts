@@ -16,14 +16,22 @@ export class OtpVerificationComponent {
 
   invalid = false
   display: any;
+  timer : any = 30;
+
+  timeout = setInterval(() => {
+    if(this.timer==0){
+      console.log('finished');
+      clearInterval(this.timer);
+    }
+    else if (this.timer >= 0) {
+      this.timer--
+    }
+  }, 1000);
   
   
   constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService, public http:HttpClient, public router: Router){
     
   }
-
-
-
 
     otpForm = this.fb.group({
     number: ['', [Validators.required ,]],
@@ -33,6 +41,7 @@ export class OtpVerificationComponent {
   }); 
 
   optverify() {
+    this.service.openAddress()
     // console.log(this.ls.otpvalue);
     Object.values(this.otpForm.controls).forEach((control) => {
       control.markAsTouched();
@@ -50,7 +59,7 @@ export class OtpVerificationComponent {
       console.log('OTP is not valid');
     }else{
       console.log('Otp successful');
-      this.service.openAddress()
+      // this.service.openAddress()
       this.ls.otpverifyapi()
       console.log("Work");
       // this.authLoggedIn.next(true)
@@ -72,8 +81,7 @@ export class OtpVerificationComponent {
 
   move(e: any, p: any, c: any, n: any) {
     let length = c.value.length;
-    let maxlength = 1;
-    if (length == maxlength) {
+    if (length == 1) {
       if (n != '') {
         n.focus()
       }
