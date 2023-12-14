@@ -1,0 +1,91 @@
+<div class="px-2 h-[100vh] items-center overflow-hidden" id="main">
+  <div class=" flex justify-between top-0 sticky bg-transparent items-center pt-[50px] px-[15px] gap-[30px] pb-[30px]">
+    <div routerLink="" class="flex gap-[8px] text-[1.5rem]">
+      <p style="font-family: 'Aclonica', sans-serif;color: #FF6A00;">Pithla</p>
+      <p style="font-family: 'Aclonica', sans-serif;color: #00A850;">Bhakri</p>
+    </div>
+    <div class="flex items-center gap-[5px]">
+      <p style="font-size: 18px;font-weight: 700;font-family: 'Noto Serif Devanagari', serif;text-align: center;">
+        मराठी
+      </p>
+      <img routerLink="/user-profile" class="h-[29px] -mt-[8px]" src="../../assets/Group 20.jpg" alt="">
+    </div>
+  </div>
+
+  
+  <div class="main flex flex-col items-center md:flex-row md:justify-evenly w-full p-0 gap-2">
+    <div id="contener" class="w-auto">
+      <img class="w-96 h-52 rounded-[1.25rem]" src="../../assets/image 2.jpg" alt="image">
+    </div>
+
+<div class="md:mx-1">
+  <div class="mt-3.5 mb-3.5 text-xl font-bold">
+    <h1>Order Id XXXXXX123</h1>
+  </div>
+  <div class="gap-4 main flex items-center w-auto h-20 rounded-[1.25rem] bg-[#e9e9e9] px-2 border-2">
+    <div>
+      <img class="h-10" src="../../assets/Vector.png">
+    </div>
+    <div>
+      <h1 class="text-sm font-bold">Your Order is Being Prepared</h1>
+      <p class="font-semibold text-xs">Status : Preparing</p>
+    </div>
+    <div>
+      <button class="text-xs py-2 relative w-16 font-medium content-center text-orange-50 bg-orange-500 rounded-md
+      ">Modify</button>
+    </div>
+  </div>
+</div>    
+  </div>
+
+  <div class="px-3">
+    <div>
+      <div>
+        <p class=" mt-5 text-[18px] font-bold">Content</p>
+        <div class="flex md:w-[50%] justify-between">
+          <div>
+            <div class="flex gap-3 mt-4">
+              <img src="../../assets/Group.png" alt="">
+              <p class="font-Roboto font-bold text-xs">Bhakri</p>
+            </div>
+            <div class="flex gap-3 mt-4">
+              <img src="../../assets/Vector.png" alt="">
+              <p class="font-Roboto font-bold text-xs">Pitla</p>
+            </div>
+          </div>
+          <div class="mt-5 items-center">
+            <div class="flex w-[80px] justify-between">
+              <img class="h-[16px] w-16px mt-[5px]" src="../../assets/Button (1).png" alt="">
+              <p>{{ls.foodquantity.bhakri}}</p>
+              <img class="h-[16px] w-16px mt-[5px]" src="../../assets/Button.png" alt="">
+            </div>
+            <div class="flex w-[80px] justify-between mt-4">
+              <img class="h-[16px] w-16px mt-[5px]" src="../../assets/Button (1).png" alt="">
+              <p>{{ls.foodquantity.pithla}}</p>
+              <img class="h-[16px] w-16px mt-[5px]" src="../../assets/Button.png" alt="">
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-5 md:w-[50%] flex justify-between items-center">
+          <p class="text-[18px] font-bold">Test</p>
+          <div class="w-[80px] flex justify-center">
+            <p class="font-Roboto font-bold text-xs">{{ls.foodquantity.test}}</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  
+    <div class="mt-5 main flex justify-between items-center px-4 w-full h-[40px] md:w-[50%] rounded-lg bg-yellow-500">
+      <h1 class="text-l font-bold">Total</h1>
+      <h1 class="text-l font-bold">₹{{ls.foodquantity.totalPrice}}</h1>
+    </div>
+  
+    <div class="flex justify-end">
+      <button (click)="ls.show_modify_popup()" routerLink="" class="mt-[10px] text-[1rem] py-2 w-[80px] font-medium content-center text-orange-50 bg-orange-500 rounded-md
+          ">Cancel</button>
+    </div>
+  </div>
+</div>

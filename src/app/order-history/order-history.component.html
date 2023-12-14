@@ -1,6 +1,6 @@
 <div>
   <header class="relative flex  items-center justify-between p-3 mt-10">
-    <svg routerLink="/user-profile" xmlns="http://www.w3.org/2000/svg" class="h-[30px] w-[30px]" width="30" height="30"
+    <svg routerLink="" xmlns="http://www.w3.org/2000/svg" class="h-[30px] w-[30px]" width="30" height="30"
       viewBox="0 0 30 30" fill="none">
       <path
         d="M22.0991 5.16553V2.57736C22.0991 2.35303 21.8412 2.22914 21.6671 2.36642L6.57338 14.1555C6.44514 14.2552 6.34137 14.3829 6.26999 14.5289C6.1986 14.6748 6.1615 14.8351 6.1615 14.9976C6.1615 15.16 6.1986 15.3203 6.26999 15.4663C6.34137 15.6122 6.44514 15.7399 6.57338 15.8396L21.6671 27.6287C21.8446 27.766 22.0991 27.6421 22.0991 27.4178V24.8296C22.0991 24.6655 22.022 24.5082 21.8948 24.4077L9.84124 14.9992L21.8948 5.5874C22.022 5.48696 22.0991 5.32959 22.0991 5.16553Z"
@@ -27,13 +27,51 @@
       </defs>
     </svg>
   </header>
-  <p class="p-3 font-medium font-Roboto text-lg flex justify-center">My Orders</p>
-  <hr class="w-full h-2 text-gray-700">
-  <div class="flex justify-around p-2">
-    <button
+  <p class="p-3 font-medium font-Roboto text-lg flex justify-start">My Orders</p>
+  <!-- <hr class="w-full h-2 text-gray-700"> -->
+  <div class="flex flex-col justify-around p-2">
+    <!-- <button
       class=" text-white px-4 py-2 rounded-xl bg-gradient-to-r from-red-700 to-yellow-500 hover:from-pink-500 hover:to-orange-500">PENDING</button>
     <button
-      class=" text-white px-4 py-2 rounded-xl bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-orange-500">COMPLATE</button>
+      class=" text-white px-4 py-2 rounded-xl bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-orange-500">COMPLATE</button> -->
+
+    <div *ngFor="let card of ls.foodquantity" class="order-list flex h-[83px] border p-3 rounded-lg w-full mb-3">
+      <div class="cart flex w-full justify-between">
+        <div class="logo flex w-full items-stretch">
+          <img class="w-16 h-16 rounded-full" src="../../assets/order-page-logo.jpeg" alt="logo">
+          <div class="ml-3">
+            <h3 class="text-lg font-semibold">Pitla Bhakri</h3>
+            <p class="font-medium text-[0.88rem]">{{currentDate | date:'dd MMM yyyy'}}</p>
+          </div>
+        </div>
+        <div>
+          <div class="flex flex-col justify-center items-end">
+            <p class="mb-[10px]">{{currentDate | date:'hh:mm'}}</p>
+            <p>Pandding...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngFor="let card of pastHIstory" class="order-list flex h-[83px] border p-3 rounded-lg w-full mb-3">
+      <div class="cart flex w-full justify-between">
+        <div class="logo flex w-full items-stretch">
+          <img class="w-16 h-16 rounded-full" src="../../assets/order-page-logo.jpeg" alt="logo">
+          <div class="ml-3">
+            <h3 class="text-lg font-semibold">Pitla Bhakri</h3>
+            <p class="font-medium text-[0.88rem]">{{currentDate | date:'dd MMM yyyy'}}</p>
+          </div>
+        </div>
+        <div>
+          <div class="flex flex-col justify-center items-end">
+            <p class="mb-[10px]">{{currentDate | date:'hh:mm'}}</p>
+            <p>Completed</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
-  <hr class="w-full h-2 text-gray-700 mt-1">
+
 </div>

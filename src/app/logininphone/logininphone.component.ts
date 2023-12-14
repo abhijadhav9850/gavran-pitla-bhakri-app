@@ -14,44 +14,42 @@ import { Router } from '@angular/router';
 })
 export class LogininphoneComponent {
 
-  submited = false
-  // emailsend:any=this.service.email
-  // phoneForm: FormGroup;
-  constructor(public service : PopupHandingService , public fb: FormBuilder, public http:HttpClient, public ls:LoginindetailsValueService,public router: Router, public log:LoginLogoutService){
-    // this.phoneForm = this.fb.group({
-    //   email: ['', [Validators.required , Validators.pattern(/^[a-zA-Z0-9._%+-]+@gmail\.com$/)] ],
-    // });
+  submitted = false
+
+  constructor(public service : PopupHandingService , public fb: FormBuilder, public http:HttpClient, public ls:LoginindetailsValueService){
   }
 
-  submitForm() {
-    Object.values(this.ls.phoneForm.controls).forEach((control) => {
-      control.markAsTouched();
-    });
-    this.submited = true
-    this.ls.callapi()
-    //  console.log(this.data);    
-    // if (this.phoneForm.valid) {
-    //   const formData = { Email_ID: this.phoneForm.value.email };
-    //   // console.log(formData);
-    //   this.http.post("http://localhost:4000/User/EmailID",formData).subscribe(e => {
-    //    this.ls.otpvalue=e
-    //    this.ls.apicall()
-    //   }) 
-    // }
+  phoneForm = this.fb.group({
+      Mobile_No: ['',[Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+    })
+  
+  
+  async submitForm() {
+    if(this.phoneForm.valid == true){
+      this.service.openOtp()
+      const formData = {
+        ID:2,
+        Mobile_No: this.phoneForm.value.Mobile_No
+      }
+      this.ls.adddata = formData
+      // mobile no to send otp api done
+      console.log(this.ls.adddata);
+      
+      await this.http.post("http://localhost:4000/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
+         console.log(e);
+         if(e.message === "otp sent sucessfully"){
+          this.ls.timer(1)
+         }
+      })
+  
+        this.phoneForm.reset()
+    }else{
+      this.submitted = true
+    }
+
   }
-  
-  
-  phoneNumber = '';
-  requestOtp(): void {
-    this.log.requestOtp(this.phoneNumber)
-      .subscribe((response: any) => {
-        if (response.success) {
-          // Redirect to OTP verification page
-          this.router.navigate(['/otp-verification', this.phoneNumber]);
-        } else {
-          console.error('Failed to send OTP');
-        }
-      });
+  get phoneFormControl() {
+    return this.phoneForm.controls;
   }
 
 }

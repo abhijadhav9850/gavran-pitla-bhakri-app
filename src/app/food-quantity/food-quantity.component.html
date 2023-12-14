@@ -24,7 +24,7 @@
             </div>
             <div class="flex gap-3 mt-5">
                 <img src="../../assets/Group 9.png" alt="">
-                <p class="font-Roboto font-bold text-xs">pithla</p>
+                <p class="font-Roboto font-bold text-xs">Thecha</p>
             </div>
             <div class="flex gap-3 mt-5">
                 <img src="../../assets/Vector (1).png" alt="">
@@ -47,14 +47,14 @@
         </div>
     </div>
     <div class="flex flex-col gap-2 mt-[38px] ">
-        <span class="text-[18px] font-bold">Note</span>
+        <span class="text-[18px] font-bold">Food Test</span>
         <div class="flex justify-between">
-            <span class="text-xs font-semibold">Medium</span>
-            <input class="rounded-md" type="checkbox">
+            <span class="font-Roboto font-bold text-xs">Medium</span>
+            <input (input)="seleted = true" value="Medium" [checked]="seleted" class="rounded-md" type="checkbox">
         </div>
         <div class="flex justify-between">
-            <span class="text-xs font-semibold">Spaicy</span>
-            <input class="rounded-md" type="checkbox">
+            <span class="font-Roboto font-bold text-xs">Spicy</span>
+            <input (input)="seleted = false" value="Spicy" [checked]="!seleted" class="rounded-md" type="checkbox">
         </div>
     </div>
     <footer class="flex justify-between items-center mt-10">

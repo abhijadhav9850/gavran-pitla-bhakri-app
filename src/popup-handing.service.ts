@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { LoginindetailsValueService } from './loginindetails-value.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class PopupHandingService {
   email = '';
 
 
-  constructor() {
+  constructor(public login : LoginindetailsValueService) {
   
    }
 
@@ -58,8 +59,8 @@ export class PopupHandingService {
     setTimeout(()=>{  
       
       this.backgroundblur = {
-        'filter' : 'blur(4px)',
-        'background' : 'linear-gradient(rgba(0, 0, 0,  0.54),rgba(0, 0, 0, -8.46)),url(../../assets/image 2.jpg)',
+        'filter' : 'blur(5px)',
+        'background' : 'linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),url(../../assets/image 2.jpg))',
       }
       
       this.loginInPhone = {
@@ -67,9 +68,9 @@ export class PopupHandingService {
         // backgroundColor: 'lightgreen',
         // color: 'white',
         'width' : '100%',
-        'transition': 'margin-top 0.5s ease-in-out',
+        'transition': 'margin-top 0.3s ease-in-out',
         'margin-top': '-60vh',
-        'box-shadow' : '0px 0px 20px gray',
+        'box-shadow' : '0px 0px 50px gray',
         'z-index': '1',
         'background-color' : '#fff',
         'overflow' : 'hidden',
@@ -78,11 +79,11 @@ export class PopupHandingService {
   }
 
     closepopup(){
-      this.quantity = false
-      this.contact  = false;
-      this.otp = false;
-      this.address  = false;
-      this.payment  = false;
+      // this.quantity = false
+      // this.contact  = false;
+      // this.otp = false;
+      // this.address  = false;
+      // this.payment  = false;
 
       this.backgroundblur = {
         'filter' : 'blue(0px)',
@@ -94,9 +95,9 @@ export class PopupHandingService {
         // backgroundColor: 'lightgreen',
         // color: 'white',
         'width' : '100%',
-        'transition': 'margin-top 0.5s ease-in-out',
-        'margin-top': '50vh',
-        'box-shadow' : '0px 0px 5px ',
+        'transition': 'margin-top 0.3s ease-in-out',
+        'margin-top': '10vh',
+        'box-shadow' : '0px 0px 10px lightgray',
         'z-index': '1',
         'background-color' : '#fff',
         'overflow' : 'hidden',
@@ -147,7 +148,7 @@ export class PopupHandingService {
     }
     closeContact(){
       this.contact = false;
-      this.quantity = true
+      this.quantity = true;
     }
     closeAddress(){
       this.address = false;

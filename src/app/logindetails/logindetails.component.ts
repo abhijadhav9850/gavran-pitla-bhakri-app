@@ -14,36 +14,56 @@ import { LoginLogoutService } from '../login-logout.service';
 })
 export class LogindetailsComponent {
 
-  myForm: FormGroup;
-  
-  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService,public http:HttpClient, public data : LoginindetailsValueService, ){
+  // myForm: FormGroup;
+  submitted = false
 
-    this.myForm = this.fb.group({
-      UserName: ['', [Validators.required]],
-      UserAddress: ['', [Validators.required]],
-      UserCity: ['', [Validators.required]],
-    });
+
+  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService,public http:HttpClient, public data : LoginindetailsValueService){
+    
   }
+  citys: any[] = [
+    { name: 'Vashi', value: 'Vashi' },
+    { name: 'Sanpada', value: 'Sanpada' },
+    { name: 'koperkhairane', value: 'koperkhairane' },
+    { name: 'Ghansoli', value: 'Ghansoli' },
+    { name: 'Airoli', value: 'Airoli' },
+  ]
+
+  myForm = this.fb.group({
+    UserName: ['', [Validators.required]],
+    UserAddress: ['', [Validators.required]],
+    UserCity: ['', [Validators.required]],
+  });
 
   submitForm() {
-    Object.values(this.myForm.controls).forEach((control) => {
-      control.markAsTouched();
-      console.log(this.myForm)
-      this.data.userinformation.push()
-    });
-    if (this.myForm.valid) {
-      console.log('Form submitted:', this.myForm.value);
+    // Object.values(this.myForm.controls).forEach((control) => {
+    //   control.markAsTouched();
+    //   console.log(this.myForm)
+    //   this.data.userinformation.push()
+    // });
+    // if (this.myForm.valid) {
+    //   console.log('Form submitted:', this.myForm.value);
+    // }
+
+    if(this.myForm.valid == false){
+      this.submitted = true
+    }else{
+      this.submitted = false;
+      console.log(this.myForm.value);
     }
+    console.log(this.myForm.value);
+    
   }
+
   valueget(){
-    this.ls.logindeatilsvalue.push(this.myForm.value)   
-    console.log(this.ls.logindeatilsvalue);
+    // this.ls.logindeatilsvalue.push(this.myForm.value)   
+    console.log(this.ls.foodquantity);
     this.http.post('http://localhost:4000/User/Add',this.myForm.value).subscribe(e=>{
       console.log(e);
     })
   }
-  submit(){
-    console.log("hello");
-    
+
+  get myFormControl() {
+    return this.myForm.controls;
   }
 }
