@@ -25,6 +25,8 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserSettingComponent } from './user-setting/user-setting.component';
 import { OrderInfoComponent } from './order-info/order-info.component';
+import { ReviewsComponent } from './reviews/reviews.component';
+import { WriteReviewComponent } from './write-review/write-review.component';
 // import { CountdownModule } from 'ngx-countdown';
 
 
@@ -48,6 +50,8 @@ import { OrderInfoComponent } from './order-info/order-info.component';
     UserPaymentComponent,
     UserOrdersComponent,
     UserSettingComponent,
+    ReviewsComponent,
+    WriteReviewComponent,
   ],
   imports: [
     BrowserModule,
