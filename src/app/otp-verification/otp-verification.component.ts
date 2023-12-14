@@ -54,7 +54,7 @@ export class OtpVerificationComponent {
      }
      
     //  otp verify and go to next page api done
-    this.http.post("http://localhost:4000/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
+    this.http.post("https://database-rn7j.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{   
     if(e.message === 'Invalid OTP'){      
       console.log('OTP is not valid');
     }else{

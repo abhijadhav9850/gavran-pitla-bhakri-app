@@ -10,7 +10,7 @@ export class LoginindetailsValueService {
 
   constructor(public http: HttpClient, public fb: FormBuilder, public router: Router) { }
 
-  display:any;
+  display: any;
 
   adddata: any;
   otpnumber: any;
@@ -24,14 +24,14 @@ export class LoginindetailsValueService {
 
   show_home_popup = false
 
-  foodquantity: any = 
+  foodquantity: any =
     {
       bhakri: this.bhakriquantity,
       pithla: this.pithlaquantity,
       test: '',
       totalPrice: this.orderPrice,
     }
-  
+
 
   orderlist: any = []
 
@@ -55,22 +55,23 @@ export class LoginindetailsValueService {
 
 
   async otpverifyapi() {
-        this.order_list()
+    this.order_list()
 
-        // mobile no add api done
+    // mobile no add api done
 
-         await this.http.post("http://localhost:4000/Mobile_No/No_Add",this.adddata).subscribe(e=>{
-               console.log(e);
-            })  
+    await this.http.post("https://database-rn7j.onrender.com/Mobile_No/No_Add", this.adddata).subscribe(e => {
+      console.log(e);
+    })
 
-        // // foodquantity data api done
+    // // foodquantity data api done
 
-        await this.http.post("http://localhost:4000/OrderData/Details", this.foodquantity).subscribe(e => {
-                 console.log(e); 
-              })  
-          this.authLoggedIn.next(true)
-          // this.router.navigate(['order-his'])
-        // }
+    await this.http.post("https://database-rn7j.onrender.com/OrderData/Details", this.foodquantity).subscribe(e => {
+      console.log(e);
+    })
+    this.authLoggedIn.next(true)
+    // this.Test_newapi()
+    // this.router.navigate(['order-his'])
+    // }
     // })
   }
 
@@ -80,7 +81,7 @@ export class LoginindetailsValueService {
   // getUserInformation(){}
 
 
-  timer(minute:any) {
+  timer(minute: any) {
     // let minute = 1;
     let seconds: number = minute * 30;
     let textSec: any = '0';
@@ -105,5 +106,12 @@ export class LoginindetailsValueService {
       }
     }, 1000);
   }
-  
+
+  Test_newapi() {
+    let Dataarr = this.http.get("https://database-rn7j.onrender.com/Get_userData").subscribe(e => {
+      console.log(e);
+    })
+    console.log(Dataarr);
+  }
+
 }
