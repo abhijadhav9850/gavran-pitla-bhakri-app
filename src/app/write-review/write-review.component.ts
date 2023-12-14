@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./write-review.component.css']
 })
 export class WriteReviewComponent {
-
+  reviewData:any;
+  handleFileInput(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.reviewData.file = file;
+    }
+  }
 }
