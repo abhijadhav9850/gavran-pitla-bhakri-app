@@ -34,6 +34,7 @@ export class LoginindetailsValueService {
 
 
   orderlist: any = []
+  userData:any = []
 
   // logindeatilsvalue: any = [];
   // userinformation: any = [];
@@ -53,18 +54,15 @@ export class LoginindetailsValueService {
     }
   }
 
-
   async otpverifyapi() {
     this.order_list()
 
     // mobile no add api done
-
     await this.http.post("https://database-rn7j.onrender.com/Mobile_No/No_Add", this.adddata).subscribe(e => {
       console.log(e);
     })
 
     // // foodquantity data api done
-
     await this.http.post("https://database-rn7j.onrender.com/OrderData/Details", this.foodquantity).subscribe(e => {
       console.log(e);
     })
@@ -79,7 +77,6 @@ export class LoginindetailsValueService {
   //   console.log(this.orderPrice);
   // }
   // getUserInformation(){}
-
 
   timer(minute: any) {
     // let minute = 1;
@@ -110,10 +107,21 @@ export class LoginindetailsValueService {
   }
 
   Test_newapi() {
-    let Dataarr = this.http.get("https://database-rn7j.onrender.com/Get_userData").subscribe(e => {
+    // UserData collect in frontend
+    let User_Data = this.http.get("http://localhost:4000/Get_userData").subscribe(e => {
       console.log(e);
     })
-    console.log(Dataarr);
+
+    // Mobile_No Data collect in frontend
+    let MobileNo_Data = this.http.get("http://localhost:4000/Get_Mobile_No").subscribe(e => {
+      console.log(e);
+    })
+
+    // Mobile_No Data collect in frontend
+    
   }
 
+  getData() {
+    return this.http.get<any[]>("http://localhost:4000/Get_OrderData");
+  }
 }

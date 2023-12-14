@@ -67,8 +67,7 @@ export class OtpVerificationComponent {
       console.log('OTP is not valid');
     }else{
       console.log('Otp successful');
-
-      this.service.openAddress()
+      // this.service.openAddress()
       this.ls.otpverifyapi()
       console.log("Work");
       // this.authLoggedIn.next(true)

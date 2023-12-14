@@ -34,14 +34,14 @@ export class LogindetailsComponent {
   });
 
   submitForm() {
-    // Object.values(this.myForm.controls).forEach((control) => {
-    //   control.markAsTouched();
-    //   console.log(this.myForm)
-    //   this.data.userinformation.push()
-    // });
-    // if (this.myForm.valid) {
-    //   console.log('Form submitted:', this.myForm.value);
-    // }
+    Object.values(this.myForm.controls).forEach((control) => {
+      control.markAsTouched();
+      console.log(this.myForm)
+      // this.data.userinformation.push()
+    });
+    if (this.myForm.valid) {
+      console.log('Form submitted:', this.myForm.value);
+    }
 
     if(this.myForm.valid == false){
       this.submitted = true
@@ -53,10 +53,10 @@ export class LogindetailsComponent {
     
   }
 
-  valueget(){
-    // this.ls.logindeatilsvalue.push(this.myForm.value)   
+  valueget(){  
     console.log(this.ls.foodquantity);
-    this.http.post('http://localhost:4000/User/Add',this.myForm.value).subscribe(e=>{
+  
+    this.http.post('https://database-rn7j.onrender.com/User/Add',this.myForm.value).subscribe(e=>{
       console.log(e);
     })
   }
