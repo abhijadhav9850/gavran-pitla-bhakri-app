@@ -22,6 +22,38 @@ const pg = require("knex")({
   },
 });
 
+let Mobiledata =[];
+let UserData = []
+let OrderData = []
+
+// console.log(Mobiledata);
+
+app.get("/Get_OrderData", async (req,res)=>{
+  try {
+    let data = await pg.select('ID', 'bhakri','pithla','test','totalPrice')
+  .from('order_data_table')
+  OrderData.push(data)
+  res.json({success:true,message:OrderData})
+  } catch (error) {
+    console.log(err);
+  }
+})
+
+// let Mobiledata =[];
+// let UserData = []
+// let OrderData = []
+// console.log(Mobiledata);
+
+app.get("/Get_OrderData", async (req,res)=>{
+  try {
+    let data = await pg.select('ID', 'bhakri','pithla','test','totalPrice')
+  .from('order_data_table')
+  OrderData.push(data)
+  res.json({success:true,message:OrderData})
+  } catch (error) {
+    console.log(err);
+  }
+})
 
 app.post("/Mobile_No/Send_OTP", async (req, res) => {
   try {
@@ -53,7 +85,6 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
     //       res.status(200).json({ otpvalue: otpvalue, response: response.body });
     //     }
     //   });
-
     otpvalue = 1234;
     res.json({message:"otp sent sucessfully",otp : otpvalue});
   } catch (error) {
@@ -67,10 +98,12 @@ app.post("/Mobile_No/No_Add", (req, res) => {
     try {
       let result = await pg("mobile_no").insert([
         {
-          ID: `${req.body.ID}`,
+          // ID: `${req.body.ID}`,
           Mobile_No: `${req.body.Mobile_No}`,
         },
       ]);
+      // Mobiledata.push(req.body.Mobile_No)
+      // console.log(Mobiledata);
       res.json({ success: true, message: `No Added : ${result}` });
     } catch (err) {
       console.log(err);
@@ -96,7 +129,7 @@ app.post("/User/Add", (req, res) => {
     try {
       let result = await pg("users").insert([
         {
-          UserId: `${req.body.UserId}`,
+          // UserId: `${req.body.UserId}`,
           UserName: `${req.body.UserName}`,
           UserAddress: `${req.body.UserAddress}`,
           UserCity: `${req.body.UserCity}`,
@@ -169,7 +202,7 @@ app.post("/OrderData/Details", (req, res) => {
     try {
       let result = await pg("order_data_table").insert([
         {
-          ID: `${req.body.ID}`,
+          // ID: `${req.body.ID}`,
           bhakri: `${req.body.bhakri}`,
           pithla: `${req.body.pithla}`,
           test: `${req.body.test}`,
@@ -216,6 +249,29 @@ app.post("/User/Delete", (req, res) => {
         .where("UserName", `${req.params.UserName}`)
         .del();
       res.json({ success: true, message: `User Deleted : ${result}` });
+    } catch (err) {
+      console.log(err);
+    }
+  }, 5000);
+});
+app.post("/UserAll/Data", (req, res) => {
+  setTimeout(async () => {
+    try {
+      console.log(req.body);
+      return
+      let result = await pg("user_data").insert([
+        {
+          Mobile_No: `${req.body.Mobile_No}`,
+          UserName: `${req.body.UserName}`,
+          UserAddress: `${req.body.UserAddress}`,
+          UserCity: `${req.body.UserCity}`,
+          bhakri: `${req.body.bhakri}`,
+          pithla: `${req.body.pithla}`,
+          test: `${req.body.test}`,
+          totalPrice: `${req.body.totalPrice}`,
+        },
+      ]);
+      res.json({ success: true, message: `No Added : ${result}` });
     } catch (err) {
       console.log(err);
     }
