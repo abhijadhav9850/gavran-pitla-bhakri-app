@@ -20,7 +20,7 @@ export class OtpVerificationComponent {
 
   timeout = setInterval(() => {
     if(this.timer==0){
-      console.log('finished');
+      // console.log('finished');
       clearInterval(this.timer);
     }
     else if (this.timer >= 0) {
@@ -29,9 +29,7 @@ export class OtpVerificationComponent {
   }, 1000);
   
   
-  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService, public http:HttpClient, public router: Router){
-    
-  }
+  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService, public http:HttpClient, public router: Router){}
 
     otpForm = this.fb.group({
     number: ['', [Validators.required ,]],
@@ -41,7 +39,7 @@ export class OtpVerificationComponent {
   }); 
 
   optverify() {
-    this.service.openAddress()
+    // this.service.openAddress()
     // console.log(this.ls.otpvalue);
     Object.values(this.otpForm.controls).forEach((control) => {
       control.markAsTouched();
@@ -59,7 +57,7 @@ export class OtpVerificationComponent {
       console.log('OTP is not valid');
     }else{
       console.log('Otp successful');
-      // this.service.openAddress()
+      this.service.openAddress()
       this.ls.otpverifyapi()
       console.log("Work");
       // this.authLoggedIn.next(true)
