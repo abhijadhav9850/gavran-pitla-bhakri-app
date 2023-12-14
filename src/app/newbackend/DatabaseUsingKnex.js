@@ -22,6 +22,28 @@ const pg = require("knex")({
   },
 });
 
+let Mobiledata =[];
+let UserData = []
+let OrderData = []
+
+// console.log(Mobiledata);
+
+app.get("/Get_OrderData", async (req,res)=>{
+  try {
+    let data = await pg.select('ID', 'bhakri','pithla','test','totalPrice')
+  .from('order_data_table')
+  OrderData.push(data)
+  res.json({success:true,message:OrderData})
+  } catch (error) {
+    console.log(err);
+  }
+})
+
+
+
+
+
+
 // otp send working
 app.post("/Mobile_No/Send_OTP", async (req, res) => {
   try {
@@ -68,10 +90,12 @@ app.post("/Mobile_No/No_Add", async (req, res) => {
     try {
       let result = await pg("mobile_no_table").insert([
         {
-          ID: `${req.body.ID}`,
+          // ID: `${req.body.ID}`,
           Mobile_No: `${req.body.Mobile_No}`,
         },
       ]);
+      // Mobiledata.push(req.body.Mobile_No)
+      // console.log(Mobiledata);
       res.json({ success: true, message: `No Added : ${result}` });
     } catch (err) {
       console.log(err);
@@ -97,7 +121,7 @@ app.post("/User/Add", (req, res) => {
     try {
       let result = await pg("users").insert([
         {
-          UserId: `${req.body.UserId}`,
+          // UserId: `${req.body.UserId}`,
           UserName: `${req.body.UserName}`,
           UserAddress: `${req.body.UserAddress}`,
           UserCity: `${req.body.UserCity}`,
@@ -115,7 +139,7 @@ app.post("/OrderData/Details", (req, res) => {
     try {
       let result = await pg("order_data_table").insert([
         {
-          ID: `${req.body.ID}`,
+          // ID: `${req.body.ID}`,
           bhakri: `${req.body.bhakri}`,
           pithla: `${req.body.pithla}`,
           test: `${req.body.test}`,
@@ -190,6 +214,30 @@ app.post("/UserAll/Data", (req, res) => {
     }
   }, 5000);
 });
+
+// get Data 
+app.get("/Get_Mobile_No", async (req,res)=>{
+  try {
+    let data = await pg.select('ID', 'Mobile_No')
+  .from('mobile_no_table')
+  Mobiledata.push(data)
+  res.json({success:true,message:Mobiledata})
+  } catch (error) {
+    console.log(err);
+  }
+})
+
+app.get("/Get_userData", async (req,res)=>{
+  try {
+    let data = await pg.select('ID', 'UserName','UserAddress','UserCity')
+  .from('users')
+  UserData.push(data)
+  res.json({success:true,message:UserData})
+  // console.log(UserData);
+  } catch (error) {
+    console.log(err);
+  }
+})
 
 app.listen(port, (req, res) => {
   console.log(`Using Port http://localhost:${port}/`);
