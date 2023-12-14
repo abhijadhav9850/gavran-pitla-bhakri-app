@@ -106,20 +106,25 @@ export class LoginindetailsValueService {
 
   Test_newapi() {
     // UserData collect in frontend
-    let User_Data = this.http.get("http://localhost:4000/Get_userData").subscribe(e => {
+    let User_Data = this.http.get("https://database-rn7j.onrender.com/Get_userData").subscribe(e => {
       console.log(e);
     })
 
     // Mobile_No Data collect in frontend
-    let MobileNo_Data = this.http.get("http://localhost:4000/Get_Mobile_No").subscribe(e => {
+    let MobileNo_Data = this.http.get("https://database-rn7j.onrender.com/Get_Mobile_No").subscribe(e => {
       console.log(e);
     })
+
+    this.http.get<any[]>("https://database-rn7j.onrender.com/Get_OrderData").subscribe(e => {
+      console.log(e);
+    })
+
 
     // Mobile_No Data collect in frontend
     
   }
 
   getData() {
-    return this.http.get<any[]>("http://localhost:4000/Get_OrderData");
+    return this.http.get<any[]>("https://database-rn7j.onrender.com/Get_OrderData");
   }
 }

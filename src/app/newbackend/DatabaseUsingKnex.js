@@ -25,6 +25,7 @@ const pg = require("knex")({
 let Mobiledata = [];
 let UserData = []
 let OrderData = []
+let OrderData1 = []
 
 // otp send working
 app.post("/Mobile_No/Send_OTP", async (req, res) => {
@@ -238,6 +239,43 @@ app.get("/Get_OrderData", async (req, res) => {
     console.log(err);
   }
 })
+
+app.get("/getData", async (req, res) => {
+  try {
+    let allData = []; // Array to hold all the data
+
+    let data1 = await pg.select('ID', 'Mobile_No').from('mobile_no_table');
+    allData.push(...data1);
+
+    let data2 = await pg.select('ID', 'UserName', 'UserAddress', 'UserCity').from('users');
+    allData.push(...data2);
+
+    let data3 = await pg.select('ID', 'bhakri', 'pithla', 'test', 'totalPrice').from('order_data_table');
+    allData.push(...data3);
+
+    // console.log(allData); // Log the combined array of all data
+
+    let obj = allData.filter(e=>e.Mobile_No == '9011446522')
+
+    let obj2 
+    function findData(ID){
+      return obj2 = allData.filter(e=>e.ID == ID) 
+    }
+    console.log(obj2);
+
+
+    obj.forEach(e=>{
+      findData(e.ID)
+    })
+
+    res.json({ success: true, message: allData });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+});
+
+
 
 app.listen(port, (req, res) => {
   console.log(`Using Port http://localhost:${port}/`);
