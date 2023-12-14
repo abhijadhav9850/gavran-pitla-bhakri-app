@@ -4,8 +4,6 @@ import { PopupHandingService } from 'src/popup-handing.service';
 import { Subscriber } from 'rxjs';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginindetailsValueService } from 'src/loginindetails-value.service';
-import { Router } from '@angular/router';
-import { LoginLogoutService } from '../login-logout.service';
 
 @Component({
   selector: 'app-logindetails',

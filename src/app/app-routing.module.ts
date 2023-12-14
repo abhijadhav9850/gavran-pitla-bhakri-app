@@ -19,7 +19,7 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
 import { UserSettingComponent } from './user-setting/user-setting.component';
 import { OrderInfoComponent } from './order-info/order-info.component';
 import { AuthGuard } from './auth.guard';
-import { LoginLogoutService } from './login-logout.service';
+
 
 
 
@@ -46,6 +46,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
-  providers: [AuthGuard, LoginLogoutService], 
+  providers: [AuthGuard,], 
 })
 export class AppRoutingModule { }
