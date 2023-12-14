@@ -34,7 +34,7 @@ export class LogininphoneComponent {
       // mobile no to send otp api done
       console.log(this.ls.adddata);
       
-      await this.http.post("http://localhost:4000/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
+      await this.http.post("https://database-rn7j.onrender.com/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
          console.log(e);
          if(e.message === "otp sent sucessfully"){
           this.ls.timer(1)

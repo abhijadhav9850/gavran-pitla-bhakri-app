@@ -46,15 +46,25 @@ export class OtpVerificationComponent {
       control.markAsTouched();
     });
 
-    console.log(this.otpForm.value);     
-
-     this.http.post("http://localhost:4000/GetOTP",this.otpForm.value).subscribe(e=>{
-    // this.otpvalue = e
-    console.log(e); 
+    let otp = `${this.otpForm.value.number}${this.otpForm.value.number2}${this.otpForm.value.number3}${this.otpForm.value.number4}`
+    let obj = Number(otp)   
+    this.ls.otpnumber = {
+      otp : obj
+     }
+     
+    //  otp verify and go to next page api done
+    this.http.post("https://database-rn7j.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{   
+    if(e.message === 'Invalid OTP'){      
+      console.log('OTP is not valid');
+    }else{
+      console.log('Otp successful');
+      // this.service.openAddress()
+      this.ls.otpverifyapi()
+      console.log("Work");
+      // this.authLoggedIn.next(true)
+      // this.router.navigate(['order-his'])
+    }
     })
-  }
-  otparr(otparr: any) {
-    throw new Error('Method not implemented.');
   }
   
   otp: string[] = ['', '', '', ''];
