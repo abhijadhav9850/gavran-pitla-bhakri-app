@@ -6,7 +6,7 @@ const port = 4000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.json());
+app.use(express.json()); 
 app.use(cors());
 
 const pg = require("knex")({
@@ -69,7 +69,6 @@ app.post("/Mobile_No/No_Add", (req, res) => {
         {
           ID: `${req.body.ID}`,
           Mobile_No: `${req.body.Mobile_No}`,
-          
         },
       ]);
       res.json({ success: true, message: `No Added : ${result}` });
