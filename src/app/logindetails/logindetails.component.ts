@@ -49,17 +49,16 @@ export class LogindetailsComponent {
       this.submitted = false;
       console.log(this.myForm.value);
     }
-    console.log(this.myForm.value); 
+    console.log(this.myForm.value);
+    
   }
 
   valueget(){
     // this.ls.logindeatilsvalue.push(this.myForm.value)   
     console.log(this.ls.foodquantity);
-    // logindetails data send database and add api
-    this.http.post('https://database-rn7j.onrender.com/User/Add',this.myForm.value).subscribe(e=>{
+    this.http.post('http://localhost:4000/User/Add',this.myForm.value).subscribe(e=>{
       console.log(e);
     })
-    // this.ls.Test_newapi()
   }
 
   get myFormControl() {

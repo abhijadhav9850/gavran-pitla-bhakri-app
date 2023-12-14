@@ -46,10 +46,11 @@
         <label for="address" class="block text-gray-700 text-xs font-bold mb-2">City</label>
         <!-- <input type="text" placeholder="City" id="city" formControlName="UserCity" class="w-full md:w-64 p-2 border rounded-md focus:outline-none focus:border-blue-500"> -->
 
-        <select class="w-3/4" name="cars" id="cars" formControlName="UserCity">
+        <select class="w-3/4 p-2 border rounded-md focus:outline-none focus:border-blue-500" name="cars" id="cars" formControlName="UserCity">
             <option value="">Select Your City</option>
             <option *ngFor="let city of citys" [value]="city.value">{{city.name}}</option>
         </select>
+        <br>
         <span style="color: red;" class="text-danger"
             *ngIf="(myFormControl.UserCity.touched || submitted) && myFormControl.UserCity.errors?.['required']">
             Enter Your City

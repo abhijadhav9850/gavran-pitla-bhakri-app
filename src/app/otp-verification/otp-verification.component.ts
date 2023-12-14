@@ -14,24 +14,32 @@ import { Router } from '@angular/router';
 })
 export class OtpVerificationComponent {
 
-  invalid = false
-  display: any;
-  timer : any = 30;
-
-  timeout = setInterval(() => {
-    if(this.timer==0){
-      console.log('finished');
-      clearInterval(this.timer);
-    }
-    else if (this.timer >= 0) {
-      this.timer--
-    }
-  }, 1000);
-  
-  
   constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService, public http:HttpClient, public router: Router){
     
   }
+
+  invalid = false
+  display: any;
+  // timer : any = 30;
+
+  
+
+  // timeout(){
+  //   setTimeout(() => {
+  //   if(this.timer==0){
+  //     console.log('finished');
+      
+  //   }
+  //   else if (this.timer >= 0) {
+  //     this.timer--
+  //     this.timeout()
+  //   }
+  // }, 1000);
+  // }
+  
+
+
+
 
     otpForm = this.fb.group({
     number: ['', [Validators.required ,]],
@@ -41,7 +49,7 @@ export class OtpVerificationComponent {
   }); 
 
   optverify() {
-    this.service.openAddress()
+    // this.service.openAddress()
     // console.log(this.ls.otpvalue);
     Object.values(this.otpForm.controls).forEach((control) => {
       control.markAsTouched();
@@ -54,12 +62,13 @@ export class OtpVerificationComponent {
      }
      
     //  otp verify and go to next page api done
-    this.http.post("https://database-rn7j.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{   
+    this.http.post("https://database-rn7j.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
     if(e.message === 'Invalid OTP'){      
       console.log('OTP is not valid');
     }else{
       console.log('Otp successful');
-      // this.service.openAddress()
+
+      this.service.openAddress()
       this.ls.otpverifyapi()
       console.log("Work");
       // this.authLoggedIn.next(true)
@@ -95,19 +104,20 @@ export class OtpVerificationComponent {
 
   nextpopup() {
     if (
-      this.otpForm.get('number')?.invalid ||
+      this.otpForm.get('number')?.invalid  ||
       this.otpForm.get('number2')?.invalid ||
       this.otpForm.get('number3')?.invalid ||
-      this.otpForm.get('number4')?.invalid 
+      this.otpForm.get('number4')?.invalid ||
+      this.ls.display == "00:00"
     ) {
       console.log("Invalid values detected");
-      this.service.address = false;
       this.invalid = true;
     } else {
       console.log("No error, all values are present");
       this.invalid = false;
-      this.service.address = true; 
+      this.service.openAddress()
     }
+
   }
 
   
