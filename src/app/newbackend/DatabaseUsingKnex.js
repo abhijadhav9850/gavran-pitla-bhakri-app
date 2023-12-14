@@ -127,9 +127,8 @@ app.post("/OTP/GetOTP", async (req, res) => {
 app.post("/User/Add", (req, res) => {
   setTimeout(async () => {
     try {
-      let result = await pg("users").insert([
+      let result = await pg("untitled_table_191").insert([
         {
-          // UserId: `${req.body.UserId}`,
           UserName: `${req.body.UserName}`,
           UserAddress: `${req.body.UserAddress}`,
           UserCity: `${req.body.UserCity}`,
@@ -156,45 +155,6 @@ app.post("/MobileNo/Add", (req, res) => {
       console.log(err);
     }
   }, 5000);
-});
-
-app.post("/Mobile_No/Send_OTP", async (req, res) => {
-  try {
-    // const apiKey =
-    //   "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
-    // const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
-
-    //  otpvalue = Math.floor(1000 + Math.random() * 8888);
-
-    // const smsData = {
-    //   variables_values: otpvalue,
-    //   route: "otp",
-    //   numbers: req.body.Mobile_No,
-    // };
-
-    // unirest
-    //   .post(apiUrl)
-    //   .headers({
-    //     authorization: apiKey,
-    //   })
-    //   .form(smsData)
-    //   .end((response) => {
-    //     if (response.error) {
-    //       console.error("Error:", response.error);
-    //       res.status(500).json({ error: "Internal Server Error" });
-    //     } else {
-    //       console.log(response.body);
-    //       // res.status(200).json(response.body);
-    //       res.status(200).json({ otpvalue: otpvalue, response: response.body });
-    //     }
-    //   });
-
-    otpvalue = 1234;
-    res.json(`otpvalue = ${otpvalue}`);
-  } catch (error) {
-    console.log("Unable to Send OTP:", error);
-    res.status(500).json({ success: false, message: "Failed to send OTP" });
-  }
 });
 
 app.post("/OrderData/Details", (req, res) => {
@@ -254,6 +214,7 @@ app.post("/User/Delete", (req, res) => {
     }
   }, 5000);
 });
+
 app.post("/UserAll/Data", (req, res) => {
   setTimeout(async () => {
     try {
