@@ -85,7 +85,6 @@ export class LoginindetailsValueService {
     let statSec: number = 30;
 
     const prefix = minute < 10 ? '0' : '';
-
     const timer = setInterval(() => {
       seconds--;
       if (statSec != 0) statSec--;
@@ -96,6 +95,9 @@ export class LoginindetailsValueService {
       } else textSec = statSec;
 
       this.display = `${prefix}${Math.floor(seconds / 60)}:${textSec}`;
+
+      // console.log(typeof(this.display));
+      
 
       if (seconds == 0) {
         console.log('finished');

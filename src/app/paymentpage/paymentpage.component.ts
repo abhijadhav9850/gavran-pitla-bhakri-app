@@ -20,6 +20,7 @@ export class PaymentpageComponent {
     }else{
       this.router.navigate(['/order-his']);
       this.ls.Test_newapi()
+      this.ls.show_modify_popup()
     }
     this.service.closepopup()
   }
