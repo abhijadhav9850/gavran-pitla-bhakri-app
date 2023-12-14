@@ -77,7 +77,7 @@ pushValueToService() {
   }
 
   // this.data.order_list()
-  this.data.show_modify_popup()
+  // this.data.show_modify_popup()
 
 
   // this.data.getOrderPrice()

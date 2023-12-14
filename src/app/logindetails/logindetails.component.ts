@@ -19,6 +19,14 @@ export class LogindetailsComponent {
   constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService,public http:HttpClient, public data : LoginindetailsValueService){
     
   }
+
+  isOpen: boolean = false;
+
+toggleDropdown() {
+  this.isOpen = !this.isOpen;
+}
+
+
   citys: any[] = [
     { name: 'Vashi', value: 'Vashi' },
     { name: 'Sanpada', value: 'Sanpada' },
@@ -49,7 +57,8 @@ export class LogindetailsComponent {
       this.submitted = false;
       console.log(this.myForm.value);
     }
-    console.log(this.myForm.value); 
+    console.log(this.myForm.value);
+    
   }
 
   valueget(){  
@@ -58,7 +67,6 @@ export class LogindetailsComponent {
     this.http.post('https://database-rn7j.onrender.com/User/Add',this.myForm.value).subscribe(e=>{
       console.log(e);
     })
-    // this.ls.Test_newapi()
   }
 
   get myFormControl() {
