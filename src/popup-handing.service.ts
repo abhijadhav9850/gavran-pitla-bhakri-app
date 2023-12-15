@@ -33,7 +33,7 @@ export class PopupHandingService {
     'width' : '100%',
     'transition': 'transform 0.4s ease-in-out',
     'margin-top': '50vh',
-    'box-shadow' : '0px 0px 20px lightgray',
+    'box-shadow' : '0px 0px 20px black',
     'z-index': '-1',
     'background-color' : '#fff',
     'overflow' : 'auto',
@@ -61,7 +61,7 @@ export class PopupHandingService {
       
       this.backgroundblur = {
         'filter' : 'blur(2px)',
-        'transition' : '0.5s ease-in-out',
+        'transition' : '0.5s ease-out',
         'background' : 'linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),url(../../assets/image 2.jpg))',
       }
       
@@ -70,9 +70,9 @@ export class PopupHandingService {
         // backgroundColor: 'lightgreen',
         // color: 'white',
         'width' : '100%',
-        'transition': 'margin-top 0.5s ease-in-out',
+        'transition': 'margin-top 0.5s ease-out',
         'margin-top': '-60vh',
-        'box-shadow' : '0px 0px 50px gray',
+        'box-shadow' : '0px 0px 500px 1px black',
         'z-index': '1',
         'background-color' : '#fff',
         'overflow' : 'hidden',

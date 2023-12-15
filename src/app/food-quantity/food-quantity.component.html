@@ -1,63 +1,65 @@
-<div class="p-3 flex flex-col justify-end">
-    <header class="flex justify-between items-center">
-        <svg (click)="service.closepopup()" xmlns="http://www.w3.org/2000/svg" width="28" height="28"
-            viewBox="0 0 28 28" fill="none" class="left-0 h-6 w-6 -ml-[11px] -mt-[1px] ">
-            <path
-                d="M16.8517 8.23502L9.16424 13.7975C9.13229 13.8205 9.10628 13.8508 9.08834 13.8859C9.07039 13.9209 9.06104 13.9597 9.06104 13.9991C9.06104 14.0385 9.07039 14.0773 9.08834 14.1123C9.10628 14.1473 9.13229 14.1776 9.16424 14.2006L16.8517 19.7631C17.0174 19.8819 17.2486 19.7631 17.2486 19.56V18.0944C17.2486 17.7756 17.0955 17.4725 16.8361 17.285L12.2924 14.0006L16.8361 10.7131C17.0955 10.5256 17.2486 10.2256 17.2486 9.90376V8.43814C17.2486 8.23502 17.0174 8.11627 16.8517 8.23502Z"
-                fill="black" fill-opacity="0.85" />
-            <path
-                d="M14 0C6.26875 0 0 6.26875 0 14C0 21.7313 6.26875 28 14 28C21.7313 28 28 21.7313 28 14C28 6.26875 21.7313 0 14 0ZM14 25.625C7.58125 25.625 2.375 20.4188 2.375 14C2.375 7.58125 7.58125 2.375 14 2.375C20.4188 2.375 25.625 7.58125 25.625 14C25.625 20.4188 20.4188 25.625 14 25.625Z"
-                fill="black" fill-opacity="0.85" />
-        </svg>
-        <p class="font-Roboto font-bold text-start text-xl mt-0">The Complete Meal</p>
-        <div> </div>
-    </header>
-    <div class="flex gap-16 mt-4">
-        <div>
-            <div class="flex gap-3 mt-5">
-                <img src="../../assets/Group.png" alt="">
-                <p class="font-Roboto font-bold text-xs">Bhakri</p>
+<div class="p-3 flex h-[100%] flex-col justify-between items-stretch">
+    <div>
+        <header class="flex justify-between items-center">
+            <svg (click)="service.closepopup()" xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                viewBox="0 0 28 28" fill="none" class="left-0 h-6 w-6 -ml-[11px] -mt-[1px] ">
+                <path
+                    d="M16.8517 8.23502L9.16424 13.7975C9.13229 13.8205 9.10628 13.8508 9.08834 13.8859C9.07039 13.9209 9.06104 13.9597 9.06104 13.9991C9.06104 14.0385 9.07039 14.0773 9.08834 14.1123C9.10628 14.1473 9.13229 14.1776 9.16424 14.2006L16.8517 19.7631C17.0174 19.8819 17.2486 19.7631 17.2486 19.56V18.0944C17.2486 17.7756 17.0955 17.4725 16.8361 17.285L12.2924 14.0006L16.8361 10.7131C17.0955 10.5256 17.2486 10.2256 17.2486 9.90376V8.43814C17.2486 8.23502 17.0174 8.11627 16.8517 8.23502Z"
+                    fill="black" fill-opacity="0.85" />
+                <path
+                    d="M14 0C6.26875 0 0 6.26875 0 14C0 21.7313 6.26875 28 14 28C21.7313 28 28 21.7313 28 14C28 6.26875 21.7313 0 14 0ZM14 25.625C7.58125 25.625 2.375 20.4188 2.375 14C2.375 7.58125 7.58125 2.375 14 2.375C20.4188 2.375 25.625 7.58125 25.625 14C25.625 20.4188 20.4188 25.625 14 25.625Z"
+                    fill="black" fill-opacity="0.85" />
+            </svg>
+            <p class="font-Roboto font-bold text-start text-xl mt-0">The Complete Meal</p>
+            <div> </div>
+        </header>
+        <div class="flex gap-16 mt-5">
+            <div>
+                <div class="flex gap-3 mt-5">
+                    <img src="../../assets/Group.png" alt="">
+                    <p class="font-Roboto font-bold text-xs">Bhakri</p>
+                </div>
+                <div class="flex gap-3 mt-5">
+                    <img src="../../assets/Vector.png" alt="">
+                    <p class="font-Roboto font-bold text-xs">Pitla</p>
+                </div>
+                <div class="flex gap-3 mt-5">
+                    <img src="../../assets/Group 9.png" alt="">
+                    <p class="font-Roboto font-bold text-xs">Thecha</p>
+                </div>
+                <div class="flex gap-3 mt-5">
+                    <img src="../../assets/Vector (1).png" alt="">
+                    <p class="font-Roboto font-bold text-xs">Onion</p>
+                </div>
             </div>
-            <div class="flex gap-3 mt-5">
-                <img src="../../assets/Vector.png" alt="">
-                <p class="font-Roboto font-bold text-xs">Pitla</p>
-            </div>
-            <div class="flex gap-3 mt-5">
-                <img src="../../assets/Group 9.png" alt="">
-                <p class="font-Roboto font-bold text-xs">Thecha</p>
-            </div>
-            <div class="flex gap-3 mt-5">
-                <img src="../../assets/Vector (1).png" alt="">
-                <p class="font-Roboto font-bold text-xs">Onion</p>
+            <div class="mt-5 items-center">
+                <div class="flex w-[80px] justify-between">
+                    <img (click)="bhakriDecrement()" class="h-[16px] w-16px mt-[5px]" src="../../assets/Button (1).png"
+                        alt="">
+                    <p>{{bhakri}}</p>
+                    <img (click)="bhakriIncrement()" class="h-[16px] w-16px mt-[5px]" src="../../assets/Button.png" alt="">
+                </div>
+                <div class="flex w-[80px] justify-between mt-4">
+                    <img (click)="pithlaDecrement()" class="h-[16px] w-16px mt-[5px]" src="../../assets/Button (1).png"
+                        alt="">
+                    <p>{{pithla}}</p>
+                    <img (click)="pithlaIncrement()" class="h-[16px] w-16px mt-[5px]" src="../../assets/Button.png" alt="">
+                </div>
             </div>
         </div>
-        <div class="mt-5 items-center">
-            <div class="flex w-[80px] justify-between">
-                <img (click)="bhakriDecrement()" class="h-[16px] w-16px mt-[5px]" src="../../assets/Button (1).png"
-                    alt="">
-                <p>{{bhakri}}</p>
-                <img (click)="bhakriIncrement()" class="h-[16px] w-16px mt-[5px]" src="../../assets/Button.png" alt="">
+        <div class="flex flex-col gap-2 mt-[38px] ">
+            <span class="text-[18px] font-bold">Food Test</span>
+            <div class="flex justify-between">
+                <span class="font-Roboto font-bold text-xs">Medium</span>
+                <input (input)="seleted = true" value="Medium" [checked]="seleted" class="rounded-md" type="checkbox">
             </div>
-            <div class="flex w-[80px] justify-between mt-4">
-                <img (click)="pithlaDecrement()" class="h-[16px] w-16px mt-[5px]" src="../../assets/Button (1).png"
-                    alt="">
-                <p>{{pithla}}</p>
-                <img (click)="pithlaIncrement()" class="h-[16px] w-16px mt-[5px]" src="../../assets/Button.png" alt="">
+            <div class="flex justify-between">
+                <span class="font-Roboto font-bold text-xs">Spicy</span>
+                <input (input)="seleted = false" value="Spicy" [checked]="!seleted" class="rounded-md" type="checkbox">
             </div>
         </div>
     </div>
-    <div class="flex flex-col gap-2 mt-[38px] ">
-        <span class="text-[18px] font-bold">Food Test</span>
-        <div class="flex justify-between">
-            <span class="font-Roboto font-bold text-xs">Medium</span>
-            <input (input)="seleted = true" value="Medium" [checked]="seleted" class="rounded-md" type="checkbox">
-        </div>
-        <div class="flex justify-between">
-            <span class="font-Roboto font-bold text-xs">Spicy</span>
-            <input (input)="seleted = false" value="Spicy" [checked]="!seleted" class="rounded-md" type="checkbox">
-        </div>
-    </div>
-    <footer class="flex justify-between items-center mt-10">
+    <footer class="flex justify-between items-center mb-2">
         <div class="flex flex-col">
             <p class="text-xs font-Roboto font-medium">Price</p>
             <p class="text-xl font-bold">₹{{bhakriPrice + pithlaPrice}}</p>
