@@ -48,7 +48,7 @@ export class OtpVerificationComponent {
     number4: ['', [Validators.required ,]],
   }); 
 
-  optverify() {
+  async optverify() {
     // this.service.openAddress()
     // console.log(this.ls.otpvalue);
     Object.values(this.otpForm.controls).forEach((control) => {
@@ -62,7 +62,7 @@ export class OtpVerificationComponent {
      }
      
     //  otp verify and go to next page api done
-    this.http.post("https://gavranpitlabhakri-database.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
+    await this.http.post("https://gavranpitlabhakri-database.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
       // console.log(e);
       
     if(e.message == 'OTP Verified'){  

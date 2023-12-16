@@ -16,9 +16,7 @@ export class LogindetailsComponent {
   submitted = false
 
 
-  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService,public http:HttpClient, public data : LoginindetailsValueService){
-    
-  }
+  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService,public http:HttpClient, public data : LoginindetailsValueService){}
 
   isOpen: boolean = false;
 
@@ -47,9 +45,9 @@ toggleDropdown() {
       console.log(this.myForm)
       // this.data.userinformation.push()
     });
-    if (this.myForm.valid) {
-      console.log('Form submitted:', this.myForm.value);
-    }
+    // if (this.myForm.valid) {
+    //   console.log('Form submitted:', this.myForm.value);
+    // }
 
     if(this.myForm.valid == false){
       this.submitted = true
