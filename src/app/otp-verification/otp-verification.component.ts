@@ -62,14 +62,17 @@ export class OtpVerificationComponent {
      }
      
     //  otp verify and go to next page api done
-    this.http.post("https://database-rn7j.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
-    if(e.message === 'Invalid OTP'){      
-      console.log('OTP is not valid');
-    }else{
+    this.http.post("https://gavranpitlabhakri-database.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
+      // console.log(e);
+      
+    if(e.message == 'OTP Verified'){  
       console.log('Otp successful');
       this.service.openAddress()
       this.ls.otpverifyapi()
-      console.log("Work");
+      console.log("Work");    
+    }else{
+      console.log('OTP is not valid');
+      
       // this.authLoggedIn.next(true)
       // this.router.navigate(['order-his'])
     }
