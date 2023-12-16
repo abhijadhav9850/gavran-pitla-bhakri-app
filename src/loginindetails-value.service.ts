@@ -58,12 +58,12 @@ export class LoginindetailsValueService {
     this.order_list()
 
     // mobile no add api done
-    await this.http.post("https://database-rn7j.onrender.com/Mobile_No/No_Add", this.adddata).subscribe(e => {
+    await this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/No_Add", this.adddata).subscribe(e => {
       console.log(e);
     })
 
     // // foodquantity data api done
-    await this.http.post("https://database-rn7j.onrender.com/OrderData/Details", this.foodquantity).subscribe(e => {
+    await this.http.post("https://gavranpitlabhakri-database.onrender.com/OrderData/Details", this.foodquantity).subscribe(e => {
       console.log(e);
     })
     this.authLoggedIn.next(true)
@@ -108,16 +108,16 @@ export class LoginindetailsValueService {
 
   Test_newapi() {
     // UserData collect in frontend
-    let User_Data = this.http.get("https://database-rn7j.onrender.com/Get_userData").subscribe(e => {
+    let User_Data = this.http.get("https://gavranpitlabhakri-database.onrender.com/Get_userData").subscribe(e => {
       console.log(e);
     })
 
     // Mobile_No Data collect in frontend
-    let MobileNo_Data = this.http.get("https://database-rn7j.onrender.com/Get_Mobile_No").subscribe(e => {
+    let MobileNo_Data = this.http.get("https://gavranpitlabhakri-database.onrender.com/Get_Mobile_No").subscribe(e => {
       console.log(e);
     })
 
-    this.http.get<any[]>("https://database-rn7j.onrender.com/Get_OrderData").subscribe(e => {
+    this.http.get<any[]>("https://gavranpitlabhakri-database.onrender.com/Get_OrderData").subscribe(e => {
       console.log(e);
     })
 
@@ -127,6 +127,6 @@ export class LoginindetailsValueService {
   }
 
   getData() {
-    return this.http.get<any[]>("https://database-rn7j.onrender.com/Get_OrderData");
+    return this.http.get<any[]>("https://gavranpitlabhakri-database.onrender.com/Get_OrderData");
   }
 }

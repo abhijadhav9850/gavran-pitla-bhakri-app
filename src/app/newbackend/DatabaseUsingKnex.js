@@ -2,6 +2,7 @@ var bodyParser = require("body-parser");
 const express = require("express");
 var cors = require("cors");
 const app = express();
+var unirest = require('unirest');
 const port = 4000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -26,41 +27,38 @@ let Mobiledata = [];
 let UserData = []
 let OrderData = []
 let OrderData1 = []
+let otpvalue;
 
 // otp send working
+
 app.post("/Mobile_No/Send_OTP", async (req, res) => {
   try {
-    // const apiKey =
-    //   "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
-    // const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
+    const apiKey = "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
+    const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
 
-    //  otpvalue = Math.floor(1000 + Math.random() * 8888);
+     otpvalue = Math.floor(1000 + Math.random() * 8888);
 
-    // const smsData = {
-    //   variables_values: otpvalue,
-    //   route: "otp",
-    //   numbers: req.body.Mobile_No,
-    // };
+    const smsData = {
+      variables_values: otpvalue,
+      route: "otp",
+      numbers: req.body.Mobile_No,
+    };
 
-    // unirest
-    //   .post(apiUrl)
-    //   .headers({
-    //     authorization: apiKey,
-    //   })
-    //   .form(smsData)
-    //   .end((response) => {
-    //     if (response.error) {
-    //       console.error("Error:", response.error);
-    //       res.status(500).json({ error: "Internal Server Error" });
-    //     } else {
-    //       console.log(response.body);
-    //       // res.status(200).json(response.body);
-    //       res.status(200).json({ otpvalue: otpvalue, response: response.body });
-    //     }
-    //   });
-
-    otpvalue = 1234;
-    res.json({ message: "otp sent sucessfully", otp: otpvalue });
+    unirest
+      .post(apiUrl)
+      .headers({
+        authorization: apiKey,
+      })
+      .form(smsData)
+      .end((response) => {
+        if (response.error) {
+          console.error("Error:", response.error);
+          res.status(500).json({ error: "Internal Server Error" });
+        } else {
+          console.log(response.body);
+          res.status(200).json({ otpvalue: otpvalue, response: response.body });
+        }
+      });
   } catch (error) {
     console.log("Unable to Send OTP:", error);
     res.status(500).json({ success: false, message: "Failed to send OTP" });
@@ -87,6 +85,7 @@ app.post("/Mobile_No/No_Add", async (req, res) => {
 });
 
 app.post("/OTP/GetOTP", async (req, res) => {
+  console.log(req.body);
   try {
     if (req.body.otp == otpvalue) {
       res.json({ success: true, message: "OTP Verified" });

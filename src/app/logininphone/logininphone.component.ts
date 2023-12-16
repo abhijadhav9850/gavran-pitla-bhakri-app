@@ -27,21 +27,21 @@ export class LogininphoneComponent {
     if(this.phoneForm.valid == true){
       this.service.openOtp()
       const formData = {
-        ID:2,
+        // ID:2,
         Mobile_No: this.phoneForm.value.Mobile_No
       }
       this.ls.adddata = formData
       // mobile no to send otp api done
       console.log(this.ls.adddata);
       
-      await this.http.post("https://database-rn7j.onrender.com/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
+      await this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
          console.log(e);
-         if(e.message === "otp sent sucessfully"){
+         if(e.message === "SMS sent successfully"){
           this.ls.timer(1)
          }
       })
   
-        this.phoneForm.reset()
+        // this.phoneForm.reset()
     }else{
       this.submitted = true
     }
