@@ -40,8 +40,9 @@ export class LoginindetailsValueService {
   // userinformation: any = [];
 
 
-  sendotp(){
-     this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/Send_OTP",this.adddata).subscribe((e:any)=>{
+  async sendotp(){
+    console.log(this.adddata);
+    await this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/Send_OTP",this.adddata).subscribe((e:any)=>{
       console.log(e);
    })
   }

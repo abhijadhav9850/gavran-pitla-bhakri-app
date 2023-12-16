@@ -34,8 +34,9 @@ export class LogininphoneComponent {
     
   async submitForm() {
     // this.mobileNumber()
-    this.ls.sendotp()
+    // this.ls.sendotp()
     if(this.phoneForm.valid == true){
+      this.ls.sendotp()
       this.service.openOtp()
       const formData = {
         // ID:2,
@@ -43,7 +44,7 @@ export class LogininphoneComponent {
       }
       this.ls.adddata = formData
       // mobile no to send otp api done
-      console.log(this.ls.adddata);
+      // console.log(this.ls.adddata);
       
       // await this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
       //    console.log(e);
