@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class LogininphoneComponent {
 
   submitted = false
+  minimumNumber = false
 
   constructor(public service : PopupHandingService , public fb: FormBuilder, public http:HttpClient, public ls:LoginindetailsValueService){
   }
@@ -22,8 +23,18 @@ export class LogininphoneComponent {
       Mobile_No: ['',[Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
     })
   
-  
+  mobileNumber(){
+    if(this.phoneForm.value>'10'){
+      this.minimumNumber = true
+      console.log("more then 10 numbers");  
+    }else{
+      this.minimumNumber = false
+    }
+
+  }
+    
   async submitForm() {
+    // this.mobileNumber()
     if(this.phoneForm.valid == true){
       this.service.openOtp()
       const formData = {
@@ -41,9 +52,11 @@ export class LogininphoneComponent {
          }
       })
   
-        this.phoneForm.reset()
+        // this.phoneForm.reset()
     }else{
       this.submitted = true
+      this.minimumNumber = true
+      this.mobileNumber()
     }
 
   }

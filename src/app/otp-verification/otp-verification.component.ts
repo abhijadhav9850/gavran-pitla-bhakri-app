@@ -49,7 +49,7 @@ export class OtpVerificationComponent {
   }); 
 
   optverify() {
-    this.service.openAddress()
+    // this.service.openAddress()
     // console.log(this.ls.otpvalue);
     Object.values(this.otpForm.controls).forEach((control) => {
       control.markAsTouched();
@@ -67,7 +67,7 @@ export class OtpVerificationComponent {
       console.log('OTP is not valid');
     }else{
       console.log('Otp successful');
-      // this.service.openAddress()
+      this.service.openAddress()
       this.ls.otpverifyapi()
       console.log("Work");
       // this.authLoggedIn.next(true)
