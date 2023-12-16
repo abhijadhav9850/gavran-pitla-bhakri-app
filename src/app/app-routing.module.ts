@@ -45,6 +45,7 @@ const routes: Routes = [
   {path:'user-setting',component:UserSettingComponent},
   {path:'review',component:ReviewsComponent},
   {path:'write-review',component:WriteReviewComponent},
+  {path:'order-info',component:OrderInfoComponent},
 ];
 
 @NgModule({

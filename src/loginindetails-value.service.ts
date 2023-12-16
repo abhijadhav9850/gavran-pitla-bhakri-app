@@ -40,6 +40,12 @@ export class LoginindetailsValueService {
   // userinformation: any = [];
 
 
+  sendotp(){
+     this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/Send_OTP",this.adddata).subscribe((e:any)=>{
+      console.log(e);
+   })
+  }
+
   order_list() {
     this.orderlist.push(this.foodquantity)
     console.log(this.orderlist);
@@ -78,34 +84,7 @@ export class LoginindetailsValueService {
   // }
   // getUserInformation(){}
 
-  timer(minute: any) {
-    // let minute = 1;
-    let seconds: number = minute * 30;
-    let textSec: any = '0';
-    let statSec: number = 30;
-
-    const prefix = minute < 10 ? '0' : '';
-    const timer = setInterval(() => {
-      seconds--;
-      if (statSec != 0) statSec--;
-      else statSec = 59;
-
-      if (statSec < 10) {
-        textSec = '0' + statSec;
-      } else textSec = statSec;
-
-      this.display = `${prefix}${Math.floor(seconds / 60)}:${textSec}`;
-
-      // console.log(typeof(this.display));
-      
-
-      if (seconds == 0) {
-        console.log('finished');
-        clearInterval(timer);
-      }
-    }, 1000);
-  }
-
+ 
   Test_newapi() {
     // UserData collect in frontend
     let User_Data = this.http.get("https://gavranpitlabhakri-database.onrender.com/Get_userData").subscribe(e => {

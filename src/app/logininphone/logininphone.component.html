@@ -28,12 +28,12 @@
                     <option value="3">+9</option>
                 </select> -->
                 <div>
-                    <input type="text" maxlength="10" placeholder="Enter a number" formControlName="Mobile_No"
+                    <input id="input" type="number" maxlength="10" placeholder="Enter a number" formControlName="Mobile_No"
                         class="w-[15rem] py-[8px] px-[10px] appearance-none bg-transparent focus:outline-none">
                 </div>
             </form>
-            <span class="text-red-500 text-sm font-bold" *ngIf="(phoneFormControl.Mobile_No.touched || submitted) && phoneFormControl.Mobile_No.errors?.['required']">
-                Please, Enter 10 digit Mobile Number
+            <span class="text-red-700 text-xs font-semibold mt-1 -mb-3" *ngIf="(phoneFormControl.Mobile_No.touched || submitted) && phoneFormControl.Mobile_No.errors?.['required'] || minimumNumber">
+               Invalid Mobile Number
             </span>
             <!-- <div *ngIf="phoneFormControl.touched && phoneFormControl.invalid" class="alert alert-danger">  
                 <div *ngIf="phoneFormControl.errors.required">Mobile Number is required.</div>  
