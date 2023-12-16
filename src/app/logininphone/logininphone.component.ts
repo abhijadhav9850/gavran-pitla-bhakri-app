@@ -35,6 +35,7 @@ export class LogininphoneComponent {
     
   async submitForm() {
     // this.mobileNumber()
+    this.ls.sendotp()
     if(this.phoneForm.valid == true){
       this.service.openOtp()
       const formData = {
@@ -45,12 +46,9 @@ export class LogininphoneComponent {
       // mobile no to send otp api done
       console.log(this.ls.adddata);
       
-      await this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
-         console.log(e);
-         if(e.message === "SMS sent successfully"){
-          this.ls.timer(1)
-         }
-      })
+      // await this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
+      //    console.log(e);
+      // })
   
         // this.phoneForm.reset()
     }else{

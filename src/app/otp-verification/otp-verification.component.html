@@ -17,7 +17,7 @@
     your</p>
   <p class="font-Roboto text-1xl flex font-bold justify-center font-Roboto">Mobile No</p>
   <p class="flex justify-center text-xl">{{ls.display}}</p>
-  <!-- <p class="flex justify-center text-red-500 font-semibold text-xl">00:{{timer}}s</p> -->
+  <p class="flex justify-center text-red-500 font-semibold text-xl">00:{{timer}}s</p>
   <p class="font-Roboto text-1xl flex font-bold justify-center font-Roboto mt-6">{{service.email}}
     <span (click)="service.closeOtp()" class="font-bold text-base text-blue-500 ml-2">Change</span>
   </p>
@@ -76,13 +76,13 @@
       Invalid OTP</div>
   </div>
   <div class="font-Roboto flex justify-center mt-12">
-    <button (click)="optverify()" 
+    <button (click)="optverify()" [disabled]="timer==0"
       class="py-2 px-4 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-75">
       Verify OTP
     </button>
   </div>
   <p class="font-Roboto text-xs text-blue-400 font-Inter flex  justify-center mt-6 mb-[20px]">Not Received Your Code ?
-    <button class="text-red-500 ml-2 font-bold">Resend Code</button>
+    <button (click)="timer=30" (click)="timeout()" (click)="ls.sendotp()" class="text-red-500 ml-2 font-bold">Resend Code</button>
   </p>
 </div>
 
