@@ -43,14 +43,13 @@ export class LoginindetailsValueService {
   // logindeatilsvalue: any = [];
   // userinformation: any = [];
 
-  sendotp(){
+  async sendotp(){
      let formData = {
          Mobile_No: this.phoneForm.value.Mobile_No
        }
        this.adddata = formData
-    
     console.log(formData);
-     this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
+     await this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
     console.log(e);
    })
     // this.phoneForm.reset()
@@ -109,18 +108,18 @@ export class LoginindetailsValueService {
   // getUserInformation(){}
 
  
-  Test_newapi() {
+  async Test_newapi() {
     // UserData collect in frontend
-    let User_Data = this.http.get("https://gavranpitlabhakri-database.onrender.com/Get_userData").subscribe(e => {
+    let User_Data =await this.http.get("https://gavranpitlabhakri-database.onrender.com/Get_userData").subscribe(e => {
       console.log(e);
     })
 
     // Mobile_No Data collect in frontend
-    let MobileNo_Data = this.http.get("https://gavranpitlabhakri-database.onrender.com/Get_Mobile_No").subscribe(e => {
+    let MobileNo_Data =await this.http.get("https://gavranpitlabhakri-database.onrender.com/Get_Mobile_No").subscribe(e => {
       console.log(e);
     })
 
-    this.http.get<any[]>("https://gavranpitlabhakri-database.onrender.com/Get_OrderData").subscribe(e => {
+    await this.http.get<any[]>("https://gavranpitlabhakri-database.onrender.com/Get_OrderData").subscribe(e => {
       console.log(e);
     })
 
