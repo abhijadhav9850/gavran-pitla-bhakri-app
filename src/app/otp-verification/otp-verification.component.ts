@@ -48,7 +48,7 @@ export class OtpVerificationComponent {
     number4: ['', [Validators.required ,]],
   }); 
 
-  optverify() {
+  async optverify() {
     // this.service.openAddress()
     // console.log(this.ls.otpvalue);
     if(this.timer>=0){
@@ -67,12 +67,12 @@ export class OtpVerificationComponent {
         // console.log(e);
         
       if(e.message == 'OTP Verified'){  
-        console.log('Otp successful');
+        alert('Otp successful');
         this.service.openAddress()
         this.ls.otpverifyapi()
         console.log("Work");    
       }else{
-        console.log('OTP is not valid');
+        alert('OTP is not valid');
         
         // this.authLoggedIn.next(true)
         // this.router.navigate(['order-his'])

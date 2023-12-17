@@ -22,7 +22,7 @@
         <img src="../../assets/11241416_4676727 1.jpg" alt="">
         <p class="text-xs font-medium mt-3">Cash On</p>
         <p class="text-xs font-medium"> Delivery</p>
-        <input (input)="seleted = false" [checked]="!seleted" type="checkbox" id="my-checkbox" class="w-5 h-5 rounded-full bg-gray-200 border border-gray-300 shadow-sm mt-4">
+        <input (input)="seleted = false" [checked]="!seleted" type="checkbox" id="my-checkbox" [(ngModel)]="cash" class="w-5 h-5 rounded-full bg-gray-200 border border-gray-300 shadow-sm mt-4">
     </div>
 </div>
 <div class="font-Roboto flex  justify-center mt-14 p-[11px]">

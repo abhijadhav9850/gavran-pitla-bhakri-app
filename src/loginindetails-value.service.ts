@@ -12,7 +12,7 @@ export class LoginindetailsValueService {
 
   display: any;
 
-  adddata: any;
+  adddata: any=''
   otpnumber: any;
   bhakriquantity: any = "";
   pithlaquantity: any = "";
@@ -23,6 +23,10 @@ export class LoginindetailsValueService {
   authLoggedIn = new BehaviorSubject<boolean>(false);
 
   show_home_popup = false
+
+  phoneForm = this.fb.group({
+    Mobile_No: ['',[Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+  })
 
   foodquantity: any =
     {
@@ -39,11 +43,17 @@ export class LoginindetailsValueService {
   // logindeatilsvalue: any = [];
   // userinformation: any = [];
 
-
   sendotp(){
-     this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/Send_OTP",this.adddata).subscribe((e:any)=>{
-      console.log(e);
+     let formData = {
+         Mobile_No: this.phoneForm.value.Mobile_No
+       }
+       this.adddata = formData
+    
+    console.log(formData);
+     this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
+    console.log(e);
    })
+    // this.phoneForm.reset()
   }
 
   order_list() {
@@ -64,15 +74,29 @@ export class LoginindetailsValueService {
     this.order_list()
 
     // mobile no add api done
-    await this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/No_Add", this.adddata).subscribe(e => {
-      console.log(e);
+    await this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/No_Add", this.adddata).subscribe((e:any) => {
+      // Convert array to Set to ensure uniqueness
+      // const uniqueMobileNumbers = [...new Set(e.mobileNumbers)];
+
+      // // Store in localStorage
+      // localStorage.setItem('uniqueMobileNumbers', JSON.stringify(uniqueMobileNumbers));
+      
+      // // Retrieve from localStorage
+      // const retrievedData = localStorage.getItem('uniqueMobileNumbers');
+      // if (retrievedData !== null) {
+      //   const parsedData = JSON.parse(retrievedData);
+      //   console.log(parsedData); // This will contain unique mobile numbers if retrievedData is not null
+      // } else {
+      //   console.log('No data found in localStorage');
+      // }
+      this.authLoggedIn.next(true)
+
     })
 
     // // foodquantity data api done
     await this.http.post("https://gavranpitlabhakri-database.onrender.com/OrderData/Details", this.foodquantity).subscribe(e => {
       console.log(e);
     })
-    this.authLoggedIn.next(true)
     // this.Test_newapi()
     // this.router.navigate(['order-his'])
     // }

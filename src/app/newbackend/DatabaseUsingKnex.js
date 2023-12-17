@@ -28,6 +28,7 @@ let UserData = []
 let OrderData = []
 let OrderData1 = []
 let otpvalue;
+let MobileNo;
 
 // otp send working
 
@@ -69,19 +70,21 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
 app.post("/Mobile_No/No_Add", async (req, res) => {
   setTimeout(async () => {
     try {
-      let result = await pg("mobile_no_table").insert([
+      MobileNo = await pg("mobile_no_table").insert([
         {
           // ID: `${req.body.ID}`,
           Mobile_No: `${req.body.Mobile_No}`,
         },
       ]);
-      // Mobiledata.push(req.body.Mobile_No)
-      // console.log(Mobiledata);
-      res.json({ success: true, message: `No Added : ${result}` });
+
+      // let data = await pg.select('ID', 'Mobile_No')
+      // .from('mobile_no_table')
+      // let mobileNumbers = data.map(item => item.Mobile_No);
+      res.json({ success: true, message:"Mobile No Add" });
     } catch (err) {
       console.log(err);
     }
-  }, 5000);
+  }, 3000);
 });
 
 app.post("/OTP/GetOTP", async (req, res) => {
@@ -254,7 +257,7 @@ app.get("/getData", async (req, res) => {
 
     // console.log(allData); // Log the combined array of all data
 
-    let obj = allData.filter(e=>e.Mobile_No == '9011446522')
+    let obj = allData.filter(e=>e.Mobile_No == MobileNo)
 
     let obj2 
     function findData(ID){
