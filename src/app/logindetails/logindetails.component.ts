@@ -43,25 +43,25 @@ toggleDropdown() {
     Object.values(this.myForm.controls).forEach((control) => {
       control.markAsTouched();
       console.log(this.myForm)
-      // this.data.userinformation.push()
     });
-    // if (this.myForm.valid) {
-    //   console.log('Form submitted:', this.myForm.value);
-    // }
+    if (this.myForm.valid) {
+      console.log('Form submitted:', this.myForm.value);
+    }
 
     if(this.myForm.valid == false){
-      this.submitted = true
+      this.submitted = false
     }else{
-      this.submitted = false;
+      this.submitted = true;
+      this.service.openPayment()
+      this.valueget()
       console.log(this.myForm.value);
     }
-    console.log(this.myForm.value);
+    // console.log(this.myForm.value);
     
   }
 
   valueget(){  
     console.log(this.ls.foodquantity);
-  
     this.http.post('https://gavranpitlabhakri-database.onrender.com/User/Add',this.myForm.value).subscribe(e=>{
       console.log(e);
     })

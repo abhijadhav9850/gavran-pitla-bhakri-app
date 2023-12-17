@@ -76,13 +76,15 @@ app.post("/Mobile_No/No_Add", async (req, res) => {
           Mobile_No: `${req.body.Mobile_No}`,
         },
       ]);
-      // Mobiledata.push(req.body.Mobile_No)
-      // console.log(Mobiledata);
-      res.json({ success: true, message: `No Added : ${MobileNo}` });
+
+      // let data = await pg.select('ID', 'Mobile_No')
+      // .from('mobile_no_table')
+      // let mobileNumbers = data.map(item => item.Mobile_No);
+      res.json({ success: true, message:"Mobile No Add" });
     } catch (err) {
       console.log(err);
     }
-  }, 5000);
+  }, 3000);
 });
 
 app.post("/OTP/GetOTP", async (req, res) => {
