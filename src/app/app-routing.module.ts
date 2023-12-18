@@ -42,7 +42,7 @@ const routes: Routes = [
   {path:'user-order', component:UserOrdersComponent},
   {path:'user-payment', component:UserPaymentComponent},
   {path:'delivery-add',component:DeliveryAddressComponent},
-  {path:'order-his',component:OrderHistoryComponent, canActivate: [AuthGuard]},
+  {path:'order-his',component:OrderHistoryComponent,},
   {path:'user-setting',component:UserSettingComponent},
   {path:'review',component:ReviewsComponent},
   {path:'write-review',component:WriteReviewComponent},
