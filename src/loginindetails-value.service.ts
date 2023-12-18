@@ -102,10 +102,14 @@ export class LoginindetailsValueService {
     // })
   }
 
+  // no use this code 
+
   // getOrderPrice(){
   //   console.log(this.orderPrice);
   // }
   // getUserInformation(){}
+
+   
 
  
   async Test_newapi() {
