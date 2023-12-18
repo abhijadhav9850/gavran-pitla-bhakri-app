@@ -14,41 +14,34 @@ import { Router } from '@angular/router';
 export class LogininphoneComponent {
 
   submitted = false
+  minimumNumber = false
 
-  constructor(public service : PopupHandingService , public fb: FormBuilder, public http:HttpClient, public ls:LoginindetailsValueService){
+  constructor(public service : PopupHandingService , public fb: FormBuilder, public http:HttpClient, public ls:LoginindetailsValueService){}
+
+  mobileNumber(){
+    if(this.ls.phoneForm.value>'10'){
+      this.minimumNumber = true
+    }else{
+      console.log("more then 10 numbers");  
+      this.minimumNumber = false
+    }
   }
-
-  phoneForm = this.fb.group({
-      Mobile_No: ['',[Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-    })
-  
-  
+    
   async submitForm() {
-    if(this.phoneForm.valid == true){
+    this.mobileNumber()
+    this.ls.sendotp()
+    
+    if(this.ls.phoneForm.valid == true){
       this.service.openOtp()
-      const formData = {
-        // ID:2,
-        Mobile_No: this.phoneForm.value.Mobile_No
-      }
-      this.ls.adddata = formData
-      // mobile no to send otp api done
-      console.log(this.ls.adddata);
-      
-      await this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
-         console.log(e);
-         if(e.message === "SMS sent successfully"){
-          this.ls.timer(1)
-         }
-      })
-  
-        // this.phoneForm.reset()
     }else{
       this.submitted = true
+      this.minimumNumber = true
+      this.mobileNumber()
     }
 
   }
   get phoneFormControl() {
-    return this.phoneForm.controls;
+    return this.ls.phoneForm.controls;
   }
 
 }

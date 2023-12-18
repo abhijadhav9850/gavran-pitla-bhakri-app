@@ -12,7 +12,7 @@ export class LoginindetailsValueService {
 
   display: any;
 
-  adddata: any;
+  adddata: any=''
   otpnumber: any;
   bhakriquantity: any = "";
   pithlaquantity: any = "";
@@ -23,6 +23,10 @@ export class LoginindetailsValueService {
   authLoggedIn = new BehaviorSubject<boolean>(false);
 
   show_home_popup = false
+
+  phoneForm = this.fb.group({
+    Mobile_No: ['',[Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+  })
 
   foodquantity: any =
     {
@@ -39,6 +43,17 @@ export class LoginindetailsValueService {
   // logindeatilsvalue: any = [];
   // userinformation: any = [];
 
+  async sendotp(){
+     let formData = {
+         Mobile_No: this.phoneForm.value.Mobile_No
+       }
+       this.adddata = formData
+    console.log(formData);
+     await this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
+    console.log(e);
+   })
+    // this.phoneForm.reset()
+  }
 
   order_list() {
     this.orderlist.push(this.foodquantity)
@@ -58,66 +73,57 @@ export class LoginindetailsValueService {
     this.order_list()
 
     // mobile no add api done
-    await this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/No_Add", this.adddata).subscribe(e => {
-      console.log(e);
+    await this.http.post("https://gavranpitlabhakri-database.onrender.com/Mobile_No/No_Add", this.adddata).subscribe((e:any) => {
+      // Convert array to Set to ensure uniqueness
+      // const uniqueMobileNumbers = [...new Set(e.mobileNumbers)];
+
+      // // Store in localStorage
+      // localStorage.setItem('uniqueMobileNumbers', JSON.stringify(uniqueMobileNumbers));
+      
+      // // Retrieve from localStorage
+      // const retrievedData = localStorage.getItem('uniqueMobileNumbers');
+      // if (retrievedData !== null) {
+      //   const parsedData = JSON.parse(retrievedData);
+      //   console.log(parsedData); // This will contain unique mobile numbers if retrievedData is not null
+      // } else {
+      //   console.log('No data found in localStorage');
+      // }
+      this.authLoggedIn.next(true)
+
     })
 
     // // foodquantity data api done
     await this.http.post("https://gavranpitlabhakri-database.onrender.com/OrderData/Details", this.foodquantity).subscribe(e => {
       console.log(e);
     })
-    this.authLoggedIn.next(true)
     // this.Test_newapi()
     // this.router.navigate(['order-his'])
     // }
     // })
   }
 
+  // no use this code 
+
   // getOrderPrice(){
   //   console.log(this.orderPrice);
   // }
   // getUserInformation(){}
 
-  timer(minute: any) {
-    // let minute = 1;
-    let seconds: number = minute * 30;
-    let textSec: any = '0';
-    let statSec: number = 30;
+   
 
-    const prefix = minute < 10 ? '0' : '';
-    const timer = setInterval(() => {
-      seconds--;
-      if (statSec != 0) statSec--;
-      else statSec = 59;
-
-      if (statSec < 10) {
-        textSec = '0' + statSec;
-      } else textSec = statSec;
-
-      this.display = `${prefix}${Math.floor(seconds / 60)}:${textSec}`;
-
-      // console.log(typeof(this.display));
-      
-
-      if (seconds == 0) {
-        console.log('finished');
-        clearInterval(timer);
-      }
-    }, 1000);
-  }
-
-  Test_newapi() {
+ 
+  async Test_newapi() {
     // UserData collect in frontend
-    let User_Data = this.http.get("https://gavranpitlabhakri-database.onrender.com/Get_userData").subscribe(e => {
+    let User_Data =await this.http.get("https://gavranpitlabhakri-database.onrender.com/Get_userData").subscribe(e => {
       console.log(e);
     })
 
     // Mobile_No Data collect in frontend
-    let MobileNo_Data = this.http.get("https://gavranpitlabhakri-database.onrender.com/Get_Mobile_No").subscribe(e => {
+    let MobileNo_Data =await this.http.get("https://gavranpitlabhakri-database.onrender.com/Get_Mobile_No").subscribe(e => {
       console.log(e);
     })
 
-    this.http.get<any[]>("https://gavranpitlabhakri-database.onrender.com/Get_OrderData").subscribe(e => {
+    await this.http.get<any[]>("https://gavranpitlabhakri-database.onrender.com/Get_OrderData").subscribe(e => {
       console.log(e);
     })
 
