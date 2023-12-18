@@ -3,6 +3,7 @@ const express = require("express");
 var cors = require("cors");
 const app = express();
 var unirest = require('unirest');
+const { data } = require("autoprefixer");
 const port = 4000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,7 +29,6 @@ let UserData = []
 let OrderData = []
 let OrderData1 = []
 let otpvalue;
-let MobileNo;
 
 // otp send working
 
@@ -37,14 +37,13 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
     const apiKey = "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
     const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
 
-     otpvalue = Math.floor(1000 + Math.random() * 8888);
+    otpvalue = Math.floor(1000 + Math.random() * 8888);
 
     const smsData = {
       variables_values: otpvalue,
       route: "otp",
       numbers: req.body.Mobile_No,
     };
-
     unirest
       .post(apiUrl)
       .headers({
@@ -75,19 +74,16 @@ app.post("/Mobile_No/No_Add", (req, res) => {
           Mobile_No: `${req.body.Mobile_No}`,
         },
       ]);
-
-      // let data = await pg.select('ID', 'Mobile_No')
-      // .from('mobile_no_table')
-      // let mobileNumbers = data.map(item => item.Mobile_No);
-      res.json({ success: true, message:"Mobile No Add" });
+      // Mobiledata.push(req.body.Mobile_No)
+      // console.log(Mobiledata);
+      res.json({ success: true, message: req.body.Mobile_No });
     } catch (err) {
       console.log(err);
     }
-  }, 3000);
+  }, 5000);
 });
 
 app.post("/OTP/GetOTP", async (req, res) => {
-  console.log(req.body);
   try {
     if (req.body.otp == otpvalue) {
       res.json({ success: true, message: "OTP Verified" });
@@ -237,41 +233,57 @@ app.get("/Get_userData", async (req,res)=>{
   }
 })
 
-app.get("/getData", async (req, res) => {
+app.post("/getData", async (req, res) => {
   try {
+    console.log(req.body);
     let allData = []; // Array to hold all the data
+    let order_List = []
 
     let data1 = await pg.select('ID', 'Mobile_No').from('mobile_no_table');
     allData.push(...data1);
 
-    let data2 = await pg.select('ID', 'UserName', 'UserAddress', 'UserCity').from('users');
-    allData.push(...data2);
+    // let data2 = await pg.select('ID', 'UserName', 'UserAddress', 'UserCity').from('users');
+    // allData.push(...data2);
 
     let data3 = await pg.select('ID', 'bhakri', 'pithla', 'test', 'totalPrice').from('order_data_table');
-    allData.push(...data3);
+    order_List.push(...data3);
 
     // console.log(allData); // Log the combined array of all data
 
-    let obj = allData.filter(e=>e.Mobile_No == MobileNo)
+    let obj = allData.filter(e => e.Mobile_No == req.body.Mobile_No)
 
-    let obj2 
-    function findData(ID){
-      return obj2 = allData.filter(e=>e.ID == ID) 
+    let obj2 = []
+
+    function findData(ID) {
+      const idObj = order_List.filter(e => e.ID == ID)
+      obj2.push(idObj)
     }
-    console.log(obj2);
 
 
-    obj.forEach(e=>{
+    obj.forEach(e => {
       findData(e.ID)
     })
 
-    res.json({ success: true, message: allData });
+    let orderList = obj2.flat()
+    console.log(orderList);
+
+    res.json({ success: true, message: orderList });
   } catch (error) {
     console.log(error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 });
 
+app.get("/getpitla", async (req, res) => {
+  try {
+    let data = await pg.select('ID', 'bhakri', 'pithla', 'test', 'totalPrice').from('order_data_table');
+    res.json({ success: true, message: data });
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+})
 
 
 app.listen(port, (req, res) => {

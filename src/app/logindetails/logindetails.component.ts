@@ -62,7 +62,7 @@ toggleDropdown() {
 
   valueget(){  
     console.log(this.ls.foodquantity);
-    this.http.post('https://gavranpitlabhakri-database.onrender.com/User/Add',this.myForm.value).subscribe(e=>{
+    this.http.post('http://localhost:4000/User/Add',this.myForm.value).subscribe(e=>{
       console.log(e);
     })
   }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginLogoutService } from '../login-logout.service';
+// import { LoginLogoutService } from '../login-logout.service';
 
 @Component({
   selector: 'app-logout',
@@ -7,9 +7,9 @@ import { LoginLogoutService } from '../login-logout.service';
   styleUrls: ['./logout.component.css']
 })
 export class LogoutComponent {
-  constructor(private logoutService: LoginLogoutService) {}
+  // constructor(private logoutService: LoginLogoutService) {}
 
   logout(): void {
-    this.logoutService.logout();
+    // this.logoutService.logout();
   }
 }
