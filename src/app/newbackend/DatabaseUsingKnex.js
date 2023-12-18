@@ -77,7 +77,7 @@ app.post("/Mobile_No/No_Add", async (req, res) => {
       ]);
       // Mobiledata.push(req.body.Mobile_No)
       // console.log(Mobiledata);
-      res.json({ success: true, message: `No Added : ${result}` });
+      res.json({ success: true, message: req.body.Mobile_No });
     } catch (err) {
       console.log(err);
     }
