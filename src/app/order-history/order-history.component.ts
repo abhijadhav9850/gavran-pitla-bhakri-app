@@ -16,8 +16,10 @@ export class OrderHistoryComponent {
 
   async ngOnInit() {
     this.ls.getData().subscribe(
-      (data: any[]) => {
-        this.orderList = data;
+      (data: any) => {
+        console.log(data);
+        
+        this.orderList = data.message;
         console.log(this.orderList);
         
       },

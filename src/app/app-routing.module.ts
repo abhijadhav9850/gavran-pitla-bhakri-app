@@ -21,6 +21,7 @@ import { OrderInfoComponent } from './order-info/order-info.component';
 import { AuthGuard } from './auth.guard';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { WriteReviewComponent } from './write-review/write-review.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 
@@ -35,15 +36,15 @@ const routes: Routes = [
   {path:'defult-login', component:DefaultLoginComponent},
   {path:'defult-otp', component:DefaultOtpVerificationComponent},
   {path:'defult-user-login', component:DefultUserLoginComponent},
-  {path:'setting', component:SettingsComponent},
-  {path:'payment', component:PaymentpageComponent},
-  {path:'user-profile', component:UserProfileComponent},
-  {path:'user-order', component:UserOrdersComponent},
+  {path:'setting', component:SettingsComponent,canActivate:[AuthGuard]},
+  {path:'payment', component:PaymentpageComponent,canActivate:[AuthGuard]},
+  {path:'user-profile', component:UserProfileComponent,canActivate:[AuthGuard]},
+  {path:'user-order', component:UserOrdersComponent,canActivate:[AuthGuard]},
   {path:'user-payment', component:UserPaymentComponent},
   {path:'delivery-add',component:DeliveryAddressComponent},
-  {path:'order-his',component:OrderHistoryComponent, canActivate: [AuthGuard]},
+  {path:'order-his',component:OrderHistoryComponent,canActivate:[AuthGuard]},
   {path:'user-setting',component:UserSettingComponent},
-  {path:'review',component:ReviewsComponent},
+  {path:'review',component:ReviewsComponent,canActivate:[AuthGuard]},
   {path:'write-review',component:WriteReviewComponent},
   {path:'order-info',component:OrderInfoComponent},
 ];
