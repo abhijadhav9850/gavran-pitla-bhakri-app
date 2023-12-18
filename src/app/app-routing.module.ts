@@ -19,6 +19,9 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
 import { UserSettingComponent } from './user-setting/user-setting.component';
 import { OrderInfoComponent } from './order-info/order-info.component';
 import { AuthGuard } from './auth.guard';
+import { ReviewsComponent } from './reviews/reviews.component';
+import { WriteReviewComponent } from './write-review/write-review.component';
+
 
 
 
@@ -40,11 +43,14 @@ const routes: Routes = [
   {path:'delivery-add',component:DeliveryAddressComponent},
   {path:'order-his',component:OrderHistoryComponent, canActivate: [AuthGuard]},
   {path:'user-setting',component:UserSettingComponent},
+  {path:'review',component:ReviewsComponent},
+  {path:'write-review',component:WriteReviewComponent},
   {path:'order-info',component:OrderInfoComponent},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard,], 
 })
 export class AppRoutingModule { }

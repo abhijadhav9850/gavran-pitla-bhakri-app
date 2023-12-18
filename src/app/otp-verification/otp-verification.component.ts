@@ -15,27 +15,27 @@ import { Router } from '@angular/router';
 export class OtpVerificationComponent {
 
   constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService, public http:HttpClient, public router: Router){
-    
+    this.timeout()
   }
 
   invalid = false
   display: any;
-  // timer : any = 30;
+  timer : any = 30;
 
   
 
-  // timeout(){
-  //   setTimeout(() => {
-  //   if(this.timer==0){
-  //     console.log('finished');
+  timeout(){
+    setTimeout(() => {
+    if(this.timer==0){
+      console.log('finished');
       
-  //   }
-  //   else if (this.timer >= 0) {
-  //     this.timer--
-  //     this.timeout()
-  //   }
-  // }, 1000);
-  // }
+    }
+    else if (this.timer >= 0) {
+      this.timer--
+      this.timeout()
+    }
+  }, 1000);
+  }
   
 
 
@@ -48,32 +48,39 @@ export class OtpVerificationComponent {
     number4: ['', [Validators.required ,]],
   }); 
 
-  optverify() {
-    this.service.openAddress()
+  async optverify() {
+    // this.service.openAddress()
     // console.log(this.ls.otpvalue);
-    Object.values(this.otpForm.controls).forEach((control) => {
-      control.markAsTouched();
-    });
-
-    let otp = `${this.otpForm.value.number}${this.otpForm.value.number2}${this.otpForm.value.number3}${this.otpForm.value.number4}`
-    let obj = Number(otp)   
-    this.ls.otpnumber = {
-      otp : obj
-     }
-     
-    //  otp verify and go to next page api done
-    this.http.post("https://database-rn7j.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
-    if(e.message === 'Invalid OTP'){      
-      console.log('OTP is not valid');
-    }else{
-      console.log('Otp successful');
-      // this.service.openAddress()
-      this.ls.otpverifyapi()
-      console.log("Work");
-      // this.authLoggedIn.next(true)
-      // this.router.navigate(['order-his'])
+    if(this.timer>=0){
+      Object.values(this.otpForm.controls).forEach((control) => {
+        control.markAsTouched();
+      });
+  
+      let otp = `${this.otpForm.value.number}${this.otpForm.value.number2}${this.otpForm.value.number3}${this.otpForm.value.number4}`
+      let obj = Number(otp)   
+      this.ls.otpnumber = {
+        otp : obj
+       }
+       
+      //  otp verify and go to next page api done
+      this.http.post("https://gavranpitlabhakri-database.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
+        // console.log(e);
+        
+      if(e.message == 'OTP Verified'){  
+        alert('Otp successful');
+        this.service.openAddress()
+        this.ls.otpverifyapi()
+        console.log("Work");    
+      }else{
+        alert('OTP is not valid');
+        
+        // this.authLoggedIn.next(true)
+        // this.router.navigate(['order-his'])
+      }
+      })
     }
-    })
+
+
   }
   
   otp: string[] = ['', '', '', ''];

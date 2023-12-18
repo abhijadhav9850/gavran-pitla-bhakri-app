@@ -1,0 +1,42 @@
+[debug] [2023-12-14T15:33:26.807Z] ----------------------------------------------------------------------
+[debug] [2023-12-14T15:33:26.818Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Jadha\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2023-12-14T15:33:26.818Z] CLI Version:   13.0.1
+[debug] [2023-12-14T15:33:26.818Z] Platform:      win32
+[debug] [2023-12-14T15:33:26.819Z] Node Version:  v19.5.0
+[debug] [2023-12-14T15:33:26.819Z] Time:          Thu Dec 14 2023 21:03:26 GMT+0530 (India Standard Time)
+[debug] [2023-12-14T15:33:26.819Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-12-14T15:33:26.825Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-12-14T15:33:26.825Z] > authorizing via signed-in user (abhij9850@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Jadha\Desktop\gavran-pitla-bhakri-app
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2023-12-14T15:33:35.430Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2023-12-14T15:33:36.422Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2023-12-14T15:33:36.422Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project pitlabhakriapp (PitlaBhakriapp) 
+[info] 
+=== Hosting Setup
+[debug] [2023-12-14T15:33:39.789Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/pitlabhakriapp [none]
+[debug] [2023-12-14T15:33:40.636Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/pitlabhakriapp 200
+[debug] [2023-12-14T15:33:40.636Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/pitlabhakriapp {"projectId":"pitlabhakriapp","projectNumber":"789839954171","displayName":"PitlaBhakriapp","name":"projects/pitlabhakriapp","resources":{"hostingSite":"pitlabhakriapp"},"state":"ACTIVE","etag":"1_3578ca2d-59b9-4686-b9b5-873b17e24afe"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 

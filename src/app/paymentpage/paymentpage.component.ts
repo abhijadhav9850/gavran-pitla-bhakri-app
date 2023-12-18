@@ -12,13 +12,14 @@ export class PaymentpageComponent {
  
   constructor(public service : PopupHandingService, public router:Router, public ls:LoginindetailsValueService){ }
 
-  seleted = true
+  cash=''
+  seleted = false
   selectPayment(){
     if(this.seleted == true){
       this.router.navigate(['/user-payment']);
       this.ls.Test_newapi()
     }else{
-      this.router.navigate(['/order-his']);
+      this.router.navigate(['']);
       this.ls.Test_newapi()
       this.ls.show_modify_popup()
     }
