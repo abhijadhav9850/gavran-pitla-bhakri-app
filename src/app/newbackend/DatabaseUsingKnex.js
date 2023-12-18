@@ -65,6 +65,12 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
   }
 });
 
+
+//get phone number ? to use place order ?
+app.post("/Get-Mobile_No/", async(req,res) => {
+  
+})
+
 // no add working
 app.post("/Mobile_No/No_Add", async (req, res) => {
   setTimeout(async () => {

@@ -21,6 +21,7 @@ import { OrderInfoComponent } from './order-info/order-info.component';
 import { AuthGuard } from './auth.guard';
 import { ReviewsComponent } from './reviews/reviews.component';
 import { WriteReviewComponent } from './write-review/write-review.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 
@@ -45,6 +46,7 @@ const routes: Routes = [
   {path:'user-setting',component:UserSettingComponent},
   {path:'review',component:ReviewsComponent},
   {path:'write-review',component:WriteReviewComponent},
+  {path:'logout',component:LogoutComponent},
 ];
 
 @NgModule({
