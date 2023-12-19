@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class OrderHistoryComponent {
 
   orderList:any = []
 
-  constructor(public ls : LoginindetailsValueService, public http:HttpClient){
+  constructor(public ls : LoginindetailsValueService, public http:HttpClient,public router:Router){
   }
 
   async ngOnInit() {
@@ -31,7 +32,7 @@ export class OrderHistoryComponent {
   
   }
   currentDate = new Date();
-
+  
   pastHIstory:any=[
     {
       bhakri: 4,
@@ -65,5 +66,19 @@ export class OrderHistoryComponent {
     },
 
   ]
+
+  orderHistory:any=[]
+
+  pushValue(i:any){
+    console.log(this.orderList[i]);
+    this.router.navigate(['order-info'])
+    this.ls.foodquantity = []
+    this.ls.foodquantity.push(this.orderList[i])
+    this.orderList[i]
+    console.log("food quantity value",this.ls.foodquantity);
+    this.ls.foodquantity.push(this.orderList[i])
+    
+    
+  }
 
 }

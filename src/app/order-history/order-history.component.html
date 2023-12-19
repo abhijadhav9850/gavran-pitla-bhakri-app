@@ -35,7 +35,7 @@
     <button
       class=" text-white px-4 py-2 rounded-xl bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-orange-500">COMPLATE</button> -->
 
-    <div *ngFor="let card of ls.foodquantity" class="order-list flex h-[83px] border p-3 rounded-lg w-full mb-3">
+    <!-- <div routerLink="/order-info" class="order-list flex h-[83px] border p-3 rounded-lg w-full mb-3">
       <div class="cart flex w-full justify-between">
         <div class="logo flex w-full items-stretch">
           <img class="w-16 h-16 rounded-full" src="../../assets/order-page-logo.jpeg" alt="logo">
@@ -51,9 +51,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div *ngFor="let card of orderList" class="order-list flex h-[83px] border p-3 rounded-lg w-full mb-3">
+    <div *ngFor="let card of orderList,let i=index " (click)="pushValue(i)" class="order-list flex h-[83px] border p-3 rounded-lg w-full mb-3">
       <div class="cart flex w-full justify-between">
         <div class="logo flex w-full items-stretch">
           <img class="w-16 h-16 rounded-full" src="../../assets/order-page-logo.jpeg" alt="logo">
@@ -65,7 +65,8 @@
         <div>
           <div class="flex flex-col justify-center items-end">
             <p class="mb-[10px]">{{currentDate | date:'hh:mm'}}</p>
-            <p>Completed</p>
+            <p *ngIf="i==0">Pandding...</p>
+            <p *ngIf="i!=0">Completed</p>
           </div>
         </div>
       </div>
