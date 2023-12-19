@@ -8,7 +8,8 @@ import { BehaviorSubject, Observable, filter, of } from 'rxjs';
 
 export class LoginindetailsValueService {
 
-  constructor(public http: HttpClient, public fb: FormBuilder, public router: Router) { }
+  constructor(public http: HttpClient, public fb: FormBuilder, public router: Router) {
+  }
 
   display: any;
 
@@ -28,13 +29,15 @@ export class LoginindetailsValueService {
     Mobile_No: ['',[Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
   })
 
-  foodquantity: any =
+  foodquantity: any =[
     {
       bhakri: this.bhakriquantity,
       pithla: this.pithlaquantity,
       test: '',
       totalPrice: this.orderPrice,
-    }
+    },
+
+  ]
 
 
   orderlist: any = []

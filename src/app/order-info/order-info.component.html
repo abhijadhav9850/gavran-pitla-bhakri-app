@@ -1,7 +1,6 @@
 <div class="px-2 h-[100vh] items-center overflow-hidden" id="main">
-  
   <div class=" flex justify-between top-0 sticky bg-transparent items-center pt-[50px] px-[15px] gap-[30px] pb-[30px]">
-    <div (click)="backpage()" class="flex gap-[8px] text-[1.5rem]">
+    <div routerLink="" class="flex gap-[8px] text-[1.5rem]">
       <p style="font-family: 'Aclonica', sans-serif;color: #FF6A00;">Pithla</p>
       <p style="font-family: 'Aclonica', sans-serif;color: #00A850;">Bhakri</p>
     </div>
@@ -85,8 +84,9 @@
     </div>
   
     <div class="flex justify-end">
-      <button (click)="ls.show_modify_popup()" routerLink="" class="mt-[10px] text-[1rem] py-2 w-[80px] font-medium content-center text-orange-50 bg-orange-500 rounded-md
-          ">Cancel</button>
+      <button routerLink="" (click)="ls.show_home_popup=false"
+       class="mt-[10px] text-[1rem] py-2 w-[80px] font-medium content-center text-orange-50 bg-orange-500 rounded-md"
+       >Cancel</button>
     </div>
   </div>
 </div>

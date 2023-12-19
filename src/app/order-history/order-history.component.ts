@@ -71,9 +71,16 @@ export class OrderHistoryComponent {
 
   pushValue(i:any){
     console.log(this.orderList[i]);
-    this.router.navigate(['order-info'])
     this.ls.foodquantity = []
-    this.ls.foodquantity.push(this.orderList[i])
+    this.ls.foodquantity = [
+      {
+        bhakri: this.orderList[i].bhakri,
+        pithla: this.orderList[i].pithla,
+        test: this.orderList[i].test,
+        totalPrice: this.orderList[i].totalPrice,
+      }
+    ]
+    this.router.navigate(['order-info'])
     this.orderList[i]
     console.log("food quantity value",this.ls.foodquantity);
     this.ls.foodquantity.push(this.orderList[i])
