@@ -8,16 +8,16 @@ const port = 4000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.json());
+app.use(express.json()); 
 app.use(cors());
 
 const pg = require("knex")({
   client: "pg",
   connection: {
-    connectionString: "postgres://pithla_bhakri_k757_user:MlAXwBBcaxTw6sMI66zeMzVeZc1F5YV9@dpg-cls67fbip8as73a3u8a0-a.oregon-postgres.render.com/pithla_bhakri_k757",
-    host: "dpg-cls67fbip8as73a3u8a0-a.oregon-postgres.render.com",
+    connectionString:"postgres://pithla_bhakri_user:yiRU6i6FUMJ0IIG2k2PCPhTYEfSFNkOe@dpg-cls291fqd2ns73dus3sg-a.oregon-postgres.render.com/pithla_bhakri",
+    host: "dpg-cls291fqd2ns73dus3sg-a.oregon-postgres.render.com",
     port: 5432,
-    user: "pithla_bhakri_k757_user",
+    user: "pithla_bhakri_user",
     database: "pithla_bhakri",
     password: "yiRU6i6FUMJ0IIG2k2PCPhTYEfSFNkOe",
     ssl: true,
@@ -65,8 +65,7 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
   }
 });
 
-// no add working
-app.post("/Mobile_No/No_Add", async (req, res) => {
+app.post("/Mobile_No/No_Add", (req, res) => {
   setTimeout(async () => {
     try {
       let result = await pg("mobile_no_table").insert([
@@ -102,10 +101,25 @@ app.post("/User/Add", (req, res) => {
     try {
       let result = await pg("users").insert([
         {
-          // UserId: `${req.body.UserId}`,
           UserName: `${req.body.UserName}`,
           UserAddress: `${req.body.UserAddress}`,
           UserCity: `${req.body.UserCity}`,
+        },
+      ]);
+      res.json({ success: true, message: `User Added : ${result}` });
+    } catch (err) {
+      console.log(err);
+    }
+  }, 5000);
+});
+
+app.post("/MobileNo/Add", (req, res) => {
+  setTimeout(async () => {
+    try {
+      let result = await pg("mobile_no_table").insert([
+        {
+          // ID: `${req.body.ID}`,
+          Mobile_No: `${req.body.Mobile_No}`,
         },
       ]);
       res.json({ success: true, message: `User Added : ${result}` });
@@ -145,6 +159,17 @@ app.post("/User/List", (req, res) => {
   }, 5000);
 });
 
+app.get("/Get_OrderData", async (req, res) => {
+  try {
+    let data = await pg.select('ID', 'bhakri', 'pithla', 'test', 'totalPrice')
+      .from('order_data_table')
+    OrderData.push(data)
+    res.json(data)
+  } catch (error) {
+    console.log(err);
+  }
+})
+
 app.post("/User/Update", (req, res) => {
   setTimeout(async () => {
     try {
@@ -170,6 +195,7 @@ app.post("/User/Delete", (req, res) => {
     }
   }, 5000);
 });
+
 app.post("/UserAll/Data", (req, res) => {
   setTimeout(async () => {
     try {
@@ -195,44 +221,24 @@ app.post("/UserAll/Data", (req, res) => {
 });
 
 // get Data 
-app.get("/Get_Mobile_No", async (req, res) => {
+app.get("/Get_Mobile_No", async (req,res)=>{
   try {
     let data = await pg.select('ID', 'Mobile_No')
-      .from('mobile_no_table')
-    Mobiledata.push(data)
-    res.json({ success: true, message: Mobiledata })
+  .from('mobile_no_table')
+  Mobiledata.push(data)
+  res.json({success:true,message:Mobiledata})
   } catch (error) {
     console.log(err);
   }
 })
 
-// Assuming UserData is declared somewhere in your code as an array
-
-app.get("/Get_userData", async (req, res) => {
+app.get("/Get_userData", async (req,res)=>{
   try {
-    setTimeout(async () => {
-      let data = await pg
-        .select('ID', 'UserName', 'UserAddress', 'UserCity')
-        .from('users');
-      data.forEach(e => {
-        let UserData = [];
-        UserData.push(data)
-      })
-      console.log(UserData);
-      res.json(data);
-    }, 2000);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: "Internal Server Error" });
-  }
-});
-
-app.get("/Get_OrderData", async (req, res) => {
-  try {
-    let data = await pg.select('ID', 'bhakri', 'pithla', 'test', 'totalPrice')
-      .from('order_data_table')
-    OrderData.push(data)
-    res.json(data)
+    let data = await pg.select('ID', 'UserName','UserAddress','UserCity')
+  .from('users')
+  UserData.push(data)
+  res.json({success:true,message:UserData})
+  // console.log(UserData);
   } catch (error) {
     console.log(err);
   }
