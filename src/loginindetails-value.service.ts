@@ -49,7 +49,7 @@ export class LoginindetailsValueService {
        }
        this.adddata = formData
     console.log(formData);
-     await this.http.post("http://localhost:4000/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
+     await this.http.post("https://sample-pithla-bhakri.onrender.com/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
     console.log(e);
    })
     // this.phoneForm.reset()
@@ -73,7 +73,7 @@ export class LoginindetailsValueService {
     this.order_list()
 
     // mobile no add api done
-    await this.http.post("http://localhost:4000/Mobile_No/No_Add", this.adddata).subscribe((e:any) => {
+    await this.http.post("https://sample-pithla-bhakri.onrender.com/Mobile_No/No_Add", this.adddata).subscribe((e:any) => {
       // Convert array to Set to ensure uniqueness
       // console.log(e);
       
@@ -96,7 +96,7 @@ export class LoginindetailsValueService {
     })
 
     // // foodquantity data api done
-    await this.http.post("http://localhost:4000/OrderData/Details", this.foodquantity).subscribe(e => {
+    await this.http.post("https://sample-pithla-bhakri.onrender.com/OrderData/Details", this.foodquantity).subscribe(e => {
       console.log(e);
     })
     // this.Test_newapi()
@@ -115,18 +115,18 @@ export class LoginindetailsValueService {
    
   async Test_newapi() {
     // UserData collect in frontend
-    let User_Data =await this.http.get("http://localhost:4000/Get_userData").subscribe(e => {
+    let User_Data =await this.http.get("https://sample-pithla-bhakri.onrender.com/Get_userData").subscribe(e => {
       console.log(e);
     })
 
     // Mobile_No Data collect in frontend
-    let MobileNo_Data =await this.http.get("http://localhost:4000/Get_Mobile_No").subscribe(e => {
+    let MobileNo_Data =await this.http.get("https://sample-pithla-bhakri.onrender.com/Get_Mobile_No").subscribe(e => {
       console.log(e);
     })
 
-    await this.http.get<any[]>("http://localhost:4000/Get_OrderData").subscribe(e => {
+    await this.http.get<any[]>("https://sample-pithla-bhakri.onrender.com/Get_OrderData").subscribe(e => {
       console.log(e);
-    })
+    }) 
 
 
     // Mobile_No Data collect in frontend
@@ -143,7 +143,7 @@ export class LoginindetailsValueService {
         Mobile_No: parsedData
       }
       console.log(parsedData);
-      return this.http.post<any[]>("http://localhost:4000/getData", number);
+      return this.http.post<any[]>("https://sample-pithla-bhakri.onrender.com/getData", number);
     } else {
       console.log('No data found in localStorage');
       // Handle the case where no data is found, either by returning a default value or handling it differently
@@ -154,7 +154,7 @@ export class LoginindetailsValueService {
 
 
   getpitla(){
-    return this.http.get<any[]>("http://localhost:4000/getpitla")
+    return this.http.get<any[]>("https://sample-pithla-bhakri.onrender.com/getpitla")
 
   }
 }

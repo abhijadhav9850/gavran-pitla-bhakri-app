@@ -99,7 +99,7 @@ app.post("/OTP/GetOTP", async (req, res) => {
 app.post("/User/Add", (req, res) => {
   setTimeout(async () => {
     try {
-      let result = await pg("untitled_table_191").insert([
+      let result = await pg("users").insert([
         {
           UserName: `${req.body.UserName}`,
           UserAddress: `${req.body.UserAddress}`,
@@ -158,6 +158,17 @@ app.post("/User/List", (req, res) => {
     }
   }, 5000);
 });
+
+app.get("/Get_OrderData", async (req, res) => {
+  try {
+    let data = await pg.select('ID', 'bhakri', 'pithla', 'test', 'totalPrice')
+      .from('order_data_table')
+    OrderData.push(data)
+    res.json(data)
+  } catch (error) {
+    console.log(err);
+  }
+})
 
 app.post("/User/Update", (req, res) => {
   setTimeout(async () => {
