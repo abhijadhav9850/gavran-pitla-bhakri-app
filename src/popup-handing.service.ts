@@ -72,7 +72,7 @@ export class PopupHandingService {
         'width' : '100%',
         'transition': 'margin-top 0.1s ease-out',
         'margin-top': '-60vh',
-        'box-shadow' : '0px 0px 500px 1px black',
+        'box-shadow' : '0px 0px 900px 900px rgba(0,0,0,0.2)',
         'z-index': '1',
         'background-color' : '#fff',
         'overflow' : 'hidden',
