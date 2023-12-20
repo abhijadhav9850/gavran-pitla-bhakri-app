@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ export class LoginindetailsValueService {
 
   display: any;
 
-  adddata: any=''
+  adddata: any = ''
   otpnumber: any;
   bhakriquantity: any = "";
   pithlaquantity: any = "";
@@ -26,10 +26,10 @@ export class LoginindetailsValueService {
   show_home_popup = false
 
   phoneForm = this.fb.group({
-    Mobile_No: ['',[Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
+    Mobile_No: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
   })
 
-  foodquantity: any =[
+  foodquantity: any = [
     {
       bhakri: this.bhakriquantity,
       pithla: this.pithlaquantity,
@@ -41,20 +41,20 @@ export class LoginindetailsValueService {
 
 
   orderlist: any = []
-  userData:any = []
+  userData: any = []
 
   // logindeatilsvalue: any = [];
   // userinformation: any = [];
 
-  async sendotp(){
-     let formData = {
-         Mobile_No: this.phoneForm.value.Mobile_No
-       }
-       this.adddata = formData
+  async sendotp() {
+    let formData = {
+      Mobile_No: this.phoneForm.value.Mobile_No
+    }
+    this.adddata = formData
     console.log(formData);
-     await this.http.post("https://sample-pithla-bhakri.onrender.com/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
-    console.log(e);
-   })
+    await this.http.post("https://sample-pithla-bhakri.onrender.com/Mobile_No/Send_OTP", formData).subscribe((e: any) => {
+      console.log(e);
+    })
     // this.phoneForm.reset()
   }
 
@@ -76,16 +76,16 @@ export class LoginindetailsValueService {
     this.order_list()
 
     // mobile no add api done
-    await this.http.post("https://sample-pithla-bhakri.onrender.com/Mobile_No/No_Add", this.adddata).subscribe((e:any) => {
+    await this.http.post("https://sample-pithla-bhakri.onrender.com/Mobile_No/No_Add", this.adddata).subscribe((e: any) => {
       // Convert array to Set to ensure uniqueness
       // console.log(e);
-      
+
       // const uniqueMobileNumbers = [...new Set(e.message)];
       // console.log(uniqueMobileNumbers);
 
       // // Store in localStorage
       localStorage.setItem('uniqueMobileNumbers', JSON.stringify(e.message));
-      
+
       // // Retrieve from localStorage
       // const retrievedData = localStorage.getItem('uniqueMobileNumbers');
       // if (retrievedData !== null) {
@@ -115,25 +115,25 @@ export class LoginindetailsValueService {
   // }
   // getUserInformation(){}
 
-   
+
   async Test_newapi() {
     // UserData collect in frontend
-    let User_Data =await this.http.get("https://sample-pithla-bhakri.onrender.com/Get_userData").subscribe(e => {
+    let User_Data = await this.http.get("https://sample-pithla-bhakri.onrender.com/Get_userData").subscribe(e => {
       console.log(e);
     })
 
     // Mobile_No Data collect in frontend
-    let MobileNo_Data =await this.http.get("https://sample-pithla-bhakri.onrender.com/Get_Mobile_No").subscribe(e => {
+    let MobileNo_Data = await this.http.get("https://sample-pithla-bhakri.onrender.com/Get_Mobile_No").subscribe(e => {
       console.log(e);
     })
 
     await this.http.get<any[]>("https://sample-pithla-bhakri.onrender.com/Get_OrderData").subscribe(e => {
       console.log(e);
-    }) 
+    })
 
 
     // Mobile_No Data collect in frontend
-    
+
   }
 
   getData(): Observable<any[]> {
@@ -155,8 +155,41 @@ export class LoginindetailsValueService {
     }
   }
 
+  loginprofile(data: any) {
+    this.http.post("http://localhost:4000/login", data).subscribe((result: any) => {
+      localStorage.setItem("token", result.token)
+      // this.router.navigate(['/'])
+    })
+  }
 
-  getpitla(){
+  logout(){
+    localStorage.removeItem("token")
+  }
+
+  profile() {
+    let headers = new HttpHeaders().set("Authorization", `bearer ${localStorage.getItem('token')}`)
+    this.http.post("http://localhost:4000/profile", {}, { headers }).subscribe((result: any) => {
+      this.authLoggedIn.next(true)
+      if (this.authLoggedIn.getValue() === true) {
+        const retrievedData = localStorage.getItem('token');
+        this.show_home_popup = true
+        console.log(retrievedData);
+        return this.authLoggedIn.next(true)
+      }
+      // if (retrievedData !== null) {
+      //   const parsedData = JSON.parse(retrievedData);
+      //   console.log(parsedData);
+        
+      // } else {
+      //   console.log('No data found in localStorage');
+      // }
+      
+
+    })
+  }
+
+
+  getpitla() {
     return this.http.get<any[]>("https://sample-pithla-bhakri.onrender.com/getpitla")
 
   }
