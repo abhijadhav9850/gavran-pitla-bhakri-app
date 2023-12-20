@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { PopupHandingService } from 'src/popup-handing.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 import { Router } from '@angular/router';
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./logininphone.component.css']
 })
 export class LogininphoneComponent {
+  @ViewChild('myForm') myForm!: NgForm;
 
   submitted = false
   minimumNumber = false
@@ -27,9 +28,11 @@ export class LogininphoneComponent {
     }
   }
     
-  async submitForm() {
+  async submitForm(data:any) {    
+   
     this.mobileNumber()
     this.ls.sendotp()
+    this.ls.loginprofile(data)
     
     if(this.ls.phoneForm.valid == true){
       this.service.openOtp()
