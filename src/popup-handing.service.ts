@@ -133,8 +133,18 @@ export class PopupHandingService {
     }
     
     openContact(){
-      this.quantity = false;
-      this.contact = true;
+      if(localStorage.getItem('uniqueMobileNumbers')){
+    
+        this.quantity = false
+        this.contact  = false;
+        this.otp = false;
+        this.address  = false;
+        this.payment  = false;
+        this.openPayment()
+      }else{
+        this.quantity = false;
+        this.contact = true;
+      }
     }
     openPayment(){
       this.payment = true;
@@ -147,8 +157,16 @@ export class PopupHandingService {
     }
     
     closepayment(){
-      this.payment = false;
-      this.address = true;
+      if(localStorage.getItem('uniqueMobileNumbers')){
+        this.quantity = true
+        this.contact  = false;
+        this.otp = false;
+        this.address  = false;
+        this.payment  = false;
+      }else{
+        this.payment = false;
+        this.address = true;
+      }
     }
     closeContact(){
       this.contact = false;
