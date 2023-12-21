@@ -14,7 +14,6 @@ export class HomeComponent {
     if (retrievedData !== null) {
       this.ls.authLoggedIn.next(true)
       this.ls.profile()
-      console.log("h");
     } else {
       console.log('No data found in localStorage');
     }
