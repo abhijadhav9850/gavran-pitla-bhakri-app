@@ -24,6 +24,11 @@ export class UserProfileComponent {
     }
   }
 
+  edit = false
+
+  hideInput(){
+    this.edit = !this.edit
+  }
 
 
   log:any=''
