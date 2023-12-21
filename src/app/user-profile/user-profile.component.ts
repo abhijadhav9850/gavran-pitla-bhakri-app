@@ -35,6 +35,7 @@ export class UserProfileComponent {
   logout(){
       console.log("hello");
      this.ls.logout()
+     localStorage.removeItem('uniqueMobileNumbers')
    this.router.navigate([''])
    window.location.reload()
   }
