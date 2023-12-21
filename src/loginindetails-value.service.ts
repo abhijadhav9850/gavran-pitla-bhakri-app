@@ -60,7 +60,7 @@ export class LoginindetailsValueService {
   }
 
   order_list() {
-    this.orderlist.push(this.foodquantity)
+    this.orderlist.push(this.foodorderdata)
     console.log(this.orderlist);
 
   }
@@ -85,9 +85,11 @@ export class LoginindetailsValueService {
 
     
     // // foodquantity data api done
-    // await this.http.post("https://sample-pithla-bhakri.onrender.com/OrderData/Details", this.foodorderdata).subscribe(e => {
-    //   console.log(e);
-    // })
+    await this.http.post("https://sample-pithla-bhakri.onrender.com/OrderData/Details", this.foodorderdata).subscribe(e => {
+      console.log(e);
+    })
+    console.log("hee",this.foodorderdata);
+    
     // this.Test_newapi()
     // this.router.navigate(['order-his'])
     // }

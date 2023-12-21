@@ -59,18 +59,7 @@ export class FoodQuantityComponent {
 
   pushValueToService() {
     let totalValue = this.bhakriPrice + this.pithlaPrice + this.thechaPrice + this.onionPrice
-    // console.log(totalValue);
-    // this.data.bhakriquantity = this.bhakri
-    // this.data.pithlaquantity = this.pithla
-    // console.log("bhakri quantity", this.data.bhakriquantity);
-    // console.log("pithla quantity", this.data.pithlaquantity);
-
-    // this.data.foodquantity.pop()
-    // this.data.foodquantity.bhakri = this.bhakri;
-    // this.data.foodquantity.pithla = this.pithla;
-    // this.data.foodquantity.totalPrice = this.bhakriPrice + this.pithlaPrice
-
-    // this.data.orderPrice = this.bhakriPrice+this.pithlaPrice
+    
      this.orderdata = {
       bhakri: this.bhakri,
       pithla: this.pithla,
@@ -79,11 +68,13 @@ export class FoodQuantityComponent {
     }
 
     if (this.seleted == true) {
-      orderdata.test = "Medium"
+      this.orderdata.test = "Medium"
     } else {
-      orderdata.test = "Spicy"
-
+      this.orderdata.test = "Spicy"
     }
+
+    this.data.foodorderdata = this.orderdata
+// console.log("hee",this.data.foodorderdata);
 
 
    
@@ -97,12 +88,12 @@ export class FoodQuantityComponent {
     // console.log(this.bhakriPrice+this.pithlaPrice+this.thechaPrice+this.onionPrice);
   }
 
-  orderdataapi(){
-    this.http.post("https://sample-pithla-bhakri.onrender.com/OrderData/Details",this.orderdata).subscribe(e => {
-      console.log(e);
-    })
+  // orderdataapi(){
+  //   this.http.post("https://sample-pithla-bhakri.onrender.com/OrderData/Details",this.orderdata).subscribe(e => {
+  //     console.log(e);
+  //   })
 
-  }
+  // }
 
  
 
