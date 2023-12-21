@@ -302,16 +302,16 @@ app.post("/getData", async (req, res) => {
   }
 });
 
-app.get("/getpitla", async (req, res) => {
-  try {
-    let data = await pg.select('ID', 'bhakri', 'pithla', 'test', 'totalPrice').from('order_data_table');
-    res.json({ success: true, message: data });
-    console.log(data);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: "Internal Server Error" });
-  }
-})
+// app.get("/getpitla", async (req, res) => {
+//   try {
+//     let data = await pg.select('ID', 'bhakri', 'pithla', 'test', 'totalPrice').from('order_data_table');
+//     res.json({ success: true, message: data });
+//     console.log(data);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({ success: false, message: "Internal Server Error" });
+//   }
+// })
 
 app.get("/User/List", (req, res) => {
   setTimeout(async () => {
