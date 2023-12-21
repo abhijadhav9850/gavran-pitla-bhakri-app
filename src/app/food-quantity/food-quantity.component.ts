@@ -19,6 +19,7 @@ export class FoodQuantityComponent {
   pithlaPrice = 50;
   thechaPrice = 0;
   onionPrice = 0;
+  orderdata:any;
 
   seleted: any = true;
 
@@ -58,19 +59,8 @@ export class FoodQuantityComponent {
 
   pushValueToService() {
     let totalValue = this.bhakriPrice + this.pithlaPrice + this.thechaPrice + this.onionPrice
-    // console.log(totalValue);
-    // this.data.bhakriquantity = this.bhakri
-    // this.data.pithlaquantity = this.pithla
-    // console.log("bhakri quantity", this.data.bhakriquantity);
-    // console.log("pithla quantity", this.data.pithlaquantity);
-
-    // this.data.foodquantity.pop()
-    // this.data.foodquantity.bhakri = this.bhakri;
-    // this.data.foodquantity.pithla = this.pithla;
-    // this.data.foodquantity.totalPrice = this.bhakriPrice + this.pithlaPrice
-
-    // this.data.orderPrice = this.bhakriPrice+this.pithlaPrice
-    let orderdata = {
+    
+     this.orderdata = {
       bhakri: this.bhakri,
       pithla: this.pithla,
       test: '',
@@ -78,18 +68,17 @@ export class FoodQuantityComponent {
     }
 
     if (this.seleted == true) {
-      orderdata.test = "Medium"
+      this.orderdata.test = "Medium"
     } else {
-      orderdata.test = "Spicy"
-
+      this.orderdata.test = "Spicy"
     }
 
+    this.data.foodorderdata = this.orderdata
+// console.log("hee",this.data.foodorderdata);
 
-    this.http.post("https://sample-pithla-bhakri.onrender.com/OrderData/Details",orderdata).subscribe(e => {
-      console.log(e);
-    })
 
-    console.log(orderdata);
+   
+    // console.log(orderdata);
 
     // this.data.order_list()
     // this.data.show_modify_popup()
@@ -98,6 +87,13 @@ export class FoodQuantityComponent {
     // this.data.getOrderPrice()
     // console.log(this.bhakriPrice+this.pithlaPrice+this.thechaPrice+this.onionPrice);
   }
+
+  // orderdataapi(){
+  //   this.http.post("https://sample-pithla-bhakri.onrender.com/OrderData/Details",this.orderdata).subscribe(e => {
+  //     console.log(e);
+  //   })
+
+  // }
 
  
 
