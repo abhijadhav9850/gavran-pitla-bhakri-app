@@ -151,7 +151,7 @@ export class LoginindetailsValueService {
       if (this.authLoggedIn.getValue() === true) {
         const retrievedData = localStorage.getItem('token');
         this.show_home_popup = true
-        console.log(retrievedData);
+        // console.log(retrievedData);
         return this.authLoggedIn.next(true)
       }
       // if (retrievedData !== null) {
