@@ -34,6 +34,7 @@ let otpvalue;
 //login with jwt
 
 const secretkey = "secretkey"
+
 app.post("/login",(req,res)=>{
   const user ={
     Mobile_No : 8010154150,
@@ -158,22 +159,6 @@ app.post("/User/Add", (req, res) => {
   }, 5000);
 });
 
-app.post("/MobileNo/Add", (req, res) => {
-  setTimeout(async () => {
-    try {
-      let result = await pg("mobile_no_table").insert([
-        {
-          // ID: `${req.body.ID}`,
-          Mobile_No: `${req.body.Mobile_No}`,
-        },
-      ]);
-      res.json({ success: true, message: `User Added : ${result}` });
-    } catch (err) {
-      console.log(err);
-    }
-  }, 5000);
-});
-
 app.post("/OrderData/Details", async (req, res) => {
   try {
     let result = await pg("order_data_table").insert([
@@ -191,23 +176,10 @@ app.post("/OrderData/Details", async (req, res) => {
   }
 });
 
-app.post("/User/List", (req, res) => {
-  setTimeout(async () => {
-    try {
-      let result = await pg
-        .select("UserId", "UserName", "UserAddress", "UserCity")
-        .from("users");
-      res.json({ success: true, message: `User Data : ${result}` });
-    } catch (err) {
-      console.log(err);
-    }
-  }, 5000);
-});
-
 app.get("/Get_OrderData", async (req, res) => {
   try {
     let data = await pg.select('ID', 'bhakri', 'pithla', 'test', 'totalPrice')
-      .from('order_data_table')
+    .from('order_data_table')
     OrderData.push(data)
     res.json(data)
   } catch (error) {
@@ -219,8 +191,8 @@ app.post("/User/Update", (req, res) => {
   setTimeout(async () => {
     try {
       let result = await pg("users")
-        .where("UserName", `${req.body.UserName}`)
-        .update({ UserName: `${req.body.NewName}` });
+      .where("UserName", `${req.body.UserName}`)
+      .update({ UserName: `${req.body.NewName}` });
       res.json({ success: true, message: `User Updated : ${result}` });
     } catch (err) {
       console.log(err);
@@ -303,13 +275,13 @@ app.post("/getData", async (req, res) => {
 
     let data3 = await pg.select('ID', 'bhakri', 'pithla', 'test', 'totalPrice').from('order_data_table');
     order_List.push(...data3);
-
+    
     // console.log(allData); // Log the combined array of all data
 
     let obj = allData.filter(e => e.Mobile_No == req.body.Mobile_No)
 
     let obj2 = []
-
+    
     function findData(ID) {
       const idObj = order_List.filter(e => e.ID == ID)
       obj2.push(idObj)
@@ -322,7 +294,7 @@ app.post("/getData", async (req, res) => {
 
     let orderList = obj2.flat()
     console.log(orderList);
-
+    
     res.json({ success: true, message: orderList });
   } catch (error) {
     console.log(error);
@@ -341,6 +313,18 @@ app.get("/getpitla", async (req, res) => {
   }
 })
 
+app.get("/User/List", (req, res) => {
+  setTimeout(async () => {
+    try {
+      let result = await pg
+        .select("UserId", "UserName", "UserAddress", "UserCity")
+        .from("users");
+      res.json({ success: true, message: `User Data : ${result}` });
+    } catch (err) {
+      console.log(err);
+    }
+  }, 5000);
+});
 
 app.listen(port, (req, res) => {
   console.log(`Using Port http://localhost:${port}/`);
