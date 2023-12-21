@@ -155,6 +155,5 @@ export class LoginindetailsValueService {
 
   getpitla(){
     return this.http.get<any[]>("https://sample-pithla-bhakri.onrender.com/getpitla")
-
   }
 }
