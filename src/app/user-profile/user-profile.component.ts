@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,6 +9,7 @@ import { Component } from '@angular/core';
 })
 export class UserProfileComponent {
 
+  constructor(public ls:LoginindetailsValueService, public router:Router){}
   zoom = {
     transition: 'transform .5s',
     transform: 'none',
@@ -19,5 +22,15 @@ export class UserProfileComponent {
       'transform': 'scale(1.9)',
       'margin-top' : '45%',
     }
+  }
+
+
+
+  log:any=''
+  logout(){
+      console.log("hello");
+     this.ls.logout()
+   this.router.navigate([''])
+   window.location.reload()
   }
 }
