@@ -79,9 +79,11 @@ export class FoodQuantityComponent {
 
     if (this.seleted == true) {
       this.data.foodquantity.test = 'Medium'
-      
+      orderdata.test = "Medium"
     } else {
       this.data.foodquantity.test = 'Spicy'
+      orderdata.test = "Spicy"
+
     }
 
 
