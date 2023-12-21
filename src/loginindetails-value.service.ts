@@ -22,6 +22,7 @@ export class LoginindetailsValueService {
   payment: any = false;
   otp: any = false;
   authLoggedIn = new BehaviorSubject<boolean>(false);
+  foodorderdata:any;
 
   show_home_popup = false
 
@@ -51,7 +52,7 @@ export class LoginindetailsValueService {
       Mobile_No: this.phoneForm.value.Mobile_No
     }
     this.adddata = formData
-    console.log(formData);
+    // console.log(formData);
     await this.http.post("https://sample-pithla-bhakri.onrender.com/Mobile_No/Send_OTP", formData).subscribe((e: any) => {
       console.log(e);
     })
@@ -77,43 +78,21 @@ export class LoginindetailsValueService {
 
     // mobile no add api done
     await this.http.post("https://sample-pithla-bhakri.onrender.com/Mobile_No/No_Add", this.adddata).subscribe((e: any) => {
-      // Convert array to Set to ensure uniqueness
-      // console.log(e);
-
-      // const uniqueMobileNumbers = [...new Set(e.message)];
-      // console.log(uniqueMobileNumbers);
-
       // // Store in localStorage
       localStorage.setItem('uniqueMobileNumbers', JSON.stringify(e.message));
-
-      // // Retrieve from localStorage
-      // const retrievedData = localStorage.getItem('uniqueMobileNumbers');
-      // if (retrievedData !== null) {
-      //   const parsedData = JSON.parse(retrievedData);
-      //   console.log(parsedData); // This will contain unique mobile numbers if retrievedData is not null
-      // } else {
-      //   console.log('No data found in localStorage');
-      // }
       this.authLoggedIn.next(true)
-
     })
 
     // // foodquantity data api done
-    await this.http.post("https://sample-pithla-bhakri.onrender.com/OrderData/Details", this.foodquantity).subscribe(e => {
-      console.log(e);
-    })
+    // await this.http.post("https://sample-pithla-bhakri.onrender.com/OrderData/Details", this.foodorderdata).subscribe(e => {
+    //   console.log(e);
+    // })
     // this.Test_newapi()
     // this.router.navigate(['order-his'])
     // }
     // })
   }
 
-  // no use this code 
-
-  // getOrderPrice(){
-  //   console.log(this.orderPrice);
-  // }
-  // getUserInformation(){}
 
 
   async Test_newapi() {
@@ -149,8 +128,6 @@ export class LoginindetailsValueService {
       return this.http.post<any[]>("https://sample-pithla-bhakri.onrender.com/getData", number);
     } else {
       console.log('No data found in localStorage');
-      // Handle the case where no data is found, either by returning a default value or handling it differently
-      // In this example, we return an observable that emits an empty array
       return of([]);
     }
   }
