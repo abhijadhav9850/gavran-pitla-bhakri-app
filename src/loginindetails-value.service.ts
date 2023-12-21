@@ -48,7 +48,7 @@ export class LoginindetailsValueService {
          Mobile_No: this.phoneForm.value.Mobile_No
        }
        this.adddata = formData
-    console.log(formData);
+     console.log(formData);
      await this.http.post("https://sample-pithla-bhakri.onrender.com/Mobile_No/Send_OTP",formData).subscribe((e:any)=>{
     console.log(e);
    })
@@ -115,12 +115,12 @@ export class LoginindetailsValueService {
    
   async Test_newapi() {
     // UserData collect in frontend
-    let User_Data =await this.http.get("https://sample-pithla-bhakri.onrender.com/Get_userData").subscribe(e => {
+    await this.http.get("https://sample-pithla-bhakri.onrender.com/Get_userData").subscribe(e => {
       console.log(e);
     })
 
     // Mobile_No Data collect in frontend
-    let MobileNo_Data =await this.http.get("https://sample-pithla-bhakri.onrender.com/Get_Mobile_No").subscribe(e => {
+    await this.http.get("https://sample-pithla-bhakri.onrender.com/Get_Mobile_No").subscribe(e => {
       console.log(e);
     })
 
