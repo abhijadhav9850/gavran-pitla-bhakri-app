@@ -83,6 +83,7 @@ export class LoginindetailsValueService {
       this.authLoggedIn.next(true)
     })
 
+    
     // // foodquantity data api done
     // await this.http.post("https://sample-pithla-bhakri.onrender.com/OrderData/Details", this.foodorderdata).subscribe(e => {
     //   console.log(e);
