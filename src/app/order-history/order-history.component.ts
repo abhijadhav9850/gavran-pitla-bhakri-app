@@ -31,7 +31,9 @@ export class OrderHistoryComponent {
     );
   
   }
-  currentDate = new Date();
+  orderDate = new Date();
+  orderTimestamp = Date.now();
+  orderDate1 = new Date(this.orderTimestamp);
   
   pastHIstory:any=[
     {
