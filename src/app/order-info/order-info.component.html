@@ -1,6 +1,6 @@
 <div class="px-2 h-[100vh] items-center overflow-hidden" id="main">
   <div class=" flex justify-between top-0 sticky bg-transparent items-center pt-[50px] px-[15px] gap-[30px] pb-[30px]">
-    <div routerLink="" class="flex gap-[8px] text-[1.5rem]">
+    <div routerLink="/" class="flex gap-[8px] text-[1.5rem]">
       <p style="font-family: 'Aclonica', sans-serif;color: #FF6A00;">Pithla</p>
       <p style="font-family: 'Aclonica', sans-serif;color: #00A850;">Bhakri</p>
     </div>
@@ -31,7 +31,7 @@
       <p class="font-semibold text-xs">Status : Preparing</p>
     </div>
     <div>
-      <button class="text-xs py-2 relative w-16 font-medium content-center text-orange-50 bg-orange-500 rounded-md
+      <button (click)="modifyOrder = true" class="text-xs py-2 relative w-16 font-medium content-center text-orange-50 bg-orange-500 rounded-md
       ">Modify</button>
     </div>
   </div>
@@ -47,21 +47,23 @@
             <div class="flex gap-3 mt-4">
               <img src="../../assets/Group.png" alt="">
               <p class="font-Roboto font-bold text-xs">Bhakri</p>
+              <p *ngIf="!modifyOrder" class="font-Roboto font-bold text-xs">X {{ls.foodorderdata.bhakri}}</p>
             </div>
             <div class="flex gap-3 mt-4">
               <img src="../../assets/Vector.png" alt="">
               <p class="font-Roboto font-bold text-xs">Pitla</p>
+              <p *ngIf="!modifyOrder" class="font-Roboto font-bold text-xs">X {{ls.foodorderdata.pithla}}</p>
             </div>
           </div>
           <div class="mt-5 items-center">
             <div class="flex w-[80px] justify-between">
               <img class="h-[16px] w-16px mt-[5px]" src="../../assets/Button (1).png" alt="">
-              <p>{{ls.foodquantity.bhakri}}</p>
+              <p>{{ls.foodorderdata.bhakri}}</p>
               <img class="h-[16px] w-16px mt-[5px]" src="../../assets/Button.png" alt="">
             </div>
             <div class="flex w-[80px] justify-between mt-4">
               <img class="h-[16px] w-16px mt-[5px]" src="../../assets/Button (1).png" alt="">
-              <p>{{ls.foodquantity.pithla}}</p>
+              <p>{{ls.foodorderdata.pithla}}</p>
               <img class="h-[16px] w-16px mt-[5px]" src="../../assets/Button.png" alt="">
             </div>
           </div>
@@ -70,7 +72,7 @@
         <div class="mt-5 md:w-[50%] flex justify-between items-center">
           <p class="text-[18px] font-bold">Test</p>
           <div class="w-[80px] flex justify-center">
-            <p class="font-Roboto font-bold text-xs">{{ls.foodquantity.test}}</p>
+            <p class="font-Roboto font-bold text-xs">{{ls.foodorderdata.test}}</p>
           </div>
         </div>
 
@@ -80,11 +82,11 @@
   
     <div class="mt-5 main flex justify-between items-center px-4 w-full h-[40px] md:w-[50%] rounded-lg bg-yellow-500">
       <h1 class="text-l font-bold">Total</h1>
-      <h1 class="text-l font-bold">₹{{ls.foodquantity.totalPrice}}</h1>
+      <h1 class="text-l font-bold">₹{{ls.foodorderdata.totalPrice}}</h1>
     </div>
   
     <div class="flex justify-end">
-      <button (click)="ls.show_home_popup=false" (click)="backpage()"
+      <button (click)="backpage()"
        class="mt-[10px] text-[1rem] py-2 w-[80px] font-medium content-center text-orange-50 bg-orange-500 rounded-md"
        >Cancel</button>
     </div>

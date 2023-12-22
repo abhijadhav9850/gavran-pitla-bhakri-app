@@ -70,6 +70,7 @@ export class OtpVerificationComponent {
         alert('Otp successful');
         this.service.openAddress()
         this.ls.otpverifyapi()
+        this.ls.userLogin = true;
         console.log("Work");    
       }else{
         alert('OTP is not valid');

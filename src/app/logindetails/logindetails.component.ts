@@ -58,6 +58,12 @@ toggleDropdown() {
     }
     // console.log(this.myForm.value);
     
+    this.ls.userData = localStorage.setItem('userName', JSON.stringify(this.myForm.value.UserName))
+
+    console.log(this.ls.userData);
+    
+
+    
   }
 
   valueget(){  

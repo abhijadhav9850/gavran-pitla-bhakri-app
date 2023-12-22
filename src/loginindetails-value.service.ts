@@ -9,6 +9,7 @@ import { BehaviorSubject, Observable, filter, of } from 'rxjs';
 export class LoginindetailsValueService {
 
   constructor(public http: HttpClient, public fb: FormBuilder, public router: Router) {
+    this.isUserLogin()
   }
 
   display: any;
@@ -26,6 +27,17 @@ export class LoginindetailsValueService {
 
   show_home_popup = false
 
+ userLogin = false;
+
+ isUserLogin(){
+   if(localStorage.getItem('uniqueMobileNumbers')){
+    this.userLogin = true
+   }else{
+    this.userLogin = false
+   }
+
+ }
+
   phoneForm = this.fb.group({
     Mobile_No: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
   })
@@ -42,7 +54,7 @@ export class LoginindetailsValueService {
 
 
   orderlist: any = []
-  userData: any = []
+  userData :any;
 
   // logindeatilsvalue: any = [];
   // userinformation: any = [];
@@ -152,7 +164,9 @@ export class LoginindetailsValueService {
       this.authLoggedIn.next(true)
       if (this.authLoggedIn.getValue() === true) {
         const retrievedData = localStorage.getItem('token');
-        this.show_home_popup = true
+
+        // this.show_home_popup = true
+        
         // console.log(retrievedData);
         return this.authLoggedIn.next(true)
       }
