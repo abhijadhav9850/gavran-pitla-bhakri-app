@@ -27,14 +27,11 @@ export class FoodQuantityComponent {
     if (this.bhakri > 0) {
       this.bhakri++;
       this.bhakriPrice = this.bhakriPrice + 25
-
-
       this.data.bhakriquantity = this.bhakri
-      // console.log("bhakri quantity", this.data.foodquantity);
     }
 
 
-    // console.log(this.bhakriPrice + this.pithla + this.pithlaPrice + this.onionPrice);
+  
   }
   bhakriDecrement() {
     if (this.bhakri > 1) {

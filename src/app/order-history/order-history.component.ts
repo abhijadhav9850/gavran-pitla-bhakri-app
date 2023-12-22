@@ -35,39 +35,6 @@ export class OrderHistoryComponent {
   orderTimestamp = Date.now();
   orderDate1 = new Date(this.orderTimestamp);
   
-  // pastHIstory:any=[
-  //   {
-  //     bhakri: 4,
-  //     pithla: 2,
-  //     test: 'Spicy',
-  //     totalPrice: 200,
-  //   },
-  //   {
-  //     bhakri: 4,
-  //     pithla: 2,
-  //     test: 'Spicy',
-  //     totalPrice: 200,
-  //   },
-  //   {
-  //     bhakri: 4,
-  //     pithla: 2,
-  //     test: 'Spicy',
-  //     totalPrice: 200,
-  //   },
-  //   {
-  //     bhakri: 4,
-  //     pithla: 2,
-  //     test: 'Spicy',
-  //     totalPrice: 200,
-  //   },
-  //   {
-  //     bhakri: 4,
-  //     pithla: 2,
-  //     test: 'Spicy',
-  //     totalPrice: 200,
-  //   },
-
-  // ]
 
   orderHistory:any=[]
 

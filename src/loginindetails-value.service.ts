@@ -51,7 +51,7 @@ export class LoginindetailsValueService {
     }
     this.adddata = formData
     // console.log(formData);
-    await this.http.post("https://sample-pithla-bhakri.onrender.com/Mobile_No/Send_OTP", formData).subscribe((e: any) => {
+    await this.http.post("https://pitlabhakridatabase.onrender.com/Mobile_No/Send_OTP", formData).subscribe((e: any) => {
       console.log(e);
     })
     // this.phoneForm.reset()
@@ -75,7 +75,7 @@ export class LoginindetailsValueService {
     this.order_list()
 
     // mobile no add api done
-    await this.http.post("https://sample-pithla-bhakri.onrender.com/Mobile_No/No_Add", this.adddata).subscribe((e: any) => {
+    await this.http.post("https://pitlabhakridatabase.onrender.com/Mobile_No/No_Add", this.adddata).subscribe((e: any) => {
       // // Store in localStorage
       localStorage.setItem('uniqueMobileNumbers', JSON.stringify(e.message));
       this.authLoggedIn.next(true)
@@ -83,7 +83,7 @@ export class LoginindetailsValueService {
 
     
     // // foodquantity data api done
-    await this.http.post("https://sample-pithla-bhakri.onrender.com/OrderData/Details", this.foodorderdata).subscribe(e => {
+    await this.http.post("https://pitlabhakridatabase.onrender.com/OrderData/Details", this.foodorderdata).subscribe(e => {
       console.log(e);
     })
     console.log("hee",this.foodorderdata);
@@ -98,16 +98,16 @@ export class LoginindetailsValueService {
 
   async Test_newapi() {
     // UserData collect in frontend
-     await this.http.get("https://sample-pithla-bhakri.onrender.com/Get_userData").subscribe(e => {
+     await this.http.get("https://pitlabhakridatabase.onrender.com/Get_userData").subscribe(e => {
       console.log(e);
     })
 
     // Mobile_No Data collect in frontend
-     await this.http.get("https://sample-pithla-bhakri.onrender.com/Get_Mobile_No").subscribe(e => {
+     await this.http.get("https://pitlabhakridatabase.onrender.com/Get_Mobile_No").subscribe(e => {
       console.log(e);
     })
 
-    await this.http.get<any[]>("http://localhost:4000/Get_OrderData").subscribe(e => {
+    await this.http.get<any[]>("https://pitlabhakridatabase.onrender.com/Get_OrderData").subscribe(e => {
       console.log(e);
     })
     // Mobile_No Data collect in frontend
@@ -123,7 +123,7 @@ export class LoginindetailsValueService {
         Mobile_No: parsedData
       }
       console.log(parsedData);
-      return this.http.post<any[]>("https://sample-pithla-bhakri.onrender.com/getData", number);
+      return this.http.post<any[]>("https://pitlabhakridatabase.onrender.com/getData", number);
     } else {
       console.log('No data found in localStorage');
       return of([]);
@@ -131,7 +131,7 @@ export class LoginindetailsValueService {
   }
 
   loginprofile(data: any) {
-    this.http.post("http://localhost:4000/login", data).subscribe((result: any) => {
+    this.http.post("https://pitlabhakridatabase.onrender.com/login", data).subscribe((result: any) => {
       localStorage.setItem("token", result.token)
       // this.router.navigate(['/'])
     })
@@ -143,23 +143,14 @@ export class LoginindetailsValueService {
 
   profile() {
     let headers = new HttpHeaders().set("Authorization", `bearer ${localStorage.getItem('token')}`)
-    this.http.post("http://localhost:4000/profile", {}, { headers }).subscribe((result: any) => {
+    this.http.post("https://pitlabhakridatabase.onrender.com/profile", {}, { headers }).subscribe((result: any) => {
       this.authLoggedIn.next(true)
       if (this.authLoggedIn.getValue() === true) {
         const retrievedData = localStorage.getItem('token');
 
-        // this.show_home_popup = true
-        
-        // console.log(retrievedData);
         return this.authLoggedIn.next(true)
       }
-      // if (retrievedData !== null) {
-      //   const parsedData = JSON.parse(retrievedData);
-      //   console.log(parsedData);
-        
-      // } else {
-      //   console.log('No data found in localStorage');
-      // }
+      
       
 
     })
@@ -167,6 +158,6 @@ export class LoginindetailsValueService {
 
 
   getpitla() {
-    return this.http.get<any[]>("https://sample-pithla-bhakri.onrender.com/getpitla")
+    return this.http.get<any[]>("https://pitlabhakridatabase.onrender.com/getpitla")
   }
 }
