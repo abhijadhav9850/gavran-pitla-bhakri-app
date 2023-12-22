@@ -67,7 +67,7 @@ toggleDropdown() {
   }
 
   valueget(){  
-    this.http.post('https://sample-pithla-bhakri.onrender.com/User/Add',this.myForm.value).subscribe(e=>{
+    this.http.post('https://pitlabhakridatabase.onrender.com/User/Add',this.myForm.value).subscribe(e=>{
       console.log(e);
     })
   }

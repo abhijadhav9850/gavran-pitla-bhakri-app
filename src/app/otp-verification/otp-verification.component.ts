@@ -63,7 +63,7 @@ export class OtpVerificationComponent {
        }
        
       //  otp verify and go to next page api done
-      this.http.post("https://sample-pithla-bhakri.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
+      this.http.post("https://pitlabhakridatabase.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
         // console.log(e);
         
       if(e.message == 'OTP Verified'){  
