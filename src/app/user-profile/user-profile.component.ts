@@ -9,7 +9,13 @@ import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 })
 export class UserProfileComponent {
 
-  constructor(public ls:LoginindetailsValueService, public router:Router){}
+  constructor(public ls:LoginindetailsValueService, public router:Router){
+   
+  }
+
+  userName = localStorage.getItem('userName');
+  userContact = localStorage.getItem('uniqueMobileNumbers')
+
   zoom = {
     transition: 'transform .5s',
     transform: 'none',
@@ -30,12 +36,23 @@ export class UserProfileComponent {
     this.edit = !this.edit
   }
 
+  name:string = '';
+  number:any;
+  email:any;
 
   log:any=''
+
+
+  editValue(){
+    this.edit = false;
+    console.log(this.name);
+    
+  }
+
   logout(){
-      console.log("hello");
      this.ls.logout()
-     localStorage.removeItem('uniqueMobileNumbers')
+     localStorage.removeItem('uniqueMobileNumbers');
+     localStorage.removeItem('userName')
    this.router.navigate([''])
    window.location.reload()
   }

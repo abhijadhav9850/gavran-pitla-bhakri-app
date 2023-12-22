@@ -1,4 +1,6 @@
 import { Component,Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 import { PopupHandingService } from 'src/popup-handing.service';
 
 @Component({
@@ -7,5 +9,11 @@ import { PopupHandingService } from 'src/popup-handing.service';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent {
-  constructor(public service : PopupHandingService){ }
+  constructor(public service : PopupHandingService, public ls : LoginindetailsValueService,public router: Router){ }
+
+
+  changePath(){
+    this.router.navigate(['/user-profile'])
+  }
+
 }
