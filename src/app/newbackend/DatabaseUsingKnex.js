@@ -263,20 +263,14 @@ app.get("/Get_userData", async (req,res)=>{
 
 app.post("/getData", async (req, res) => {
   try {
-    console.log(req.body);
-    let allData = []; // Array to hold all the data
+    let allData = []; 
     let order_List = []
 
     let data1 = await pg.select('ID', 'Mobile_No').from('mobile_no_table');
     allData.push(...data1);
 
-    // let data2 = await pg.select('ID', 'UserName', 'UserAddress', 'UserCity').from('users');
-    // allData.push(...data2);
-
     let data3 = await pg.select('ID', 'bhakri', 'pithla', 'test', 'totalPrice').from('order_data_table');
     order_List.push(...data3);
-    
-    // console.log(allData); // Log the combined array of all data
 
     let obj = allData.filter(e => e.Mobile_No == req.body.Mobile_No)
 
@@ -301,17 +295,6 @@ app.post("/getData", async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 });
-
-// app.get("/getpitla", async (req, res) => {
-//   try {
-//     let data = await pg.select('ID', 'bhakri', 'pithla', 'test', 'totalPrice').from('order_data_table');
-//     res.json({ success: true, message: data });
-//     console.log(data);
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).json({ success: false, message: "Internal Server Error" });
-//   }
-// })
 
 app.get("/User/List", (req, res) => {
   setTimeout(async () => {

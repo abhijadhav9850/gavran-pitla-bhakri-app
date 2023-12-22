@@ -33,46 +33,46 @@ export class OrderHistoryComponent {
   }
   currentDate = new Date();
   
-  pastHIstory:any=[
-    {
-      bhakri: 4,
-      pithla: 2,
-      test: 'Spicy',
-      totalPrice: 200,
-    },
-    {
-      bhakri: 4,
-      pithla: 2,
-      test: 'Spicy',
-      totalPrice: 200,
-    },
-    {
-      bhakri: 4,
-      pithla: 2,
-      test: 'Spicy',
-      totalPrice: 200,
-    },
-    {
-      bhakri: 4,
-      pithla: 2,
-      test: 'Spicy',
-      totalPrice: 200,
-    },
-    {
-      bhakri: 4,
-      pithla: 2,
-      test: 'Spicy',
-      totalPrice: 200,
-    },
+  // pastHIstory:any=[
+  //   {
+  //     bhakri: 4,
+  //     pithla: 2,
+  //     test: 'Spicy',
+  //     totalPrice: 200,
+  //   },
+  //   {
+  //     bhakri: 4,
+  //     pithla: 2,
+  //     test: 'Spicy',
+  //     totalPrice: 200,
+  //   },
+  //   {
+  //     bhakri: 4,
+  //     pithla: 2,
+  //     test: 'Spicy',
+  //     totalPrice: 200,
+  //   },
+  //   {
+  //     bhakri: 4,
+  //     pithla: 2,
+  //     test: 'Spicy',
+  //     totalPrice: 200,
+  //   },
+  //   {
+  //     bhakri: 4,
+  //     pithla: 2,
+  //     test: 'Spicy',
+  //     totalPrice: 200,
+  //   },
 
-  ]
+  // ]
 
   orderHistory:any=[]
 
   pushValue(i:any){
     console.log(this.orderList[i]);
-    this.ls.foodquantity = []
-    this.ls.foodquantity = [
+    this.ls.foodorderdata = []
+    this.ls.foodorderdata = [
       {
         bhakri: this.orderList[i].bhakri,
         pithla: this.orderList[i].pithla,
@@ -82,8 +82,8 @@ export class OrderHistoryComponent {
     ]
     this.router.navigate(['order-info'])
     this.orderList[i]
-    console.log("food quantity value",this.ls.foodquantity);
-    this.ls.foodquantity.push(this.orderList[i])
+    console.log("food quantity value",this.ls.foodorderdata);
+    this.ls.foodorderdata.push(this.orderList[i])
     
     
   }

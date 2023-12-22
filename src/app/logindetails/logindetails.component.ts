@@ -67,7 +67,6 @@ toggleDropdown() {
   }
 
   valueget(){  
-    console.log(this.ls.foodquantity);
     this.http.post('https://sample-pithla-bhakri.onrender.com/User/Add',this.myForm.value).subscribe(e=>{
       console.log(e);
     })

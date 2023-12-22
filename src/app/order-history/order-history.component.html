@@ -30,29 +30,6 @@
   <p class="p-3 font-medium font-Roboto text-lg flex justify-start">My Orders</p>
   <!-- <hr class="w-full h-2 text-gray-700"> -->
   <div class="flex flex-col justify-around p-2">
-    <!-- <button
-      class=" text-white px-4 py-2 rounded-xl bg-gradient-to-r from-red-700 to-yellow-500 hover:from-pink-500 hover:to-orange-500">PENDING</button>
-    <button
-      class=" text-white px-4 py-2 rounded-xl bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-orange-500">COMPLATE</button> -->
-
-    <!-- <div routerLink="/order-info" class="order-list flex h-[83px] border p-3 rounded-lg w-full mb-3">
-      <div class="cart flex w-full justify-between">
-        <div class="logo flex w-full items-stretch">
-          <img class="w-16 h-16 rounded-full" src="../../assets/order-page-logo.jpeg" alt="logo">
-          <div class="ml-3">
-            <h3 class="text-lg font-semibold">Pitla Bhakri</h3>
-            <p class="font-medium text-[0.88rem]">{{currentDate | date:'dd MMM yyyy'}}</p>
-          </div>
-        </div>
-        <div>
-          <div class="flex flex-col justify-center items-end">
-            <p class="mb-[10px]">{{currentDate | date:'hh:mm'}}</p>
-            <p>Pandding...</p>
-          </div>
-        </div>
-      </div>
-    </div> -->
-
     <div *ngFor="let card of orderList,let i=index " (click)="pushValue(i)" class="order-list flex h-[83px] border p-3 rounded-lg w-full mb-3">
       <div class="cart flex w-full justify-between">
         <div class="logo flex w-full items-stretch">
