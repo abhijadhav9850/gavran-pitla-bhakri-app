@@ -74,26 +74,10 @@ export class FoodQuantityComponent {
     }
 
     this.data.foodorderdata = this.orderdata
-// console.log("hee",this.data.foodorderdata);
 
-
-   
-    // console.log(orderdata);
-
-    // this.data.order_list()
-    // this.data.show_modify_popup()
-
-
-    // this.data.getOrderPrice()
-    // console.log(this.bhakriPrice+this.pithlaPrice+this.thechaPrice+this.onionPrice);
   }
 
-  // orderdataapi(){
-  //   this.http.post("https://sample-pithla-bhakri.onrender.com/OrderData/Details",this.orderdata).subscribe(e => {
-  //     console.log(e);
-  //   })
-
-  // }
+  
 
  
 

@@ -42,22 +42,8 @@ export class LoginindetailsValueService {
     Mobile_No: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
   })
 
-  foodquantity: any = [
-    {
-      bhakri: this.bhakriquantity,
-      pithla: this.pithlaquantity,
-      test: '',
-      totalPrice: this.orderPrice,
-    },
-
-  ]
-
-
   orderlist: any = []
   userData :any;
-
-  // logindeatilsvalue: any = [];
-  // userinformation: any = [];
 
   async sendotp() {
     let formData = {
@@ -112,22 +98,19 @@ export class LoginindetailsValueService {
 
   async Test_newapi() {
     // UserData collect in frontend
-    let User_Data = await this.http.get("https://sample-pithla-bhakri.onrender.com/Get_userData").subscribe(e => {
+     await this.http.get("https://sample-pithla-bhakri.onrender.com/Get_userData").subscribe(e => {
       console.log(e);
     })
 
     // Mobile_No Data collect in frontend
-    let MobileNo_Data = await this.http.get("https://sample-pithla-bhakri.onrender.com/Get_Mobile_No").subscribe(e => {
+     await this.http.get("https://sample-pithla-bhakri.onrender.com/Get_Mobile_No").subscribe(e => {
       console.log(e);
     })
 
-    await this.http.get<any[]>("https://sample-pithla-bhakri.onrender.com/Get_OrderData").subscribe(e => {
+    await this.http.get<any[]>("http://localhost:4000/Get_OrderData").subscribe(e => {
       console.log(e);
     })
-
-
     // Mobile_No Data collect in frontend
-
   }
 
   getData(): Observable<any[]> {
