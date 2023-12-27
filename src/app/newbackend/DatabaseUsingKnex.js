@@ -9,13 +9,13 @@ const port = 4000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(express.json()); 
+app.use(express.json());
 app.use(cors());
 
 const pg = require("knex")({
   client: "pg",
   connection: {
-    connectionString:"postgres://pithla_bhakri_user:yiRU6i6FUMJ0IIG2k2PCPhTYEfSFNkOe@dpg-cls291fqd2ns73dus3sg-a.oregon-postgres.render.com/pithla_bhakri",
+    connectionString: "postgres://pithla_bhakri_user:yiRU6i6FUMJ0IIG2k2PCPhTYEfSFNkOe@dpg-cls291fqd2ns73dus3sg-a.oregon-postgres.render.com/pithla_bhakri",
     host: "dpg-cls291fqd2ns73dus3sg-a.oregon-postgres.render.com",
     port: 5432,
     user: "pithla_bhakri_user",
@@ -35,19 +35,19 @@ let otpvalue;
 
 const secretkey = "secretkey"
 
-app.post("/login",(req,res)=>{
-  const user ={
-    Mobile_No : 8010154150,
+app.post("/login", (req, res) => {
+  const user = {
+    Mobile_No: 8010154150,
   }
-  jwt.sign({user},secretkey,{expiresIn:'100s'},(err,token) => {
+  jwt.sign({ user }, secretkey, { expiresIn: '100s' }, (err, token) => {
     res.json({
       token
     })
   })
 })
 
-function VerifiyToken(req,res,next){
-  const bearerHeder=req.headers['authorization'];
+function VerifiyToken(req, res, next) {
+  const bearerHeder = req.headers['authorization'];
   if (typeof bearerHeder !== 'undefined') {
     const bearer = bearerHeder.split(" ");
     const token = bearer[1];
@@ -55,21 +55,21 @@ function VerifiyToken(req,res,next){
     next();
   } else {
     res.send({
-      result:'token in not valid'
+      result: 'token in not valid'
     })
-  } 
+  }
 }
 
-app.post("/profile",VerifiyToken,(req,res)=>{
-  jwt.verify(req.token,secretkey,(err,authdata)=>{
+app.post("/profile", VerifiyToken, (req, res) => {
+  jwt.verify(req.token, secretkey, (err, authdata) => {
     if (err) {
       res.send({
-        result:"invalid token"
+        result: "invalid token"
       })
-      
+
     } else {
       res.json({
-        massage:"profile accesess",
+        massage: "profile accesess",
         authdata
       })
     }
@@ -78,12 +78,39 @@ app.post("/profile",VerifiyToken,(req,res)=>{
 
 // otp send working
 
+const uuid = require('uuid');
+
 app.post("/Mobile_No/Send_OTP", async (req, res) => {
   try {
+    console.log(req.body);
     const apiKey = "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
     const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
 
-    otpvalue = Math.floor(1000 + Math.random() * 8888);
+    // // Generate a unique identifier for the OTP
+    // const otpId = uuid.v4();
+
+    // // Use the unique identifier to ensure uniqueness of the OTP
+    // otpvalue = Math.floor(1000 + Math.random() * 8888) + otpId.hashCode();
+
+    // Generate a simple hash code for a string
+    function hashCode(str) {
+      let hash = 0;
+      if (str.length === 0) return hash;
+
+      for (let i = 0; i < str.length; i++) {
+        const char = str.charCodeAt(i);
+        hash = (hash << 5) - hash + char;
+        hash &= hash; // Convert to 32bit integer
+      }
+      return hash;
+    }
+
+    const otpId = uuid.v4();
+    const baseOTP = Math.floor(1000 + Math.random() * 9000); // Ensure a 4-digit number
+    otpvalue = baseOTP + hashCode(otpId);
+
+    // Ensure the final OTP is a 4-digit number
+    otpvalue = (otpvalue % 10000 + 10000) % 10000;
 
     const smsData = {
       variables_values: otpvalue,
@@ -110,6 +137,7 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
     res.status(500).json({ success: false, message: "Failed to send OTP" });
   }
 });
+
 
 app.post("/Mobile_No/No_Add", (req, res) => {
   setTimeout(async () => {
@@ -179,20 +207,20 @@ app.post("/OrderData/Details", async (req, res) => {
 app.get("/Get_OrderData", async (req, res) => {
   try {
     let data = await pg.select('ID', 'bhakri', 'pithla', 'test', 'totalPrice')
-    .from('order_data_table')
+      .from('order_data_table')
     OrderData.push(data)
     res.json(data)
   } catch (error) {
     console.log(err);
-  }
+  }
 })
 
 app.post("/User/Update", (req, res) => {
   setTimeout(async () => {
     try {
       let result = await pg("users")
-      .where("UserName", `${req.body.UserName}`)
-      .update({ UserName: `${req.body.NewName}` });
+        .where("UserName", `${req.body.UserName}`)
+        .update({ UserName: `${req.body.NewName}` });
       res.json({ success: true, message: `User Updated : ${result}` });
     } catch (err) {
       console.log(err);
@@ -238,24 +266,24 @@ app.post("/UserAll/Data", (req, res) => {
 });
 
 // get Data 
-app.get("/Get_Mobile_No", async (req,res)=>{
+app.get("/Get_Mobile_No", async (req, res) => {
   try {
     let data = await pg.select('ID', 'Mobile_No')
-  .from('mobile_no_table')
-  Mobiledata.push(data)
-  res.json({success:true,message:Mobiledata})
+      .from('mobile_no_table')
+    Mobiledata.push(data)
+    res.json({ success: true, message: Mobiledata })
   } catch (error) {
     console.log(err);
   }
 })
 
-app.get("/Get_userData", async (req,res)=>{
+app.get("/Get_userData", async (req, res) => {
   try {
-    let data = await pg.select('ID', 'UserName','UserAddress','UserCity')
-  .from('users')
-  UserData.push(data)
-  res.json({success:true,message:UserData})
-  // console.log(UserData);
+    let data = await pg.select('ID', 'UserName', 'UserAddress', 'UserCity')
+      .from('users')
+    UserData.push(data)
+    res.json({ success: true, message: UserData })
+    // console.log(UserData);
   } catch (error) {
     console.log(err);
   }
@@ -263,7 +291,7 @@ app.get("/Get_userData", async (req,res)=>{
 
 app.post("/getData", async (req, res) => {
   try {
-    let allData = []; 
+    let allData = [];
     let order_List = []
 
     let data1 = await pg.select('ID', 'Mobile_No').from('mobile_no_table');
@@ -275,7 +303,7 @@ app.post("/getData", async (req, res) => {
     let obj = allData.filter(e => e.Mobile_No == req.body.Mobile_No)
 
     let obj2 = []
-    
+
     function findData(ID) {
       const idObj = order_List.filter(e => e.ID == ID)
       obj2.push(idObj)
@@ -288,7 +316,7 @@ app.post("/getData", async (req, res) => {
 
     let orderList = obj2.flat()
     console.log(orderList);
-    
+
     res.json({ success: true, message: orderList });
   } catch (error) {
     console.log(error);
