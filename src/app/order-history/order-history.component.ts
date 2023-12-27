@@ -18,26 +18,18 @@ export class OrderHistoryComponent {
   async ngOnInit() {
     this.ls.getData().subscribe(
       (data: any) => {
-        console.log(data);
-        
-        this.orderList = data.message;
-        console.log(this.orderList);
-        
+        this.orderList = data.Result;
       },
       (error) => {
         console.error(error);
         // Handle errors if needed
       }
     );
-  
   }
   orderDate = new Date();
   orderTimestamp = Date.now();
   orderDate1 = new Date(this.orderTimestamp);
-  
-
   orderHistory:any=[]
-
   pushValue(i:any){
     console.log(this.orderList[i]);
     this.ls.foodorderdata = []
@@ -53,8 +45,6 @@ export class OrderHistoryComponent {
     this.orderList[i]
     console.log("food quantity value",this.ls.foodorderdata);
     this.ls.foodorderdata.push(this.orderList[i])
-    
-    
   }
 
 }

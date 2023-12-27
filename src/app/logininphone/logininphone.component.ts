@@ -19,27 +19,23 @@ export class LogininphoneComponent {
 
   constructor(public service : PopupHandingService , public fb: FormBuilder, public http:HttpClient, public ls:LoginindetailsValueService){}
 
-  value = this.ls.phoneForm?.value || null;
-
   mobileNumber(){
-    if(this.ls.phoneForm.invalid){
+    if(this.ls.phoneForm.value>'10'){
       this.minimumNumber = true
-      return
     }else{
+      console.log("more then 10 numbers");  
       this.minimumNumber = false
-      return
     }
   }
     
-  async submitForm(data:any) {    
-   
+  async submitForm(data: any) {
     this.mobileNumber()
     this.ls.sendotp()
     this.ls.loginprofile(data)
-    
-    if(this.ls.phoneForm.valid == true){
+
+    if (this.ls.phoneForm.valid == true) {
       this.service.openOtp()
-    }else{
+    } else {
       this.submitted = true
       this.minimumNumber = true
       this.mobileNumber()

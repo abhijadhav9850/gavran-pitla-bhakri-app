@@ -22,8 +22,6 @@ export class OtpVerificationComponent {
   display: any;
   timer : any = 30;
 
-  
-
   timeout(){
     setTimeout(() => {
     if(this.timer==0){
@@ -36,10 +34,6 @@ export class OtpVerificationComponent {
     }
   }, 1000);
   }
-  
-
-
-
 
     otpForm = this.fb.group({
     number: ['', [Validators.required ,]],
@@ -63,25 +57,20 @@ export class OtpVerificationComponent {
        }
        
       //  otp verify and go to next page api done
-      this.http.post("https://pitlabhakridatabase.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
-        // console.log(e);
-        
-      if(e.message == 'OTP Verified'){  
-        alert('Otp successful');
+      this.http.post("http://localhost:4000/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
+      if(e.message == 'OTP Verified Successfully!'){  
+        alert('Otp Verified Successful');
         this.service.openAddress()
-        this.ls.otpverifyapi()
+        this.ls.otpVerifyApi()
         this.ls.userLogin = true;
         console.log("Work");    
       }else{
         alert('OTP is not valid');
-        
         // this.authLoggedIn.next(true)
         // this.router.navigate(['order-his'])
       }
       })
     }
-
-
   }
   
   otp: string[] = ['', '', '', ''];
@@ -124,7 +113,6 @@ export class OtpVerificationComponent {
       this.invalid = false;
       this.service.openAddress()
     }
-
   }
 
   

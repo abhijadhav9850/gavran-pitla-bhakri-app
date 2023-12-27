@@ -20,7 +20,6 @@ export class FoodQuantityComponent {
   thechaPrice = 0;
   onionPrice = 0;
   orderdata:any;
-
   seleted: any = true;
 
   bhakriIncrement() {
@@ -29,9 +28,6 @@ export class FoodQuantityComponent {
       this.bhakriPrice = this.bhakriPrice + 25
       this.data.bhakriquantity = this.bhakri
     }
-
-
-  
   }
   bhakriDecrement() {
     if (this.bhakri > 1) {
@@ -54,28 +50,27 @@ export class FoodQuantityComponent {
     }
   }
 
-  pushValueToService() {
-    let totalValue = this.bhakriPrice + this.pithlaPrice + this.thechaPrice + this.onionPrice
-    
-     this.orderdata = {
-      bhakri: this.bhakri,
-      pithla: this.pithla,
-      test: '',
-      totalPrice: totalValue,
+  async pushValueToService() {
+    try {
+      let totalValue = this.bhakriPrice + this.pithlaPrice + this.thechaPrice + this.onionPrice;
+      this.orderdata = {
+        bhakri: this.bhakri,
+        pithla: this.pithla,
+        test: this.seleted ? "Medium" : "Spicy",
+        totalPrice: totalValue,
+      };
+      this.data.foodorderdata = this.orderdata;
+      const retrievedData = localStorage.getItem('user_details');
+      if (retrievedData !== null) {
+        this.data.addOrders();
+      } else {
+        console.log('User details not found in localStorage.');
+        return; // Exit function if user details are not found
+      }
+    } catch (error) {
+      console.error('Error in pushValueToService:', error);
     }
-
-    if (this.seleted == true) {
-      this.orderdata.test = "Medium"
-    } else {
-      this.orderdata.test = "Spicy"
-    }
-
-    this.data.foodorderdata = this.orderdata
-
   }
-
   
-
- 
 
 }
