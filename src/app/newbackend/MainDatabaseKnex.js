@@ -6,6 +6,7 @@ const app = express();
 var unirest = require('unirest');
 const { data } = require("autoprefixer");
 const port = 4000;
+const uuid = require('uuid');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -37,8 +38,9 @@ const secretkey = "secretkey"
 
 app.post("/login", (req, res) => {
     const user = {
-        Mobile_No: 8010154150,
+        Mobile_No: req.body.Mobile_No,
     }
+    console.log(user);
     jwt.sign({ user }, secretkey, { expiresIn: '100s' }, (err, token) => {
         res.json({
             token
@@ -78,27 +80,56 @@ app.post("/profile", VerifiyToken, (req, res) => {
 
 // otp send working
 
-const uuid = require('uuid');
 
 
-app.post("/Mobile_No/No_Add", (req, res) => {
-    setTimeout(async () => {
-        try {
-            let result = await pg("user_mobile").insert([
-                {
-                    // ID: `${req.body.ID}`,
-                    mobileno: `${req.body.mobileno}`,
-                    register_id: `${req.body.register_id}`
-                },
-            ]);
-            // Mobiledata.push(req.body.Mobile_No)
-            // console.log(Mobiledata);
-            res.json({ success: true, message: req.body.mobileno });
-        } catch (err) {
-            console.log(err);
+app.post("/Mobile_No/Add_User", async (req, res) => {
+    try {
+        const { Mobile_No } = req.body;
+        let data = await pg.select('id', 'mobileno', 'register_id')
+            .from('user_mobile');
+
+        let userAlreadyExist = data.find(e => e.mobileno == Mobile_No);
+
+        if (userAlreadyExist) {
+            // If user already exists, send a response
+            return res.json({ result: userAlreadyExist, message: 'User already exists in the database!' });
         }
-    }, 5000);
+
+        if (!Mobile_No) {
+            return res.status(400).json({ success: false, message: 'Mobile_No is required!' });
+        }
+
+        // Convert Mobile_No to a number
+        const mobileno = parseInt(Mobile_No, 10);
+        const token = await new Promise((resolve, reject) => {
+            jwt.sign({ user: { Mobile_No: mobileno } }, secretkey, { expiresIn: '100s' }, (err, token) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(token);
+                }
+            });
+        });
+        const result = await pg("user_mobile").insert([
+            {
+                mobileno: mobileno,
+                register_id: token,
+            },
+        ]);
+
+        const obj = {
+            mobileno: mobileno,
+            register_id: token,
+        };
+        res.json({ result: obj, message: "User added in database!" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
 });
+
+
+
 
 app.post("/user/userinfo", (req, res) => {
     setTimeout(async () => {
@@ -121,22 +152,22 @@ app.post("/user/userinfo", (req, res) => {
 });
 
 app.post("/OrderData/Data", async (req, res) => {
-      try {
+    try {
         let result = await pg("user_order").insert([
-          {
-            // ID: `${req.body.ID}`,
-            bhakri: `${req.body.bhakri}`,
-            pithla: `${req.body.pithla}`,
-            test: `${req.body.test}`,
-            totalprice: `${req.body.totalprice}`,
-            register_id: `${req.body.register_id}`
-          },
+            {
+                // ID: `${req.body.ID}`,
+                bhakri: `${req.body.bhakri}`,
+                pithla: `${req.body.pithla}`,
+                test: `${req.body.test}`,
+                totalprice: `${req.body.totalprice}`,
+                register_id: `${req.body.register_id}`
+            },
         ]);
         res.json({ success: true, message: `User Added : ${result}` });
-      } catch (err) {
+    } catch (err) {
         console.log(err);
-      }
-    });
+    }
+});
 
 
 
