@@ -23,9 +23,6 @@ import { ReviewsComponent } from './reviews/reviews.component';
 import { WriteReviewComponent } from './write-review/write-review.component';
 import { LogoutComponent } from './logout/logout.component';
 
-
-
-
 const routes: Routes = [
   {path:'',component:HomeComponent},
   {path:'details',component:DetailsComponent},
