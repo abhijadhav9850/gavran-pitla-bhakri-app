@@ -19,12 +19,15 @@ export class LogininphoneComponent {
 
   constructor(public service : PopupHandingService , public fb: FormBuilder, public http:HttpClient, public ls:LoginindetailsValueService){}
 
+  value = this.ls.phoneForm?.value || null;
+
   mobileNumber(){
-    if(this.ls.phoneForm.value>'10'){
+    if(this.ls.phoneForm.invalid){
       this.minimumNumber = true
+      return
     }else{
-      console.log("more then 10 numbers");  
       this.minimumNumber = false
+      return
     }
   }
     
