@@ -159,6 +159,27 @@ app.post("/User/Add", (req, res) => {
   }, 5000);
 });
 
+// ------new one add api-----
+app.post("/User/userdata", (req, res) => {
+  setTimeout(async () => {
+    try {
+      let result = await pg("user_data").insert([
+        {
+          username: `${req.body.username}`,
+          useraddress: `${req.body.useraddress}`,
+          usercity: `${req.body.usercity}`,
+          mobile_no: `${req.body.mobile_no}`,
+          otp: `${req.body.otp}`,
+        },
+      ]);
+      res.json({ success: true, message: `User Added : ${result}` });
+    } catch (err) {
+      console.log(err);
+    }
+  }, 5000);
+});
+
+
 app.post("/OrderData/Details", async (req, res) => {
   try {
     let result = await pg("order_data_table").insert([
@@ -168,6 +189,24 @@ app.post("/OrderData/Details", async (req, res) => {
         pithla: `${req.body.pithla}`,
         test: `${req.body.test}`,
         totalPrice: `${req.body.totalPrice}`,
+      },
+    ]);
+    res.json({ success: true, message: `User Added : ${result}` });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.post("/OrderData/Data", async (req, res) => {
+  try {
+    let result = await pg("order_data").insert([
+      {
+        // ID: `${req.body.ID}`,
+        bhakri: `${req.body.bhakri}`,
+        pithla: `${req.body.pithla}`,
+        test: `${req.body.test}`,
+        totalprice: `${req.body.totalprice}`,
+        // user_id:user_id
       },
     ]);
     res.json({ success: true, message: `User Added : ${result}` });
