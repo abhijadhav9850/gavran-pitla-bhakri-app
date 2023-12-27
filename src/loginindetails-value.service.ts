@@ -51,7 +51,7 @@ export class LoginindetailsValueService {
     }
     this.adddata = formData
     // console.log(formData);
-    await this.http.post("https://pitlabhakridatabase.onrender.com/Mobile_No/Send_OTP", formData).subscribe((e: any) => {
+    await this.http.post("https://localhost:4000/Mobile_No/Send_OTP", formData).subscribe((e: any) => {
       console.log(e);
     })
     // this.phoneForm.reset()
@@ -60,7 +60,6 @@ export class LoginindetailsValueService {
   order_list() {
     this.orderlist.push(this.foodorderdata)
     console.log(this.orderlist);
-
   }
 
   show_modify_popup() {
