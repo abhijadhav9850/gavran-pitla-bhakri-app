@@ -121,7 +121,7 @@ app.post("/Mobile_No/Add_User", async (req, res) => {
             mobileno: mobileno,
             register_id: token,
         };
-        res.json({ result: obj, message: "User added in database!" });
+        res.json({ result: obj, message: "New User added in database!" });
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, message: 'Internal Server Error' });
