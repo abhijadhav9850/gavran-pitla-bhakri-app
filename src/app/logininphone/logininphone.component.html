@@ -32,9 +32,19 @@
                         class="w-[15rem] py-[8px] px-[10px] appearance-none bg-transparent focus:outline-none">
                 </div>
             </form>
+<<<<<<< HEAD
             <span class="text-red-700 text-xs font-semibold mt-1 -mb-3" *ngIf="(phoneFormControl.Mobile_No.touched || submitted) && phoneFormControl.Mobile_No.errors?.['required'] || minimumNumber">
                Invalid Mobile Number
             </span>
+=======
+            <!-- <span class="text-red-700 text-xs font-semibold mt-1 -mb-3" *ngIf="(phoneFormControl.Mobile_No.touched) && phoneFormControl.Mobile_No.errors?.['required'] || ls.phoneForm.invalid">
+               Invalid Mobile Number
+            </span> -->
+
+            <span class="text-red-700 text-xs font-semibold ml-2 mt-1 -mb-3" *ngIf="(phoneFormControl.Mobile_No.touched || submitted) && phoneFormControl.Mobile_No.errors?.['required'] || minimumNumber">
+                Invalid Mobile Number
+             </span>
+>>>>>>> d54a34d9d13e064f6aa2beb284579ada99a6ad6f
             <!-- <div *ngIf="phoneFormControl.touched && phoneFormControl.invalid" class="alert alert-danger">  
                 <div *ngIf="phoneFormControl.errors.required">Mobile Number is required.</div>  
                 <div *ngIf="phoneFormControl.errors.pattern">Please, Enter 10 digit Mobile Number.</div>  
