@@ -201,6 +201,7 @@ export class LoginindetailsValueService {
       }
     })
   }
+  // hello
 
   getpitla() {
     return this.http.get<any[]>("https://pitlabhakridatabase.onrender.com/getpitla")
