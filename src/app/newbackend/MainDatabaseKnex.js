@@ -78,10 +78,7 @@ app.post("/profile", VerifiyToken, (req, res) => {
     })
 })
 
-// otp send working
-
-
-
+//POST API FOR ADD USERS INTO THE DATABASE IF YOUR ALREADY EXIST THEN SEND RESPONSE AS USER PRESENT EITHER ADD NEW USER!
 app.post("/Mobile_No/Add_User", async (req, res) => {
     try {
         const { Mobile_No } = req.body;
@@ -92,13 +89,11 @@ app.post("/Mobile_No/Add_User", async (req, res) => {
 
         if (userAlreadyExist) {
             // If user already exists, send a response
-            return res.json({ result: userAlreadyExist, message: 'User already exists in the database!' });
+            return res.status(200).json({ result: userAlreadyExist, "message": 'User already exists in the database!' });
         }
-
         if (!Mobile_No) {
-            return res.status(400).json({ success: false, message: 'Mobile_No is required!' });
+            return res.status(400).json({ success: false, "message": 'Mobile_No is required!' });
         }
-
         // Convert Mobile_No to a number
         const mobileno = parseInt(Mobile_No, 10);
         const token = await new Promise((resolve, reject) => {
@@ -116,42 +111,37 @@ app.post("/Mobile_No/Add_User", async (req, res) => {
                 register_id: token,
             },
         ]);
-
         const obj = {
             mobileno: mobileno,
             register_id: token,
         };
-        res.json({ result: obj, message: "User added in database!" });
+        res.status(200).json({ result: obj, "message": "New User added in database!" });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ success: false, message: 'Internal Server Error' });
+        res.status(500).json({ success: false, "message": 'Internal Server Error' });
     }
 });
 
-
-
-
-app.post("/user/userinfo", (req, res) => {
-    setTimeout(async () => {
-        try {
-            let result = await pg("user_info").insert([
-                {
-                    username: `${req.body.username}`,
-                    useraddress: `${req.body.useraddress}`,
-                    usercity: `${req.body.usercity}`,
-                    register_id: `${req.body.register_id}`
-                },
-            ]);
-            // Mobiledata.push(req.body.Mobile_No)
-            // console.log(Mobiledata);
-            res.json({ success: true, message: req.body.mobileno });
-        } catch (err) {
-            console.log(err);
-        }
-    }, 5000);
+//POST API FOR ADD USERS DETAILS INTO THE DATABASE!
+app.post("/user/userDetails", async (req, res) => {
+    try {
+        let result = await pg("user_info").insert([
+            {
+                username: `${req.body.username}`,
+                useraddress: `${req.body.useraddress}`,
+                usercity: `${req.body.usercity}`,
+                register_id: `${req.body.register_id}`
+            },
+        ]);
+        res.status(200).json({ success: true, "message": "User Data Added Successfully!" });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ success: false, "message": 'Internal Server Error' });
+    }
 });
 
-app.post("/OrderData/Data", async (req, res) => {
+//POST API FOR ADD ORDER DETAILS INTO THE DATABASE!
+app.post("/OrderData/Details", async (req, res) => {
     try {
         let result = await pg("user_order").insert([
             {
@@ -159,21 +149,92 @@ app.post("/OrderData/Data", async (req, res) => {
                 bhakri: `${req.body.bhakri}`,
                 pithla: `${req.body.pithla}`,
                 test: `${req.body.test}`,
-                totalprice: `${req.body.totalprice}`,
+                totalprice: `${req.body.totalPrice}`,
                 register_id: `${req.body.register_id}`
             },
         ]);
-        res.json({ success: true, message: `User Added : ${result}` });
+        res.status(200).json({ success: true, "message": `Order Added Successfully!` });
     } catch (err) {
         console.log(err);
+        res.status(500).json({ success: false, "message": 'Internal Server Error' });
     }
 });
 
+//POST API FOR SEND OTP FOR USER!
+app.post("/Mobile_No/Send_OTP", async (req, res) => {
+    try {
+        const apiKey = "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
+        const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
 
+        const timestamp = Date.now(); // Get current timestamp
+        const uniqueNumber = Math.floor(Math.random() * 9000) + 1000; // Generate a random 4-digit number
+        const otp = (timestamp + uniqueNumber) % 10000; // Ensure a 4-digit number
+        // Pad the OTP with zeros if it's less than 4 digits
+        const paddedOTP = otp.toString().padStart(4, '0');
+        otpvalue = paddedOTP;
+        // Ensure the final OTP is a 4-digit number
+        otpvalue = (otpvalue % 10000 + 10000) % 10000;
 
+        const smsData = {
+            variables_values: otpvalue,
+            route: "otp",
+            numbers: req.body.Mobile_No,
+        };
+        unirest
+            .post(apiUrl)
+            .headers({
+                authorization: apiKey,
+            })
+            .form(smsData)
+            .end((response) => {
+                if (response.error) {
+                    console.error("Error:", response.error);
+                    res.status(500).json({ error: "Internal Server Error" });
+                } else {
+                    res.status(200).json({ otpvalue: otpvalue, response: response.body });
+                }
+            });
 
+    } catch (error) {
+        console.log("Unable to Send OTP:", error);
+        res.status(500).json({ success: false, "message": "Failed to send OTP" });
+    }
+});
 
+//POST API FOR CHECK ENTER OTP IS RIGHT OR WRONG!
+app.post("/OTP/GetOTP", async (req, res) => {
+    try {
+        if (req.body.otp == otpvalue) {
+            res.status(200).json({ success: true, "message": "OTP Verified Successfully!" });
+        } else {
+            res.status(200).json({ success: false, "message": "Invalid OTP" });
+        }
+    } catch (error) {
+        console.error("Error getting OTP:", error);
+        res.status(500).json({ success: false, "message": "Failed to get OTP" });
+    }
+});
 
+//POST API FOR GET ORDER HISTORY OF LOGIN USER!
+app.post("/getData", async (req, res) => {
+    try {
+        let users = [];
+        let order_List = []
+
+        let getUsers = await pg.select('mobileno', 'register_id').from('user_mobile');
+        users.push(...getUsers);
+
+        let orders = await pg.select('id', 'bhakri', 'pithla', 'test', 'totalprice', 'register_id').from('user_order');
+        order_List.push(...orders);
+
+        let findUser = users.find(e => e.mobileno == req.body.Mobile_No);
+        let ordersList = order_List.filter(e => e.register_id === findUser.register_id)
+        res.status(200).json({ "Message": "successful", "Result": ordersList });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
+});
 
 app.listen(port, (req, res) => {
     console.log(`Using Port http://localhost:${port}/`);
