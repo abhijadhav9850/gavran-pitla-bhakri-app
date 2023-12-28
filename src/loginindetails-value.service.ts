@@ -32,6 +32,7 @@ export class LoginindetailsValueService {
   isUserLogin() {
     if (localStorage.getItem('user_details')) {
       this.userLogin = true
+      this.show_home_popup = true
     } else {
       this.userLogin = false
     }
