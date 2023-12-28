@@ -194,7 +194,7 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
     // Ensure the final OTP is a 4-digit number
     otpvalue = ((otpvalue % 10000) + 10000) % 10000;
     otpArray.push(otpvalue);
-    
+
     const smsData = {
       variables_values: otpvalue,
       route: "otp",
@@ -223,7 +223,6 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
 //POST API FOR CHECK ENTER OTP IS RIGHT OR WRONG!
 app.post("/OTP/GetOTP", async (req, res) => {
   try {
-    console.log(otpArray);
     otpArray.forEach((e) => {
       if (e == req.body.otp) {
         res
@@ -233,7 +232,6 @@ app.post("/OTP/GetOTP", async (req, res) => {
         res.status(200).json({ success: false, message: "Invalid OTP" });
       }
     });
-    
   } catch (error) {
     console.error("Error getting OTP:", error);
     res.status(500).json({ success: false, message: "Failed to get OTP" });
