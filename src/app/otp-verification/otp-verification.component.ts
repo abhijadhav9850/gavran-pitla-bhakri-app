@@ -64,16 +64,17 @@ export class OtpVerificationComponent {
        
       //  otp verify and go to next page api done
       this.http.post("https://pitlabhakridatabase.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
-        // console.log(e);
+        console.log(e);
         
-      if(e.message == 'OTP Verified'){  
+      if(e.message == 'Invalid OTP'){  
+        alert('OTP is not valid');
+         
+      }else{
         alert('Otp successful');
         this.service.openAddress()
         this.ls.otpverifyapi()
         this.ls.userLogin = true;
-        console.log("Work");    
-      }else{
-        alert('OTP is not valid');
+        console.log("Work");   
         
         // this.authLoggedIn.next(true)
         // this.router.navigate(['order-his'])

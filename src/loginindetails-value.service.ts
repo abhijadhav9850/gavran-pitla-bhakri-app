@@ -74,7 +74,7 @@ export class LoginindetailsValueService {
     this.order_list()
 
     // mobile no add api done
-    await this.http.post("https://pitlabhakridatabase.onrender.com/Mobile_No/No_Add", this.adddata).subscribe((e: any) => {
+    await this.http.post("http://localhost:4000/Mobile_No/Add_User", this.adddata).subscribe((e: any) => {
       // // Store in localStorage
       localStorage.setItem('uniqueMobileNumbers', JSON.stringify(e.message));
       this.authLoggedIn.next(true)
@@ -82,9 +82,9 @@ export class LoginindetailsValueService {
 
     
     // // foodquantity data api done
-    await this.http.post("https://pitlabhakridatabase.onrender.com/OrderData/Details", this.foodorderdata).subscribe(e => {
-      console.log(e);
-    })
+    // await this.http.post("https://pitlabhakridatabase.onrender.com/OrderData/Details", this.foodorderdata).subscribe(e => {
+    //   console.log(e);
+    // })
     console.log("hee",this.foodorderdata);
     
     // this.Test_newapi()
@@ -97,18 +97,18 @@ export class LoginindetailsValueService {
 
   async Test_newapi() {
     // UserData collect in frontend
-     await this.http.get("https://pitlabhakridatabase.onrender.com/Get_userData").subscribe(e => {
-      console.log(e);
-    })
+    //  await this.http.get("https://pitlabhakridatabase.onrender.com/Get_userData").subscribe(e => {
+    //   console.log(e);
+    // })
 
-    // Mobile_No Data collect in frontend
-     await this.http.get("https://pitlabhakridatabase.onrender.com/Get_Mobile_No").subscribe(e => {
-      console.log(e);
-    })
+    // // Mobile_No Data collect in frontend
+    //  await this.http.get("https://pitlabhakridatabase.onrender.com/Get_Mobile_No").subscribe(e => {
+    //   console.log(e);
+    // })
 
-    await this.http.get<any[]>("https://pitlabhakridatabase.onrender.com/Get_OrderData").subscribe(e => {
-      console.log(e);
-    })
+    // await this.http.get<any[]>("https://pitlabhakridatabase.onrender.com/Get_OrderData").subscribe(e => {
+    //   console.log(e);
+    // })
     // Mobile_No Data collect in frontend
   }
 
@@ -130,10 +130,10 @@ export class LoginindetailsValueService {
   }
 
   loginprofile(data: any) {
-    this.http.post("https://pitlabhakridatabase.onrender.com/login", data).subscribe((result: any) => {
-      localStorage.setItem("token", result.token)
-      // this.router.navigate(['/'])
-    })
+    // this.http.post("https://pitlabhakridatabase.onrender.com/login", data).subscribe((result: any) => {
+    //   localStorage.setItem("token", result.token)
+    //   // this.router.navigate(['/'])
+    // })
   }
 
   logout(){
@@ -142,17 +142,14 @@ export class LoginindetailsValueService {
 
   profile() {
     let headers = new HttpHeaders().set("Authorization", `bearer ${localStorage.getItem('token')}`)
-    this.http.post("https://pitlabhakridatabase.onrender.com/profile", {}, { headers }).subscribe((result: any) => {
-      this.authLoggedIn.next(true)
-      if (this.authLoggedIn.getValue() === true) {
-        const retrievedData = localStorage.getItem('token');
+    // this.http.post("https://pitlabhakridatabase.onrender.com/profile", {}, { headers }).subscribe((result: any) => {
+    //   this.authLoggedIn.next(true)
+    //   if (this.authLoggedIn.getValue() === true) {
+    //     const retrievedData = localStorage.getItem('token');
 
-        return this.authLoggedIn.next(true)
-      }
-      
-      
-
-    })
+    //     return this.authLoggedIn.next(true)
+    //   }
+    // })
   }
 
 
