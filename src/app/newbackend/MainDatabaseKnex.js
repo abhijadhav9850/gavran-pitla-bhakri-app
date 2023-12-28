@@ -237,13 +237,12 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
 //POST API FOR CHECK ENTER OTP IS RIGHT OR WRONG!
 app.post("/OTP/GetOTP", async (req, res) => {
   try {
-    otpArray.forEach((e) => {
-      if (e == req.body.otp) {
+    let otp = req.body.otp.toString()
+    if (otpArray.includes(otp)) {
         res.status(200).json({ success: true, message: "OTP Verified Successfully!" });
       } else {
         res.status(200).json({ success: false, message: "Invalid OTP" });
       }
-    });
   } catch (error) {
     console.error("Error getting OTP:", error);
     res.status(500).json({ success: false, message: "Failed to get OTP" });
