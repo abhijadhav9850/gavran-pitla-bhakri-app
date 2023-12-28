@@ -61,10 +61,11 @@ export class UserProfileComponent {
   }
 
   logout(){
-    this.ls.logout()
-    localStorage.removeItem('user_details');
-    localStorage.removeItem('userName')
-    this.router.navigate([''])
-    window.location.reload()
+     this.ls.logout()
+     localStorage.removeItem('user_details');
+     localStorage.removeItem('userName')
+     this.router.navigate(['']).then(() => {
+      window.location.reload();
+    });
   }
 }
