@@ -23,34 +23,33 @@ export class LoginindetailsValueService {
   payment: any = false;
   otp: any = false;
   authLoggedIn = new BehaviorSubject<boolean>(false);
-  foodorderdata:any;
+  foodorderdata: any;
 
   show_home_popup = false
 
- userLogin = false;
+  userLogin = false;
 
- isUserLogin(){
-   if(localStorage.getItem('uniqueMobileNumbers')){
-    this.userLogin = true
-   }else{
-    this.userLogin = false
-   }
+  isUserLogin() {
+    if (localStorage.getItem('user_details')) {
+      this.userLogin = true
+    } else {
+      this.userLogin = false
+    }
 
- }
+  }
 
   phoneForm = this.fb.group({
     Mobile_No: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
   })
 
   orderlist: any = []
-  userData :any;
+  userData: any;
 
   async sendotp() {
     let formData = {
       Mobile_No: this.phoneForm.value.Mobile_No
     }
     this.adddata = formData
-    // console.log(formData);
     await this.http.post("http://localhost:4000/Mobile_No/Send_OTP", formData).subscribe((e: any) => {
       console.log(e);
     })
@@ -70,21 +69,23 @@ export class LoginindetailsValueService {
     }
   }
 
-  async otpverifyapi() {
-    this.order_list()
+  // async otpVerifyApi() {
+  //   this.order_list()
+  //   console.log(this.adddata);  
 
-    // mobile no add api done
-    await this.http.post("http://localhost:4000/Mobile_No/Add_User", this.adddata).subscribe((e: any) => {
-      // // Store in localStorage
-      localStorage.setItem('uniqueMobileNumbers', JSON.stringify(e.message));
-      this.authLoggedIn.next(true)
-    })
+
+  //   // mobile no add api done
+  //   await this.http.post("http://localhost:4000/Mobile_No/Add_User",this.adddata).subscribe((e: any) => {
+  //     // // Store in localStorage
+  //     localStorage.setItem('user_details', JSON.stringify(e.result));
+  //     this.authLoggedIn.next(true)
+  //   })
 
     
     // // foodquantity data api done
-    // await this.http.post("https://pitlabhakridatabase.onrender.com/OrderData/Details", this.foodorderdata).subscribe(e => {
-    //   console.log(e);
-    // })
+    await this.http.post("https://pitlabhakridatabase.onrender.com/OrderData/Details", this.foodorderdata).subscribe(e => {
+      console.log(e);
+    })
     console.log("hee",this.foodorderdata);
     
     // this.Test_newapi()
@@ -97,14 +98,14 @@ export class LoginindetailsValueService {
 
   async Test_newapi() {
     // UserData collect in frontend
-    //  await this.http.get("https://pitlabhakridatabase.onrender.com/Get_userData").subscribe(e => {
-    //   console.log(e);
-    // })
+     await this.http.get("https://pitlabhakridatabase.onrender.com/Get_userData").subscribe(e => {
+      console.log(e);
+    })
 
-    // // Mobile_No Data collect in frontend
-    //  await this.http.get("https://pitlabhakridatabase.onrender.com/Get_Mobile_No").subscribe(e => {
-    //   console.log(e);
-    // })
+    // Mobile_No Data collect in frontend
+     await this.http.get("https://pitlabhakridatabase.onrender.com/Get_Mobile_No").subscribe(e => {
+      console.log(e);
+    })
 
     // await this.http.get<any[]>("https://pitlabhakridatabase.onrender.com/Get_OrderData").subscribe(e => {
     //   console.log(e);
@@ -114,15 +115,16 @@ export class LoginindetailsValueService {
 
   getData(): Observable<any[]> {
     // Retrieve from localStorage
-    const retrievedData = localStorage.getItem('uniqueMobileNumbers');
-
+    const retrievedData = localStorage.getItem('user_details');
+    let registerNumber;
     if (retrievedData !== null) {
-      const parsedData = JSON.parse(retrievedData);
+      const userObject = JSON.parse(retrievedData);
+      registerNumber = userObject?.mobileno;
       const number = {
-        Mobile_No: parsedData
+        Mobile_No: registerNumber
       }
-      console.log(parsedData);
-      return this.http.post<any[]>("https://pitlabhakridatabase.onrender.com/getData", number);
+      console.log(number);
+      return this.http.post<any[]>("http://localhost:4000/getData", number);
     } else {
       console.log('No data found in localStorage');
       return of([]);
@@ -136,22 +138,24 @@ export class LoginindetailsValueService {
     // })
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem("token")
   }
 
   profile() {
     let headers = new HttpHeaders().set("Authorization", `bearer ${localStorage.getItem('token')}`)
-    // this.http.post("https://pitlabhakridatabase.onrender.com/profile", {}, { headers }).subscribe((result: any) => {
-    //   this.authLoggedIn.next(true)
-    //   if (this.authLoggedIn.getValue() === true) {
-    //     const retrievedData = localStorage.getItem('token');
+    this.http.post("https://pitlabhakridatabase.onrender.com/profile", {}, { headers }).subscribe((result: any) => {
+      this.authLoggedIn.next(true)
+      if (this.authLoggedIn.getValue() === true) {
+        const retrievedData = localStorage.getItem('token');
 
-    //     return this.authLoggedIn.next(true)
-    //   }
-    // })
+        return this.authLoggedIn.next(true)
+      }
+      
+      
+
+    })
   }
-
 
   getpitla() {
     return this.http.get<any[]>("https://pitlabhakridatabase.onrender.com/getpitla")

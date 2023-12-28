@@ -6,14 +6,9 @@ import { LoginindetailsValueService } from './loginindetails-value.service';
 })
 export class PopupHandingService {
 
-
   email = '';
 
-
-  constructor(public login : LoginindetailsValueService) {
-  
-   }
-
+  constructor(public login : LoginindetailsValueService) {}
   
   hide : any = false;
   quantity:any = false
@@ -27,7 +22,6 @@ export class PopupHandingService {
     'transition' : '0.1s ease-in-out',
     'background' : 'none'
   }
-
 
   otpPopup = {
     'width' : '100%',
@@ -58,13 +52,11 @@ export class PopupHandingService {
     this.quantity = true
     // Change the style dynamically
     setTimeout(()=>{  
-      
       this.backgroundblur = {
         'filter' : 'blur(2px)',
         'transition' : '0.1s ease-out',
         'background' : 'linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),url(../../assets/image 2.jpg))',
       }
-      
       this.loginInPhone = {
         // display: 'flex',
         // backgroundColor: 'lightgreen',
@@ -92,7 +84,6 @@ export class PopupHandingService {
         'transition' : '0.1s ease-in-out',
         'background' : 'none'
       }
-
       this.loginInPhone = {
         // display: 'flex',
         // backgroundColor: 'lightgreen',
@@ -105,7 +96,6 @@ export class PopupHandingService {
         'background-color' : '#fff',
         'overflow' : 'hidden',
       };
-
       this.backgroundblur = {
         'filter' : 'none',
         'transition' : '0.1s ease-in-out',
@@ -133,7 +123,7 @@ export class PopupHandingService {
     }
     
     openContact(){
-      if(localStorage.getItem('uniqueMobileNumbers')){
+      if(localStorage.getItem('user_details')){
     
         this.quantity = false
         this.contact  = false;
@@ -157,7 +147,7 @@ export class PopupHandingService {
     }
     
     closepayment(){
-      if(localStorage.getItem('uniqueMobileNumbers')){
+      if(localStorage.getItem('user_details')){
         this.quantity = true
         this.contact  = false;
         this.otp = false;
@@ -176,6 +166,5 @@ export class PopupHandingService {
       this.address = false;
       this.otp = true;
     }
-
 
 }

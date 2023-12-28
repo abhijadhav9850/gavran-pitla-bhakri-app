@@ -15,7 +15,6 @@ export class LogindetailsComponent {
   // myForm: FormGroup;
   submitted = false
 
-
   constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService,public http:HttpClient, public data : LoginindetailsValueService){}
 
   isOpen: boolean = false;
@@ -23,7 +22,6 @@ export class LogindetailsComponent {
 toggleDropdown() {
   this.isOpen = !this.isOpen;
 }
-
 
   citys: any[] = [
     { name: 'Vashi', value: 'Vashi' },
@@ -53,23 +51,35 @@ toggleDropdown() {
     }else{
       this.submitted = true;
       this.service.openPayment()
-      this.valueget()
-      console.log(this.myForm.value);
+      this.getUserValue()
     }
     // console.log(this.myForm.value);
     
     this.ls.userData = localStorage.setItem('userName', JSON.stringify(this.myForm.value.UserName))
-
-    console.log(this.ls.userData);
-    
-
-    
   }
 
-  valueget(){  
-    this.http.post('https://pitlabhakridatabase.onrender.com/User/Add',this.myForm.value).subscribe(e=>{
-      console.log(e);
-    })
+  getUserValue(){
+    const retrievedData = localStorage.getItem('user_details');
+    if (retrievedData !== null) {
+      // Parse the JSON string into a JavaScript object
+      const userObject = JSON.parse(retrievedData);
+      // Access the register_id property
+      const registerId = userObject?.register_id;
+      let userDetails = {
+        "username": this.myForm.value.UserName,
+        "useraddress": this.myForm.value.UserAddress,
+        "usercity": this.myForm.value.UserCity,
+        "register_id": registerId
+      }  
+      this.http.post('http://localhost:4000/user/userDetails',userDetails).subscribe((e:any)=>{
+        if(e.message == "User Data Added Successfully!"){
+          alert("User Data Added Successfully!")
+          console.log(e);
+        }
+      })
+    } else {
+      console.log('User details not found in localStorage.');
+    }
   }
 
   get myFormControl() {

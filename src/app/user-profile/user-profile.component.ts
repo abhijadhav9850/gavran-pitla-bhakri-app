@@ -9,12 +9,25 @@ import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 })
 export class UserProfileComponent {
 
-  constructor(public ls:LoginindetailsValueService, public router:Router){
-   
-  }
+  constructor(public ls:LoginindetailsValueService, public router:Router){}
 
   userName = localStorage.getItem('userName');
-  userContact = localStorage.getItem('uniqueMobileNumbers')
+  userContact:any;
+
+  ngOnInit(){
+    const retrievedData = localStorage.getItem('user_details');
+    let registerId;
+    if (retrievedData !== null) {
+      // Parse the JSON string into a JavaScript object
+      const userObject = JSON.parse(retrievedData);
+      // Access the register_id property
+      registerId = userObject?.mobileno;
+      this.userContact = registerId
+    } else {
+      console.log('User details not found in localStorage.');
+      return; // Exit function if user details are not found
+    }
+  }
 
   zoom = {
     transition: 'transform .5s',
@@ -42,18 +55,16 @@ export class UserProfileComponent {
 
   log:any=''
 
-
   editValue(){
     this.edit = false;
     console.log(this.name);
-    
   }
 
   logout(){
-     this.ls.logout()
-     localStorage.removeItem('uniqueMobileNumbers');
-     localStorage.removeItem('userName')
-   this.router.navigate([''])
-   window.location.reload()
+    this.ls.logout()
+    localStorage.removeItem('user_details');
+    localStorage.removeItem('userName')
+    this.router.navigate([''])
+    window.location.reload()
   }
 }
