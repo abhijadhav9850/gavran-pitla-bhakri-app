@@ -189,6 +189,7 @@ export class LoginindetailsValueService {
 
   logout() {
     localStorage.removeItem("token")
+    window.location.reload()
   }
 
   profile() {
