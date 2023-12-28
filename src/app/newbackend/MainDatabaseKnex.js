@@ -209,7 +209,7 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
     }
     otpvalue = generateOTP();
     otpArray.push(otpvalue);
-    
+
     const smsData = {
       variables_values: otpvalue,
       route: "otp",
@@ -240,7 +240,9 @@ app.post("/OTP/GetOTP", async (req, res) => {
   try {
     otpArray.forEach((e) => {
       if (e == req.body.otp) {
-        res.status(200).json({ success: true, message: "OTP Verified Successfully!" });
+        res
+          .status(200)
+          .json({ success: true, message: "OTP Verified Successfully!" });
       } else {
         res.status(200).json({ success: false, message: "Invalid OTP" });
       }
