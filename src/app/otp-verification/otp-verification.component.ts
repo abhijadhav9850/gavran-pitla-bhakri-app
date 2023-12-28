@@ -66,7 +66,6 @@ export class OtpVerificationComponent {
         console.log("Work");    
       }else{
         alert('OTP is not valid');
-        
         // this.authLoggedIn.next(true)
         // this.router.navigate(['order-his'])
       }

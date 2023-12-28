@@ -32,7 +32,6 @@ export class LoginindetailsValueService {
   isUserLogin() {
     if (localStorage.getItem('user_details')) {
       this.userLogin = true
-      this.show_home_popup = true
     } else {
       this.userLogin = false
     }
@@ -70,6 +69,29 @@ export class LoginindetailsValueService {
     }
   }
 
+  // async otpVerifyApi() {
+  //   this.order_list()
+  //   console.log(this.adddata);  
+
+
+  //   // mobile no add api done
+  //   await this.http.post("https://maindatabase.onrender.com/Mobile_No/Add_User",this.adddata).subscribe((e: any) => {
+  //     // // Store in localStorage
+  //     localStorage.setItem('user_details', JSON.stringify(e.result));
+  //     this.authLoggedIn.next(true)
+  //   })
+
+  //   // // foodquantity data api done
+  //   await this.http.post("https://maindatabase.onrender.com/OrderData/Details",this.foodorderdata).subscribe(e => {
+  //     console.log(e);
+  //   })
+  //   console.log("hee",this.foodorderdata);
+
+  //   // this.Test_newapi()
+  //   // this.router.navigate(['order-his'])
+  //   // }
+  //   // })
+  // }
 
   //NEW CODE ADDED FOR USER ENTRY AND ORDER VALUES!
   async otpVerifyApi() {
@@ -78,7 +100,7 @@ export class LoginindetailsValueService {
       console.log(this.adddata);
   
       // Mobile no add API
-      const userApiResponse: any = await this.http.post("https://database-hvj5.onrender.com/Mobile_No/Add_User", this.adddata).toPromise();
+      const userApiResponse: any = await this.http.post("https://maindatabase.onrender.com/Mobile_No/Add_User", this.adddata).toPromise();
   
       if (userApiResponse !== undefined && userApiResponse.result !== undefined) {
         const userResult = userApiResponse.result;
@@ -118,9 +140,26 @@ export class LoginindetailsValueService {
       "register_id": registerId
     };
     // Food quantity data API
-    const orderApiResponse = await this.http.post("https://database-hvj5.onrender.com/OrderData/Details", foodList).toPromise();
+    const orderApiResponse = await this.http.post("https://maindatabase.onrender.com/OrderData/Details", foodList).toPromise();
     console.log(orderApiResponse);
     console.log("hee", foodList);
+  }
+
+  async Test_newapi() {
+    // UserData collect in frontend
+    await this.http.get("https://maindatabase.onrender.com/Get_userData").subscribe(e => {
+      console.log(e);
+    })
+
+    // Mobile_No Data collect in frontend
+    await this.http.get("https://maindatabase.onrender.com/Get_Mobile_No").subscribe(e => {
+      console.log(e);
+    })
+
+    await this.http.get<any[]>("https://maindatabase.onrender.com/Get_OrderData").subscribe(e => {
+      console.log(e);
+    })
+    // Mobile_No Data collect in frontend
   }
 
   getData(): Observable<any[]> {
@@ -134,7 +173,7 @@ export class LoginindetailsValueService {
         Mobile_No: registerNumber
       }
       console.log(number);
-      return this.http.post<any[]>("https://database-hvj5.onrender.com/getData", number);
+      return this.http.post<any[]>("https://maindatabase.onrender.com/getData", number);
     } else {
       console.log('No data found in localStorage');
       return of([]);
@@ -142,7 +181,7 @@ export class LoginindetailsValueService {
   }
 
   loginprofile(data: any) {
-    this.http.post("https://database-hvj5.onrender.com/login", data).subscribe((result: any) => {
+    this.http.post("https://maindatabase.onrender.com/login", data).subscribe((result: any) => {
       localStorage.setItem("token", result.token)
       // this.router.navigate(['/'])
     })
@@ -154,12 +193,17 @@ export class LoginindetailsValueService {
 
   profile() {
     let headers = new HttpHeaders().set("Authorization", `bearer ${localStorage.getItem('token')}`)
-    this.http.post("https://database-hvj5.onrender.com/profile", {}, { headers }).subscribe((result: any) => {
+    this.http.post("https://maindatabase.onrender.com/profile", {}, { headers }).subscribe((result: any) => {
       this.authLoggedIn.next(true)
       if (this.authLoggedIn.getValue() === true) {
         const retrievedData = localStorage.getItem('token');
         return this.authLoggedIn.next(true)
       }
     })
+  }
+  // hello
+
+  getpitla() {
+    return this.http.get<any[]>("https://maindatabase.onrender.com/getpitla")
   }
 }
