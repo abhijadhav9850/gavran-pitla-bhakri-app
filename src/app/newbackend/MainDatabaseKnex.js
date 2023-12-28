@@ -209,6 +209,7 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
     }
     otpvalue = generateOTP();
     otpArray.push(otpvalue);
+    
     const smsData = {
       variables_values: otpvalue,
       route: "otp",
