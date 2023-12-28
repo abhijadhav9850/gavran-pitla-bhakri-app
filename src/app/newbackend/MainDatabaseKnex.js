@@ -64,6 +64,20 @@ function VerifiyToken(req, res, next) {
   }
 }
 
+function generateOTP() {
+  const timestamp = Date.now(); // Get current timestamp
+  const uniqueNumber = Math.floor(Math.random() * 9000) + 1000; // Generate a random 4-digit number
+  const otp = (timestamp + uniqueNumber) % 10000; // Ensure a 4-digit number
+
+  // Pad the OTP with zeros if it's less than 4 digits
+  const paddedOTP = otp.toString().padStart(4, "0");
+
+  return paddedOTP;
+}
+
+otpvalue = generateOTP();
+console.log(otpvalue);
+
 app.post("/profile", VerifiyToken, (req, res) => {
   jwt.verify(req.token, secretkey, (err, authdata) => {
     if (err) {
@@ -185,16 +199,16 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
       "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
     const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
 
-    const timestamp = Date.now(); // Get current timestamp
-    const uniqueNumber = Math.floor(Math.random() * 9000) + 1000; // Generate a random 4-digit number
-    const otp = (timestamp + uniqueNumber) % 10000; // Ensure a 4-digit number
-    // Pad the OTP with zeros if it's less than 4 digits
-    const paddedOTP = otp.toString().padStart(4, "0");
-    otpvalue = paddedOTP;
-    // Ensure the final OTP is a 4-digit number
-    otpvalue = ((otpvalue % 10000) + 10000) % 10000;
+    function generateOTP() {
+      const timestamp = Date.now(); // Get current timestamp
+      const uniqueNumber = Math.floor(Math.random() * 9000) + 1000; // Generate a random 4-digit number
+      const otp = (timestamp + uniqueNumber) % 10000; // Ensure a 4-digit number
+      // Pad the OTP with zeros if it's less than 4 digits
+      const paddedOTP = otp.toString().padStart(4, "0");
+      return paddedOTP;
+    }
+    otpvalue = generateOTP();
     otpArray.push(otpvalue);
-
     const smsData = {
       variables_values: otpvalue,
       route: "otp",
@@ -225,9 +239,7 @@ app.post("/OTP/GetOTP", async (req, res) => {
   try {
     otpArray.forEach((e) => {
       if (e == req.body.otp) {
-        res
-          .status(200)
-          .json({ success: true, message: "OTP Verified Successfully!" });
+        res.status(200).json({ success: true, message: "OTP Verified Successfully!" });
       } else {
         res.status(200).json({ success: false, message: "Invalid OTP" });
       }
