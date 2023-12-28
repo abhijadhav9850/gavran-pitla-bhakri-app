@@ -57,7 +57,7 @@ export class OtpVerificationComponent {
        }
        
       //  otp verify and go to next page api done
-      this.http.post("https://maindatabase.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
+      this.http.post("https://database-hvj5.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
       if(e.message == 'OTP Verified Successfully!'){  
         alert('Otp Verified Successful');
         this.service.openAddress()

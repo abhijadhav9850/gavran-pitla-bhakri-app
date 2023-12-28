@@ -36,7 +36,6 @@ export class UserPaymentComponent {
   navigateToHome(){
     if(this.seleted == false){
       this.router.navigate(['']); 
-      this.ls.Test_newapi()
       this.ls.show_modify_popup()
 
 
