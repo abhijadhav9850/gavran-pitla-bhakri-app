@@ -174,6 +174,7 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
         otpvalue = paddedOTP;
         // Ensure the final OTP is a 4-digit number
         otpvalue = (otpvalue % 10000 + 10000) % 10000;
+        console.log(otpvalue);
 
         const smsData = {
             variables_values: otpvalue,
