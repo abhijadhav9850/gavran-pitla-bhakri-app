@@ -16,6 +16,7 @@ export class LogininphoneComponent {
 
   submitted = false
   minimumNumber = false
+  required = false;
 
   constructor(public service : PopupHandingService , public fb: FormBuilder, public http:HttpClient, public ls:LoginindetailsValueService){}
 

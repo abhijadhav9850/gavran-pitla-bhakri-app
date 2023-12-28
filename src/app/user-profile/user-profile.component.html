@@ -53,7 +53,7 @@
       <label class="text-[15px] font-medium font-Roboto" for="mobile">Mobile</label>
       <input *ngIf="edit" type="tel" value="{{userContact}}" id="mobile" placeholder="Mobile"
         class="flex-shrink-0 w-[295px] h-[40px] p-0 border border-gray-300 focus:outline-none focus:border-blue-500 mt-3 text-sm font-Roboto font-medium px-5 rounded-md" />
-        <div *ngIf="!edit" class="flex w-[295px] items-center h-[40px] p-0 mt-3 text-[1rem] font-Roboto font-medium px-3"><p>+91 {{userContact}}</p></div>
+        <div *ngIf="!edit" class="flex w-[295px] items-center h-[40px] p-0 mt-3 text-[1rem] font-Roboto font-medium px-3"><p>+91 9999999999</p></div>
         
     </div>
 
@@ -70,7 +70,7 @@
 
 </div>
 <div class="flex justify-center mt-16 ">
-  <button class="text-blue-600 font-medium" *ngIf="!edit" routerLink="" (click)="logout()">Logout</button>
+  <button class="text-blue-600 font-medium" *ngIf="!edit" (click)="logout()">Logout</button>
   <button *ngIf="edit" (click)="editValue()" 
   class="py-2 px-4 w-36 h-10  bg-orange-500 text-white font-bold rounded-[20px] max-h-[915px] shadow-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-75">
  Edit
