@@ -60,11 +60,13 @@ export class UserProfileComponent {
     console.log(this.name);
   }
 
+
   logout(){
     this.ls.logout()
     localStorage.removeItem('user_details');
     localStorage.removeItem('userName')
-    this.router.navigate([''])
-    window.location.reload()
+    this.router.navigate(['']).then(() => {
+      window.location.reload();
+    });
   }
 }
