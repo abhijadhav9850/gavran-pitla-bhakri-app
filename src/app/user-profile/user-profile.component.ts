@@ -14,7 +14,7 @@ export class UserProfileComponent {
   }
 
   userName = localStorage.getItem('userName');
-  userContact = localStorage.getItem('uniqueMobileNumbers')
+  userContact = localStorage.getItem('token')
 
   zoom = {
     transition: 'transform .5s',
@@ -51,7 +51,7 @@ export class UserProfileComponent {
 
   logout(){
      this.ls.logout()
-     localStorage.removeItem('uniqueMobileNumbers');
+     localStorage.removeItem('token');
      localStorage.removeItem('userName')
    this.router.navigate([''])
    window.location.reload()
