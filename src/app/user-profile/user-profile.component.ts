@@ -86,19 +86,19 @@ export class UserProfileComponent {
         console.log(e);
         localStorage.removeItem('profile');
         this.ls.profile()
-        console.log('works');
+        setTimeout(() => {
+          const retrievedData = localStorage.getItem('profile');
+          if (retrievedData !== null) {
+            // Parse the JSON string into a JavaScript object
+            const userObject = JSON.parse(retrievedData);
+            // Access the register_id property
+            this.registerId = userObject?.mobileno;
+            this.user_token = userObject?.register_id;
+            this.userName = userObject?.username;
+            this.edit = false;
+          }
+        }, 1000);
 
-        const retrievedData = localStorage.getItem('profile');
-        if (retrievedData !== null) {
-          // Parse the JSON string into a JavaScript object
-          const userObject = JSON.parse(retrievedData);
-          // Access the register_id property
-          this.registerId = userObject?.mobileno;
-          this.user_token = userObject?.register_id;
-          this.userName = userObject?.username;
-          console.log("works");
-        }
-        this.edit = false;
       }
     })
   }
