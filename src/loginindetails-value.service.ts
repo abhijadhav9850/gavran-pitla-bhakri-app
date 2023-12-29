@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, filter, of } from 'rxjs';
+import { PopupHandingService } from './popup-handing.service';
 
 @Injectable({ providedIn: 'root' })
 
@@ -11,6 +12,8 @@ export class LoginindetailsValueService {
   constructor(public http: HttpClient, public fb: FormBuilder, public router: Router) {
     this.isUserLogin()
   }
+
+  
 
   display: any;
 
@@ -102,6 +105,11 @@ export class LoginindetailsValueService {
       console.log(this.adddata);
       // Mobile no add API
       const userApiResponse: any = await this.http.post("https://knexdatabase.onrender.com/Mobile_No/Add_User", this.adddata).toPromise();
+      if(userApiResponse.message == 'User already exists in the database!'){
+    
+      // this.router.navigate(['/payment']);  
+        
+      }
   
       if (userApiResponse !== undefined && userApiResponse.result !== undefined) {
         const userResult = userApiResponse.result;

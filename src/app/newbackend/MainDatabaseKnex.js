@@ -89,10 +89,10 @@ app.post("/Mobile_No/Add_User", async (req, res) => {
 
         if (userAlreadyExist) {
             // If user already exists, send a response
-            return res.status(200).json({ result: userAlreadyExist, "message": 'User already exists in the database!' });
+            return res.status(200).json({ result: userAlreadyExist, message: 'User already exists in the database!' });
         }
         if (!Mobile_No) {
-            return res.status(400).json({ success: false, "message": 'Mobile_No is required!' });
+            return res.status(400).json({ success: false, message: 'Mobile_No is required!' });
         }
         // Convert Mobile_No to a number
         const mobileno = parseInt(Mobile_No, 10);
@@ -115,10 +115,10 @@ app.post("/Mobile_No/Add_User", async (req, res) => {
             mobileno: mobileno,
             register_id: token,
         };
-        res.status(200).json({ result: obj, "message": "New User added in database!" });
+        res.status(200).json({ result: obj, message: "New User added in database!" });
     } catch (err) {
         console.error(err);
-        res.status(500).json({ success: false, "message": 'Internal Server Error' });
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 });
 
