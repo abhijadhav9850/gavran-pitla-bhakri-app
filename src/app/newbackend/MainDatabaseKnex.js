@@ -215,26 +215,26 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
         }
         const otpvalue = generateOTP();
         usersOtp.push(otpvalue);
-        res.json(otpvalue)
-        // const smsData = {
-        //     variables_values: otpvalue,
-        //     route: "otp",
-        //     numbers: req.body.Mobile_No,
-        // };
-        // unirest
-        //     .post(apiUrl)
-        //     .headers({
-        //         authorization: apiKey,
-        //     })
-        //     .form(smsData)
-        //     .end((response) => {
-        //         if (response.error) {
-        //             console.error("Error:", response.error);
-        //             res.status(500).json({ error: "Internal Server Error" });
-        //         } else {
-        //             res.status(200).json({ otpvalue: otpvalue, response: response.body });
-        //         }
-        //     });
+        // res.json(otpvalue)
+        const smsData = {
+            variables_values: otpvalue,
+            route: "otp",
+            numbers: req.body.Mobile_No,
+        };
+        unirest
+            .post(apiUrl)
+            .headers({
+                authorization: apiKey,
+            })
+            .form(smsData)
+            .end((response) => {
+                if (response.error) {
+                    console.error("Error:", response.error);
+                    res.status(500).json({ error: "Internal Server Error" });
+                } else {
+                    res.status(200).json({ otpvalue: otpvalue, response: response.body });
+                }
+            });
     } catch (error) {
         console.log("Unable to Send OTP:", error);
         res.status(500).json({ success: false, "message": "Failed to send OTP" });
