@@ -30,13 +30,13 @@
         </div>
     </div>
     <div *ngIf="ls.show_home_popup"  class="flex justify-center mt-2 mb-5">
-        <div class="border border-gray-300 rounded-lg flex justify-around w-[355px] p-2.5 items-center">
-            <div>
+        <div routerLink="/order-info" class="border border-gray-300 rounded-lg flex justify-between w-full p-2.5 items-center">
+            <div class="flex gap-3">
                 <img src="../../assets/Group.svg" alt="">
-            </div>
-            <div>
-                <p class="font-Roboto text-sm font-medium not-italic ">Your Order is Being Prepared</p>
-                <p class="text-xs font-normal font-Roboto not-italic">Status : Preparing</p>
+                <div>
+                    <p class="font-Roboto text-sm font-medium not-italic ">Your Order is Being Prepared</p>
+                    <p class="text-xs font-normal font-Roboto not-italic">Status : Preparing</p>
+                </div>
             </div>
             <div>
                 <button class="flex items-center justify-center w-16 h-8 bg-orange-500 rounded-md text-white text-xs font-medium" routerLink="/order-info">
