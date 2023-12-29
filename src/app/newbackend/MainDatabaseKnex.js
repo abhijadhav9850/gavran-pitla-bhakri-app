@@ -213,7 +213,7 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
         //             res.status(200).json({ otpvalue: otpvalue, response: response.body });
         //         }
         //     });
-        // otpvalue = 1234
+        otpvalue = 1234
         res.json({otpvalue: otpvalue})
 
     } catch (error) {
