@@ -52,7 +52,7 @@ export class LoginindetailsValueService {
       Mobile_No: this.phoneForm.value.Mobile_No
     }
     this.adddata = formData
-    await this.http.post("https://knexdatabase.onrender.com/Mobile_No/Send_OTP", formData).subscribe((e: any) => {
+    await this.http.post("http://localhost:4000/Mobile_No/Send_OTP", formData).subscribe((e: any) => {
       console.log(e);
     })
     // this.phoneForm.reset()
@@ -100,7 +100,6 @@ export class LoginindetailsValueService {
     try {
       await this.order_list();
       console.log(this.adddata);
-  
       // Mobile no add API
       const userApiResponse: any = await this.http.post("https://knexdatabase.onrender.com/Mobile_No/Add_User", this.adddata).toPromise();
   

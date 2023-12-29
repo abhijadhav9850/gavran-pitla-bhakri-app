@@ -73,7 +73,6 @@ toggleDropdown() {
       }  
       this.http.post('https://knexdatabase.onrender.com/user/userDetails',userDetails).subscribe((e:any)=>{
         if(e.message == "User Data Added Successfully!"){
-          alert("User Data Added Successfully!")
           console.log(e);
         }
       })
