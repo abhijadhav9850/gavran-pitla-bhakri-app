@@ -267,6 +267,29 @@ app.post("/getData", async (req, res) => {
   }
 });
 
+app.post("/User/Update", async (req, res) => {
+  try {
+    let result = await pg("user_info")
+      .where("username", `${req.body.UserName}`)
+      .update({ UserName: `${req.body.NewName}` });
+    res.json({ success: true, message: `User Updated : ${result}` });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+app.post("/mobile/Update", async (req, res) => {
+  try {
+    let result = await pg("user_mobile")
+      .where("mobileno", `${req.body.UserMobile}`)
+      .update({ mobileno: `${req.body.NewMobile}` });
+    res.json({ success: true, message: `Mobile Updated : ${result}` });
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+
 app.listen(port, (req, res) => {
   console.log(`Using Port http://localhost:${port}/`);
 });
