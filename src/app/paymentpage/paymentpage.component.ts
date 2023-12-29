@@ -25,6 +25,6 @@ export class PaymentpageComponent {
       // this.ls.Test_newapi()
       this.ls.show_modify_popup()
     }
-    this.service.closepopup()
+    this.ls.closepopup()
   }
 }

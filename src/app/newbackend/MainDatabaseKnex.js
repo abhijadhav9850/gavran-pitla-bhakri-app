@@ -159,24 +159,24 @@ app.post("/user/userDetails", async (req, res) => {
 
 //POST API FOR ADD ORDER DETAILS INTO THE DATABASE!
 app.post("/OrderData/Details", async (req, res) => {
-  try {
-    let result = await pg("user_order").insert([
-      {
-        // ID: `${req.body.ID}`,
-        bhakri: `${req.body.bhakri}`,
-        pithla: `${req.body.pithla}`,
-        test: `${req.body.test}`,
-        totalprice: `${req.body.totalPrice}`,
-        register_id: `${req.body.register_id}`,
-      },
-    ]);
-    res
-      .status(200)
-      .json({ success: true, message: `Order Added Successfully!` });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ success: false, message: "Internal Server Error" });
-  }
+    try {
+        let result = await pg("user_order").insert([
+            {
+                bhakri: `${req.body.bhakri}`,
+                pithla: `${req.body.pithla}`,
+                test: `${req.body.test}`,
+                totalprice: `${req.body.totalPrice}`,
+                register_id: `${req.body.register_id}`,
+                status: `${req.body.status}`,
+                datetime: `${req.body.datetime}`,
+                
+            },
+        ]);
+        res.status(200).json({ success: true, "message": `Order Added Successfully!` });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ success: false, "message": 'Internal Server Error' });
+    }
 });
 
 //POST API FOR SEND OTP FOR USER!
@@ -224,20 +224,16 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
 
 //POST API FOR CHECK ENTER OTP IS RIGHT OR WRONG!
 app.post("/OTP/GetOTP", async (req, res) => {
-  try {
-    otpArray.forEach((e) => {
-      if (e == req.body.otp) {
-        res
-          .status(200)
-          .json({ success: true, message: "OTP Verified Successfully!" });
-      } else {
-        res.status(200).json({ success: false, message: "Invalid OTP" });
-      }
-    });
-  } catch (error) {
-    console.error("Error getting OTP:", error);
-    res.status(500).json({ success: false, message: "Failed to get OTP" });
-  }
+    try {
+        if (req.body.otp == otpvalue) {
+            res.status(200).json({ success: true, "message": "OTP Verified Successfully!" });
+        } else {
+            res.status(200).json({ success: false, "message": "Invalid OTP" });
+        }   
+    } catch (error) {
+        console.error("Error getting OTP:", error);
+        res.status(500).json({ success: false, "message": "Failed to get OTP" });
+    }
 });
 
 //POST API FOR GET ORDER HISTORY OF LOGIN USER!
@@ -251,20 +247,16 @@ app.post("/getData", async (req, res) => {
       .from("user_mobile");
     users.push(...getUsers);
 
-    let orders = await pg
-      .select("id", "bhakri", "pithla", "test", "totalprice", "register_id")
-      .from("user_order");
-    order_List.push(...orders);
+        let orders = await pg.select('id', 'bhakri', 'pithla', 'test', 'totalprice', 'register_id','status','datetime').from('user_order');
+        order_List.push(...orders);
 
-    let findUser = users.find((e) => e.mobileno == req.body.Mobile_No);
-    let ordersList = order_List.filter(
-      (e) => e.register_id === findUser.register_id
-    );
-    res.status(200).json({ Message: "successful", Result: ordersList });
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ success: false, message: "Internal Server Error" });
-  }
+        let findUser = users.find(e => e.mobileno == req.body.Mobile_No);
+        let ordersList = order_List.filter(e => e.register_id === findUser.register_id)
+        res.status(200).json({ "Message": "successful", "Result": ordersList });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: "Internal Server Error" });
+    }
 });
 
 app.post("/User/Update", async (req, res) => {

@@ -1,5 +1,5 @@
-<div class="px-2 h-[100vh] overflow-hidden" id="main" [ngStyle]="service.backgroundblur">
-    <div (click)="service.closepopup()" class=" flex justify-between top-0 sticky bg-white items-center pt-[25px] px-[2px] pb-[20px]">
+<div class="px-2 h-[100vh] overflow-hidden" id="main" [ngStyle]="ls.backgroundblur">
+    <div (click)="ls.closepopup()" class=" flex justify-between top-0 sticky bg-white items-center pt-[25px] px-[2px] pb-[20px]">
         <div routerLink="/" class="flex gap-[8px] text-[1.5rem]">
             <p style="font-family: 'Aclonica', sans-serif;color: #FF6A00;">Pithla</p>
             <p style="font-family: 'Aclonica', sans-serif;color: #00A850;">Bhakri</p>
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div (click)="service.closepopup()" class="main flex flex-col  items-center md:flex-row w-100% p-0 gap-2">
+    <div (click)="ls.closepopup()" class="main flex flex-col  items-center md:flex-row w-100% p-0 gap-2">
         <div id="contener" class="">
             <img class="w-[50vh] h-auto rounded-[1.25rem]" src="../../assets/image 2.jpg" alt="image">
         </div>
@@ -72,16 +72,16 @@
 
 
     <div class="flex items-start h-3 justify-center active:opacity-90 mt-[30vh] pb-3.5 bottom-10 sticky">
-        <button (click)="service.changeStyle()"
+        <button (click)="ls.changeStyle()"
             class="text-[1rem] h-[40px] font-medium text-orange-50 w-[150px] bg-orange-500 rounded-3xl">Order
             Now</button>
     </div>
 </div>
-<div [ngStyle]="service.loginInPhone" *ngIf="service.hide"
+<div [ngStyle]="ls.loginInPhone" *ngIf="ls.popup_hide"
     class="p-4 pb-0 h-[60vh] overflow-hidden shadow-[-1560_0px_50px_rgba(0,0,0,0.10)] rounded-t-3xl absolute">
-    <app-food-quantity *ngIf="service.quantity"></app-food-quantity>
-    <app-logininphone *ngIf="service.contact"></app-logininphone>
-    <app-otp-verification *ngIf="service.otp"></app-otp-verification>
-    <app-logindetails *ngIf="service.address"></app-logindetails>
-    <app-paymentpage *ngIf="service.payment"></app-paymentpage>
+    <app-food-quantity *ngIf="ls.popup_quantity"></app-food-quantity>
+    <app-logininphone *ngIf="ls.popup_contact"></app-logininphone>
+    <app-otp-verification *ngIf="ls.otp"></app-otp-verification>
+    <app-logindetails *ngIf="ls.address"></app-logindetails>
+    <app-paymentpage *ngIf="ls.payment"></app-paymentpage>
 </div>
