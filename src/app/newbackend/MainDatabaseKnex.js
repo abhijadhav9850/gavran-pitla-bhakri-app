@@ -28,11 +28,10 @@ const pg = require("knex")({
 });
 
 let Mobiledata = [];
-let UserData = [];
-let OrderData = [];
-let OrderData1 = [];
-let otpvalue;
-let otpArray = [];
+let UserData = []
+let OrderData = []
+let OrderData1 = []
+let otpvalue=1234
 
 //login with jwt
 
@@ -103,51 +102,39 @@ app.post("/Mobile_No/Add_User", async (req, res) => {
 
     let userAlreadyExist = data.find((e) => e.mobileno == Mobile_No);
 
-    if (userAlreadyExist) {
-      // If user already exists, send a response
-      return res.status(200).json({
-        result: userAlreadyExist,
-        message: "User already exists in the database!",
-      });
-    }
-    if (!Mobile_No) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Mobile_No is required!" });
-    }
-    // Convert Mobile_No to a number
-    const mobileno = parseInt(Mobile_No, 10);
-    const token = await new Promise((resolve, reject) => {
-      jwt.sign(
-        { user: { Mobile_No: mobileno } },
-        secretkey,
-        { expiresIn: "100s" },
-        (err, token) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(token);
-          }
+        if (userAlreadyExist) {
+            // If user already exists, send a response
+            return res.status(200).json({ result: userAlreadyExist, message: 'User already exists in the database!' });
         }
-      );
-    });
-    const result = await pg("user_mobile").insert([
-      {
-        mobileno: mobileno,
-        register_id: token,
-      },
-    ]);
-    const obj = {
-      mobileno: mobileno,
-      register_id: token,
-    };
-    res
-      .status(200)
-      .json({ result: obj, message: "New User added in database!" });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ success: false, message: "Internal Server Error" });
-  }
+        if (!Mobile_No) {
+            return res.status(400).json({ success: false, message: 'Mobile_No is required!' });
+        }
+        // Convert Mobile_No to a number
+        const mobileno = parseInt(Mobile_No, 10);
+        const token = await new Promise((resolve, reject) => {
+            jwt.sign({ user: { Mobile_No: mobileno } }, secretkey, { expiresIn: '100s' }, (err, token) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(token);
+                }
+            });
+        });
+        const result = await pg("user_mobile").insert([
+            {
+                mobileno: mobileno,
+                register_id: token,
+            },
+        ]);
+        const obj = {
+            mobileno: mobileno,
+            register_id: token,
+        };
+        res.status(200).json({ result: obj, message: "New User added in database!" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
 });
 
 //POST API FOR ADD USERS DETAILS INTO THE DATABASE!
@@ -194,45 +181,45 @@ app.post("/OrderData/Details", async (req, res) => {
 
 //POST API FOR SEND OTP FOR USER!
 app.post("/Mobile_No/Send_OTP", async (req, res) => {
-  try {
-    const apiKey =
-      "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
-    const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
+    try {
+        // const apiKey = "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
+        // const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
 
-    function generateOTP() {
-      const timestamp = Date.now(); // Get current timestamp
-      const uniqueNumber = Math.floor(Math.random() * 9000) + 1000; // Generate a random 4-digit number
-      const otp = (timestamp + uniqueNumber) % 10000; // Ensure a 4-digit number
-      // Pad the OTP with zeros if it's less than 4 digits
-      const paddedOTP = otp.toString().padStart(4, "0");
-      return paddedOTP;
+        // const timestamp = Date.now(); // Get current timestamp
+        // const uniqueNumber = Math.floor(Math.random() * 9000) + 1000; // Generate a random 4-digit number
+        // const otp = (timestamp + uniqueNumber) % 10000; // Ensure a 4-digit number
+        // // Pad the OTP with zeros if it's less than 4 digits
+        // const paddedOTP = otp.toString().padStart(4, '0');
+        // otpvalue = paddedOTP;
+        // // Ensure the final OTP is a 4-digit number
+        // otpvalue = (otpvalue % 10000 + 10000) % 10000;
+
+        // const smsData = {
+        //     variables_values: otpvalue,
+        //     route: "otp",
+        //     numbers: req.body.Mobile_No,
+        // };
+        // unirest
+        //     .post(apiUrl)
+        //     .headers({
+        //         authorization: apiKey,
+        //     })
+        //     .form(smsData)
+        //     .end((response) => {
+        //         if (response.error) {
+        //             console.error("Error:", response.error);
+        //             res.status(500).json({ error: "Internal Server Error" });
+        //         } else {
+        //             res.status(200).json({ otpvalue: otpvalue, response: response.body });
+        //         }
+        //     });
+        // otpvalue = 1234
+        res.json({otpvalue: otpvalue})
+
+    } catch (error) {
+        console.log("Unable to Send OTP:", error);
+        res.status(500).json({ success: false, "message": "Failed to send OTP" });
     }
-    otpvalue = generateOTP();
-    otpArray.push(otpvalue);
-
-    const smsData = {
-      variables_values: otpvalue,
-      route: "otp",
-      numbers: req.body.Mobile_No,
-    };
-    unirest
-      .post(apiUrl)
-      .headers({
-        authorization: apiKey,
-      })
-      .form(smsData)
-      .end((response) => {
-        if (response.error) {
-          console.error("Error:", response.error);
-          res.status(500).json({ error: "Internal Server Error" });
-        } else {
-          res.status(200).json({ otpvalue: otpvalue, response: response.body });
-        }
-      });
-  } catch (error) {
-    console.log("Unable to Send OTP:", error);
-    res.status(500).json({ success: false, message: "Failed to send OTP" });
-  }
 });
 
 //POST API FOR CHECK ENTER OTP IS RIGHT OR WRONG!

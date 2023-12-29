@@ -5,9 +5,6 @@
             <p style="font-family: 'Aclonica', sans-serif;color: #00A850;">Bhakri</p>
         </div>
         <div class="flex items-center gap-[10px]">
-            <p style="font-size: 18px;font-weight: 800;font-family: 'Noto Serif Devanagari', serif;text-align: center;">
-                मराठी
-            </p>
             <img *ngIf="!ls.userLogin" class="h-[29px] -mt-[8px]" src="../../assets/Group 20.jpg" alt="">
             
             <svg *ngIf="ls.userLogin" routerLink="user-profile" class="zoom" xmlns="http://www.w3.org/2000/svg"  class="h-[29px] -mt-[2px]"  xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -30,13 +27,13 @@
         </div>
     </div>
     <div *ngIf="ls.show_home_popup"  class="flex justify-center mt-2 mb-5">
-        <div class="border border-gray-300 rounded-lg flex justify-around w-[355px] p-2.5 items-center">
-            <div>
+        <div routerLink="/order-info" class="border border-gray-300 rounded-lg flex justify-between w-full p-2.5 items-center">
+            <div class="flex gap-3">
                 <img src="../../assets/Group.svg" alt="">
-            </div>
-            <div>
-                <p class="font-Roboto text-sm font-medium not-italic ">Your Order is Being Prepared</p>
-                <p class="text-xs font-normal font-Roboto not-italic">Status : Preparing</p>
+                <div>
+                    <p class="font-Roboto text-sm font-medium not-italic ">Your Order is Being Prepared</p>
+                    <p class="text-xs font-normal font-Roboto not-italic">Status : Preparing</p>
+                </div>
             </div>
             <div>
                 <button class="flex items-center justify-center w-16 h-8 bg-orange-500 rounded-md text-white text-xs font-medium" routerLink="/order-info">

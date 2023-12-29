@@ -9,16 +9,18 @@ import { PopupHandingService } from 'src/popup-handing.service';
   styleUrls: ['./paymentpage.component.css']
 })
 export class PaymentpageComponent {
- 
-  constructor(public service : PopupHandingService, public router:Router, public ls:LoginindetailsValueService){ }
 
-  cash=''
+  constructor(public service: PopupHandingService, public router: Router, public ls: LoginindetailsValueService) { }
+
+ 
+
+  cash = ''
   seleted = false
-  selectPayment(){
-    if(this.seleted == true){
+  selectPayment() {
+    if (this.seleted == true) {
       this.router.navigate(['/user-payment']);
       // this.ls.Test_newapi()
-    }else{
+    } else {
       this.router.navigate(['']);
       // this.ls.Test_newapi()
       this.ls.show_modify_popup()
