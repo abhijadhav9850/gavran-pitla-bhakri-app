@@ -32,7 +32,10 @@ export class OrderHistoryComponent {
   orderHistory:any=[]
   pushValue(i:any){
     console.log(this.orderList[i]);
-    this.ls.foodorderdata = this.orderList[i] 
+    this.ls.foodorderdata = this.orderList[i]
+
+    
+
     // this.ls.foodorderdata = []
     // this.ls.foodorderdata = [
     //   {
