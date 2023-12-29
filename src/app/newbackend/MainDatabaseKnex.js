@@ -31,7 +31,7 @@ let Mobiledata = [];
 let UserData = []
 let OrderData = []
 let OrderData1 = []
-let otpvalue=1234
+let usersOtp = []
 
 //login with jwt
 
@@ -182,40 +182,38 @@ app.post("/OrderData/Details", async (req, res) => {
 //POST API FOR SEND OTP FOR USER!
 app.post("/Mobile_No/Send_OTP", async (req, res) => {
     try {
-        // const apiKey = "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
-        // const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
+        const apiKey = "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
+        const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
 
-        // const timestamp = Date.now(); // Get current timestamp
-        // const uniqueNumber = Math.floor(Math.random() * 9000) + 1000; // Generate a random 4-digit number
-        // const otp = (timestamp + uniqueNumber) % 10000; // Ensure a 4-digit number
-        // // Pad the OTP with zeros if it's less than 4 digits
-        // const paddedOTP = otp.toString().padStart(4, '0');
-        // otpvalue = paddedOTP;
-        // // Ensure the final OTP is a 4-digit number
-        // otpvalue = (otpvalue % 10000 + 10000) % 10000;
-
-        // const smsData = {
-        //     variables_values: otpvalue,
-        //     route: "otp",
-        //     numbers: req.body.Mobile_No,
-        // };
-        // unirest
-        //     .post(apiUrl)
-        //     .headers({
-        //         authorization: apiKey,
-        //     })
-        //     .form(smsData)
-        //     .end((response) => {
-        //         if (response.error) {
-        //             console.error("Error:", response.error);
-        //             res.status(500).json({ error: "Internal Server Error" });
-        //         } else {
-        //             res.status(200).json({ otpvalue: otpvalue, response: response.body });
-        //         }
-        //     });
-        otpvalue = 1234
-        res.json({otpvalue: otpvalue})
-
+        function generateOTP() {
+            const timestamp = Date.now(); // Get current timestamp
+            const uniqueNumber = Math.floor(Math.random() * 9000) + 1000; // Generate a random 4-digit number
+            const otp = (timestamp + uniqueNumber) % 10000; // Ensure a 4-digit number
+            const paddedOTP = otp.toString().padStart(4, '0');
+        
+            return paddedOTP;
+        }
+        const otpvalue = generateOTP();
+        usersOtp.push(otpvalue);
+        const smsData = {
+            variables_values: otpvalue,
+            route: "otp",
+            numbers: req.body.Mobile_No,
+        };
+        unirest
+            .post(apiUrl)
+            .headers({
+                authorization: apiKey,
+            })
+            .form(smsData)
+            .end((response) => {
+                if (response.error) {
+                    console.error("Error:", response.error);
+                    res.status(500).json({ error: "Internal Server Error" });
+                } else {
+                    res.status(200).json({ otpvalue: otpvalue, response: response.body });
+                }
+            });
     } catch (error) {
         console.log("Unable to Send OTP:", error);
         res.status(500).json({ success: false, "message": "Failed to send OTP" });
@@ -225,11 +223,13 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
 //POST API FOR CHECK ENTER OTP IS RIGHT OR WRONG!
 app.post("/OTP/GetOTP", async (req, res) => {
     try {
-        if (req.body.otp == otpvalue) {
-            res.status(200).json({ success: true, "message": "OTP Verified Successfully!" });
+        let userOtp = req.body.otp.toString();
+        const isValidOTP = otpArray.includes(userOtp);
+        if (isValidOTP) {
+            res.status(200).json({ success: true, message: "OTP Verified Successfully!" });
         } else {
-            res.status(200).json({ success: false, "message": "Invalid OTP" });
-        }   
+            res.status(200).json({ success: false, message: "Invalid OTP" });
+        }
     } catch (error) {
         console.error("Error getting OTP:", error);
         res.status(500).json({ success: false, "message": "Failed to get OTP" });
