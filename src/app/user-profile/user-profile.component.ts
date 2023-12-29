@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 
@@ -9,10 +10,14 @@ import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 })
 export class UserProfileComponent {
 
-  constructor(public ls:LoginindetailsValueService, public router:Router){}
+  constructor(public ls:LoginindetailsValueService, public router:Router, public fb: FormBuilder){}
 
-  userName = localStorage.getItem('userName');
+  userName:any = localStorage.getItem('userName')
+  user_name = JSON.parse(this.userName)
+  getData:any = localStorage.getItem('user_details')
+  userData = JSON.parse(this.getData)
   userContact:any;
+  Email = '@gmail.com'
 
   ngOnInit(){
     const retrievedData = localStorage.getItem('user_details');
@@ -43,21 +48,28 @@ export class UserProfileComponent {
     }
   }
 
+  myForm = this.fb.group({
+    UserName: [this.user_name, [Validators.required]],
+    UserNumber: [, [Validators.required]],
+    UserEmail: [this.user_name, [Validators.required]],
+  });
+
   edit = false
 
   hideInput(){
     this.edit = !this.edit
   }
 
-  name:string = '';
-  number:any;
-  email:any;
+  // name:string = '';
+  // number:any;
+  // email:any;
 
   log:any=''
 
   editValue(){
     this.edit = false;
-    console.log(this.name);
+    console.log(this.myForm.value);
+
   }
 
   logout(){
