@@ -60,8 +60,8 @@ export class OtpVerificationComponent {
       this.http.post("http://localhost:4000/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
       if(e.message == 'OTP Verified Successfully!'){  
         alert('Otp Verified Successful');
-        this.ls.openAddress()
         this.ls.otpVerifyApi()
+        this.ls.openAddress()
         this.ls.userLogin = true;
         console.log("Work");    
       }else{

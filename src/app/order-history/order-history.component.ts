@@ -13,7 +13,6 @@ export class OrderHistoryComponent {
   orderList:any = []
 
   constructor(public ls : LoginindetailsValueService, public http:HttpClient,public router:Router){
-    console.log("hei",this.orderHistory);
     
   }
 

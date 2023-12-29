@@ -65,15 +65,24 @@ toggleDropdown() {
       const userObject = JSON.parse(retrievedData);
       // Access the register_id property
       const registerId = userObject?.register_id;
+      const number = userObject?.mobileno;
       let userDetails = {
         "username": this.myForm.value.UserName,
         "useraddress": this.myForm.value.UserAddress,
         "usercity": this.myForm.value.UserCity,
         "register_id": registerId
       }  
-      this.http.post('https://knexdatabase.onrender.com/user/userDetails',userDetails).subscribe((e:any)=>{
+      this.http.post('http://localhost:4000/user/addDetails',userDetails).subscribe((e:any)=>{
         if(e.message == "User Data Added Successfully!"){
           console.log(e);
+          let obj = {
+            "Mobile_No" : number
+          }
+          this.http.post('http://localhost:4000/user/userDetails',obj).subscribe((e:any)=>{
+            console.log(e);
+            const userResult = e.result;
+            localStorage.setItem('profile', JSON.stringify(userResult));
+          })
         }
       })
     } else {

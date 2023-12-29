@@ -12,22 +12,23 @@ export class UserProfileComponent {
 
   constructor(public ls:LoginindetailsValueService, public router:Router, public fb: FormBuilder){}
 
-  userName:any = localStorage.getItem('userName')
-  user_name = JSON.parse(this.userName)
+  userName:any 
   getData:any = localStorage.getItem('user_details')
   userData = JSON.parse(this.getData)
   userContact:any;
   Email = '@gmail.com'
+  registerId:any;
 
   ngOnInit(){
-    const retrievedData = localStorage.getItem('user_details');
-    let registerId;
+    const retrievedData = localStorage.getItem('profile');
     if (retrievedData !== null) {
       // Parse the JSON string into a JavaScript object
       const userObject = JSON.parse(retrievedData);
       // Access the register_id property
-      registerId = userObject?.mobileno;
-      this.userContact = registerId
+      this.registerId = userObject?.mobileno;
+      this.userContact = this.registerId;
+      this.userName = userObject?.username;
+
     } else {
       console.log('User details not found in localStorage.');
       return; // Exit function if user details are not found
@@ -49,15 +50,20 @@ export class UserProfileComponent {
   }
 
   myForm = this.fb.group({
-    UserName: [this.user_name, [Validators.required]],
+    UserName: [ [Validators.required]],
     UserNumber: [, [Validators.required]],
-    UserEmail: [this.user_name, [Validators.required]],
+    UserEmail: [ [Validators.required]],
   });
 
   edit = false
 
   hideInput(){
     this.edit = !this.edit
+    this.myForm.patchValue({
+      UserName: this.userName,
+      UserNumber: this.registerId,
+      UserEmail: this.userName
+    })
   }
 
   // name:string = '';
@@ -73,7 +79,6 @@ export class UserProfileComponent {
   }
 
   logout(){
-     this.ls.logout()
      localStorage.removeItem('user_details');
      localStorage.removeItem('userName')
      this.router.navigate(['']).then(() => {

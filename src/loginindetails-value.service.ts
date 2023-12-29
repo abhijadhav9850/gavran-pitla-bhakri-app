@@ -83,9 +83,10 @@ export class LoginindetailsValueService {
       await this.order_list();
       console.log(this.adddata);
       // Mobile no add API
-      const userApiResponse: any = await this.http.post("https://knexdatabase.onrender.com/Mobile_No/Add_User", this.adddata).toPromise();
-      if(userApiResponse.message == 'User already exists in the database!'){
+      const userApiResponse: any = await this.http.post("http://localhost:4000/Mobile_No/Add_User", this.adddata).toPromise();
+      if (userApiResponse.message == 'User already exists in the database!') {
         this.openPayment()
+        
       // this.router.navigate(['/payment']);  
         
       }
@@ -98,6 +99,12 @@ export class LoginindetailsValueService {
       } else {
         console.error('Invalid User API response:', userApiResponse);
       }
+
+      this.authLoggedIn.next(true)
+        if (this.authLoggedIn.getValue() === true) {
+          const retrievedData = localStorage.getItem('token');
+          return this.authLoggedIn.next(true)
+        }
       // this.Test_newapi();
       // this.router.navigate(['order-his']);
     } catch (asyncError) {
@@ -170,27 +177,27 @@ export class LoginindetailsValueService {
     }
   }
 
-  loginprofile(data: any) {
-    this.http.post("https://knexdatabase.onrender.com/login", data).subscribe((result: any) => {
-      localStorage.setItem("token", result.token)
-      // this.router.navigate(['/'])
-    })
-  }
+  // loginprofile(data: any) {
+  //   this.http.post("https://knexdatabase.onrender.com/login", data).subscribe((result: any) => {
+  //     localStorage.setItem("token", result.token)
+  //     // this.router.navigate(['/'])
+  //   })
+  // }
 
-  logout() {
-    localStorage.removeItem("token")
-  }
+  // logout() {
+  //   localStorage.removeItem("token")
+  // }
 
-  profile() {
-    let headers = new HttpHeaders().set("Authorization", `bearer ${localStorage.getItem('token')}`)
-    this.http.post("https://knexdatabase.onrender.com/profile", {}, { headers }).subscribe((result: any) => {
-      this.authLoggedIn.next(true)
-      if (this.authLoggedIn.getValue() === true) {
-        const retrievedData = localStorage.getItem('token');
-        return this.authLoggedIn.next(true)
-      }
-    })
-  }
+  // profile() {
+  //   let headers = new HttpHeaders().set("Authorization", `bearer ${localStorage.getItem('token')}`)
+  //   this.http.post("https://knexdatabase.onrender.com/profile", {}, { headers }).subscribe((result: any) => {
+  //     this.authLoggedIn.next(true)
+  //     if (this.authLoggedIn.getValue() === true) {
+  //       const retrievedData = localStorage.getItem('token');
+  //       return this.authLoggedIn.next(true)
+  //     }
+  //   })
+  // }
   // hello
 
   getpitla() {
