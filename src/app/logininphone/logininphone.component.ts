@@ -32,7 +32,7 @@ export class LogininphoneComponent {
   async submitForm(data: any) {
     this.mobileNumber()
     this.ls.sendotp()
-    this.ls.loginprofile(data)
+    // this.ls.loginprofile(data)
 
     if (this.ls.phoneForm.valid == true) {
       this.ls.openOtp()

@@ -62,21 +62,39 @@ function VerifiyToken(req, res, next) {
     }
 }
 
-app.post("/profile", VerifiyToken, (req, res) => {
-    jwt.verify(req.token, secretkey, (err, authdata) => {
-        if (err) {
-            res.send({
-                result: "invalid token"
-            })
+app.post("/profile", async (req, res) => {
+    try {
+        let getUsers = [];
+        const { Mobile_No } = req.body;
+        let data = await pg.select('id', 'mobileno', 'register_id').from('user_mobile');
 
-        } else {
-            res.json({
-                massage: "profile accesess",
-                authdata
-            })
+        let userAlreadyExist = data.find(e => e.mobileno == Mobile_No);
+
+        if (!userAlreadyExist) {
+            return res.status(404).json({ message: 'User not found' });
         }
-    })
-})
+
+        let findUsers = await pg.select('username', 'register_id').from('user_info');
+        getUsers.push(...findUsers);
+
+        let userName = getUsers.find(e => e.register_id === userAlreadyExist.register_id);
+
+        let userObject = {
+            "id": userAlreadyExist.id,
+            "mobileno": userAlreadyExist.mobileno,
+            "register_id": userAlreadyExist.register_id,
+            "username": userName ? userName.username : 'N/A'
+        };
+
+        console.log(userObject);
+
+        return res.status(200).json({ result: userObject, message: 'User details fetched!' });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+});
+
 
 //POST API FOR ADD USERS INTO THE DATABASE IF YOUR ALREADY EXIST THEN SEND RESPONSE AS USER PRESENT EITHER ADD NEW USER!
 app.post("/Mobile_No/Add_User", async (req, res) => {
@@ -112,8 +130,8 @@ app.post("/Mobile_No/Add_User", async (req, res) => {
             },
         ]);
         const obj = {
-            mobileno: mobileno,
-            register_id: token,
+            "mobileno": mobileno,
+            "register_id": token,
         };
         res.status(200).json({ result: obj, message: "New User added in database!" });
     } catch (err) {
@@ -123,22 +141,59 @@ app.post("/Mobile_No/Add_User", async (req, res) => {
 });
 
 //POST API FOR ADD USERS DETAILS INTO THE DATABASE!
-app.post("/user/userDetails", async (req, res) => {
+// Route for adding user details
+app.post("/user/addDetails", async (req, res) => {
     try {
-        let result = await pg("user_info").insert([
-            {
-                username: `${req.body.username}`,
-                useraddress: `${req.body.useraddress}`,
-                usercity: `${req.body.usercity}`,
-                register_id: `${req.body.register_id}`
-            },
-        ]);
-        res.status(200).json({ success: true, "message": "User Data Added Successfully!" });
+        // Insert user details into the database
+        await pg("user_info").insert({
+            username: req.body.username,
+            useraddress: req.body.useraddress,
+            usercity: req.body.usercity,
+            register_id: req.body.register_id
+        });
+
+        return res.status(200).json({ success: true, message: 'User Data Added Successfully!' });
     } catch (err) {
-        console.log(err);
-        res.status(500).json({ success: false, "message": 'Internal Server Error' });
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 });
+
+// Route for fetching user details
+app.post("/user/userDetails", async (req, res) => {
+    try {
+        let userArr = [];
+        const Mobile_No = req.body.Mobile_No;
+        let data = await pg.select('id', 'mobileno', 'register_id').from('user_mobile');
+        let userAlreadyExist = data.find(e => e.mobileno == Mobile_No);
+
+        if (!userAlreadyExist) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        let findUsers = await pg.select('username', 'register_id').from('user_info');
+        console.log(findUsers);
+
+        userArr.push(findUsers);
+        console.log(userArr);
+
+        let userName = userArr.find(e => e.register_id === userAlreadyExist.register_id);
+        console.log(userName);
+        
+        let userObject = {
+            "id": userAlreadyExist.id,
+            "mobileno": userAlreadyExist.mobileno,
+            "register_id": userAlreadyExist.register_id,
+            "username": userName ? userName.username : 'N/A'
+        };
+
+        return res.status(200).json({ result: userObject, message: 'User Data Fetched Successfully!' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+});
+
 
 //POST API FOR ADD ORDER DETAILS INTO THE DATABASE!
 app.post("/OrderData/Details", async (req, res) => {
@@ -178,25 +233,26 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
         }
         const otpvalue = generateOTP();
         usersOtp.push(otpvalue);
-        const smsData = {
-            variables_values: otpvalue,
-            route: "otp",
-            numbers: req.body.Mobile_No,
-        };
-        unirest
-            .post(apiUrl)
-            .headers({
-                authorization: apiKey,
-            })
-            .form(smsData)
-            .end((response) => {
-                if (response.error) {
-                    console.error("Error:", response.error);
-                    res.status(500).json({ error: "Internal Server Error" });
-                } else {
-                    res.status(200).json({ otpvalue: otpvalue, response: response.body });
-                }
-            });
+        res.json(otpvalue)
+        // const smsData = {
+        //     variables_values: otpvalue,
+        //     route: "otp",
+        //     numbers: req.body.Mobile_No,
+        // };
+        // unirest
+        //     .post(apiUrl)
+        //     .headers({
+        //         authorization: apiKey,
+        //     })
+        //     .form(smsData)
+        //     .end((response) => {
+        //         if (response.error) {
+        //             console.error("Error:", response.error);
+        //             res.status(500).json({ error: "Internal Server Error" });
+        //         } else {
+        //             res.status(200).json({ otpvalue: otpvalue, response: response.body });
+        //         }
+        //     });
     } catch (error) {
         console.log("Unable to Send OTP:", error);
         res.status(500).json({ success: false, "message": "Failed to send OTP" });
@@ -207,7 +263,7 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
 app.post("/OTP/GetOTP", async (req, res) => {
     try {
         let userOtp = req.body.otp.toString();
-        const isValidOTP = otpArray.includes(userOtp);
+        const isValidOTP = usersOtp.includes(userOtp);
         if (isValidOTP) {
             res.status(200).json({ success: true, message: "OTP Verified Successfully!" });
         } else {
@@ -230,10 +286,10 @@ app.post("/getData", async (req, res) => {
 
         let orders = await pg.select('id', 'bhakri', 'pithla', 'test', 'totalprice', 'register_id','status','datetime').from('user_order');
         order_List.push(...orders);
-        console.log(order_List);
 
         let findUser = users.find(e => e.mobileno == req.body.Mobile_No);
-        let ordersList = order_List.filter(e => e.register_id === findUser.register_id)
+        let ordersList = order_List.filter(e => e.register_id === findUser.register_id);
+        
         res.status(200).json({ "Message": "successful", "Result": ordersList });
     } catch (error) {
         console.log(error);
