@@ -145,12 +145,14 @@ app.post("/OrderData/Details", async (req, res) => {
     try {
         let result = await pg("user_order").insert([
             {
-                // ID: `${req.body.ID}`,
                 bhakri: `${req.body.bhakri}`,
                 pithla: `${req.body.pithla}`,
                 test: `${req.body.test}`,
                 totalprice: `${req.body.totalPrice}`,
-                register_id: `${req.body.register_id}`
+                register_id: `${req.body.register_id}`,
+                status: `${req.body.status}`,
+                datetime: `${req.body.datetime}`,
+                
             },
         ]);
         res.status(200).json({ success: true, "message": `Order Added Successfully!` });
@@ -210,7 +212,7 @@ app.post("/OTP/GetOTP", async (req, res) => {
             res.status(200).json({ success: true, "message": "OTP Verified Successfully!" });
         } else {
             res.status(200).json({ success: false, "message": "Invalid OTP" });
-        }
+        }   
     } catch (error) {
         console.error("Error getting OTP:", error);
         res.status(500).json({ success: false, "message": "Failed to get OTP" });
@@ -226,8 +228,9 @@ app.post("/getData", async (req, res) => {
         let getUsers = await pg.select('mobileno', 'register_id').from('user_mobile');
         users.push(...getUsers);
 
-        let orders = await pg.select('id', 'bhakri', 'pithla', 'test', 'totalprice', 'register_id').from('user_order');
+        let orders = await pg.select('id', 'bhakri', 'pithla', 'test', 'totalprice', 'register_id','status','datetime').from('user_order');
         order_List.push(...orders);
+        console.log(order_List);
 
         let findUser = users.find(e => e.mobileno == req.body.Mobile_No);
         let ordersList = order_List.filter(e => e.register_id === findUser.register_id)

@@ -11,7 +11,7 @@ import { PopupHandingService } from 'src/popup-handing.service';
 })
 export class FoodQuantityComponent {
 
-  constructor(public http: HttpClient, public service: PopupHandingService, public data: LoginindetailsValueService) { }
+  constructor(public http: HttpClient, public service: PopupHandingService, public data: LoginindetailsValueService,public ls : LoginindetailsValueService) { }
 
   bhakri = 2;
   pithla = 1;

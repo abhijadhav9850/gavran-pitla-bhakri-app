@@ -35,7 +35,7 @@ export class LogininphoneComponent {
     this.ls.loginprofile(data)
 
     if (this.ls.phoneForm.valid == true) {
-      this.service.openOtp()
+      this.ls.openOtp()
     } else {
       this.submitted = true
       this.minimumNumber = true
