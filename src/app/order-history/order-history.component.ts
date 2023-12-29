@@ -13,12 +13,16 @@ export class OrderHistoryComponent {
   orderList:any = []
 
   constructor(public ls : LoginindetailsValueService, public http:HttpClient,public router:Router){
+    console.log("hei",this.orderHistory);
+    
   }
 
   async ngOnInit() {
     this.ls.getData().subscribe(
       (data: any) => {
         this.orderList = data.Result;
+        // console.log(this.orderList);
+        
       },
       (error) => {
         console.error(error);
@@ -26,25 +30,15 @@ export class OrderHistoryComponent {
       }
     );
   }
-  orderDate = new Date();
-  orderTimestamp = Date.now();
-  orderDate1 = new Date(this.orderTimestamp);
+  // orderDate = new Date();
+  // orderTimestamp = Date.now();
+  // orderDate1 = new Date(this.orderTimestamp);
   orderHistory:any=[]
+
+  
   pushValue(i:any){
     console.log(this.orderList[i]);
     this.ls.foodorderdata = this.orderList[i]
-
-    
-
-    // this.ls.foodorderdata = []
-    // this.ls.foodorderdata = [
-    //   {
-    //     bhakri: this.orderList[i].bhakri,
-    //     pithla: this.orderList[i].pithla,
-    //     test: this.orderList[i].test,
-    //     totalPrice: this.orderList[i].totalprice,
-    //   }
-    // ]
     this.router.navigate(['order-info'])
     this.orderList[i]
     console.log("food quantity value",this.ls.foodorderdata);

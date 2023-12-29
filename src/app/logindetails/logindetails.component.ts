@@ -50,7 +50,7 @@ toggleDropdown() {
       this.submitted = false
     }else{
       this.submitted = true;
-      this.service.openPayment()
+      this.ls.openPayment()
       this.getUserValue()
     }
     // console.log(this.myForm.value);
