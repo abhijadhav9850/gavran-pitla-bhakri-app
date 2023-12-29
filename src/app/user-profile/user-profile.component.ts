@@ -81,7 +81,7 @@ export class UserProfileComponent {
       UserEmail: this.myForm.value.UserEmail,
       register_id: this.user_token
     }
-    this.http.post('http://localhost:4000/updateUser', user).subscribe((e: any) => {
+    this.http.post('https://knexdatabase.onrender.com/updateUser', user).subscribe((e: any) => {
       if (e.message === 'User Updated Successfully!') {
         console.log(e);
         localStorage.removeItem('profile');
