@@ -96,9 +96,9 @@ export class UserProfileComponent {
           this.registerId = userObject?.mobileno;
           this.user_token = userObject?.register_id;
           this.userName = userObject?.username;
-          this.edit = false;
           console.log("works");
         }
+        this.edit = false;
       }
     })
   }
