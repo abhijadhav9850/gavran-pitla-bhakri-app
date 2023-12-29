@@ -24,6 +24,7 @@ export class LoginindetailsValueService {
   otp: any = false;
   authLoggedIn = new BehaviorSubject<boolean>(false);
   foodorderdata: any;
+  userOrderData = []
 
   show_home_popup = false
 
