@@ -188,16 +188,20 @@ export class LoginindetailsValueService {
   //   localStorage.removeItem("token")
   // }
 
-  // profile() {
-  //   let headers = new HttpHeaders().set("Authorization", `bearer ${localStorage.getItem('token')}`)
-  //   this.http.post("https://knexdatabase.onrender.com/profile", {}, { headers }).subscribe((result: any) => {
-  //     this.authLoggedIn.next(true)
-  //     if (this.authLoggedIn.getValue() === true) {
-  //       const retrievedData = localStorage.getItem('token');
-  //       return this.authLoggedIn.next(true)
-  //     }
-  //   })
-  // }
+  profile() {
+    const retrievedData = localStorage.getItem('user_details');
+    if (retrievedData !== null) {
+      const userObject = JSON.parse(retrievedData);
+      const number = userObject?.mobileno;
+    let obj = {
+      "Mobile_No" : number
+    }
+    this.http.post('http://localhost:4000/user/userDetails',obj).subscribe((e:any)=>{
+      const userResult = e.result;
+      localStorage.setItem('profile', JSON.stringify(userResult));
+    })
+  }
+  }
   // hello
 
   getpitla() {

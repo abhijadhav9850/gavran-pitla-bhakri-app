@@ -75,14 +75,6 @@ toggleDropdown() {
       this.http.post('http://localhost:4000/user/addDetails',userDetails).subscribe((e:any)=>{
         if(e.message == "User Data Added Successfully!"){
           console.log(e);
-          let obj = {
-            "Mobile_No" : number
-          }
-          this.http.post('http://localhost:4000/user/userDetails',obj).subscribe((e:any)=>{
-            console.log(e);
-            const userResult = e.result;
-            localStorage.setItem('profile', JSON.stringify(userResult));
-          })
         }
       })
     } else {

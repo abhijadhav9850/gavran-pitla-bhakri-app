@@ -17,6 +17,7 @@ export class PaymentpageComponent {
   cash = ''
   seleted = false
   selectPayment() {
+    this.ls.profile()
     if (this.seleted == true) {
       this.router.navigate(['/user-payment']);
       // this.ls.Test_newapi()

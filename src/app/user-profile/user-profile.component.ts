@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,12 +11,12 @@ import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 })
 export class UserProfileComponent {
 
-  constructor(public ls:LoginindetailsValueService, public router:Router, public fb: FormBuilder){}
+  constructor(public ls:LoginindetailsValueService, public router:Router, public fb: FormBuilder, public http: HttpClient){}
 
   userName:any 
   getData:any = localStorage.getItem('user_details')
   userData = JSON.parse(this.getData)
-  userContact:any;
+  user_token:any;
   Email = '@gmail.com'
   registerId:any;
 
@@ -26,7 +27,7 @@ export class UserProfileComponent {
       const userObject = JSON.parse(retrievedData);
       // Access the register_id property
       this.registerId = userObject?.mobileno;
-      this.userContact = this.registerId;
+      this.user_token = userObject?.register_id;
       this.userName = userObject?.username;
 
     } else {
@@ -72,15 +73,40 @@ export class UserProfileComponent {
 
   log:any=''
 
-  editValue(){
-    this.edit = false;
+  editValue() {
     console.log(this.myForm.value);
+    let user = {
+      UserName: this.myForm.value.UserName,
+      UserNumber: this.myForm.value.UserNumber,
+      UserEmail: this.myForm.value.UserEmail,
+      register_id: this.user_token
+    }
+    this.http.post('http://localhost:4000/updateUser', user).subscribe((e: any) => {
+      if (e.message === 'User Updated Successfully!') {
+        console.log(e);
+        localStorage.removeItem('profile');
+        this.ls.profile()
+        console.log('works');
 
+        const retrievedData = localStorage.getItem('profile');
+        if (retrievedData !== null) {
+          // Parse the JSON string into a JavaScript object
+          const userObject = JSON.parse(retrievedData);
+          // Access the register_id property
+          this.registerId = userObject?.mobileno;
+          this.user_token = userObject?.register_id;
+          this.userName = userObject?.username;
+          this.edit = false;
+          console.log("works");
+        }
+      }
+    })
   }
 
   logout(){
      localStorage.removeItem('user_details');
      localStorage.removeItem('userName')
+     localStorage.removeItem('profile')
      this.router.navigate(['']).then(() => {
       window.location.reload();
     });

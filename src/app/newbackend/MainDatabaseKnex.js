@@ -62,37 +62,23 @@ function VerifiyToken(req, res, next) {
     }
 }
 
-app.post("/profile", async (req, res) => {
+app.post("/updateUser", async (req, res) => {
     try {
-        let getUsers = [];
-        const { Mobile_No } = req.body;
-        let data = await pg.select('id', 'mobileno', 'register_id').from('user_mobile');
-
-        let userAlreadyExist = data.find(e => e.mobileno == Mobile_No);
-
-        if (!userAlreadyExist) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        let findUsers = await pg.select('username', 'register_id').from('user_info');
-        getUsers.push(...findUsers);
-
-        let userName = getUsers.find(e => e.register_id === userAlreadyExist.register_id);
-
-        let userObject = {
-            "id": userAlreadyExist.id,
-            "mobileno": userAlreadyExist.mobileno,
-            "register_id": userAlreadyExist.register_id,
-            "username": userName ? userName.username : 'N/A'
-        };
-
-        console.log(userObject);
-
-        return res.status(200).json({ result: userObject, message: 'User details fetched!' });
-    } catch (error) {
+        console.log(req.body);
+        const result = await pg("user_info")
+          .where({ register_id: req.body.register_id }) // Specify the condition
+          .update({
+            username: req.body.UserName,
+            // MobileNumber: req.body.NewMobileNumber
+        }); // Specify the fields to update
+        console.log(result); // The number of affected rows
+        return res.status(200).json({ result: result, message: 'User Updated Successfully!' });
+        
+      } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Internal server error' });
-    }
+      }
+      
 });
 
 
@@ -172,12 +158,9 @@ app.post("/user/userDetails", async (req, res) => {
         }
 
         let findUsers = await pg.select('username', 'register_id').from('user_info');
-        console.log(findUsers);
-
         userArr.push(findUsers);
-        console.log(userArr);
 
-        let userName = userArr.find(e => e.register_id === userAlreadyExist.register_id);
+        let userName = findUsers.find(e => e.register_id === userAlreadyExist.register_id);
         console.log(userName);
         
         let userObject = {
@@ -186,7 +169,6 @@ app.post("/user/userDetails", async (req, res) => {
             "register_id": userAlreadyExist.register_id,
             "username": userName ? userName.username : 'N/A'
         };
-
         return res.status(200).json({ result: userObject, message: 'User Data Fetched Successfully!' });
     } catch (err) {
         console.error(err);
