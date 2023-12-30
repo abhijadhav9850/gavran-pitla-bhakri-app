@@ -220,7 +220,6 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
         }
         const otpvalue = generateOTP();
         usersOtp.push(otpvalue);
-        
         const smsData = {
             variables_values: otpvalue,
             route: "otp",
