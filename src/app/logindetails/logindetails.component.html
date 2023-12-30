@@ -47,7 +47,7 @@
         <!-- <input type="text" placeholder="City" id="city" formControlName="UserCity" class="w-full md:w-64 p-2 border rounded-md focus:outline-none focus:border-blue-500"> -->
 
         <div class="flex justify-center items-center">
-            <select class="w-full p-2 border bg-white text-neutral-400 text-base rounded-md focus:outline-none focus:border-blue-500" name="cars" id="cars" formControlName="UserCity">
+            <select class="w-full p-2 border bg-white  text-base font-normal rounded-md focus:outline-none focus:border-blue-500" name="cars" id="cars" formControlName="UserCity">
                 <option value="">Select Your City</option>
                 <option *ngFor="let city of citys" [value]="city.value">{{city.name}}</option>
             </select>

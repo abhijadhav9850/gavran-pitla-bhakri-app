@@ -57,11 +57,11 @@ export class OtpVerificationComponent {
        }
        
       //  otp verify and go to next page api done
-      this.http.post("http://localhost:4000/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
+      this.http.post("https://knexdatabase.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
       if(e.message == 'OTP Verified Successfully!'){  
         alert('Otp Verified Successful');
-        this.ls.openAddress()
         this.ls.otpVerifyApi()
+        this.ls.openAddress()
         this.ls.userLogin = true;
         console.log("Work");    
       }else{

@@ -29,7 +29,7 @@
     </svg>
     <button *ngIf="edit" class="text-sm  text-blue-600 mt-4 font-medium">Change Profile</button>
     <div *ngIf="!edit" class="flex justify-center items-center text-center mt-6 text-xl">
-        <p class="font-medium text-center font-Roboto">{{user_name}}</p>
+        <p class="font-medium text-center font-Roboto">{{userName}}</p>
         <svg (click)="hideInput()" xmlns="http://www.w3.org/2000/svg" class="ml-2 mt-1" width="11" height="23" viewBox="0 0 9 11" fill="none">
             <path
                 d="M8.0269 3.93204L5.934 1.69965L6.62343 0.955526C6.8122 0.751777 7.04414 0.649902 7.31925 0.649902C7.59404 0.649902 7.82582 0.751777 8.01459 0.955526L8.70402 1.69965C8.89279 1.9034 8.99128 2.14932 8.99949 2.4374C9.00769 2.72513 8.91741 2.97087 8.72864 3.17462L8.0269 3.93204ZM7.31285 4.71603L2.0929 10.3501H0V8.09118L5.21995 2.45707L7.31285 4.71603Z"
@@ -44,26 +44,26 @@
       <!-- Full Name Input -->
       <div class="flex mb-4 md:mb-0 flex-col">
           <label class="text-[15px] w-[295px] font-medium font-Roboto" for="fullName">Full Name</label>
-        <input *ngIf="edit" value="{{user_name}}" formControlName="UserName" type="text" id="fullName" placeholder="Full Name"
+        <input *ngIf="edit" value="{{userName}}" formControlName="UserName" type="text" id="fullName" placeholder="Full Name"
           class="flex-shrink-0 w-[295px] h-[40px] p-0 border border-gray-300 focus:outline-none focus:border-blue-500 mt-3 text-sm font-Roboto font-medium px-5 rounded-md" />
-          <div *ngIf="!edit" class="flex w-[295px] items-center h-[40px] p-0 mt-3 text-[1rem] font-Roboto font-medium px-3 border border-gray-300 rounded-md"><p>{{user_name}}</p></div>
+          <div *ngIf="!edit" class="flex w-[295px] items-center h-[40px] p-0 mt-3 text-[1rem] font-Roboto font-medium px-3 border border-gray-300 rounded-md"><p>{{userName}}</p></div>
       </div>
   
       <!-- Mobile Input -->
       <div class="flex mb-4 md:mb-0 flex-col">
         <label class="text-[15px] font-medium font-Roboto" for="mobile">Mobile</label>
-        <input *ngIf="edit" type="number" formControlName="UserNumber" value="{{userContact}}" id="mobile" placeholder="Mobile"
+        <input *ngIf="edit" type="number" formControlName="UserNumber" value="{{registerId}}" id="mobile" placeholder="Mobile"
           class="flex-shrink-0 w-[295px] h-[40px] p-0 border border-gray-300 focus:outline-none focus:border-blue-500 mt-3 text-sm font-Roboto font-medium px-5 rounded-md" />
-          <div *ngIf="!edit" class="flex w-[295px] items-center h-[40px] p-0 mt-3 text-[1rem] font-Roboto font-medium px-3 border border-gray-300 rounded-md"><p>+91 {{userContact}}</p></div>
+          <div *ngIf="!edit" class="flex w-[295px] items-center h-[40px] p-0 mt-3 text-[1rem] font-Roboto font-medium px-3 border border-gray-300 rounded-md"><p>+91 {{registerId}}</p></div>
           
       </div>
   
       <!-- Email Input -->
       <div class="flex flex-col">
         <label class="text-[15px] font-medium font-Roboto" for="email">Email</label>
-        <input *ngIf="edit" formControlName="UserEmail" type="email" id="email" placeholder="Email" value="{{user_name}}"
+        <input *ngIf="edit" formControlName="UserEmail" type="email" id="email" placeholder="Email" value="{{userName}}"
           class="flex-shrink-0 w-[295px] h-[40px] p-0 border border-gray-300 focus:outline-none focus:border-blue-500 mt-3 text-sm font-Roboto font-medium px-5 rounded-md" />
-          <div *ngIf="!edit" class="flex w-[295px] items-center h-[40px] p-0 mt-3 text-[1rem] font-Roboto font-medium px-3 border border-gray-300 rounded-md"><p>{{user_name}}{{Email}}</p></div>
+          <div *ngIf="!edit" class="flex w-[295px] items-center h-[40px] p-0 mt-3 text-[1rem] font-Roboto font-medium px-3 border border-gray-300 rounded-md"><p>{{userName}}{{Email}}</p></div>
       </div>
       
       
