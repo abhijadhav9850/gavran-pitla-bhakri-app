@@ -202,8 +202,8 @@ app.post("/OrderData/Details", async (req, res) => {
 //POST API FOR SEND OTP FOR USER!
 app.post("/Mobile_No/Send_OTP", async (req, res) => {
     try {
-        const apiKey = "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
-        const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
+        // const apiKey = "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
+        // const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
 
         function generateOTP() {
             try {
