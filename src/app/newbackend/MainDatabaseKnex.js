@@ -33,8 +33,6 @@ let OrderData = []
 let OrderData1 = []
 let usersOtp = []
 
-//login with jwt
-
 const secretkey = "secretkey";
 
 app.post("/login", (req, res) => {
