@@ -58,7 +58,7 @@ export class LoginindetailsValueService {
       Mobile_No: this.phoneForm.value.Mobile_No
     }
     this.adddata = formData
-    await this.http.post("https://knexdatabase.onrender.com/Mobile_No/Send_OTP", formData).subscribe((e: any) => {
+    await this.http.post("https://databaseknex.onrender.com/Mobile_No/Send_OTP", formData).subscribe((e: any) => {
       console.log(e);
     })
     // this.phoneForm.reset()
@@ -83,7 +83,7 @@ export class LoginindetailsValueService {
       await this.order_list();
       console.log(this.adddata);
       // Mobile no add API
-      const userApiResponse: any = await this.http.post("https://knexdatabase.onrender.com/Mobile_No/Add_User", this.adddata).toPromise();
+      const userApiResponse: any = await this.http.post("https://databaseknex.onrender.com/Mobile_No/Add_User", this.adddata).toPromise();
       if (userApiResponse.message == 'User already exists in the database!') {
         this.openPayment()
         
@@ -137,23 +137,23 @@ export class LoginindetailsValueService {
       "datetime": this.orderDate 
     };
     // Food quantity data API
-    const orderApiResponse = await this.http.post("https://knexdatabase.onrender.com/OrderData/Details", foodList).subscribe();
+    const orderApiResponse = await this.http.post("https://databaseknex.onrender.com/OrderData/Details", foodList).subscribe();
     console.log(orderApiResponse);
     console.log("hee", foodList);
   }
 
   // async Test_newapi() {
   //   // UserData collect in frontend
-  //   await this.http.get("https://knexdatabase.onrender.com/Get_userData").subscribe(e => {
+  //   await this.http.get("https://databaseknex.onrender.com/Get_userData").subscribe(e => {
   //     console.log(e);
   //   })
 
   //   // Mobile_No Data collect in frontend
-  //   await this.http.get("https://knexdatabase.onrender.com/Get_Mobile_No").subscribe(e => {
+  //   await this.http.get("https://databaseknex.onrender.com/Get_Mobile_No").subscribe(e => {
   //     console.log(e);
   //   })
 
-  //   await this.http.get<any[]>("https://knexdatabase.onrender.com/Get_OrderData").subscribe(e => {
+  //   await this.http.get<any[]>("https://databaseknex.onrender.com/Get_OrderData").subscribe(e => {
   //     console.log(e);
   //   })
   //   // Mobile_No Data collect in frontend
@@ -170,7 +170,7 @@ export class LoginindetailsValueService {
         Mobile_No: registerNumber
       }
       console.log(number);
-      return this.http.post<any[]>("https://knexdatabase.onrender.com/getData", number);
+      return this.http.post<any[]>("https://databaseknex.onrender.com/getData", number);
     } else {
       console.log('No data found in localStorage');
       return of([]);
@@ -178,7 +178,7 @@ export class LoginindetailsValueService {
   }
 
   // loginprofile(data: any) {
-  //   this.http.post("https://knexdatabase.onrender.com/login", data).subscribe((result: any) => {
+  //   this.http.post("https://databaseknex.onrender.com/login", data).subscribe((result: any) => {
   //     localStorage.setItem("token", result.token)
   //     // this.router.navigate(['/'])
   //   })
@@ -196,7 +196,7 @@ export class LoginindetailsValueService {
     let obj = {
       "Mobile_No" : number
     }
-    this.http.post('https://knexdatabase.onrender.com/user/userDetails',obj).subscribe((e:any)=>{
+    this.http.post('https://databaseknex.onrender.com/user/userDetails',obj).subscribe((e:any)=>{
       const userResult = e.result;
       localStorage.setItem('profile', JSON.stringify(userResult));
     })
@@ -205,7 +205,7 @@ export class LoginindetailsValueService {
   // hello
 
   getpitla() {
-    return this.http.get<any[]>("https://knexdatabase.onrender.com/getpitla")
+    return this.http.get<any[]>("https://databaseknex.onrender.com/getpitla")
   }
 
   // -----popup handling----

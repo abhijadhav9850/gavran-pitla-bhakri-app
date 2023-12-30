@@ -69,6 +69,7 @@ app.post("/updateUser", async (req, res) => {
           .where({ register_id: req.body.register_id }) // Specify the condition
           .update({
             username: req.body.UserName,
+            usercity:req.body.Usercity
             // MobileNumber: req.body.NewMobileNumber
         }); // Specify the fields to update
         console.log(result); // The number of affected rows
@@ -157,7 +158,7 @@ app.post("/user/userDetails", async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        let findUsers = await pg.select('username', 'register_id').from('user_info');
+        let findUsers = await pg.select('username', 'register_id','usercity').from('user_info');
         userArr.push(findUsers);
 
         let userName = findUsers.find(e => e.register_id === userAlreadyExist.register_id);
@@ -167,7 +168,9 @@ app.post("/user/userDetails", async (req, res) => {
             "id": userAlreadyExist.id,
             "mobileno": userAlreadyExist.mobileno,
             "register_id": userAlreadyExist.register_id,
-            "username": userName ? userName.username : 'N/A'
+            "username": userName ? userName.username : 'N/A',
+            "usercity": userName.usercity
+
         };
         return res.status(200).json({ result: userObject, message: 'User Data Fetched Successfully!' });
     } catch (err) {
@@ -202,40 +205,37 @@ app.post("/OrderData/Details", async (req, res) => {
 //POST API FOR SEND OTP FOR USER!
 app.post("/Mobile_No/Send_OTP", async (req, res) => {
     try {
-        // const apiKey = "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
-        // const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
+        const apiKey = "IkHy8BjOpAJ8ELcVuqbMRqkBVwEQKub5mgrCGacphfH1hvF9DmB5uU9kVaKs";
+        const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
 
-        // function generateOTP() {
-        //     const timestamp = Date.now(); // Get current timestamp
-        //     const uniqueNumber = Math.floor(Math.random() * 9000) + 1000; // Generate a random 4-digit number
-        //     const otp = (timestamp + uniqueNumber) % 10000; // Ensure a 4-digit number
-        //     const paddedOTP = otp.toString().padStart(4, '0');
-        
-        //     return paddedOTP;
-        // }
-        // const otpvalue = generateOTP();
-        // usersOtp.push(otpvalue);
-        // // res.json(otpvalue)
-        // const smsData = {
-        //     variables_values: otpvalue,
-        //     route: "otp",
-        //     numbers: req.body.Mobile_No,
-        // };
-        // unirest
-        //     .post(apiUrl)
-        //     .headers({
-        //         authorization: apiKey,
-        //     })
-        //     .form(smsData)
-        //     .end((response) => {
-        //         if (response.error) {
-        //             console.error("Error:", response.error);
-        //             res.status(500).json({ error: "Internal Server Error" });
-        //         } else {
-        //             res.status(200).json({ otpvalue: otpvalue, response: response.body });
-        //         }
-        //     });
-        otpvalue = 2244
+        function generateOTP() {
+            const timestamp = Date.now(); // Get current timestamp
+            const uniqueNumber = Math.floor(Math.random() * 9000) + 1000; // Generate a random 4-digit number
+            const otp = (timestamp + uniqueNumber) % 10000; // Ensure a 4-digit number
+            const paddedOTP = otp.toString().padStart(4, '0');
+            return paddedOTP;
+        }
+        const otpvalue = generateOTP();
+        usersOtp.push(otpvalue);
+        const smsData = {
+            variables_values: otpvalue? otpvalue: "2224",
+            route: "otp",
+            numbers: req.body.Mobile_No,
+        };
+        unirest
+            .post(apiUrl)
+            .headers({
+                authorization: apiKey,
+            })
+            .form(smsData)
+            .end((response) => {
+                if (response.error) {
+                    console.error("Error:", response.error);
+                    res.status(500).json({ error: "Internal Server Error" });
+                } else {
+                    res.status(200).json({ otpvalue: otpvalue, response: response.body });
+                }
+            });
     } catch (error) {
         console.log("Unable to Send OTP:", error);
         res.status(500).json({ success: false, "message": "Failed to send OTP" });
@@ -245,6 +245,7 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
 //POST API FOR CHECK ENTER OTP IS RIGHT OR WRONG!
 app.post("/OTP/GetOTP", async (req, res) => {
     try {
+        console.log(req.body);
         let userOtp = req.body.otp.toString();
         const isValidOTP = usersOtp.includes(userOtp);
         if (isValidOTP) {
