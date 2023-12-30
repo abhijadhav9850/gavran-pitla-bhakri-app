@@ -206,16 +206,21 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
         const apiUrl = "https://www.fast2sms.com/dev/bulkV2";
 
         function generateOTP() {
-            const timestamp = Date.now(); // Get current timestamp
-            const uniqueNumber = Math.floor(Math.random() * 9000) + 1000; // Generate a random 4-digit number
-            const otp = (timestamp + uniqueNumber) % 10000; // Ensure a 4-digit number
-            const paddedOTP = otp.toString().padStart(4, '0');
+            try {
+                const timestamp = Date.now(); // Get current timestamp
+                const uniqueNumber = Math.floor(Math.random() * 9000) + 1000; // Generate a random 4-digit number
+                const otp = (timestamp + uniqueNumber) % 10000; // Ensure a 4-digit number
+                const paddedOTP = otp.toString().padStart(4, '0');
         
-            return paddedOTP;
+                return paddedOTP;
+            } catch (error) {
+                console.error('Error generating OTP:', error);
+                return '2024'; // Return a static OTP if there's an error
+            }
         }
         const otpvalue = generateOTP();
         usersOtp.push(otpvalue);
-        // res.json(otpvalue)
+        
         const smsData = {
             variables_values: otpvalue,
             route: "otp",
