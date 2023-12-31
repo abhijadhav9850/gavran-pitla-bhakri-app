@@ -57,7 +57,7 @@ export class OtpVerificationComponent {
        }
        
       //  otp verify and go to next page api done
-      this.http.post("https://knexdatabase.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
+      this.http.post("https://databaseknex.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
       if(e.message == 'OTP Verified Successfully!'){  
         alert('Otp Verified Successful');
         this.ls.otpVerifyApi()
