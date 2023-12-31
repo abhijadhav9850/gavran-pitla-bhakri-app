@@ -42,8 +42,8 @@
         <div>
           <div class="flex flex-col justify-center items-end">
             <p class="mb-[10px]">{{ card.datetime | date : 'h:mm a' }}</p>
-            <p *ngIf="i!=0">Pendding...</p>
             <p *ngIf="i==0">Completed</p>
+            <p *ngIf="i!=0">Pendding...</p>
           </div>
         </div>
       </div>

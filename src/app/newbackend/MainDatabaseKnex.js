@@ -269,7 +269,8 @@ app.post("/getData", async (req, res) => {
         users.push(...getUsers);
 
         let orders = await pg.select('id', 'bhakri', 'pithla', 'test', 'totalprice', 'register_id','status','datetime').from('user_order');
-        order_List.push(...orders);
+        order_List.push(orders);
+        console.log(order_List);
 
         let findUser = users.find(e => e.mobileno == req.body.Mobile_No);
         let ordersList = order_List.filter(e => e.register_id === findUser.register_id);
