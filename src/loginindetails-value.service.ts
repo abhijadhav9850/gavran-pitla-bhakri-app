@@ -77,37 +77,19 @@ export class LoginindetailsValueService {
     }
   }
 
-  // async otpVerifyApi() {
-  //   this.order_list()
-  //   console.log(this.adddata);  
-
-
-  //   // mobile no add api done
-  //   await this.http.post("http://localhost:4000/Mobile_No/Add_User",this.adddata).subscribe((e: any) => {
-  //     // // Store in localStorage
-  //     localStorage.setItem('user_details', JSON.stringify(e.result));
-  //     this.authLoggedIn.next(true)
-  //   })
-
-  //   // // foodquantity data api done
-  //   await this.http.post("http://localhost:4000/OrderData/Details",this.foodorderdata).subscribe(e => {
-  //     console.log(e);
-  //   })
-  //   console.log("hee",this.foodorderdata);
-
-  //   // this.Test_newapi()
-  //   // this.router.navigate(['order-his'])
-  //   // }
-  //   // })
-  // }
-
   //NEW CODE ADDED FOR USER ENTRY AND ORDER VALUES!
   async otpVerifyApi() {
     try {
       await this.order_list();
       console.log(this.adddata);
       // Mobile no add API
-      const userApiResponse: any = await this.http.post("http://localhost:4000/Mobile_No/Add_User", this.adddata).toPromise();
+      const userApiResponse: any = await this.http.post("https://databaseknex.onrender.com/Mobile_No/Add_User", this.adddata).toPromise();
+      if (userApiResponse.message == 'User already exists in the database!') {
+        this.openPayment()
+        
+      // this.router.navigate(['/payment']);  
+        
+      }
   
       if (userApiResponse !== undefined && userApiResponse.result !== undefined) {
         const userResult = userApiResponse.result;
@@ -155,27 +137,27 @@ export class LoginindetailsValueService {
       "datetime": this.orderDate 
     };
     // Food quantity data API
-    const orderApiResponse = await this.http.post("http://localhost:4000/OrderData/Details", foodList).toPromise();
+    const orderApiResponse = await this.http.post("https://databaseknex.onrender.com/OrderData/Details", foodList).subscribe();
     console.log(orderApiResponse);
     console.log("hee", foodList);
   }
 
-  async Test_newapi() {
-    // UserData collect in frontend
-    await this.http.get("https://pitlabhakridatabase.onrender.com/Get_userData").subscribe(e => {
-      console.log(e);
-    })
+  // async Test_newapi() {
+  //   // UserData collect in frontend
+  //   await this.http.get("https://databaseknex.onrender.com/Get_userData").subscribe(e => {
+  //     console.log(e);
+  //   })
 
-    // Mobile_No Data collect in frontend
-    await this.http.get("https://pitlabhakridatabase.onrender.com/Get_Mobile_No").subscribe(e => {
-      console.log(e);
-    })
+  //   // Mobile_No Data collect in frontend
+  //   await this.http.get("https://databaseknex.onrender.com/Get_Mobile_No").subscribe(e => {
+  //     console.log(e);
+  //   })
 
-    await this.http.get<any[]>("https://pitlabhakridatabase.onrender.com/Get_OrderData").subscribe(e => {
-      console.log(e);
-    })
-    // Mobile_No Data collect in frontend
-  }
+  //   await this.http.get<any[]>("https://databaseknex.onrender.com/Get_OrderData").subscribe(e => {
+  //     console.log(e);
+  //   })
+  //   // Mobile_No Data collect in frontend
+  // }
 
   getData(): Observable<any[]> {
     // Retrieve from localStorage
@@ -188,37 +170,207 @@ export class LoginindetailsValueService {
         Mobile_No: registerNumber
       }
       console.log(number);
-      return this.http.post<any[]>("http://localhost:4000/getData", number);
+      return this.http.post<any[]>("https://databaseknex.onrender.com/getData", number);
     } else {
       console.log('No data found in localStorage');
       return of([]);
     }
   }
 
-  loginprofile(data: any) {
-    this.http.post("https://pitlabhakridatabase.onrender.com/login", data).subscribe((result: any) => {
-      localStorage.setItem("token", result.token)
-      // this.router.navigate(['/'])
-    })
-  }
+  // loginprofile(data: any) {
+  //   this.http.post("https://databaseknex.onrender.com/login", data).subscribe((result: any) => {
+  //     localStorage.setItem("token", result.token)
+  //     // this.router.navigate(['/'])
+  //   })
+  // }
 
   // logout() {
   //   localStorage.removeItem("token")
   // }
 
   profile() {
-    let headers = new HttpHeaders().set("Authorization", `bearer ${localStorage.getItem('token')}`)
-    this.http.post("https://pitlabhakridatabase.onrender.com/profile", {}, { headers }).subscribe((result: any) => {
-      this.authLoggedIn.next(true)
-      if (this.authLoggedIn.getValue() === true) {
-        const retrievedData = localStorage.getItem('token');
-        return this.authLoggedIn.next(true)
-      }
+    const retrievedData = localStorage.getItem('user_details');
+    if (retrievedData !== null) {
+      const userObject = JSON.parse(retrievedData);
+      const number = userObject?.mobileno;
+    let obj = {
+      "Mobile_No" : number
+    }
+    this.http.post('https://databaseknex.onrender.com/user/userDetails',obj).subscribe((e:any)=>{
+      const userResult = e.result;
+      localStorage.setItem('profile', JSON.stringify(userResult));
     })
+  }
   }
   // hello
 
   getpitla() {
-    return this.http.get<any[]>("https://pitlabhakridatabase.onrender.com/getpitla")
+    return this.http.get<any[]>("https://databaseknex.onrender.com/getpitla")
   }
+
+  // -----popup handling----
+
+  email = '';
+  
+  popup_hide : any = false;
+  popup_quantity:any = false
+  popup_contact : any = false;
+  popup_otp :any = false;
+  popup_address : any = false;
+  popup_payment : any = false;
+
+  backgroundblur = {
+    'filter' : 'blur(0px)',
+    'transition' : '0.1s ease-in-out',
+    'background' : 'none'
+  }
+
+  otpPopup = {
+    'width' : '100%',
+    'transition': 'transform 0.4s ease-in-out',
+    'margin-top': '50vh',
+    'box-shadow' : '0px 0px 20px black',
+    'z-index': '-1',
+    'background-color' : '#fff',
+    'overflow' : 'auto',
+  }
+
+  loginInPhone = {
+    // display :'none',
+    // backgroundColor: 'lightblue',
+    // color: 'black',
+    'width' : '100%',
+    'transition': 'margin-top 0.5s ease-in-out',
+    'margin-top': '50vh',
+    'box-shadow' : '',
+    'z-index': '-1',
+    'background-color' : '#fff',
+    'overflow' : 'auto',
+
+  };
+
+  changeStyle() {
+    this.popup_hide = true
+    this.popup_quantity = true
+    // Change the style dynamically
+    setTimeout(()=>{  
+      this.backgroundblur = {
+        'filter' : 'blur(2px)',
+        'transition' : '0.1s ease-out',
+        'background' : 'linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),url(../../assets/image 2.jpg))',
+      }
+      this.loginInPhone = {
+        // display: 'flex',
+        // backgroundColor: 'lightgreen',
+        // color: 'white',
+        'width' : '100%',
+        'transition': 'margin-top 0.1s ease-out',
+        'margin-top': '-60vh',
+        'box-shadow' : '0px 0px 900px 900px rgba(0,0,0,0.2)',
+        'z-index': '1',
+        'background-color' : '#fff',
+        'overflow' : 'hidden',
+      };
+  }, 10);
+  }
+
+    closepopup(){
+      // this.quantity = false
+      // this.contact  = false;
+      // this.otp = false;
+      // this.address  = false;
+      // this.payment  = false;
+
+      this.backgroundblur = {
+        'filter' : 'blue(0px)',
+        'transition' : '0.1s ease-in-out',
+        'background' : 'none'
+      }
+      this.loginInPhone = {
+        // display: 'flex',
+        // backgroundColor: 'lightgreen',
+        // color: 'white',
+        'width' : '100%',
+        'transition': 'margin-top 0.1s ease-in-out',
+        'margin-top': '10vh',
+        'box-shadow' : '0px 0px 10px lightgray',
+        'z-index': '1',
+        'background-color' : '#fff',
+        'overflow' : 'hidden',
+      };
+      this.backgroundblur = {
+        'filter' : 'none',
+        'transition' : '0.1s ease-in-out',
+        'background' : 'none'
+      }
+
+      setTimeout(()=>{  
+      this.popup_hide = false
+      this.popup_quantity = false
+      this.popup_contact  = false;
+      this.otp = false;
+      this.address  = false;
+      this.payment  = false;
+     
+    }, 500);
+    }
+
+    openOtp(){
+      this.otp = true;
+      this.popup_contact = false
+    }
+    openAddress(){
+      this.address = true;
+      this.otp = false
+    }
+    
+    openContact(){
+      if(localStorage.getItem('user_details')){
+    
+        this.popup_quantity = false
+        this.popup_contact  = false;
+        this.otp = false;
+        this.address  = false;
+        this.payment  = false;
+        this.openPayment()
+      }else{
+        this.popup_quantity = false;
+        this.popup_contact = true;
+      }
+    }
+    openPayment(){
+      this.payment = true;
+      this.address = false
+    }
+
+    closeOtp(){
+      this.otp = false;
+      this.popup_contact = true;
+    }
+    
+    closepayment(){
+      if(localStorage.getItem('user_details')){
+        this.popup_quantity = true
+        this.popup_contact  = false;
+        this.otp = false;
+        this.address  = false;
+        this.payment  = false;
+      }else{
+        this.payment = false;
+        this.address = true;
+      }
+    }
+    closeContact(){
+      this.popup_contact = false;
+      this.popup_quantity = true;
+    }
+    closeAddress(){
+      this.address = false;
+      this.otp = true;
+    }
 }
+
+
+
+// popup service code
+
