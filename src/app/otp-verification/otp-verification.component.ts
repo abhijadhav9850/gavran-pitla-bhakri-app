@@ -57,11 +57,11 @@ export class OtpVerificationComponent {
        }
        
       //  otp verify and go to next page api done
-      this.http.post("https://maindatabase.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
+      this.http.post("https://databaseknex.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
       if(e.message == 'OTP Verified Successfully!'){  
         alert('Otp Verified Successful');
-        this.service.openAddress()
         this.ls.otpVerifyApi()
+        this.ls.openAddress()
         this.ls.userLogin = true;
         console.log("Work");    
       }else{
@@ -111,7 +111,7 @@ export class OtpVerificationComponent {
     } else {
       console.log("No error, all values are present");
       this.invalid = false;
-      this.service.openAddress()
+      this.ls.openAddress()
     }
   }
 

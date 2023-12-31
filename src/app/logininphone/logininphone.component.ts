@@ -16,6 +16,7 @@ export class LogininphoneComponent {
 
   submitted = false
   minimumNumber = false
+  required = false;
 
   constructor(public service : PopupHandingService , public fb: FormBuilder, public http:HttpClient, public ls:LoginindetailsValueService){}
 
@@ -31,10 +32,10 @@ export class LogininphoneComponent {
   async submitForm(data: any) {
     this.mobileNumber()
     this.ls.sendotp()
-    this.ls.loginprofile(data)
+    // this.ls.loginprofile(data)
 
     if (this.ls.phoneForm.valid == true) {
-      this.service.openOtp()
+      this.ls.openOtp()
     } else {
       this.submitted = true
       this.minimumNumber = true

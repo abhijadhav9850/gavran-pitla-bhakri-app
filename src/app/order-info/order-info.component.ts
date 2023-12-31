@@ -16,4 +16,12 @@ export class OrderInfoComponent {
     this.router.navigate(['']);
   }
 
+  goToHomePage(){
+    this.router.navigate(['order-his']);
+  }
+
+  toToProfilePage(){
+    this.router.navigate(['user-profile']);
+  }
+
 }

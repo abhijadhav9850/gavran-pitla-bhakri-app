@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, } from '@angular/core';
 import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 import { PopupHandingService } from 'src/popup-handing.service';
@@ -8,16 +9,15 @@ import { PopupHandingService } from 'src/popup-handing.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+
   constructor(public service: PopupHandingService, public ls: LoginindetailsValueService) {
     // Retrieve from localStorage
-    const retrievedData = localStorage.getItem('token');
+    const retrievedData = localStorage.getItem('user_details');
     if (retrievedData !== null) {
       this.ls.authLoggedIn.next(true)
-      this.ls.profile()
+      // this.ls.profile()
     } else {
       console.log('No data found in localStorage');
     }
   }
-
-
 }

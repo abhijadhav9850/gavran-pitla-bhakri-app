@@ -25,18 +25,18 @@ export class UserPaymentComponent {
 
   backToPaymentPopup(){
     this.router.navigate(['/details']);
-    this.service.changeStyle()
-    this.service.quantity = false
-    this.service.contact  = false;
-    this.service.otp = false;
-    this.service.address  = false;
-    this.service.payment  = true;
+    this.ls.changeStyle()
+    this.ls.popup_quantity = false
+    this.ls.popup_contact  = false;
+    this.ls.otp = false;
+    this.ls.address  = false;
+    this.ls.payment  = true;
   }
 
   navigateToHome(){
     if(this.seleted == false){
       this.router.navigate(['']); 
-      this.ls.Test_newapi()
+      // this.ls.Test_newapi()
       this.ls.show_modify_popup()
 
 
