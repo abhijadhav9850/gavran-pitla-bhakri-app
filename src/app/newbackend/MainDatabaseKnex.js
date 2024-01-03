@@ -31,6 +31,7 @@ let UserData = []
 let OrderData = []
 let OrderData1 = []
 let usersOtp = []
+let otpvalue;
 
 //login with jwt
 
@@ -215,8 +216,8 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
             const paddedOTP = otp.toString().padStart(4, '0');
             return paddedOTP;
         }
-        const otpvalue = 2244
-        usersOtp.push(otpvalue);
+        otpvalue = 2244
+        // usersOtp.push(otpvalue);
         // const smsData = {
         //     variables_values: otpvalue? otpvalue: "2224",
         //     route: "otp",
@@ -248,10 +249,11 @@ app.post("/Mobile_No/Send_OTP", async (req, res) => {
 //POST API FOR CHECK ENTER OTP IS RIGHT OR WRONG!
 app.post("/OTP/GetOTP", async (req, res) => {
     try {
-        console.log(req.body);
-        let userOtp = req.body.otp.toString();
-        const isValidOTP = usersOtp.includes(userOtp);
-        if (isValidOTP) {
+        // let userOtp = req.body.otp.toString();
+        // console.log(usersOtp);
+        // const isValidOTP = usersOtp.includes(userOtp);
+        // console.log(isValidOTP);
+        if (otpvalue === req.body.otp) {
             res.status(200).json({ success: true, message: "OTP Verified Successfully!" });
         } else {
             res.status(200).json({ success: false, message: "Invalid OTP" });
