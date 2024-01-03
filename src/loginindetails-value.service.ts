@@ -58,7 +58,7 @@ export class LoginindetailsValueService {
       Mobile_No: this.phoneForm.value.Mobile_No
     }
     this.adddata = formData
-    await this.http.post("https://databaseknex.onrender.com/Mobile_No/Send_OTP", formData).subscribe((e: any) => {
+    await this.http.post("http://localhost:4000/Mobile_No/Send_OTP", formData).subscribe((e: any) => {
       console.log(e);
     })
     // this.phoneForm.reset()
