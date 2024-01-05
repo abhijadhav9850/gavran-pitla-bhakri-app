@@ -1,5 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 import { PopupHandingService } from 'src/popup-handing.service';
 
@@ -10,7 +11,7 @@ import { PopupHandingService } from 'src/popup-handing.service';
 })
 export class HomeComponent {
 
-  constructor(public service: PopupHandingService, public ls: LoginindetailsValueService) {
+  constructor(public service: PopupHandingService, public ls: LoginindetailsValueService, public router:Router) {
     // Retrieve from localStorage
     const retrievedData = localStorage.getItem('user_details');
     if (retrievedData !== null) {
@@ -20,4 +21,6 @@ export class HomeComponent {
       console.log('No data found in localStorage');
     }
   }
+
+
 }

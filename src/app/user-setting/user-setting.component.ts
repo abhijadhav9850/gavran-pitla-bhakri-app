@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-setting',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-setting.component.css']
 })
 export class UserSettingComponent {
+  constructor(public router: Router){}
 
+  gotoprofile(){
+        // this.router.navigate(['user-profile'])
+  }
 }
