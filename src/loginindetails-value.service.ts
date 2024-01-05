@@ -88,7 +88,9 @@ export class LoginindetailsValueService {
       const userApiResponse: any = await this.http.post("https://databaseknex.onrender.com/Mobile_No/Add_User", this.adddata).toPromise();
       if (userApiResponse.message == 'User already exists in the database!') {
         if(this.counter1 != 0 ){
-          // this.profile()
+          setTimeout(()=>{  
+            this.profile()
+        }, 2000);
           this.withoutUserLoginBackBtn()
         }else if(this. counter2 != 0){
           this.openPayment()
@@ -205,8 +207,10 @@ export class LoginindetailsValueService {
     }
     this.http.post('http://localhost:4000/user/userDetails',obj).subscribe((e:any)=>{
       const userResult = e.result;
+      console.log(userResult);
+      
       localStorage.setItem('profile', JSON.stringify(userResult));
-      console.log('hello baby',userResult);
+      // console.log('Its works!!!',userResult);
       
       
     })
@@ -354,6 +358,7 @@ export class LoginindetailsValueService {
     }
 
     withoutUserLoginBackBtn(){
+      this.counter1 = 1
       this.backgroundblur = {
         'filter' : 'blue(0px)',
         'transition' : '0.1s ease-in-out',
@@ -393,8 +398,12 @@ export class LoginindetailsValueService {
       this.popup_contact = false
     }
     openAddress(){
-      this.address = true;
-      this.otp = false
+      setTimeout(()=>{  
+        this.address = true;
+        this.otp = false
+    }, 1500);
+  
+      
     }
     
     openContact(){
