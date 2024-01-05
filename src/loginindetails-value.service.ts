@@ -43,7 +43,6 @@ export class LoginindetailsValueService {
     } else {
       this.userLogin = false
     }
-
   }
 
   phoneForm = this.fb.group({
@@ -58,7 +57,7 @@ export class LoginindetailsValueService {
       Mobile_No: this.phoneForm.value.Mobile_No
     }
     this.adddata = formData
-    await this.http.post("http://https://databaseknex.onrender.com/Mobile_No/Send_OTP", formData).subscribe((e: any) => {
+    await this.http.post("http://localhost:4000/Mobile_No/Send_OTP", formData).subscribe((e: any) => {
       console.log(e);
     })
     // this.phoneForm.reset()
@@ -137,7 +136,7 @@ export class LoginindetailsValueService {
       "datetime": this.orderDate 
     };
     // Food quantity data API
-    const orderApiResponse = await this.http.post("https://databaseknex.onrender.com/OrderData/Details", foodList).subscribe();
+    const orderApiResponse = await this.http.post("http://localhost:4000/OrderData/Details", foodList).subscribe();
     console.log(orderApiResponse);
     console.log("hee", foodList);
   }
