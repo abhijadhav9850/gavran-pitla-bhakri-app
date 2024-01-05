@@ -16,6 +16,9 @@ export class OtpVerificationComponent {
 
   constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService, public http:HttpClient, public router: Router){
     this.timeout()
+   
+    
+    
   }
 
   invalid = false
@@ -45,6 +48,8 @@ export class OtpVerificationComponent {
   async optverify() {
     // this.service.openAddress()
     // console.log(this.ls.otpvalue);
+    this.ls.profile()
+    this.getUserInformation()
     if(this.timer>=0){
       Object.values(this.otpForm.controls).forEach((control) => {
         control.markAsTouched();
@@ -62,8 +67,9 @@ export class OtpVerificationComponent {
         alert('Otp Verified Successful');
         this.ls.otpVerifyApi()
         this.ls.openAddress()
+        this.ls.profile()
         this.ls.userLogin = true;
-        console.log("Work");    
+        console.log("Work");
       }else{
         alert('OTP is not valid');
         // this.authLoggedIn.next(true)
@@ -113,9 +119,25 @@ export class OtpVerificationComponent {
       this.invalid = false;
       this.ls.openAddress()
     }
+  }  
+
+  getUserInformation(){
+    const retrievedData = localStorage.getItem('user_details');
+    if (retrievedData !== null) {
+      const userObject = JSON.parse(retrievedData);
+      const number = userObject?.mobileno;
+    let obj = {
+      "Mobile_No" : number
+    }
+    this.http.post('http://localhost:4000/user/userDetails',obj).subscribe((e:any)=>{
+      const userResult = e.result;
+      localStorage.setItem('profile', JSON.stringify(userResult));
+      console.log('hello...',userResult);
+        
+    })
+  }
   }
 
-  
 }
 
 
