@@ -163,7 +163,7 @@ app.post("/user/userDetails", async (req, res) => {
         userArr.push(findUsers);
 
         let userName = findUsers.find(e => e.register_id === userAlreadyExist.register_id);
-        console.log(userName);
+        // console.log(userName);
         
         let userObject = {
             "id": userAlreadyExist.id,
