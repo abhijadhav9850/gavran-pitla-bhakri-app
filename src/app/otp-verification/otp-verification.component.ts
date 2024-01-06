@@ -64,7 +64,7 @@ export class OtpVerificationComponent {
        }
        
       //  otp verify and go to next page api done
-      this.http.post("http://localhost:4000/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
+      this.http.post("https://knexdatabase.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
       if(e.message == 'OTP Verified Successfully!'){  
         // alert('Otp Verified Successful');
         this.ls.otpVerifyApi()
@@ -133,7 +133,7 @@ export class OtpVerificationComponent {
     let obj = {
       "Mobile_No" : number
     }
-    this.http.post('http://localhost:4000/user/userDetails',obj).subscribe((e:any)=>{
+    this.http.post('https://knexdatabase.onrender.com/user/userDetails',obj).subscribe((e:any)=>{
       const userResult = e.result;
       localStorage.setItem('profile', JSON.stringify(userResult));
       console.log('hello...',userResult);
