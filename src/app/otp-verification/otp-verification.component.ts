@@ -24,6 +24,7 @@ export class OtpVerificationComponent {
   invalid = false
   display: any;
   timer : any = 30;
+  spinner = false
 
   timeout(){
     setTimeout(() => {
@@ -48,6 +49,7 @@ export class OtpVerificationComponent {
   async optverify() {
     // this.service.openAddress()
     // console.log(this.ls.otpvalue);
+    this.spinner = true;
     this.ls.profile()
     this.getUserInformation()
     if(this.timer>=0){
@@ -66,7 +68,9 @@ export class OtpVerificationComponent {
       if(e.message == 'OTP Verified Successfully!'){  
         // alert('Otp Verified Successful');
         this.ls.otpVerifyApi()
-        this.ls.openAddress()
+        setTimeout(()=>{  
+          this.ls.openAddress()
+        }, 700);
         this.ls.profile()
         this.ls.userLogin = true;
         console.log("Work");

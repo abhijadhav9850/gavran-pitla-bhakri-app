@@ -398,12 +398,8 @@ export class LoginindetailsValueService {
       this.popup_contact = false
     }
     openAddress(){
-      setTimeout(()=>{  
         this.address = true;
-        this.otp = false
-    }, 1500);
-  
-      
+        this.otp = false  
     }
     
     openContact(){
@@ -423,7 +419,7 @@ export class LoginindetailsValueService {
     openPayment(){
       if(this.counter1 != 0){
         this.withoutUserLoginBackBtn()
-      }else if(this.counter2 != 0){
+      }else{
         this.payment = true;
         this.address = false
       }
