@@ -68,9 +68,7 @@ export class OtpVerificationComponent {
       if(e.message == 'OTP Verified Successfully!'){  
         // alert('Otp Verified Successful');
         this.ls.otpVerifyApi()
-        setTimeout(()=>{  
           this.ls.openAddress()
-        }, 700);
         this.ls.profile()
         this.ls.userLogin = true;
         console.log("Work");
