@@ -32,6 +32,9 @@ export class LoginindetailsValueService {
   show_home_popup = false
   userLogin = false;
 
+  counter1= 0;
+  counter2=0;
+
   orderDate = new Date();
   
 
@@ -84,7 +87,14 @@ export class LoginindetailsValueService {
       // Mobile no add API
       const userApiResponse: any = await this.http.post("https://databaseknex.onrender.com/Mobile_No/Add_User", this.adddata).toPromise();
       if (userApiResponse.message == 'User already exists in the database!') {
-        this.openPayment()
+        if(this.counter1 != 0 ){
+          setTimeout(()=>{  
+            this.profile()
+        }, 2000);
+          this.withoutUserLoginBackBtn()
+        }else if(this. counter2 != 0){
+          this.openPayment()
+        }
         
       // this.router.navigate(['/payment']);  
         
@@ -195,9 +205,14 @@ export class LoginindetailsValueService {
     let obj = {
       "Mobile_No" : number
     }
-    this.http.post('https://databaseknex.onrender.com/user/userDetails',obj).subscribe((e:any)=>{
+    this.http.post('http://localhost:4000/user/userDetails',obj).subscribe((e:any)=>{
       const userResult = e.result;
+      console.log(userResult);
+      
       localStorage.setItem('profile', JSON.stringify(userResult));
+      // console.log('Its works!!!',userResult);
+      
+      
     })
   }
   }
@@ -251,6 +266,7 @@ export class LoginindetailsValueService {
   changeStyle() {
     this.popup_hide = true
     this.popup_quantity = true
+    this.counter2 = 1;
     // Change the style dynamically
     setTimeout(()=>{  
       this.backgroundblur = {
@@ -314,13 +330,80 @@ export class LoginindetailsValueService {
     }, 500);
     }
 
+    showProfile(){
+      this.popup_hide = true
+      this.popup_contact = true
+   
+      this.counter1 = 1;
+      
+      setTimeout(()=>{  
+        this.backgroundblur = {
+          'filter' : 'blur(2px)',
+          'transition' : '0.1s ease-out',
+          'background' : 'linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),url(../../assets/image 2.jpg))',
+        }
+        this.loginInPhone = {
+          // display: 'flex',
+          // backgroundColor: 'lightgreen',
+          // color: 'white',
+          'width' : '100%',
+          'transition': 'margin-top 0.1s ease-out',
+          'margin-top': '-12vh',
+          'box-shadow' : '0px 0px 900px 900px rgba(0,0,0,0.2)',
+          'z-index': '1',
+          'background-color' : '#fff',
+          'overflow' : 'hidden',
+        };
+    }, 10);
+    }
+
+    withoutUserLoginBackBtn(){
+      this.counter1 = 1
+      this.backgroundblur = {
+        'filter' : 'blue(0px)',
+        'transition' : '0.1s ease-in-out',
+        'background' : 'none'
+      }
+      this.loginInPhone = {
+        // display: 'flex',
+        // backgroundColor: 'lightgreen',
+        // color: 'white',
+        'width' : '100%',
+        'transition': 'margin-top 0.1s ease-in-out',
+        'margin-top': '50vh',
+        'box-shadow' : '0px 0px 10px lightgray',
+        'z-index': '1',
+        'background-color' : '#fff',
+        'overflow' : 'hidden',
+      };
+      this.backgroundblur = {
+        'filter' : 'none',
+        'transition' : '0.1s ease-in-out',
+        'background' : 'none'
+      }
+
+      setTimeout(()=>{  
+      this.popup_hide = false
+      this.popup_quantity = false
+      this.popup_contact  = false;
+      this.otp = false;
+      this.address  = false;
+      this.payment  = false;
+     
+    }, 500);
+    }
+
     openOtp(){
       this.otp = true;
       this.popup_contact = false
     }
     openAddress(){
-      this.address = true;
-      this.otp = false
+      setTimeout(()=>{  
+        this.address = true;
+        this.otp = false
+    }, 1500);
+  
+      
     }
     
     openContact(){
@@ -338,8 +421,12 @@ export class LoginindetailsValueService {
       }
     }
     openPayment(){
-      this.payment = true;
-      this.address = false
+      if(this.counter1 != 0){
+        this.withoutUserLoginBackBtn()
+      }else if(this.counter2 != 0){
+        this.payment = true;
+        this.address = false
+      }
     }
 
     closeOtp(){
@@ -360,8 +447,12 @@ export class LoginindetailsValueService {
       }
     }
     closeContact(){
-      this.popup_contact = false;
-      this.popup_quantity = true;
+      if(this.userLogin == true){
+        this.popup_contact = false;
+        this.popup_quantity = true;
+      }else{
+        this.withoutUserLoginBackBtn()
+      }
     }
     closeAddress(){
       this.address = false;
