@@ -92,6 +92,7 @@ export class LoginindetailsValueService {
             this.profile()
         }, 2000);
           this.withoutUserLoginBackBtn()
+          this.userLogin = true
         }else if(this. counter2 != 0){
           this.openPayment()
         }
