@@ -418,11 +418,13 @@ export class LoginindetailsValueService {
       }
     }
     openPayment(){
-      if(this.counter1 != 0){
+      if(this.counter1 > 0){
         this.withoutUserLoginBackBtn()
-      }else{
+        this.counter1 = 0;
+      }else if (this.counter2 > 0){
         this.payment = true;
         this.address = false
+        this.counter2 = 0;
       }
     }
 

@@ -11,7 +11,9 @@ import { Router } from '@angular/router';
 export class OrderInfoComponent {
   constructor(public ls: LoginindetailsValueService,public router:Router){ }
   modifyOrder = false
+  cancel :any = "Cancel"
   backpage(){
+    this.cancel = "Cancel"
     this.ls.show_home_popup = false
     this.router.navigate(['']);
   }
