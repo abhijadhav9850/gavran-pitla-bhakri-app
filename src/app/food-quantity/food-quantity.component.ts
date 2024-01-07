@@ -57,7 +57,7 @@ export class FoodQuantityComponent {
         bhakri: this.bhakri,
         pithla: this.pithla,
         test: this.seleted ? "Medium" : "Spicy",
-        totalPrice: totalValue,
+        totalprice: totalValue,
       };
       this.data.foodorderdata = this.orderdata;
       const retrievedData = localStorage.getItem('user_details');
