@@ -51,6 +51,7 @@ export class FoodQuantityComponent {
   }
 
   async pushValueToService() {
+    this.ls.counter2=1;
     try {
       let totalValue = this.bhakriPrice + this.pithlaPrice + this.thechaPrice + this.onionPrice;
       this.orderdata = {
