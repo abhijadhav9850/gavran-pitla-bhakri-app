@@ -189,7 +189,7 @@ app.post("/OrderData/Details", async (req, res) => {
                 bhakri: `${req.body.bhakri}`,
                 pithla: `${req.body.pithla}`,
                 test: `${req.body.test}`,
-                totalprice: `${req.body.totalPrice}`,
+                totalprice: `${req.body.totalprice}`,
                 register_id: `${req.body.register_id}`,
                 status: `${req.body.status}`,
                 datetime: `${req.body.datetime}`,

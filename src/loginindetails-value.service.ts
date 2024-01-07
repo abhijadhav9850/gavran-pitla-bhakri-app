@@ -141,7 +141,7 @@ export class LoginindetailsValueService {
       "bhakri": this.foodorderdata.bhakri,
       "pithla": this.foodorderdata.pithla,
       "test": this.foodorderdata.test,
-      "totalPrice": this.foodorderdata.totalPrice,
+      "totalPrice": this.foodorderdata.totalprice,
       "register_id": registerId,
       "status": "Pending",
       "datetime": this.orderDate 
