@@ -38,6 +38,14 @@ export class UserProfileComponent {
     }
   }
 
+  citys: any = [
+    { name: 'Vashi', value: 'Vashi' },
+    { name: 'Sanpada', value: 'Sanpada' },
+    { name: 'koperkhairane', value: 'koperkhairane' },
+    { name: 'Ghansoli', value: 'Ghansoli' },
+    { name: 'Airoli', value: 'Airoli' },
+  ]
+
   zoom = {
     transition: 'transform .5s',
     transform: 'none',
