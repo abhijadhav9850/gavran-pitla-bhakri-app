@@ -111,7 +111,6 @@ export class UserProfileComponent {
             this.edit = false;
           }
         }, 1000);
-
       }
     })
   }
