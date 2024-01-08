@@ -20,6 +20,8 @@ export class OrderHistoryComponent {
     this.ls.getData().subscribe(
       (data: any) => {
         this.orderList = data.Result;
+        // console.log('status',this.orderList);
+        
         // console.log(this.orderList);
         
       },
@@ -36,6 +38,8 @@ export class OrderHistoryComponent {
 
   
   pushValue(i:any){
+    console.log('mayuri',this.orderList);
+    
     console.log(this.orderList[i]);
     this.ls.foodorderdata = this.orderList[i]
     this.router.navigate(['order-info'])
