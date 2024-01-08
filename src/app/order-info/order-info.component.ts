@@ -13,6 +13,7 @@ export class OrderInfoComponent {
   modifyOrder = false
   cancel :any = "Cancel"
   backpage(){
+    // this.ls.updatestatus()
     this.cancel = "Cancel"
     this.ls.show_home_popup = false
     this.router.navigate(['']);
@@ -25,5 +26,7 @@ export class OrderInfoComponent {
   toToProfilePage(){
     this.router.navigate(['user-profile']);
   }
+
+
 
 }
