@@ -138,6 +138,7 @@ export class LoginindetailsValueService {
       return; // Exit function if user details are not found
     }
     // Prepare data for the next API call
+    
      this.foodList = {
       "bhakri": this.foodorderdata.bhakri,
       "pithla": this.foodorderdata.pithla,
@@ -153,12 +154,17 @@ export class LoginindetailsValueService {
     console.log("hee", this.foodList);
   }
 
-  updatestatus(){
-   let orderstatus = {
-    status:this.foodList.status
-    }
-    this.http.post('http://localhost:4000/updatestatus',orderstatus).subscribe((e:any)=>{})
-  }
+  // updatestatus(){
+  //  let orderstatus = {
+  //   status:this.foodList.status,
+  //   register_id: this.foodList.register_id
+  //   }
+  //   this.http.post('http://localhost:4000/updatestatus',orderstatus).subscribe((e:any)=>{
+  //     if(e.message === 'status Updated Successfully!'){
+  //       console.log(e);
+  //     }
+  //   })
+  // }
 
   getData(): Observable<any[]> {
     // Retrieve from localStorage

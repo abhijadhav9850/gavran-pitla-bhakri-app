@@ -283,7 +283,6 @@ app.post("/updateUser", async (req, res) => {
         console.error(error);
         return res.status(500).json({ message: 'Internal server error' });
       }
-      
     });
 
     app.post("/updatestatus", async (req, res) => {
@@ -295,7 +294,7 @@ app.post("/updateUser", async (req, res) => {
                 status: req.body.status
             });
             console.log(result); // The number of affected rows
-            return res.status(200).json({ result: result, message: 'User Updated Successfully!' });
+            return res.status(200).json({ result: result, message: 'status Updated Successfully!' });
             
           } catch (error) {
             console.error(error);
