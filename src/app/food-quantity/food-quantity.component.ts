@@ -51,13 +51,14 @@ export class FoodQuantityComponent {
   }
 
   async pushValueToService() {
+    this.ls.counter2=1;
     try {
       let totalValue = this.bhakriPrice + this.pithlaPrice + this.thechaPrice + this.onionPrice;
       this.orderdata = {
         bhakri: this.bhakri,
         pithla: this.pithla,
         test: this.seleted ? "Medium" : "Spicy",
-        totalPrice: totalValue,
+        totalprice: totalValue,
       };
       this.data.foodorderdata = this.orderdata;
       const retrievedData = localStorage.getItem('user_details');

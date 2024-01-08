@@ -63,26 +63,6 @@ function VerifiyToken(req, res, next) {
     }
 }
 
-app.post("/updateUser", async (req, res) => {
-    try {
-        console.log(req.body);
-        const result = await pg("user_info")
-          .where({ register_id: req.body.register_id }) // Specify the condition
-          .update({
-            username: req.body.UserName,
-            usercity:req.body.Usercity
-            // MobileNumber: req.body.NewMobileNumber
-        }); // Specify the fields to update
-        console.log(result); // The number of affected rows
-        return res.status(200).json({ result: result, message: 'User Updated Successfully!' });
-        
-      } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: 'Internal server error' });
-      }
-      
-});
-
 
 //POST API FOR ADD USERS INTO THE DATABASE IF YOUR ALREADY EXIST THEN SEND RESPONSE AS USER PRESENT EITHER ADD NEW USER!
 app.post("/Mobile_No/Add_User", async (req, res) => {
@@ -189,7 +169,7 @@ app.post("/OrderData/Details", async (req, res) => {
                 bhakri: `${req.body.bhakri}`,
                 pithla: `${req.body.pithla}`,
                 test: `${req.body.test}`,
-                totalprice: `${req.body.totalPrice}`,
+                totalprice: `${req.body.totalprice}`,
                 register_id: `${req.body.register_id}`,
                 status: `${req.body.status}`,
                 datetime: `${req.body.datetime}`,
@@ -286,6 +266,43 @@ app.post("/getData", async (req, res) => {
         res.status(500).json({ success: false, message: "Internal Server Error" });
     }
 });
+
+app.post("/updateUser", async (req, res) => {
+    try {
+        console.log(req.body);
+        const result = await pg("user_info")
+          .where({ register_id: req.body.register_id }) // Specify the condition
+          .update({
+            username: req.body.UserName,
+            usercity:req.body.Usercity
+        });
+        console.log(result); // The number of affected rows
+        return res.status(200).json({ result: result, message: 'User Updated Successfully!' });
+        
+      } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal server error' });
+      }
+    });
+
+    app.post("/updatestatus", async (req, res) => {
+        try {
+            console.log(req.body);
+            const result = await pg("user_order")
+              .where({ register_id: req.body.register_id }) // Specify the condition
+              .update({
+                status: req.body.status
+            });
+            console.log(result); // The number of affected rows
+            return res.status(200).json({ result: result, message: 'status Updated Successfully!' });
+            
+          } catch (error) {
+            console.error(error);
+            return res.status(500).json({ message: 'Internal server error' });
+          }
+          
+        });
+
 
 app.listen(port, (req, res) => {
     console.log(`Using Port http://localhost:${port}/`);

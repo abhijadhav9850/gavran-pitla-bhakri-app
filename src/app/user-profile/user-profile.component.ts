@@ -38,6 +38,14 @@ export class UserProfileComponent {
     }
   }
 
+  citys: any = [
+    { name: 'Vashi', value: 'Vashi' },
+    { name: 'Sanpada', value: 'Sanpada' },
+    { name: 'koperkhairane', value: 'koperkhairane' },
+    { name: 'Ghansoli', value: 'Ghansoli' },
+    { name: 'Airoli', value: 'Airoli' },
+  ]
+
   zoom = {
     transition: 'transform .5s',
     transform: 'none',
@@ -85,7 +93,7 @@ export class UserProfileComponent {
     }
     console.log(user);
     
-    this.http.post('https://databaseknex.onrender.com/updateUser', user).subscribe((e: any) => {
+    this.http.post('https://knexdatabase.onrender.com/updateUser', user).subscribe((e: any) => {
       if (e.message === 'User Updated Successfully!') {
         console.log(e);
         localStorage.removeItem('profile');
