@@ -21,6 +21,34 @@ export class HomeComponent {
       console.log('No data found in localStorage');
     }
   }
+  orderList : any = [];
+  userId:any;
 
+  async ngOnInit() {
+    this.ls.getData().subscribe(
+      (data: any) => {
+        this.orderList = data.Result;
+        // console.log('heee',this.orderList[this.orderList.length-1].status);
+        this.userId = this.orderList.length
 
+       this.cancelorder()
+
+      },
+      (error) => {
+        console.error(error);
+        // Handle errors if needed
+      }
+    );
+  }
+
+  
+  cancelorder(){
+    for(let i = 1; i < this.orderList.length+1;i++){
+      if(this.orderList[i].status == 'Pending'){
+        console.log("Pending order", this.orderList[i].id);
+        this.userId = this.orderList[i].id
+      }
+    }
+   
+  }
 }

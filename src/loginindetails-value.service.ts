@@ -70,7 +70,7 @@ export class LoginindetailsValueService {
 
   order_list() {
     this.orderlist.push(this.foodorderdata)
-    console.log(this.orderlist);
+    console.log('mayuri',this.orderlist);
   }
 
   show_modify_popup() {
@@ -146,7 +146,7 @@ export class LoginindetailsValueService {
       "test": this.foodorderdata.test,
       "totalprice": this.foodorderdata.totalprice,
       "register_id": registerId,
-      "status": "Pending",
+      "status": "Cancel",
       "datetime": this.orderDate 
     };
     // Food quantity data API
