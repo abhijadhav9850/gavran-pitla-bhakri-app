@@ -291,7 +291,7 @@ app.post("/updateUser", async (req, res) => {
             const result = await pg("user_order")
               .where({ register_id: req.body.register_id }) // Specify the condition
               .update({
-                status: "Cansal"
+                status: "Cancal"
             });
             console.log(result); // The number of affected rows
             return res.status(200).json({ result: result, message: 'status Updated Successfully!' });

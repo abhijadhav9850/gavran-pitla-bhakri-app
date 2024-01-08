@@ -146,7 +146,7 @@ export class LoginindetailsValueService {
       "test": this.foodorderdata.test,
       "totalprice": this.foodorderdata.totalprice,
       "register_id": registerId,
-      "status": "Cancel",
+      "status": "Panding",
       "datetime": this.orderDate 
     };
     // Food quantity data API
@@ -165,7 +165,6 @@ export class LoginindetailsValueService {
   console.log(statusupdate);
   this.http.post('http://localhost:4000/updatestatus',statusupdate).subscribe((e:any)=>{
     console.log('kkk',e);
-    
   })
   
  

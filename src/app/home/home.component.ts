@@ -30,7 +30,8 @@ export class HomeComponent {
         this.orderList = data.Result;
         // console.log('heee',this.orderList[this.orderList.length-1].status);
         this.userId = this.orderList.length
-
+        console.log(this.orderList);
+        
        this.cancelorder()
 
       },
@@ -47,7 +48,14 @@ export class HomeComponent {
       if(this.orderList[i].status == 'Pending'){
         console.log("Pending order", this.orderList[i].id);
         this.userId = this.orderList[i].id
+        this.ls.show_home_popup = true
+      }else if (this.orderList.length == 0){
+        this.ls.show_home_popup = false
+        console.log("else condition was true");
+        
       }
+
+
     }
    
   }
