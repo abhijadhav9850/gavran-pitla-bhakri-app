@@ -31,6 +31,7 @@ export class LoginindetailsValueService {
   userOrderData = []
   show_home_popup = false
   userLogin = false;
+  foodList:any;
 
   counter1= 0;
   counter2=0;
@@ -137,37 +138,27 @@ export class LoginindetailsValueService {
       return; // Exit function if user details are not found
     }
     // Prepare data for the next API call
-    let foodList = {
+     this.foodList = {
       "bhakri": this.foodorderdata.bhakri,
       "pithla": this.foodorderdata.pithla,
       "test": this.foodorderdata.test,
-      "totalPrice": this.foodorderdata.totalprice,
+      "totalprice": this.foodorderdata.totalprice,
       "register_id": registerId,
       "status": "Pending",
       "datetime": this.orderDate 
     };
     // Food quantity data API
-    const orderApiResponse = await this.http.post("https://knexdatabase.onrender.com/OrderData/Details", foodList).subscribe();
+    const orderApiResponse = await this.http.post("https://knexdatabase.onrender.com/OrderData/Details", this.foodList).subscribe();
     console.log(orderApiResponse);
-    console.log("hee", foodList);
+    console.log("hee", this.foodList);
   }
 
-  // async Test_newapi() {
-  //   // UserData collect in frontend
-  //   await this.http.get("https://knexdatabase.onrender.com/Get_userData").subscribe(e => {
-  //     console.log(e);
-  //   })
-
-  //   // Mobile_No Data collect in frontend
-  //   await this.http.get("https://knexdatabase.onrender.com/Get_Mobile_No").subscribe(e => {
-  //     console.log(e);
-  //   })
-
-  //   await this.http.get<any[]>("https://knexdatabase.onrender.com/Get_OrderData").subscribe(e => {
-  //     console.log(e);
-  //   })
-  //   // Mobile_No Data collect in frontend
-  // }
+  updatestatus(){
+   let orderstatus = {
+    status:this.foodList.status
+    }
+    this.http.post('http://localhost:4000/updatestatus',orderstatus).subscribe((e:any)=>{})
+  }
 
   getData(): Observable<any[]> {
     // Retrieve from localStorage
@@ -187,17 +178,6 @@ export class LoginindetailsValueService {
     }
   }
 
-  // loginprofile(data: any) {
-  //   this.http.post("https://knexdatabase.onrender.com/login", data).subscribe((result: any) => {
-  //     localStorage.setItem("token", result.token)
-  //     // this.router.navigate(['/'])
-  //   })
-  // }
-
-  // logout() {
-  //   localStorage.removeItem("token")
-  // }
-
   profile() {
     const retrievedData = localStorage.getItem('user_details');
     if (retrievedData !== null) {
@@ -212,12 +192,9 @@ export class LoginindetailsValueService {
       
       localStorage.setItem('profile', JSON.stringify(userResult));
       // console.log('Its works!!!',userResult);
-      
-      
     })
   }
   }
-  // hello
 
   getpitla() {
     return this.http.get<any[]>("https://knexdatabase.onrender.com/getpitla")

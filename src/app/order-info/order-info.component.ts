@@ -26,4 +26,6 @@ export class OrderInfoComponent {
     this.router.navigate(['user-profile']);
   }
 
+  
+
 }
