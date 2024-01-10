@@ -65,7 +65,11 @@ export class HomeComponent {
 
   modify(){
     let  orders = this.orderList.length
-  this.ls.foodorderdata = this.orderList[orders]
+    for(let i = 0; i < this.orderList.length;i++){
+      if(this.orderList[i].status == 'Pending'){
+        this.ls.foodorderdata = this.orderList[i]
+      }
+    }
 
   }
 

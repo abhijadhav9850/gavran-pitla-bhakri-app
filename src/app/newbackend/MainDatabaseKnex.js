@@ -291,7 +291,7 @@ app.post("/updateUser", async (req, res) => {
             const result = await pg("user_order")
               .where({ id:req.body.id }) // Specify the condition
               .update({
-                status: 'Cancel'
+                status: 'Cancelled'
             });
             console.log(result); // The number of affected rows
             return res.status(200).json({ result: result, message: 'status Updated Successfully!' });
