@@ -158,16 +158,15 @@ export class LoginindetailsValueService {
 
   updatestatus(){
 
-  let statusupdate = {
-    status:this.foodorderdata.status,
-    register_id: this.foodorderdata.register_id
-  }
-  console.log(statusupdate);
-  this.http.post('http://localhost:4000/updatestatus',statusupdate).subscribe((e:any)=>{
+  // let statusupdate = {
+  //   status:this.foodorderdata.status,
+  //   register_id: this.foodorderdata.register_id
+  // }
+  // console.log('aj',this.foodorderdata.id);
+  
+  this.http.post('https://knexdatabase.onrender.com/update/updatestatus',this.foodorderdata).subscribe((e:any)=>{
     console.log('kkk',e);
   })
-  
- 
   }
 
   getData(): Observable<any[]> {
