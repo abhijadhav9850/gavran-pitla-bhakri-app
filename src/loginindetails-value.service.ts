@@ -29,7 +29,7 @@ export class LoginindetailsValueService {
   authLoggedIn = new BehaviorSubject<boolean>(false);
   foodorderdata: any;
   userOrderData = []
-  show_home_popup = false
+  show_home_popup = false;
   userLogin = false;
   orderdata:any;
   // foodList:any;
@@ -44,7 +44,7 @@ export class LoginindetailsValueService {
   isUserLogin() {
     if (localStorage.getItem('user_details')) {
       this.userLogin = true
-      this.show_home_popup = true
+      // this.show_home_popup = true
     } else {
       this.userLogin = false
     }
@@ -146,7 +146,7 @@ export class LoginindetailsValueService {
       "test": this.foodorderdata.test,
       "totalprice": this.foodorderdata.totalprice,
       "register_id": registerId,
-      "status": "Panding",
+      "status": "Pending",
       "datetime": this.orderDate 
     };
     // Food quantity data API

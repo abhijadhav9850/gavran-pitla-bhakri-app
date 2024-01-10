@@ -33,7 +33,7 @@ export class HomeComponent {
         console.log(this.orderList);
         
        this.cancelorder()
-
+        
       },
       (error) => {
         console.error(error);
@@ -44,19 +44,29 @@ export class HomeComponent {
 
   
   cancelorder(){
-    for(let i = 1; i < this.orderList.length+1;i++){
+    for(let i = 0; i < this.orderList.length;i++){
+      console.log(this.userId,this.orderList[i].status);
+      
       if(this.orderList[i].status == 'Pending'){
-        console.log("Pending order", this.orderList[i].id);
+
         this.userId = this.orderList[i].id
         this.ls.show_home_popup = true
-      }else if (this.orderList.length == 0){
-        this.ls.show_home_popup = false
+        
+      }
+      else if (this.orderList[i].status == 'Cancel' ){
+        // this.userId = this.orderList[i].id
+        // this.ls.show_home_popup = false
         console.log("else condition was true");
         
       }
-
-
     }
-   
+   this.modify()
   }
+
+  modify(){
+    let  orders = this.orderList.length
+  this.ls.foodorderdata = this.orderList[orders]
+
+  }
+
 }
