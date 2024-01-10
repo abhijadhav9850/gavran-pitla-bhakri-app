@@ -21,6 +21,52 @@ export class HomeComponent {
       console.log('No data found in localStorage');
     }
   }
+  orderList : any = [];
+  userId:any;
 
+  async ngOnInit() {
+    this.ls.getData().subscribe(
+      (data: any) => {
+        this.orderList = data.Result;
+        // console.log('heee',this.orderList[this.orderList.length-1].status);
+        this.userId = this.orderList.length
+        console.log(this.orderList);
+        
+       this.cancelorder()
+        
+      },
+      (error) => {
+        console.error(error);
+        // Handle errors if needed
+      }
+    );
+  }
+
+  
+  cancelorder(){
+    for(let i = 0; i < this.orderList.length;i++){
+      console.log(this.userId,this.orderList[i].status);
+      
+      if(this.orderList[i].status == 'Pending'){
+
+        this.userId = this.orderList[i].id
+        this.ls.show_home_popup = true
+        
+      }
+      else if (this.orderList[i].status == 'Cancel' ){
+        // this.userId = this.orderList[i].id
+        // this.ls.show_home_popup = false
+        console.log("else condition was true");
+        
+      }
+    }
+   this.modify()
+  }
+
+  modify(){
+    let  orders = this.orderList.length
+  this.ls.foodorderdata = this.orderList[orders]
+
+  }
 
 }

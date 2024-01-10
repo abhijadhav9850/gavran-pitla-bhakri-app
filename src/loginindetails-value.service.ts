@@ -29,9 +29,10 @@ export class LoginindetailsValueService {
   authLoggedIn = new BehaviorSubject<boolean>(false);
   foodorderdata: any;
   userOrderData = []
-  show_home_popup = false
+  show_home_popup = false;
   userLogin = false;
-  foodList:any;
+  orderdata:any;
+  // foodList:any;
 
   counter1= 0;
   counter2=0;
@@ -43,7 +44,7 @@ export class LoginindetailsValueService {
   isUserLogin() {
     if (localStorage.getItem('user_details')) {
       this.userLogin = true
-      this.show_home_popup = true
+      // this.show_home_popup = true
     } else {
       this.userLogin = false
     }
@@ -69,7 +70,7 @@ export class LoginindetailsValueService {
 
   order_list() {
     this.orderlist.push(this.foodorderdata)
-    console.log(this.orderlist);
+    console.log('mayuri',this.orderlist);
   }
 
   show_modify_popup() {
@@ -139,7 +140,7 @@ export class LoginindetailsValueService {
     }
     // Prepare data for the next API call
     
-     this.foodList = {
+     let foodList = {
       "bhakri": this.foodorderdata.bhakri,
       "pithla": this.foodorderdata.pithla,
       "test": this.foodorderdata.test,
@@ -149,22 +150,25 @@ export class LoginindetailsValueService {
       "datetime": this.orderDate 
     };
     // Food quantity data API
-    const orderApiResponse = await this.http.post("https://knexdatabase.onrender.com/OrderData/Details", this.foodList).subscribe();
+    const orderApiResponse = await this.http.post("https://knexdatabase.onrender.com/OrderData/Details", foodList).subscribe();
     console.log(orderApiResponse);
-    console.log("hee", this.foodList);
+    console.log("heello", foodList);
+    this.orderdata=foodList
   }
 
-  // updatestatus(){
-  //  let orderstatus = {
-  //   status:this.foodList.status,
-  //   register_id: this.foodList.register_id
-  //   }
-  //   this.http.post('http://localhost:4000/updatestatus',orderstatus).subscribe((e:any)=>{
-  //     if(e.message === 'status Updated Successfully!'){
-  //       console.log(e);
-  //     }
-  //   })
-  // }
+  updatestatus(){
+
+  let statusupdate = {
+    status:this.foodorderdata.status,
+    register_id: this.foodorderdata.register_id
+  }
+  console.log(statusupdate);
+  this.http.post('http://localhost:4000/updatestatus',statusupdate).subscribe((e:any)=>{
+    console.log('kkk',e);
+  })
+  
+ 
+  }
 
   getData(): Observable<any[]> {
     // Retrieve from localStorage

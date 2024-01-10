@@ -32,11 +32,11 @@
                 <img src="../../assets/Group.svg" alt="">
                 <div>
                     <p class="font-Roboto text-sm font-medium not-italic ">Your Order is Being Prepared</p>
-                    <p class="text-xs font-normal font-Roboto not-italic">Status : Preparing</p>
+                    <p class="text-xs font-normal font-Roboto not-italic">Order Id : {{userId}}</p>
                 </div>
             </div>
             <div>
-                <button class="flex items-center justify-center w-16 h-8 bg-orange-500 rounded-md text-white text-xs font-medium" routerLink="/order-info">
+                <button (click)="modify()" class="flex items-center justify-center w-16 h-8 bg-orange-500 rounded-md text-white text-xs font-medium">
                     Modify
                 </button>
             </div>
