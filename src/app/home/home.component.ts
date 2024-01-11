@@ -13,6 +13,7 @@ export class HomeComponent {
 
   constructor(public service: PopupHandingService, public ls: LoginindetailsValueService, public router:Router) {
     // Retrieve from localStorage
+    setInterval(() => this.getdata(), 1000);
     const retrievedData = localStorage.getItem('user_details');
     if (retrievedData !== null) {
       this.ls.authLoggedIn.next(true)
@@ -25,6 +26,7 @@ export class HomeComponent {
   userId:any;
 
   async ngOnInit() {
+
     this.ls.getData().subscribe(
       (data: any) => {
         this.orderList = data.Result;
@@ -42,6 +44,23 @@ export class HomeComponent {
     );
   }
 
+  getdata(){
+    this.ls.getData().subscribe(
+      (data: any) => {
+        this.orderList = data.Result;
+        // console.log('heee',this.orderList[this.orderList.length-1].status);
+        this.userId = this.orderList.length
+        console.log(this.orderList);
+        
+       this.cancelorder()
+        
+      },
+      (error) => {
+        console.error(error);
+        // Handle errors if needed
+      }
+    );
+  }
   
   cancelorder(){
     for(let i = 0; i < this.orderList.length;i++){
