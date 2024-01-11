@@ -174,7 +174,7 @@ export class LoginindetailsValueService {
       const number = {
         Mobile_No: registerNumber
       }
-      console.log(number);
+      // console.log(number);
       return this.http.post<any[]>("https://knexdatabase.onrender.com/getData", number);
     } else {
       console.log('No data found in localStorage');
@@ -447,6 +447,10 @@ export class LoginindetailsValueService {
         this.payment = true;
         this.address = false
         this.counter2 = 0;
+      }else if(this.profilepoPup == false){
+        this.closepopup()
+        console.log("it's works");
+        
       }
     }
 
@@ -479,9 +483,9 @@ export class LoginindetailsValueService {
       this.address = false;
       this.otp = true;
     }
+
+    
 }
 
 
-
-// popup service code
 

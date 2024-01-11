@@ -50,7 +50,7 @@ export class HomeComponent {
         this.orderList = data.Result;
         // console.log('heee',this.orderList[this.orderList.length-1].status);
         this.userId = this.orderList.length
-        console.log(this.orderList);
+        // console.log(this.orderList);
         
        this.cancelorder()
         
@@ -64,7 +64,7 @@ export class HomeComponent {
   
   cancelorder(){
     for(let i = 0; i < this.orderList.length;i++){
-      console.log(this.userId,this.orderList[i].status);
+      // console.log(this.userId,this.orderList[i].status);
       
       if(this.orderList[i].status == 'Pending'){
 
