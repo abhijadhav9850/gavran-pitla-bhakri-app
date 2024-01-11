@@ -77,7 +77,7 @@ toggleDropdown() {
         "usercity": this.myForm.value.UserCity,
         "register_id": registerId
       }  
-      this.http.post('https://databaseknex.onrender.com/user/addDetails',userDetails).subscribe((e:any)=>{
+      this.http.post('https://knexdatabase.onrender.com/user/addDetails',userDetails).subscribe((e:any)=>{
         if(e.message == "User Data Added Successfully!"){
           console.log(e);
           this.ls.profile()

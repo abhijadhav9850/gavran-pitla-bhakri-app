@@ -1,4 +1,4 @@
-<div class="px-2 h-[100vh] items-center overflow-hidden" id="main">
+<div class="h-[100vh] items-center overflow-hidden" id="main">
   <header class="relative flex  items-center justify-between p-3 mt-10">
     <svg (click)="goToHomePage()" xmlns="http://www.w3.org/2000/svg" class="h-[30px] w-[30px]" width="30" height="30"
       viewBox="0 0 30 30" fill="none">
@@ -29,14 +29,14 @@
   </header>
 
   
-  <div class="main flex flex-col items-center md:flex-row md:justify-evenly w-full p-0 gap-2">
+  <div class="px-2 mt-2 main flex flex-col items-center md:flex-row md:justify-evenly w-full p-0 gap-2">
     <div id="contener" class="w-auto">
       <img class="w-96 h-52 rounded-[1.25rem]" src="../../assets/image 2.jpg" alt="image">
     </div>
 
 <div class="md:mx-1">
   <div class="mt-3.5 mb-3.5 text-xl font-bold">
-    <h1>Order Id XXXXXX123</h1>
+    <h1>Order Id {{ls.foodorderdata.id}}</h1>
   </div>
 
 </div>    
@@ -72,9 +72,9 @@
         </div>
 
         <div class="mt-5 md:w-[50%] flex justify-between items-center">
-          <p class="text-[18px] font-bold">Test</p>
+          <p class="text-[18px] font-bold">Taste</p>
           <div class="w-[80px] flex justify-center">
-            <p class="font-Roboto font-bold text-xs">{{ls.foodorderdata.test}}</p>
+            <p class="font-Roboto font-bold text-l">{{ls.foodorderdata.test}}</p>
           </div>
         </div>
 
@@ -88,7 +88,7 @@
     </div>
   
     <div class="flex justify-end">
-      <button (click)="backpage()"
+      <button   (click)="ls.updatestatus()" (click)="backpage()" 
        class="mt-[10px] text-[1rem] py-2 w-[80px] font-medium content-center text-orange-50 bg-orange-500 rounded-md"
        >Cancel</button>
     </div>

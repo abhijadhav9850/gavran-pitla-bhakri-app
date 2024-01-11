@@ -49,52 +49,19 @@ app.post("/login", (req, res) => {
 });
 
 function VerifiyToken(req, res, next) {
-  const bearerHeder = req.headers["authorization"];
-  if (typeof bearerHeder !== "undefined") {
-    const bearer = bearerHeder.split(" ");
-    const token = bearer[1];
-    req.token = token;
-    next();
-  } else {
-    res.send({
-      result: "token in not valid",
-    });
-  }
+    const bearerHeder = req.headers['authorization'];
+    if (typeof bearerHeder !== 'undefined') {
+        const bearer = bearerHeder.split(" ");
+        const token = bearer[1];
+        req.token = token;
+        next();
+    } else {
+        res.send({
+            result: 'token in not valid'
+        })
+    }
 }
 
-function generateOTP() {
-  const timestamp = Date.now(); // Get current timestamp
-  const uniqueNumber = Math.floor(Math.random() * 9000) + 1000; // Generate a random 4-digit number
-  const otp = (timestamp + uniqueNumber) % 10000; // Ensure a 4-digit number
-
-  // Pad the OTP with zeros if it's less than 4 digits
-  const paddedOTP = otp.toString().padStart(4, "0");
-
-  return paddedOTP;
-}
-
-otpvalue = generateOTP();
-console.log(otpvalue);
-
-app.post("/updateUser", async (req, res) => {
-    try {
-        console.log(req.body);
-        const result = await pg("user_info")
-          .where({ register_id: req.body.register_id }) // Specify the condition
-          .update({
-            username: req.body.UserName,
-            usercity:req.body.Usercity
-            // MobileNumber: req.body.NewMobileNumber
-        }); // Specify the fields to update
-        console.log(result); // The number of affected rows
-        return res.status(200).json({ result: result, message: 'User Updated Successfully!' });
-        
-      } catch (error) {
-        console.error(error);
-        return res.status(500).json({ message: 'Internal server error' });
-      }
-      
-});
 
 //POST API FOR ADD USERS INTO THE DATABASE IF YOUR ALREADY EXIST THEN SEND RESPONSE AS USER PRESENT EITHER ADD NEW USER!
 app.post("/Mobile_No/Add_User", async (req, res) => {
@@ -172,7 +139,7 @@ app.post("/user/userDetails", async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        let findUsers = await pg.select('username', 'register_id','usercity').from('user_info');
+        let findUsers = await pg.select('username', 'register_id','usercity','useraddress').from('user_info');
         userArr.push(findUsers);
 
         let userName = findUsers.find(e => e.register_id === userAlreadyExist.register_id);
@@ -183,8 +150,8 @@ app.post("/user/userDetails", async (req, res) => {
             "mobileno": userAlreadyExist.mobileno,
             "register_id": userAlreadyExist.register_id,
             "username": userName ? userName.username : 'N/A',
-            "usercity": userName.usercity
-
+            "usercity": userName.usercity,
+            "useraddress":userName.useraddress
         };
         return res.status(200).json({ result: userObject, message: 'User Data Fetched Successfully!' });
     } catch (err) {
@@ -201,7 +168,7 @@ app.post("/OrderData/Details", async (req, res) => {
                 bhakri: `${req.body.bhakri}`,
                 pithla: `${req.body.pithla}`,
                 test: `${req.body.test}`,
-                totalprice: `${req.body.totalPrice}`,
+                totalprice: `${req.body.totalprice}`,
                 register_id: `${req.body.register_id}`,
                 status: `${req.body.status}`,
                 datetime: `${req.body.datetime}`,
@@ -288,7 +255,7 @@ app.post("/getData", async (req, res) => {
     users.push(...getUsers);
 
         let orders = await pg.select('id', 'bhakri', 'pithla', 'test', 'totalprice', 'register_id','status','datetime').from('user_order');
-        order_List.push(orders);
+        order_List.push(...orders);
         console.log(order_List);
 
         let findUser = users.find(e => e.mobileno == req.body.Mobile_No);
@@ -322,6 +289,43 @@ app.post("/mobile/Update", async (req, res) => {
     console.log(err);
   }
 });
+
+app.post("/updateUser", async (req, res) => {
+    try {
+        console.log(req.body);
+        const result = await pg("user_info")
+          .where({ register_id: req.body.register_id }) // Specify the condition
+          .update({
+            username: req.body.UserName,
+            usercity:req.body.Usercity,
+            useraddress:req.body.UserAddress
+        });
+        console.log(result); // The number of affected rows
+        return res.status(200).json({ result: result, message: 'User Updated Successfully!' });
+        
+      } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: 'Internal server error' });
+      }
+    });
+
+    app.post("/update/updatestatus", async (req, res) => {
+        try {
+            console.log(req.body);
+            const result = await pg("user_order")
+              .where({ id:req.body.id }) // Specify the condition
+              .update({
+                status: 'Cancelled'
+            });
+            console.log(result); // The number of affected rows
+            return res.status(200).json({ result: result, message: 'status Updated Successfully!' });
+            
+          } catch (error) {
+            console.error(error);
+            return res.status(500).json({ message: 'Internal server error' });
+          }
+        });
+
 
 app.listen(port, (req, res) => {
   console.log(`Using Port http://localhost:${port}/`);
