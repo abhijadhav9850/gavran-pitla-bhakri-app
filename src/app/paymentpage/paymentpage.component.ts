@@ -25,6 +25,8 @@ export class PaymentpageComponent {
       this.router.navigate(['']);
       // this.ls.Test_newapi()
       this.ls.show_modify_popup()
+      
+
     }
     this.ls.closepopup()
   }

@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/gavran-pitla-bhakri-app",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",

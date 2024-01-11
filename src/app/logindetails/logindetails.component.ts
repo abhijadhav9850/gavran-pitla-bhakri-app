@@ -15,7 +15,11 @@ export class LogindetailsComponent {
   // myForm: FormGroup;
   submitted = false
 
-  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService,public http:HttpClient, public data : LoginindetailsValueService){}
+  constructor(public service : PopupHandingService , public fb: FormBuilder, public ls:LoginindetailsValueService,public http:HttpClient, public data : LoginindetailsValueService){
+    this.ls.profile()
+    console.log("Hello world!!");
+    
+  }
 
   isOpen: boolean = false;
 
@@ -38,6 +42,7 @@ toggleDropdown() {
   });
 
   submitForm() {
+    this.ls.profile()
     Object.values(this.myForm.controls).forEach((control) => {
       control.markAsTouched();
       console.log(this.myForm)
@@ -72,9 +77,10 @@ toggleDropdown() {
         "usercity": this.myForm.value.UserCity,
         "register_id": registerId
       }  
-      this.http.post('https://knexdatabase.onrender.com/user/addDetails',userDetails).subscribe((e:any)=>{
+      this.http.post('https://databaseknex.onrender.com/user/addDetails',userDetails).subscribe((e:any)=>{
         if(e.message == "User Data Added Successfully!"){
           console.log(e);
+          this.ls.profile()
         }
       })
     } else {
