@@ -139,7 +139,7 @@ app.post("/user/userDetails", async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        let findUsers = await pg.select('username', 'register_id','usercity').from('user_info');
+        let findUsers = await pg.select('username', 'register_id','usercity','useraddress').from('user_info');
         userArr.push(findUsers);
 
         let userName = findUsers.find(e => e.register_id === userAlreadyExist.register_id);
@@ -150,8 +150,8 @@ app.post("/user/userDetails", async (req, res) => {
             "mobileno": userAlreadyExist.mobileno,
             "register_id": userAlreadyExist.register_id,
             "username": userName ? userName.username : 'N/A',
-            "usercity": userName.usercity
-
+            "usercity": userName.usercity,
+            "useraddress":userName.useraddress
         };
         return res.status(200).json({ result: userObject, message: 'User Data Fetched Successfully!' });
     } catch (err) {
@@ -274,7 +274,8 @@ app.post("/updateUser", async (req, res) => {
           .where({ register_id: req.body.register_id }) // Specify the condition
           .update({
             username: req.body.UserName,
-            usercity:req.body.Usercity
+            usercity:req.body.Usercity,
+            useraddress:req.body.UserAddress
         });
         console.log(result); // The number of affected rows
         return res.status(200).json({ result: result, message: 'User Updated Successfully!' });
@@ -285,13 +286,13 @@ app.post("/updateUser", async (req, res) => {
       }
     });
 
-    app.post("/updatestatus", async (req, res) => {
+    app.post("/update/updatestatus", async (req, res) => {
         try {
             console.log(req.body);
             const result = await pg("user_order")
-              .where({ register_id: req.body.register_id }) // Specify the condition
+              .where({ id:req.body.id }) // Specify the condition
               .update({
-                status: req.body.status
+                status: 'Cancelled'
             });
             console.log(result); // The number of affected rows
             return res.status(200).json({ result: result, message: 'status Updated Successfully!' });
@@ -300,7 +301,6 @@ app.post("/updateUser", async (req, res) => {
             console.error(error);
             return res.status(500).json({ message: 'Internal server error' });
           }
-          
         });
 
 
