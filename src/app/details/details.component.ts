@@ -16,4 +16,8 @@ export class DetailsComponent {
     this.router.navigate(['/user-profile'])
   }
 
+  loginUser(){
+    
+  }
+
 }

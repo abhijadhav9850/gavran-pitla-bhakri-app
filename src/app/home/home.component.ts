@@ -63,6 +63,14 @@ export class HomeComponent {
    this.modify()
   }
 
+  detailes(){
+    if(this.ls.profilepoPup == true){
+      this.ls.withoutUserLoginBackBtn()
+    }else{
+      this.router.navigate(['details']);
+    }
+  }
+
   modify(){
     let  orders = this.orderList.length
     for(let i = 0; i < this.orderList.length;i++){

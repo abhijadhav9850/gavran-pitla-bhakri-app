@@ -80,6 +80,23 @@ export class OtpVerificationComponent {
       })
     }
   }
+
+  logindetailsinprofile(){
+    this.http.post("https://knexdatabase.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
+      if(e.message == 'OTP Verified Successfully!'){  
+        // alert('Otp Verified Successful');
+        this.ls.otpVerifyApi()
+          this.ls.openAddress()
+        this.ls.profile()
+        this.ls.userLogin = true;
+        console.log("Work");
+      }else{
+        alert('OTP is not valid');
+        // this.authLoggedIn.next(true)
+        // this.router.navigate(['order-his'])
+      }
+      })  
+  }
   
   otp: string[] = ['', '', '', ''];
   onInput(index: number) {
