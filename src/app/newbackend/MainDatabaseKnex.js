@@ -285,13 +285,13 @@ app.post("/updateUser", async (req, res) => {
       }
     });
 
-    app.post("/updatestatus", async (req, res) => {
+    app.post("/update/updatestatus", async (req, res) => {
         try {
             console.log(req.body);
             const result = await pg("user_order")
-              .where({ register_id: req.body.register_id }) // Specify the condition
+              .where({ id:req.body.id }) // Specify the condition
               .update({
-                status: req.body.status
+                status: 'Cancelled'
             });
             console.log(result); // The number of affected rows
             return res.status(200).json({ result: result, message: 'status Updated Successfully!' });
@@ -300,7 +300,6 @@ app.post("/updateUser", async (req, res) => {
             console.error(error);
             return res.status(500).json({ message: 'Internal server error' });
           }
-          
         });
 
 
