@@ -20,6 +20,7 @@ export class UserProfileComponent {
   Email = '@gmail.com'
   registerId:any;
   usercity:any;
+  userAddress:any;
 
   ngOnInit(){
     const retrievedData = localStorage.getItem('profile');
@@ -30,6 +31,7 @@ export class UserProfileComponent {
       this.registerId = userObject?.mobileno;
       this.user_token = userObject?.register_id;
       this.userName = userObject?.username;
+      this.userAddress = userObject?.useraddress;
       this.usercity = userObject?.usercity;
 
     } else {
@@ -64,6 +66,7 @@ export class UserProfileComponent {
     UserName: [ [Validators.required]],
     UserNumber: [, [Validators.required]],
     Usercity: [ [Validators.required]],
+    UserAddress:[[Validators.required]]
   });
 
   edit = false
@@ -73,7 +76,9 @@ export class UserProfileComponent {
     this.myForm.patchValue({
       UserName: this.userName,
       UserNumber: this.registerId,
-      Usercity: this.usercity
+      Usercity: this.usercity,
+      UserAddress: this.userAddress
+      
     })
   }
 
@@ -89,11 +94,12 @@ export class UserProfileComponent {
       UserName: this.myForm.value.UserName,
       UserNumber: this.myForm.value.UserNumber,
       Usercity: this.myForm.value.Usercity,
+      UserAddress: this.myForm.value.UserAddress,
       register_id: this.user_token
     }
     console.log(user);
     
-    this.http.post('https://knexdatabase.onrender.com/updateUser', user).subscribe((e: any) => {
+    this.http.post('http://localhost:4000/updateUser', user).subscribe((e: any) => {
       if (e.message === 'User Updated Successfully!') {
         console.log(e);
         localStorage.removeItem('profile');
@@ -108,6 +114,7 @@ export class UserProfileComponent {
             this.user_token = userObject?.register_id;
             this.userName = userObject?.username;
             this.usercity = userObject?.usercity;
+            this.userAddress = userObject?.useraddress;
             this.edit = false;
           }
         }, 1000);
