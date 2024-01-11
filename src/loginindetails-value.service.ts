@@ -36,6 +36,7 @@ export class LoginindetailsValueService {
 
   counter1= 0;
   counter2=0;
+  profilepoPup = false;
 
   orderDate = new Date();
   
@@ -245,8 +246,9 @@ export class LoginindetailsValueService {
   };
 
   changeStyle() {
-    this.popup_hide = true
-    this.popup_quantity = true
+
+      this.openFoodQuantity();
+
     this.counter2 = 1;
     // Change the style dynamically
     setTimeout(()=>{  
@@ -311,9 +313,44 @@ export class LoginindetailsValueService {
     }, 500);
     }
 
+    loginInDetails() {
+
+      this.profilepoPup = true
+
+      if(this.userLogin == false){
+        this.popup_hide = true;
+        this.openContact()
+      }else{
+        this.openFoodQuantity();
+      }
+      
+    this.counter2 = 1;
+    // Change the style dynamically
+    setTimeout(()=>{  
+      this.backgroundblur = {
+        'filter' : 'blur(2px)',
+        'transition' : '0.1s ease-out',
+        'background' : 'linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3),url(../../assets/image 2.jpg))',
+      }
+      this.loginInPhone = {
+        // display: 'flex',
+        // backgroundColor: 'lightgreen',
+        // color: 'white',
+        'width' : '100%',
+        'transition': 'margin-top 0.1s ease-out',
+        'margin-top': '-60vh',
+        'box-shadow' : '0px 0px 900px 900px rgba(0,0,0,0.2)',
+        'z-index': '1',
+        'background-color' : '#fff',
+        'overflow' : 'hidden',
+      };
+  }, 10);
+  }
+
     showProfile(){
       this.popup_hide = true
       this.popup_contact = true
+      this.profilepoPup = true;
    
       this.counter1 = 1;
       
@@ -340,6 +377,7 @@ export class LoginindetailsValueService {
 
     withoutUserLoginBackBtn(){
       this.counter1 = 1
+      this.profilepoPup = false
       this.backgroundblur = {
         'filter' : 'blue(0px)',
         'transition' : '0.1s ease-in-out',
@@ -374,6 +412,10 @@ export class LoginindetailsValueService {
     }, 500);
     }
 
+    openFoodQuantity(){
+      this.popup_hide = true
+      this.popup_quantity = true
+    }
     openOtp(){
       this.otp = true;
       this.popup_contact = false
