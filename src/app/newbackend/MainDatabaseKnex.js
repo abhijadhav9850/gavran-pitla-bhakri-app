@@ -96,7 +96,6 @@ app.post("/updateUser", async (req, res) => {
       
 });
 
-
 //POST API FOR ADD USERS INTO THE DATABASE IF YOUR ALREADY EXIST THEN SEND RESPONSE AS USER PRESENT EITHER ADD NEW USER!
 app.post("/Mobile_No/Add_User", async (req, res) => {
   try {
@@ -193,7 +192,6 @@ app.post("/user/userDetails", async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 });
-
 
 //POST API FOR ADD ORDER DETAILS INTO THE DATABASE!
 app.post("/OrderData/Details", async (req, res) => {
@@ -324,7 +322,6 @@ app.post("/mobile/Update", async (req, res) => {
     console.log(err);
   }
 });
-
 
 app.listen(port, (req, res) => {
   console.log(`Using Port http://localhost:${port}/`);
