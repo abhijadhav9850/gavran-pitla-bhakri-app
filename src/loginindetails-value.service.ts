@@ -162,6 +162,8 @@ export class LoginindetailsValueService {
   this.http.post('http://localhost:4000/update/updatestatus',this.foodorderdata).subscribe((e:any)=>{
     console.log('kkk',e);
   })
+
+  
   }
 
   getData(): Observable<any[]> {

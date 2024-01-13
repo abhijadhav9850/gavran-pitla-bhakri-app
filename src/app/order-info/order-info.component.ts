@@ -17,7 +17,9 @@ export class OrderInfoComponent {
     // this.ls.updatestatus()
     this.cancel = "Cancel"
     this.ls.show_home_popup = false
-    this.router.navigate(['']);
+    setTimeout(()=>{  
+      this.location.back();
+  }, 500);
   }
 
   goToHomePage(){

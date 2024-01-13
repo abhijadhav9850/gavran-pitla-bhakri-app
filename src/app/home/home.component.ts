@@ -13,7 +13,7 @@ export class HomeComponent {
 
   constructor(public service: PopupHandingService, public ls: LoginindetailsValueService, public router:Router) {
     // Retrieve from localStorage
-    setInterval(() => this.getdata(), 1000);
+    // setInterval(() => this.getdata(), 1000);
     const retrievedData = localStorage.getItem('user_details');
     if (retrievedData !== null) {
       this.ls.authLoggedIn.next(true)
@@ -26,6 +26,8 @@ export class HomeComponent {
   userId:any;
 
   async ngOnInit() {
+
+    this.getdata()
 
     this.ls.getData().subscribe(
       (data: any) => {
