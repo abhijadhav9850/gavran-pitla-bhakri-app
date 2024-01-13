@@ -24,7 +24,7 @@ export class PaymentpageComponent {
     } else {
       this.router.navigate(['']);
       // this.ls.Test_newapi()
-      this.ls.show_home_popup = true
+      // this.ls.show_home_popup = true
       
 
     }

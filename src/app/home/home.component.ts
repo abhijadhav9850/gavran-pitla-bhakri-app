@@ -49,7 +49,7 @@ export class HomeComponent {
       (data: any) => {
         this.orderList = data.Result;
         // console.log('heee',this.orderList[this.orderList.length-1].status);
-        this.userId = this.orderList.length
+      
         // console.log(this.orderList);
         
        this.cancelorder()

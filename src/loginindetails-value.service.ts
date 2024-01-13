@@ -378,6 +378,7 @@ export class LoginindetailsValueService {
     withoutUserLoginBackBtn(){
       this.counter1 = 1
       this.profilepoPup = false
+
       this.backgroundblur = {
         'filter' : 'blue(0px)',
         'transition' : '0.1s ease-in-out',
