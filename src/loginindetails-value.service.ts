@@ -159,7 +159,7 @@ export class LoginindetailsValueService {
 
   updatestatus(){
   
-  this.http.post('http://localhost:4000/update/updatestatus',this.foodorderdata).subscribe((e:any)=>{
+  this.http.post('https://knexdatabase.onrender.com/update/updatestatus',this.foodorderdata).subscribe((e:any)=>{
     console.log('kkk',e);
   })
 
@@ -192,7 +192,7 @@ export class LoginindetailsValueService {
     let obj = {
       "Mobile_No" : number
     }
-    this.http.post('http://localhost:4000/user/userDetails',obj).subscribe((e:any)=>{
+    this.http.post('https://knexdatabase.onrender.com/user/userDetails',obj).subscribe((e:any)=>{
       const userResult = e.result;
       console.log(userResult);
       
