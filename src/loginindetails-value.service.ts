@@ -12,10 +12,13 @@ export class LoginindetailsValueService {
 
   constructor(public http: HttpClient, public fb: FormBuilder, public router: Router) {
     this.isUserLogin()
+    console.log(this.deladd);
+    
+    
   }
 
   
-
+deladd:any
   display: any;
 
   adddata: any = ''

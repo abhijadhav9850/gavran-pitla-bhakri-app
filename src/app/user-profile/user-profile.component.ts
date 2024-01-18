@@ -116,6 +116,7 @@ export class UserProfileComponent {
             this.userName = userObject?.username;
             this.usercity = userObject?.usercity;
             this.userAddress = userObject?.useraddress;
+            this.ls.deladd = userObject?.useraddress
             this.edit = false;
           }
         }, 1000);
