@@ -1,59 +1,20 @@
-<div>
-    <header (click)="ls.closeContact()" class="relative flex  justify-center p-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none"
-            class="absolute left-0 h-6 w-6">
-            <path
-                d="M16.8517 8.23502L9.16424 13.7975C9.13229 13.8205 9.10628 13.8508 9.08834 13.8859C9.07039 13.9209 9.06104 13.9597 9.06104 13.9991C9.06104 14.0385 9.07039 14.0773 9.08834 14.1123C9.10628 14.1473 9.13229 14.1776 9.16424 14.2006L16.8517 19.7631C17.0174 19.8819 17.2486 19.7631 17.2486 19.56V18.0944C17.2486 17.7756 17.0955 17.4725 16.8361 17.285L12.2924 14.0006L16.8361 10.7131C17.0955 10.5256 17.2486 10.2256 17.2486 9.90376V8.43814C17.2486 8.23502 17.0174 8.11627 16.8517 8.23502Z"
-                fill="black" fill-opacity="0.85" />
-            <path
-                d="M14 0C6.26875 0 0 6.26875 0 14C0 21.7313 6.26875 28 14 28C21.7313 28 28 21.7313 28 14C28 6.26875 21.7313 0 14 0ZM14 25.625C7.58125 25.625 2.375 20.4188 2.375 14C2.375 7.58125 7.58125 2.375 14 2.375C20.4188 2.375 25.625 7.58125 25.625 14C25.625 20.4188 20.4188 25.625 14 25.625Z"
-                fill="black" fill-opacity="0.85" />
-        </svg>
-        <div class="text-2xl font-bold ">
-            <h1 class="font-bold text-xl">Login</h1>
-        </div>
-    </header>
-    <p class="font-Roboto font-bold text-sm flex  justify-center mt-6">Kindly enter your Phone Number for login</p>
-    <p class="font-Roboto text-xs flex  justify-center font-normal mt-2">We will send you the <span
-            class="font-bold text-xs ml-1 mr-1">4 Digit</span> verification code </p>
-    <div class="flex justify-center mt-6">
-        <img class="w-40 h-25 " src="../../assets/No connection-bro 1.png" alt="">
-    </div>
-    <div class="flex justify-center">
-        <div cdirectivelass="flex flex-col items-center ">
-            <form #myForm="ngForm" [formGroup]="ls.phoneForm" class=" w-full flex border rounded-xl overflow-hidden">
-                <!-- <select class="w-12 p-2 appearance-none bg-transparent focus:outline-none">
-                    <option value="1">+91</option>
-                    <option value="2">+08</option>
-                    <option value="3">+9</option>
-                </select> -->
-                <div>
-                    <input id="input" type="number" maxlength="10" placeholder="Enter a number" formControlName="Mobile_No"
-                        class="w-[15rem] py-[8px] px-[10px] appearance-none bg-transparent focus:outline-none">
-                </div>
-            </form>
-            <!-- <span class="text-red-700 text-xs font-semibold mt-1 -mb-3" *ngIf="(phoneFormControl.Mobile_No.touched) && phoneFormControl.Mobile_No.errors?.['required'] || ls.phoneForm.invalid">
-               Invalid Mobile Number
-            </span> -->
-
-            <span class="text-red-700 text-xs font-semibold ml-2 mt-1 -mb-3" *ngIf="(phoneFormControl.Mobile_No.touched || submitted) && phoneFormControl.Mobile_No.errors?.['required'] || minimumNumber">
-                Invalid Mobile Number
-             </span>
-            <!-- <div *ngIf="phoneFormControl.touched && phoneFormControl.invalid" class="alert alert-danger">  
-                <div *ngIf="phoneFormControl.errors.required">Mobile Number is required.</div>  
-                <div *ngIf="phoneFormControl.errors.pattern">Please, Enter 10 digit Mobile Number.</div>  
-            </div>  -->
-            
-        </div>
-    </div>
-    <div class="font-Roboto flex  justify-center mt-6">
-        <button (click)="submitForm(myForm.value)"
-            class="py-2 px-4 w-[150px] h-[40px] bg-orange-500 text-white font-semibold rounded-[20px] shadow-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-75">
-            Send OTP
-        </button>
-    </div>
-    <p class="font-Roboto text-xs text-gray-400 font-Inter flex  justify-center mt-6">By continuing, you agree to our
-    </p>
-    <p class="font-Roboto text-xs text-gray-400 font-Inter flex  justify-center ">Terms of Servacy Privacy Policy
-        Contenent Policy</p>
+<header (click)="ls.closeContact()" class="relative flex  justify-center p-2">
+    <i class='bx bx-caret-left-circle text-3xl absolute left-0 h-6 w-6'></i>
+    <h1 class="font-bold text-xl">Login</h1>
+</header>
+<p class="font-Roboto font-bold text-sm flex  justify-center mt-6">Kindly enter your Phone Number for login</p>
+<p class="font-Roboto text-xs flex  justify-center font-normal mt-2">We will send you the <span class="font-bold text-xs ml-1 mr-1">4 Digit</span> verification code </p>
+<div class="flex justify-center mt-6">
+    <img class="w-40 h-25 " src="../../assets/No connection-bro 1.png" alt="">
 </div>
+<div class="flex flex-col items-center justify-center">
+    <form #myForm="ngForm" [formGroup]="ls.phoneForm" class=" w-full flex border rounded-xl overflow-hidden">
+        <input id="input" type="number" maxlength="10" placeholder="Enter a number" formControlName="Mobile_No" class="w-60 py-2 px-3 appearance-none bg-transparent focus:outline-none">
+    </form>
+    <span class="text-red-700 text-xs font-semibold ml-2 mt-1 -mb-3" *ngIf="(phoneFormControl.Mobile_No.touched || submitted) && phoneFormControl.Mobile_No.errors?.['required'] || minimumNumber">Invalid Mobile Number</span>
+    <button (click)="submitForm(myForm.value)" class="py-2 px-4 w-36 h-10 mt-6 bg-orange-500 text-white font-semibold rounded-3xl shadow-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-75"> Send OTP</button>
+</div>
+<footer class="flex flex-col justify-center mt-24 items-center absolute left-0 right-0 bottom-0 mb-6">
+    <p class="font-Roboto text-xs text-gray-400 ">Terms of Servacy Privacy Policy Contenent Policy</p>
+    <p class="font-Roboto text-xs text-gray-400">By continuing, you agree to our <span></span></p>
+</footer>
