@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-user-orders',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-orders.component.css']
 })
 export class UserOrdersComponent {
+
+  constructor(public location : Location){}
+
+  backButton(){
+    this.location.back();
+  }
 
 }

@@ -159,9 +159,11 @@ export class LoginindetailsValueService {
 
   updatestatus(){
   
-  this.http.post('http://localhost:4000/update/updatestatus',this.foodorderdata).subscribe((e:any)=>{
+  this.http.post('https://knexdatabase.onrender.com/update/updatestatus',this.foodorderdata).subscribe((e:any)=>{
     console.log('kkk',e);
   })
+
+  
   }
 
   getData(): Observable<any[]> {
@@ -174,7 +176,7 @@ export class LoginindetailsValueService {
       const number = {
         Mobile_No: registerNumber
       }
-      console.log(number);
+      // console.log(number);
       return this.http.post<any[]>("https://knexdatabase.onrender.com/getData", number);
     } else {
       console.log('No data found in localStorage');
@@ -190,7 +192,7 @@ export class LoginindetailsValueService {
     let obj = {
       "Mobile_No" : number
     }
-    this.http.post('http://localhost:4000/user/userDetails',obj).subscribe((e:any)=>{
+    this.http.post('https://knexdatabase.onrender.com/user/userDetails',obj).subscribe((e:any)=>{
       const userResult = e.result;
       console.log(userResult);
       
@@ -378,6 +380,7 @@ export class LoginindetailsValueService {
     withoutUserLoginBackBtn(){
       this.counter1 = 1
       this.profilepoPup = false
+
       this.backgroundblur = {
         'filter' : 'blue(0px)',
         'transition' : '0.1s ease-in-out',
@@ -447,6 +450,10 @@ export class LoginindetailsValueService {
         this.payment = true;
         this.address = false
         this.counter2 = 0;
+      }else if(this.profilepoPup == false){
+        this.closepopup()
+        console.log("it's works");
+        
       }
     }
 
@@ -479,9 +486,9 @@ export class LoginindetailsValueService {
       this.address = false;
       this.otp = true;
     }
+
+    
 }
 
 
-
-// popup service code
 
