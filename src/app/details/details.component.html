@@ -1,12 +1,12 @@
 <div class="px-2 h-[100vh] overflow-hidden" id="main" [ngStyle]="ls.backgroundblur">
-    <div (click)="ls.closepopup()" class=" flex justify-between top-0 sticky bg-white items-center pt-[25px] px-[2px] pb-[20px]">
+    <div class=" flex justify-between top-0 sticky bg-white items-center pt-[25px] px-[2px] pb-[20px]">
         <div routerLink="/" class="flex gap-[8px] text-[1.5rem]">
             <p style="font-family: 'Aclonica', sans-serif;color: #FF6A00;">Pithla</p>
             <p style="font-family: 'Aclonica', sans-serif;color: #00A850;">Bhakri</p>
         </div>
-        <div class="flex items-center gap-[10px]">
+        <div class="flex hidden items-center gap-[10px]">
            
-            <img *ngIf="!ls.userLogin" class="h-[29px] -mt-[8px]" src="../../assets/Group 20.jpg" alt="">
+            <img *ngIf="!ls.userLogin" (click)="ls.loginInDetails()" class="h-[29px] -mt-[8px]" src="../../assets/Group 20.jpg" alt="">
             
             <svg *ngIf="ls.userLogin" (click)="changePath()" class="zoom" xmlns="http://www.w3.org/2000/svg"  class="h-[29px] -mt-[2px]"  xmlns:xlink="http://www.w3.org/1999/xlink"
        viewBox="0 0 101 100" fill="none">

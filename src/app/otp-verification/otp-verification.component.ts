@@ -24,6 +24,7 @@ export class OtpVerificationComponent {
   invalid = false
   display: any;
   timer : any = 30;
+  spinner = false
 
   timeout(){
     setTimeout(() => {
@@ -48,6 +49,7 @@ export class OtpVerificationComponent {
   async optverify() {
     // this.service.openAddress()
     // console.log(this.ls.otpvalue);
+    this.spinner = true;
     this.ls.profile()
     this.getUserInformation()
     if(this.timer>=0){
@@ -62,11 +64,11 @@ export class OtpVerificationComponent {
        }
        
       //  otp verify and go to next page api done
-      this.http.post("http://localhost:4000/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
+      this.http.post("https://knexdatabase.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
       if(e.message == 'OTP Verified Successfully!'){  
         // alert('Otp Verified Successful');
         this.ls.otpVerifyApi()
-        this.ls.openAddress()
+          this.ls.openAddress()
         this.ls.profile()
         this.ls.userLogin = true;
         console.log("Work");
@@ -77,6 +79,23 @@ export class OtpVerificationComponent {
       }
       })
     }
+  }
+
+  logindetailsinprofile(){
+    this.http.post("https://knexdatabase.onrender.com/OTP/GetOTP",this.ls.otpnumber).subscribe((e:any)=>{
+      if(e.message == 'OTP Verified Successfully!'){  
+        // alert('Otp Verified Successful');
+        this.ls.otpVerifyApi()
+          this.ls.openAddress()
+        this.ls.profile()
+        this.ls.userLogin = true;
+        console.log("Work");
+      }else{
+        alert('OTP is not valid');
+        // this.authLoggedIn.next(true)
+        // this.router.navigate(['order-his'])
+      }
+      })  
   }
   
   otp: string[] = ['', '', '', ''];
@@ -129,7 +148,7 @@ export class OtpVerificationComponent {
     let obj = {
       "Mobile_No" : number
     }
-    this.http.post('http://localhost:4000/user/userDetails',obj).subscribe((e:any)=>{
+    this.http.post('https://knexdatabase.onrender.com/user/userDetails',obj).subscribe((e:any)=>{
       const userResult = e.result;
       localStorage.setItem('profile', JSON.stringify(userResult));
       console.log('hello...',userResult);
