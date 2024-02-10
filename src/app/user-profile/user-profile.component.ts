@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginindetailsValueService } from 'src/loginindetails-value.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-user-profile',
@@ -11,7 +12,7 @@ import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 })
 export class UserProfileComponent {
 
-  constructor(public ls:LoginindetailsValueService, public router:Router, public fb: FormBuilder, public http: HttpClient){}
+  constructor(public ls:LoginindetailsValueService, public router:Router, public fb: FormBuilder, public http: HttpClient,public location: Location){}
 
   userName:any 
   getData:any = localStorage.getItem('user_details')

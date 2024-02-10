@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginindetailsValueService } from 'src/loginindetails-value.service';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -9,18 +10,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./order-info.component.css']
 })
 export class OrderInfoComponent {
-  constructor(public ls: LoginindetailsValueService,public router:Router){ }
+  constructor(public ls: LoginindetailsValueService,public router:Router,public location : Location){ }
   modifyOrder = false
   cancel :any = "Cancel"
   backpage(){
     // this.ls.updatestatus()
     this.cancel = "Cancel"
     this.ls.show_home_popup = false
-    this.router.navigate(['']);
+    setTimeout(()=>{  
+      this.location.back();
+  }, 500);
   }
 
   goToHomePage(){
-    this.router.navigate(['order-his']);
+    this.location.back();
   }
 
   toToProfilePage(){
