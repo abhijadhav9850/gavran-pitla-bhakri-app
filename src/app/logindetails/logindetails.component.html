@@ -1,71 +1,30 @@
 <header class="relative flex items-center mt-1 justify-center p-2">
-    <svg (click)="ls.closeAddress()" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"
-        fill="none" class="absolute left-0 h-6 w-6">
-        <path
-            d="M16.8517 8.23502L9.16424 13.7975C9.13229 13.8205 9.10628 13.8508 9.08834 13.8859C9.07039 13.9209 9.06104 13.9597 9.06104 13.9991C9.06104 14.0385 9.07039 14.0773 9.08834 14.1123C9.10628 14.1473 9.13229 14.1776 9.16424 14.2006L16.8517 19.7631C17.0174 19.8819 17.2486 19.7631 17.2486 19.56V18.0944C17.2486 17.7756 17.0955 17.4725 16.8361 17.285L12.2924 14.0006L16.8361 10.7131C17.0955 10.5256 17.2486 10.2256 17.2486 9.90376V8.43814C17.2486 8.23502 17.0174 8.11627 16.8517 8.23502Z"
-            fill="black" fill-opacity="0.85" />
-        <path
-            d="M14 0C6.26875 0 0 6.26875 0 14C0 21.7313 6.26875 28 14 28C21.7313 28 28 21.7313 28 14C28 6.26875 21.7313 0 14 0ZM14 25.625C7.58125 25.625 2.375 20.4188 2.375 14C2.375 7.58125 7.58125 2.375 14 2.375C20.4188 2.375 25.625 7.58125 25.625 14C25.625 20.4188 20.4188 25.625 14 25.625Z"
-            fill="black" fill-opacity="0.85" />
-    </svg>
-    <div class="text-2xl font-bold">
+    <i (click)="ls.closeAddress()" class='bx bx-caret-left-circle text-3xl absolute left-0 h-6 w-6'></i>
         <h1 class="font-bold text-xl">Login Details</h1>
-    </div>
 </header>
-<div class="text-center text-black font-roboto text-sm font-medium mt-3">
-    Enter Personal Information
-</div>
+<div class="text-center text-black font-roboto text-sm font-medium mt-3"> Enter Personal Information</div>
 <form [formGroup]="myForm" class="flex flex-col justify-center p-2 mt-2">
     <div class="mt-3">
         <label for="name" class="block text-gray-700 text-xs font-bold mb-2">Name</label>
-        <input type="text" placeholder="Name" id="name" formControlName="UserName"
-            class="w-full md:w-64 p-2 border rounded-md focus:outline-none focus:border-blue-500">
-        <span class="text-red-600 font-semibold text-[10px] ml-1"
-            *ngIf="(myFormControl.UserName.touched || submitted) && myFormControl.UserName.errors?.['required']">
-            Enter Your Username
-        </span>
-        <!-- [ngClass]="{ 'invalid-input': myForm.get('UserCity')?.invalid && myForm.get('UserCity')?.touched }"
-            class="w-full md:w-64 p-2 border rounded-md focus:outline-none focus:border-blue-500"> -->
-        <!-- <div *ngIf="myForm.get('UserName')?.hasError('required') && myForm.get('UserName')?.touched"
-            class="text-red-500 mt-2 text-xs font-bold text-center">Name is required.</div> -->
+        <input type="text" placeholder="Name" id="name" formControlName="UserName" class="w-full md:w-64 p-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-600 font-semibold text-xs ml-1" *ngIf="(myFormControl.UserName.touched || submitted) && myFormControl.UserName.errors?.['required']"> Enter Your Username</span>
     </div>
     <div class="mt-3">
         <label for="address" class="block text-gray-700 text-xs font-bold mb-2">Address</label>
-        <input type="text" placeholder="Address" id="address" formControlName="UserAddress"
-            class="w-full md:w-64 p-2 border rounded-md focus:outline-none focus:border-blue-500">
-        <span class="text-red-600 font-semibold text-[10px] ml-1"
-            *ngIf="(myFormControl.UserAddress.touched || submitted) && myFormControl.UserAddress.errors?.['required']">
-            Enter Your Address
-        </span>
-        <!-- [ngClass]="{ 'invalid-input': myForm.get('UserAddress')?.invalid && myForm.get('UserAddress')?.touched }"
-            class="w-full md:w-64 p-2 border rounded-md focus:outline-none focus:border-blue-500"> -->
-        <!-- <div *ngIf="myForm.get('UserAddress')?.hasError('required') && myForm.get('UserAddress')?.touched"
-            class="text-red-500 mt-2 text-xs font-bold text-center">Address is required.</div> -->
+        <input type="text" placeholder="Address" id="address" formControlName="UserAddress" class="w-full md:w-64 p-2 border rounded-md focus:outline-none focus:border-blue-500">
+        <span class="text-red-600 font-semibold text-xs ml-1" *ngIf="(myFormControl.UserAddress.touched || submitted) && myFormControl.UserAddress.errors?.['required']"> Enter Your Address</span>
     </div>
     <div class="mt-3">
         <label for="address" class="block text-gray-700 text-xs font-bold mb-2">City</label>
-        <!-- <input type="text" placeholder="City" id="city" formControlName="UserCity" class="w-full md:w-64 p-2 border rounded-md focus:outline-none focus:border-blue-500"> -->
-
         <div class="flex justify-center items-center">
-            <select class="w-full p-2 border bg-white  text-base font-normal rounded-md focus:outline-none focus:border-blue-500" name="cars" id="cars" formControlName="UserCity">
+            <select class="w-full p-2 border bg-white  text-base font-normal rounded-md focus:outline-none focus:border-blue-500" formControlName="UserCity">
                 <option value="">Select Your City</option>
                 <option *ngFor="let city of citys" [value]="city.value">{{city.name}}</option>
             </select>
         </div>
-        <span class="text-red-600 font-semibold text-[10px] ml-1"
-            *ngIf="(myFormControl.UserCity.touched || submitted) && myFormControl.UserCity.errors?.['required']">
-            Enter Your City 
-        </span>
-        <!-- [ngClass]="{ 'invalid-input': myForm.get('UserCity')?.invalid && myForm.get('UserCity')?.touched }"
-            class="w-full md:w-64 p-2 border rounded-md focus:outline-none focus:border-blue-500"> -->
-        <!-- <div *ngIf="myForm.get('UserCity')?.hasError('required') && myForm.get('UserCity')?.touched"
-            class="text-red-500 mt-2 text-xs font-bold text-center">City is required.</div> -->
+        <span class="text-red-600 font-semibold text-xs ml-1" *ngIf="(myFormControl.UserCity.touched || submitted) && myFormControl.UserCity.errors?.['required']"> Enter Your City </span>
     </div>
-
 </form>
-<div class="flex justify-center">
-    <button (click)="submitForm()"  
-        class="py-2 px-4 w-28 h-10 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-75 mt-5">
-        Continue
-    </button>
+<div class="flex justify-center mt-5"> 
+    <button (click)="submitForm()" class="py-2 px-4 w-28 h-10 bg-orange-500 text-white font-semibold rounded-lg shadow-md hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-75 mt-5">Continue</button>
 </div>
